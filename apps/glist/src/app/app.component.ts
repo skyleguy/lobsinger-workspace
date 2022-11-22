@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   constructor(private firebaseService: FirebaseService) {}
 
   public ngOnInit(): void {
+    console.log('test for commit');
     this.firebaseService.app.subscribe({
       next: (app) => {
         if (app) {
