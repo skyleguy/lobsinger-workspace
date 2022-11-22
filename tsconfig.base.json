@@ -21,7 +21,13 @@
       "@lob/client/shared/auth/data-access": [
         "libs/client/shared/auth/data-access/src/index.ts"
       ],
-      "@lob/client/shared/auth/ui": ["libs/client/shared/auth/ui/src/index.ts"]
+      "@lob/client/shared/auth/ui": ["libs/client/shared/auth/ui/src/index.ts"],
+      "@lob/client/shared/firebase/data": [
+        "libs/client/shared/firebase/data/src/index.ts"
+      ],
+      "@lob/client/shared/firebase/data-access": [
+        "libs/client/shared/firebase/data-access/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

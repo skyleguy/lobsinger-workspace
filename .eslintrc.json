@@ -49,6 +49,48 @@
               "parent",
               "index"
             ],
+            "pathGroups": [
+              {
+                "pattern": "**/data",
+                "group": "internal"
+              },
+              {
+                "pattern": "**/data/**",
+                "group": "internal"
+              },
+              {
+                "pattern": "**/data-access",
+                "group": "internal"
+              },
+              {
+                "pattern": "**/data-access/**",
+                "group": "internal"
+              },
+              {
+                "pattern": "**/ui",
+                "group": "internal"
+              },
+              {
+                "pattern": "**/ui/**",
+                "group": "internal"
+              },
+              {
+                "pattern": "**/feature",
+                "group": "internal"
+              },
+              {
+                "pattern": "**/feature/**",
+                "group": "internal"
+              },
+              {
+                "pattern": "**/util",
+                "group": "internal"
+              },
+              {
+                "pattern": "**/util/**",
+                "group": "internal"
+              }
+            ],
             "newlines-between": "always",
             "alphabetize": {
               "order": "asc",

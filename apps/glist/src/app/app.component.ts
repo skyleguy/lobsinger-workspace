@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { initializeApp, FirebaseApp } from 'firebase/app';
+
+import { FirebaseService } from '@lob/client/shared/firebase/data-access';
 
 @Component({
   selector: 'lob-root',
@@ -8,22 +9,16 @@ import { initializeApp, FirebaseApp } from 'firebase/app';
 })
 export class AppComponent implements OnInit {
   title = 'glist';
-  app!: FirebaseApp;
+
+  constructor(private firebaseService: FirebaseService) {}
 
   public ngOnInit(): void {
-    this.initializeApp();
-  }
-
-  private initializeApp(): void {
-    const firebaseConfig = {
-      apiKey: 'AIzaSyADdudZWW-lO8qdTX5-oza_kvcjLGYMteY',
-      authDomain: 'glist-aed62.firebaseapp.com',
-      projectId: 'glist-aed62',
-      storageBucket: 'glist-aed62.appspot.com',
-      messagingSenderId: '655452293628',
-      appId: '1:655452293628:web:7e64fd6a67257d327e8a79',
-      measurementId: 'G-V69BPDWWPB',
-    };
-    this.app = initializeApp(firebaseConfig);
+    this.firebaseService.app.subscribe({
+      next: (app) => {
+        if (app) {
+          console.log(app);
+        }
+      },
+    });
   }
 }
