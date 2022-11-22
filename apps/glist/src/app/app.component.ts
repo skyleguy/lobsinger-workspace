@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   constructor(private firebaseService: FirebaseService) {}
 
   public ngOnInit(): void {
+    console.log('husky rc test');
     this.firebaseService.app.subscribe({
       next: (app) => {
         if (app) {
