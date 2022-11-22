@@ -1,32 +1,25 @@
-import { TestBed } from '@angular/core/testing';
+import { Spectator, createComponentFactory } from '@ngneat/spectator/jest';
+import { MockComponent } from 'ng-mocks';
+
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
 
 describe('AppComponent', () => {
+  let spectator: Spectator<AppComponent>;
+  const createComponent = createComponentFactory({
+    component: AppComponent,
+    declarations: [MockComponent(NxWelcomeComponent)],
+  });
+
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [AppComponent, NxWelcomeComponent],
-    }).compileComponents();
+    spectator = createComponent();
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 
   it(`should have as title 'glist'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('glist');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Welcome glist'
-    );
+    expect(spectator.component.title).toEqual('glist');
   });
 });
