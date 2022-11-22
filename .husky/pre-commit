@@ -2,4 +2,4 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 nx affected:lint --fix
-git add
+git add .
