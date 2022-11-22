@@ -3,7 +3,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 /* eslint-disable */
 
 @Component({
-  selector: 'lobsinger-nx-welcome',
+  selector: 'lob-nx-welcome',
   template: `
     <!--
      * * * * * * * * * * * * * * * * * * * * * * * * * * * *

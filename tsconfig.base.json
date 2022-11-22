@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@lob/client/shared/auth": ["libs/client/shared/auth/src/index.ts"],
+      "@lob/client/shared/navigation": [
+        "libs/client/shared/navigation/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

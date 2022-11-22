@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'lobsinger-root',
+  selector: 'lob-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
