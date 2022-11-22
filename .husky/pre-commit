@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-nx affected:lint --fix
+nx affected --target=lint --base=main --head=HEAD --fix
 git add .
