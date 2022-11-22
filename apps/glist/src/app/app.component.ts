@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
     this.firebaseService.app.subscribe({
       next: (app) => {
         if (app) {
-          console.log(app)
+          console.log(app);
         }
       },
     });
