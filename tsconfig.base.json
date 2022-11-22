@@ -15,10 +15,13 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@lob/client/shared/auth": ["libs/client/shared/auth/src/index.ts"],
-      "@lob/client/shared/navigation": [
-        "libs/client/shared/navigation/src/index.ts"
-      ]
+      "@lob/client/shared/auth/data": [
+        "libs/client/shared/auth/data/src/index.ts"
+      ],
+      "@lob/client/shared/auth/data-access": [
+        "libs/client/shared/auth/data-access/src/index.ts"
+      ],
+      "@lob/client/shared/auth/ui": ["libs/client/shared/auth/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
