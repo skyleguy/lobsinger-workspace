@@ -13,6 +13,8 @@ import { GlistContentComponent } from './components/glist-content/glist-content.
 import { GlistHeaderComponent } from './components/glist-header/glist-header.component';
 import { GlistSidebarComponent } from './components/glist-sidebar/glist-sidebar.component';
 
+import { AppRoutingModule } from '../../app.routing.module';
+
 @NgModule({
   declarations: [
     GlistHeaderComponent,
@@ -23,6 +25,7 @@ import { GlistSidebarComponent } from './components/glist-sidebar/glist-sidebar.
   imports: [
     CommonModule,
     FormsModule,
+    AppRoutingModule,
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,

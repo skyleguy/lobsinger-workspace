@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@lob/client/glist/dashboard/feature": [
+        "libs/client/glist/dashboard/feature/src/index.ts"
+      ],
       "@lob/client/shared/auth/data": [
         "libs/client/shared/auth/data/src/index.ts"
       ],
