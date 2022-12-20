@@ -15,17 +15,63 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@lob/client/glist/dashboard/data": [
+        "libs/client/glist/dashboard/data/src/index.ts"
+      ],
+      "@lob/client/glist/dashboard/data-access": [
+        "libs/client/glist/dashboard/data-access/src/index.ts"
+      ],
       "@lob/client/glist/dashboard/feature": [
         "libs/client/glist/dashboard/feature/src/index.ts"
+      ],
+      "@lob/client/glist/dashboard/ui": [
+        "libs/client/glist/dashboard/ui/src/index.ts"
+      ],
+      "@lob/client/glist/dashboard/util": [
+        "libs/client/glist/dashboard/util/src/index.ts"
+      ],
+      "@lob/client/glist/glists/data": [
+        "libs/client/glist/glists/data/src/index.ts"
+      ],
+      "@lob/client/glist/glists/data-access": [
+        "libs/client/glist/glists/data-access/src/index.ts"
       ],
       "@lob/client/glist/glists/feature": [
         "libs/client/glist/glists/feature/src/index.ts"
       ],
+      "@lob/client/glist/glists/ui": [
+        "libs/client/glist/glists/ui/src/index.ts"
+      ],
+      "@lob/client/glist/glists/util": [
+        "libs/client/glist/glists/util/src/index.ts"
+      ],
+      "@lob/client/glist/menus/data": [
+        "libs/client/glist/menus/data/src/index.ts"
+      ],
+      "@lob/client/glist/menus/data-access": [
+        "libs/client/glist/menus/data-access/src/index.ts"
+      ],
       "@lob/client/glist/menus/feature": [
         "libs/client/glist/menus/feature/src/index.ts"
       ],
+      "@lob/client/glist/menus/ui": ["libs/client/glist/menus/ui/src/index.ts"],
+      "@lob/client/glist/menus/util": [
+        "libs/client/glist/menus/util/src/index.ts"
+      ],
+      "@lob/client/glist/recipes/data": [
+        "libs/client/glist/recipes/data/src/index.ts"
+      ],
+      "@lob/client/glist/recipes/data-access": [
+        "libs/client/glist/recipes/data-access/src/index.ts"
+      ],
       "@lob/client/glist/recipes/feature": [
         "libs/client/glist/recipes/feature/src/index.ts"
+      ],
+      "@lob/client/glist/recipes/ui": [
+        "libs/client/glist/recipes/ui/src/index.ts"
+      ],
+      "@lob/client/glist/recipes/util": [
+        "libs/client/glist/recipes/util/src/index.ts"
       ],
       "@lob/client/shared/auth/data": [
         "libs/client/shared/auth/data/src/index.ts"
