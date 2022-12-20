@@ -18,6 +18,15 @@
       "@lob/client/glist/dashboard/feature": [
         "libs/client/glist/dashboard/feature/src/index.ts"
       ],
+      "@lob/client/glist/glists/feature": [
+        "libs/client/glist/glists/feature/src/index.ts"
+      ],
+      "@lob/client/glist/menus/feature": [
+        "libs/client/glist/menus/feature/src/index.ts"
+      ],
+      "@lob/client/glist/recipes/feature": [
+        "libs/client/glist/recipes/feature/src/index.ts"
+      ],
       "@lob/client/shared/auth/data": [
         "libs/client/shared/auth/data/src/index.ts"
       ],
