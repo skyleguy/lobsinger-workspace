@@ -13,9 +13,9 @@
     <glist-sidebar></glist-sidebar>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div class="flex flex-column">
+    <div class="h-full max-h-full flex flex-column">
       <glist-header (menuClicked)="sideNav.toggle()"></glist-header>
-      <glist-content></glist-content>
+      <glist-content class="flex-grow-1"></glist-content>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
