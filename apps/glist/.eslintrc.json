@@ -13,7 +13,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "lob",
+            "prefix": "glist",
             "style": "camelCase"
           }
         ],
@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "lob",
+            "prefix": "glist",
             "style": "kebab-case"
           }
         ]

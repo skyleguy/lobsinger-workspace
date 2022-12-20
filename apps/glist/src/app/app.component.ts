@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '@lob/client/shared/firebase/data-access';
 
 @Component({
-  selector: 'lob-root',
+  selector: 'glist-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

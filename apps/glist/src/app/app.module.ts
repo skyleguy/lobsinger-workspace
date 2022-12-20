@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FirebaseOptionsToken } from '@lob/client/shared/firebase/data';
 
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { GlistLayoutModule } from './modules/glist-layout/glist-layout.module';
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
-  imports: [BrowserModule],
+  declarations: [AppComponent],
+  imports: [BrowserModule, BrowserAnimationsModule, GlistLayoutModule],
   providers: [
     {
       provide: FirebaseOptionsToken,
