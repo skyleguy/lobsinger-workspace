@@ -1,1 +1,40 @@
-<p>recipe-container works!</p>
+<div class="flex flex-column h-full">
+  <div class="flex justify-content-between p-2">
+    <div class="flex gap-2 align-items-center">
+      <h2 class="m-0">Recipes</h2>
+    </div>
+    <div class="flex gap-2">
+      <button mat-flat-button color="primary">
+        <mat-icon>add</mat-icon>
+        Add New Recipe
+      </button>
+      <button mat-button>Delete Recipes</button>
+    </div>
+  </div>
+
+  <mat-tab-group class="p-3 flex-grow-1 overflow-y-auto">
+    <mat-tab label="All Recipes">
+      <ng-container
+        *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: recipes }"
+      ></ng-container>
+    </mat-tab>
+    <mat-tab label="Favorites">
+      <ng-container
+        *ngTemplateOutlet="
+          recipeGrid;
+          context: { chosenRecipes: favoriteRecipes }
+        "
+      ></ng-container>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<ng-template #recipeGrid let-chosenRecipes="chosenRecipes">
+  <div class="grid">
+    <glist-recipe-card
+      class="col-12 md:col-6 lg:col-4"
+      *ngFor="let recipe of chosenRecipes"
+      [recipe]="recipe"
+    ></glist-recipe-card>
+  </div>
+</ng-template>

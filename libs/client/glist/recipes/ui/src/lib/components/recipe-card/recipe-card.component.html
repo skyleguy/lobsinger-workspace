@@ -1,0 +1,29 @@
+<mat-card>
+  <mat-card-title>
+    <span class="p-2">{{ recipe.title }}</span>
+  </mat-card-title>
+  <img
+    class="p-2"
+    mat-card-image
+    src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+  />
+  <mat-card-subtitle
+    ><span class="p-2">{{ recipe.description }}</span></mat-card-subtitle
+  >
+  <mat-card-content>
+    <mat-chip-set>
+      <mat-chip *ngFor="let tag of recipe.tags">
+        {{ tag.value }}
+      </mat-chip>
+    </mat-chip-set>
+  </mat-card-content>
+  <mat-card-actions class="justify-content-between">
+    <button mat-flat-button>
+      <mat-icon>add</mat-icon>
+      Add New Recipe
+    </button>
+    <button mat-icon-button>
+      <mat-icon>favorite</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
