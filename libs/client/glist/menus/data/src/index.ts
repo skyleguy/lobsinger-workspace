@@ -1,1 +1,1 @@
-export * from './lib/client-glist-menus-data';
+export * from './lib/menu.model';

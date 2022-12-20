@@ -1,1 +1,1 @@
-export * from './lib/client-glist-recipes-data';
+export * from './lib/recipe.model';

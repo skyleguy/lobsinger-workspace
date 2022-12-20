@@ -1,1 +1,1 @@
-export * from './lib/client-glist-glists-data';
+export * from './lib/glist.model';
