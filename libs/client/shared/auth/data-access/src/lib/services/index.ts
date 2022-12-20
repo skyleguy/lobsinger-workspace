@@ -1,1 +1,1 @@
-export * from './auth-provider/auth-provider.service';
+export * from './google-auth-provider/google-auth-provider.service';

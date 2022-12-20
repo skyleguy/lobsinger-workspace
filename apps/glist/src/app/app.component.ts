@@ -8,8 +8,6 @@ import { FirebaseService } from '@lob/client/shared/firebase/data-access';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'glist';
-
   constructor(private firebaseService: FirebaseService) {}
 
   public ngOnInit(): void {
