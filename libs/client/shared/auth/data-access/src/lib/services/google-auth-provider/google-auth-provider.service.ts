@@ -9,7 +9,6 @@ import {
   setPersistence,
   browserLocalPersistence,
 } from 'firebase/auth';
-import { from, Observable } from 'rxjs';
 
 import { AuthProvider, User } from '@lob/client/shared/auth/data';
 
@@ -17,7 +16,7 @@ import { AuthProvider, User } from '@lob/client/shared/auth/data';
   providedIn: 'root',
 })
 export class GoogleAuthProviderService implements AuthProvider {
-  auth!: Auth;
+  auth!: Auth | null;
 
   public async signIn(app?: FirebaseApp): Promise<User> {
     if (this.auth?.currentUser) {
@@ -38,8 +37,9 @@ export class GoogleAuthProviderService implements AuthProvider {
     }
   }
 
-  public signOut(): Observable<void> {
-    return from(this.auth.signOut());
+  public async signOut(): Promise<void> {
+    await this.auth?.signOut();
+    this.auth = null;
   }
 
   private mapToUser(providedUser: UserInfo | null): User {
