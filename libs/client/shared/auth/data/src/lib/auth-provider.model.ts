@@ -1,8 +1,6 @@
-import { Observable } from 'rxjs';
-
 import { User } from './user.model';
 
 export interface AuthProvider {
-  signIn(): Observable<User>;
+  signIn(): Promise<User>;
   signOut(): void;
 }

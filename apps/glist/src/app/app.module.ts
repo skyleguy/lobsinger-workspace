@@ -1,11 +1,20 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FirebaseOptionsToken } from '@lob/client/shared/firebase/data';
 
 import { AppComponent } from './app.component';
+import { GlistInitializationService } from './glist-initialization.service';
 import { GlistLayoutModule } from './modules/glist-layout/glist-layout.module';
+
+export function initializeAppWithService(
+  glistInitializationService: GlistInitializationService
+) {
+  return () => {
+    return glistInitializationService.initializeApp();
+  };
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +31,12 @@ import { GlistLayoutModule } from './modules/glist-layout/glist-layout.module';
         appId: '1:655452293628:web:7e64fd6a67257d327e8a79',
         measurementId: 'G-V69BPDWWPB',
       },
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeAppWithService,
+      deps: [GlistInitializationService],
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],

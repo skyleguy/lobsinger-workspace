@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
+import { FirebaseApp } from 'firebase/app';
 import {
   GoogleAuthProvider,
   getAuth,
   signInWithPopup,
   Auth,
   UserInfo,
+  setPersistence,
+  browserLocalPersistence,
 } from 'firebase/auth';
-import { from, map, Observable, of } from 'rxjs';
+import { from, Observable } from 'rxjs';
 
 import { AuthProvider, User } from '@lob/client/shared/auth/data';
 
@@ -16,27 +19,33 @@ import { AuthProvider, User } from '@lob/client/shared/auth/data';
 export class GoogleAuthProviderService implements AuthProvider {
   auth!: Auth;
 
-  public signIn(): Observable<User> {
-    if (!this.auth) {
-      const provider = new GoogleAuthProvider();
-      this.auth = getAuth();
-      return from(signInWithPopup(this.auth, provider)).pipe(
-        map((signInResponse) => this.mapToUser(signInResponse.user))
-      );
+  public async signIn(app?: FirebaseApp): Promise<User> {
+    if (this.auth?.currentUser) {
+      return this.mapToUser(this.auth.currentUser);
+    } else {
+      const auth = getAuth(app);
+      await setPersistence(auth, browserLocalPersistence);
+      this.auth = auth;
+      if (!auth.currentUser) {
+        const userCredential = await signInWithPopup(
+          auth,
+          new GoogleAuthProvider()
+        );
+        return this.mapToUser(userCredential.user);
+      } else {
+        return this.mapToUser(this.auth.currentUser);
+      }
     }
-    let currentUser: User;
-    if (this.auth.currentUser) {
-      currentUser = this.mapToUser(this.auth.currentUser);
-      return of(currentUser);
-    }
-    throw new Error('Unable to sign in user.');
   }
 
   public signOut(): Observable<void> {
     return from(this.auth.signOut());
   }
 
-  private mapToUser(providedUser: UserInfo): User {
+  private mapToUser(providedUser: UserInfo | null): User {
+    if (!providedUser) {
+      throw new Error('no user passed to mapper');
+    }
     return {
       name: providedUser?.displayName ?? '',
       pictureUrl: providedUser?.photoURL ?? '',
