@@ -10,7 +10,7 @@
     "test": "nx test",
     "lint": "nx lint",
     "prepare": "husky install",
-    "pre-commit": "eslint"
+    "pre-commit": "eslint --fix"
   },
   "private": true,
   "dependencies": {
