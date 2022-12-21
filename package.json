@@ -77,6 +77,9 @@
       "eslint --fix",
       "prettier --write",
       "git add"
+    ],
+    "*.{scss,md,html}": [
+      "prettier --write"
     ]
   }
 }
