@@ -1,0 +1,8 @@
+::ng-deep mat-chip-set .mdc-evolution-chip-set__chips {
+  flex-wrap: unset;
+  overflow-x: auto;
+}
+
+::ng-deep mat-card:hover {
+  background-color: #f7f7f7;
+}

@@ -61,6 +61,12 @@ export class RecipeContainerComponent implements OnInit {
         { value: 'spicy', type: 'Cusine' },
         { value: 'vegan', type: 'Cusine' },
         { value: 'game-day', type: 'Cusine' },
+        { value: 'spicy', type: 'Cusine' },
+        { value: 'vegan', type: 'Cusine' },
+        { value: 'game-day', type: 'Cusine' },
+        { value: 'spicy', type: 'Cusine' },
+        { value: 'vegan', type: 'Cusine' },
+        { value: 'game-day', type: 'Cusine' },
       ],
     },
     {

@@ -24,19 +24,24 @@ export class GoogleAuthProviderService implements AuthProvider {
         map((signInResponse) => this.mapToUser(signInResponse.user))
       );
     }
-    const currentUser: User = this.mapToUser(this.auth.currentUser) ?? {};
-    return of(currentUser);
+    let currentUser: User;
+    if (this.auth.currentUser) {
+      currentUser = this.mapToUser(this.auth.currentUser);
+      return of(currentUser);
+    }
+    throw new Error('Unable to sign in user.');
   }
 
   public signOut(): Observable<void> {
     return from(this.auth.signOut());
   }
 
-  private mapToUser(providedUser: UserInfo | null): User {
+  private mapToUser(providedUser: UserInfo): User {
     return {
       name: providedUser?.displayName ?? '',
       pictureUrl: providedUser?.photoURL ?? '',
       email: providedUser?.email ?? '',
+      id: providedUser?.uid,
     };
   }
 }

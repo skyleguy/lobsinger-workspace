@@ -1,4 +1,4 @@
-<div class="flex flex-column h-full">
+<div class="flex flex-column h-full surface-500">
   <div class="flex justify-content-between p-2">
     <div class="flex gap-2 align-items-center">
       <h2 class="m-0">Recipes</h2>
@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <mat-tab-group class="p-3 flex-grow-1 overflow-y-auto">
+  <mat-tab-group class="p-3 flex-grow-1 overflow-y-auto pt-0">
     <mat-tab label="All Recipes">
       <ng-container
         *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: recipes }"
@@ -30,11 +30,14 @@
 </div>
 
 <ng-template #recipeGrid let-chosenRecipes="chosenRecipes">
-  <div class="grid">
+  <div class="grid p-2">
     <glist-recipe-card
-      class="col-12 md:col-6 lg:col-4"
+      class="col-12 md:col-6 lg:col-4 md:px-6 lg:px-6"
       *ngFor="let recipe of chosenRecipes"
       [recipe]="recipe"
+    ></glist-recipe-card>
+    <glist-recipe-card
+      class="col-12 md:col-6 lg:col-4 md:px-6 lg:px-6"
     ></glist-recipe-card>
   </div>
 </ng-template>
