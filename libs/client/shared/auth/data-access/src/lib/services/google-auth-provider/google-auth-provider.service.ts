@@ -1,20 +1,10 @@
 import { Injectable } from '@angular/core';
 import { FirebaseApp } from 'firebase/app';
-import {
-  GoogleAuthProvider,
-  getAuth,
-  signInWithPopup,
-  Auth,
-  UserInfo,
-  setPersistence,
-  browserLocalPersistence,
-} from 'firebase/auth';
+import { GoogleAuthProvider, getAuth, signInWithPopup, Auth, UserInfo, setPersistence, browserLocalPersistence } from 'firebase/auth';
 
 import { AuthProvider, User } from '@lob/client/shared/auth/data';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class GoogleAuthProviderService implements AuthProvider {
   auth!: Auth | null;
 
@@ -26,10 +16,7 @@ export class GoogleAuthProviderService implements AuthProvider {
       await setPersistence(auth, browserLocalPersistence);
       this.auth = auth;
       if (!auth.currentUser) {
-        const userCredential = await signInWithPopup(
-          auth,
-          new GoogleAuthProvider()
-        );
+        const userCredential = await signInWithPopup(auth, new GoogleAuthProvider());
         return this.mapToUser(userCredential.user);
       } else {
         return this.mapToUser(this.auth.currentUser);
@@ -50,7 +37,7 @@ export class GoogleAuthProviderService implements AuthProvider {
       name: providedUser?.displayName ?? '',
       pictureUrl: providedUser?.photoURL ?? '',
       email: providedUser?.email ?? '',
-      id: providedUser?.uid,
+      id: providedUser?.uid
     };
   }
 }

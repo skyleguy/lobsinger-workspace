@@ -1,16 +1,19 @@
+import { HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { ClientSharedAuthDataAccessModule } from '@lob/client/shared/auth/data-access';
 import { FirebaseOptionsToken } from '@lob/client/shared/firebase/data';
 
 import { AppComponent } from './app.component';
 import { GlistInitializationService } from './glist-initialization.service';
 import { GlistLayoutModule } from './modules/glist-layout/glist-layout.module';
 
-export function initializeAppWithService(
-  glistInitializationService: GlistInitializationService
-) {
+export function initializeAppWithService(glistInitializationService: GlistInitializationService) {
   return () => {
     return glistInitializationService.initializeApp();
   };
@@ -18,7 +21,16 @@ export function initializeAppWithService(
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, GlistLayoutModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    GlistLayoutModule,
+    StoreModule.forRoot(),
+    EffectsModule.forRoot(),
+    StoreDevtoolsModule,
+    ClientSharedAuthDataAccessModule,
+    HttpClientModule
+  ],
   providers: [
     {
       provide: FirebaseOptionsToken,
@@ -29,16 +41,16 @@ export function initializeAppWithService(
         storageBucket: 'glist-aed62.appspot.com',
         messagingSenderId: '655452293628',
         appId: '1:655452293628:web:7e64fd6a67257d327e8a79',
-        measurementId: 'G-V69BPDWWPB',
-      },
+        measurementId: 'G-V69BPDWWPB'
+      }
     },
     {
       provide: APP_INITIALIZER,
       useFactory: initializeAppWithService,
       deps: [GlistInitializationService],
-      multi: true,
-    },
+      multi: true
+    }
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
