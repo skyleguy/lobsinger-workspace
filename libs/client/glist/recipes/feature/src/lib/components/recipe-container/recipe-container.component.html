@@ -4,7 +4,7 @@
       <h2 class="m-0">Recipes</h2>
     </div>
     <div class="flex gap-2">
-      <button mat-flat-button color="primary">
+      <button mat-flat-button color="primary" (click)="addRecipe()">
         <mat-icon>add</mat-icon>
         Add New Recipe
       </button>
@@ -14,17 +14,10 @@
 
   <mat-tab-group class="p-3 flex-grow-1 overflow-y-auto pt-0">
     <mat-tab label="All Recipes">
-      <ng-container
-        *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: recipes }"
-      ></ng-container>
+      <ng-container *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: recipes }"></ng-container>
     </mat-tab>
     <mat-tab label="Favorites">
-      <ng-container
-        *ngTemplateOutlet="
-          recipeGrid;
-          context: { chosenRecipes: favoriteRecipes }
-        "
-      ></ng-container>
+      <ng-container *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: favoriteRecipes }"></ng-container>
     </mat-tab>
   </mat-tab-group>
 </div>
@@ -36,8 +29,6 @@
       *ngFor="let recipe of chosenRecipes"
       [recipe]="recipe"
     ></glist-recipe-card>
-    <glist-recipe-card
-      class="col-12 md:col-6 lg:col-4 md:px-6 lg:px-6"
-    ></glist-recipe-card>
+    <glist-recipe-card class="col-12 md:col-6 lg:col-4 md:px-6 lg:px-6"></glist-recipe-card>
   </div>
 </ng-template>

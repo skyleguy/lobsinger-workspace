@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { filter, firstValueFrom } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 import { UserFacadeService } from '@lob/client/shared/auth/data-access';
-import { FirebaseService } from '@lob/client/shared/firebase/data-access';
+import { FirebaseAppService } from '@lob/client/shared/firebase/data-access';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlistInitializationService {
-  constructor(private firebaseService: FirebaseService, private userFacadeService: UserFacadeService) {}
+  constructor(private firebaseAppService: FirebaseAppService, private userFacadeService: UserFacadeService) {}
 
   public async initializeApp() {
-    const app = await firstValueFrom(this.firebaseService.app.asObservable().pipe(filter((res) => res !== null)));
+    const app = await firstValueFrom(this.firebaseAppService.app$);
     if (app) {
       return this.userFacadeService.getUser(app);
     } else {

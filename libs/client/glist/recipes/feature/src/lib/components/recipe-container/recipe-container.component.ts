@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { of } from 'rxjs';
 
 import { Recipe } from '@lob/client/glist/recipes/data';
+import { FirestoreService } from '@lob/client/shared/firebase/data-access';
 
 @Component({
   selector: 'glist-recipe-container',
   templateUrl: './recipe-container.component.html',
-  styleUrls: ['./recipe-container.component.scss'],
+  styleUrls: ['./recipe-container.component.scss']
 })
 export class RecipeContainerComponent implements OnInit {
   recipes: Recipe[] = [];
@@ -18,18 +19,18 @@ export class RecipeContainerComponent implements OnInit {
         'Cut up the cauliflower into small pieces',
         'Bake the cauliflower for 30 minutes on 350 degrees in the oven',
         'while the cauliflower bakes make the sauce',
-        'when cauliflower is done combine and serve!',
+        'when cauliflower is done combine and serve!'
       ],
       ingredients: [
         { name: 'Cauliflower', amount: 1 },
-        { name: 'Buffalo Sauce', amount: 4, unit: 'Tablespoon' },
+        { name: 'Buffalo Sauce', amount: 4, unit: 'Tablespoon' }
       ],
       description: 'Simple and easy buffalo "wings" for all the vegan lovers',
       tags: [
         { value: 'spicy', type: 'Cusine' },
         { value: 'vegan', type: 'Cusine' },
-        { value: 'game-day', type: 'Cusine' },
-      ],
+        { value: 'game-day', type: 'Cusine' }
+      ]
     },
     {
       title: 'Gnocchi Alfredo',
@@ -38,25 +39,24 @@ export class RecipeContainerComponent implements OnInit {
         'cut broccolli into small pieces',
         'Combine sauce ingredients into blender and blend until smooth',
         'cook gnocci to specifications on packaging',
-        'combine into one pot and serve!',
+        'combine into one pot and serve!'
       ],
       ingredients: [
         {
           name: 'Broccolli',
-          amount: 1,
+          amount: 1
         },
         {
           name: 'Gnocchi',
-          amount: 1,
+          amount: 1
         },
         {
           name: 'Nutritional Yeast',
           amount: 4,
-          unit: 'Tablespoon',
-        },
+          unit: 'Tablespoon'
+        }
       ],
-      description:
-        'A soupy version of alfredo sauce with gnocchi swimming in it.',
+      description: 'A soupy version of alfredo sauce with gnocchi swimming in it.',
       tags: [
         { value: 'spicy', type: 'Cusine' },
         { value: 'vegan', type: 'Cusine' },
@@ -66,8 +66,8 @@ export class RecipeContainerComponent implements OnInit {
         { value: 'game-day', type: 'Cusine' },
         { value: 'spicy', type: 'Cusine' },
         { value: 'vegan', type: 'Cusine' },
-        { value: 'game-day', type: 'Cusine' },
-      ],
+        { value: 'game-day', type: 'Cusine' }
+      ]
     },
     {
       title: 'Moroccan Chickpea',
@@ -76,31 +76,30 @@ export class RecipeContainerComponent implements OnInit {
         'chop potatoes into small 1 inch pieces',
         'add potatoes to boiling water for 10 minuts',
         'combine spices and chickpeas into skillet',
-        'combine all over rice and serve',
+        'combine all over rice and serve'
       ],
       ingredients: [
         {
           name: 'potatoes',
-          amount: 5,
+          amount: 5
         },
         {
           name: 'chickpeas',
           amount: 15,
-          unit: 'ounces',
+          unit: 'ounces'
         },
         {
           name: 'spies',
           amount: 5,
-          unit: 'sticks',
-        },
+          unit: 'sticks'
+        }
       ],
-      description:
-        'A delicious morrocan stew made of potatoes, spices, and chick peas. Served over rice.',
+      description: 'A delicious morrocan stew made of potatoes, spices, and chick peas. Served over rice.',
       tags: [
         { value: 'spicy', type: 'Cusine' },
         { value: 'vegan', type: 'Cusine' },
-        { value: 'game-day', type: 'Cusine' },
-      ],
+        { value: 'game-day', type: 'Cusine' }
+      ]
     },
     {
       title: 'Buffalo Cauliflower Bites',
@@ -108,18 +107,18 @@ export class RecipeContainerComponent implements OnInit {
         'Cut up the cauliflower into small pieces',
         'Bake the cauliflower for 30 minutes on 350 degrees in the oven',
         'while the cauliflower bakes make the sauce',
-        'when cauliflower is done combine and serve!',
+        'when cauliflower is done combine and serve!'
       ],
       ingredients: [
         { name: 'Cauliflower', amount: 1 },
-        { name: 'Buffalo Sauce', amount: 4, unit: 'Tablespoon' },
+        { name: 'Buffalo Sauce', amount: 4, unit: 'Tablespoon' }
       ],
       description: 'Simple and easy buffalo "wings" for all the vegan lovers',
       tags: [
         { value: 'spicy', type: 'Cusine' },
         { value: 'vegan', type: 'Cusine' },
-        { value: 'game-day', type: 'Cusine' },
-      ],
+        { value: 'game-day', type: 'Cusine' }
+      ]
     },
     {
       title: 'Gnocchi Alfredo',
@@ -128,30 +127,29 @@ export class RecipeContainerComponent implements OnInit {
         'cut broccolli into small pieces',
         'Combine sauce ingredients into blender and blend until smooth',
         'cook gnocci to specifications on packaging',
-        'combine into one pot and serve!',
+        'combine into one pot and serve!'
       ],
       ingredients: [
         {
           name: 'Broccolli',
-          amount: 1,
+          amount: 1
         },
         {
           name: 'Gnocchi',
-          amount: 1,
+          amount: 1
         },
         {
           name: 'Nutritional Yeast',
           amount: 4,
-          unit: 'Tablespoon',
-        },
+          unit: 'Tablespoon'
+        }
       ],
-      description:
-        'A soupy version of alfredo sauce with gnocchi swimming in it.',
+      description: 'A soupy version of alfredo sauce with gnocchi swimming in it.',
       tags: [
         { value: 'spicy', type: 'Cusine' },
         { value: 'vegan', type: 'Cusine' },
-        { value: 'game-day', type: 'Cusine' },
-      ],
+        { value: 'game-day', type: 'Cusine' }
+      ]
     },
     {
       title: 'Moroccan Chickpea',
@@ -160,44 +158,56 @@ export class RecipeContainerComponent implements OnInit {
         'chop potatoes into small 1 inch pieces',
         'add potatoes to boiling water for 10 minuts',
         'combine spices and chickpeas into skillet',
-        'combine all over rice and serve',
+        'combine all over rice and serve'
       ],
       ingredients: [
         {
           name: 'potatoes',
-          amount: 5,
+          amount: 5
         },
         {
           name: 'chickpeas',
           amount: 15,
-          unit: 'ounces',
+          unit: 'ounces'
         },
         {
           name: 'spies',
           amount: 5,
-          unit: 'sticks',
-        },
+          unit: 'sticks'
+        }
       ],
-      description:
-        'A delicious morrocan stew made of potatoes, spices, and chick peas. Served over rice.',
+      description: 'A delicious morrocan stew made of potatoes, spices, and chick peas. Served over rice.',
       tags: [
         { value: 'spicy', type: 'Cusine' },
         { value: 'vegan', type: 'Cusine' },
-        { value: 'game-day', type: 'Cusine' },
-      ],
-    },
+        { value: 'game-day', type: 'Cusine' }
+      ]
+    }
   ];
+
+  constructor(private firestoreService: FirestoreService) {}
 
   public ngOnInit(): void {
     this.getRecipes();
     this.getFakeRecipes();
   }
 
+  public addRecipe(): void {
+    this.firestoreService.addDocument('recipes', { id: '12345' }).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
+  }
+
   private getRecipes(): void {
     of(this.fakeRecipes).subscribe({
       next: (recipes) => {
         this.recipes = recipes;
-      },
+      }
     });
   }
 
@@ -205,7 +215,7 @@ export class RecipeContainerComponent implements OnInit {
     of(this.fakeRecipes).subscribe({
       next: (recipes) => {
         this.favoriteRecipes = recipes;
-      },
+      }
     });
   }
 }
