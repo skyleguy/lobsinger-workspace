@@ -10,7 +10,8 @@
     "test": "nx test",
     "lint": "nx lint",
     "prepare": "husky install",
-    "pre-commit": "npx lint-staged"
+    "pre-commit": "npx lint-staged",
+    "firebase-deploy": "nx run glist:build --prod && firebase deploy"
   },
   "private": true,
   "dependencies": {

@@ -2,7 +2,6 @@
   <span (click)="menuClicked.emit()">Glist</span>
   <span class="flex-auto"></span>
   <button mat-icon-button>
-    <mat-icon>account_circle</mat-icon>
+    <mat-icon><img id="user-avatar" [src]="imageUrl$ | async" /></mat-icon>
   </button>
 </mat-toolbar>
-<img [src]="imageUrl$ | async" referrerpolicy="no-referrer" />

@@ -16,10 +16,7 @@
         "tsConfig": "apps/glist/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/glist/src/favicon.ico", "apps/glist/src/assets"],
-        "styles": [
-          "@angular/material/prebuilt-themes/deeppurple-amber.css",
-          "apps/glist/src/styles.scss"
-        ],
+        "styles": ["@angular/material/prebuilt-themes/deeppurple-amber.css", "apps/glist/src/styles.scss"],
         "scripts": []
       },
       "configurations": {
@@ -28,7 +25,7 @@
             {
               "type": "initial",
               "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumError": "2mb"
             },
             {
               "type": "anyComponentStyle",

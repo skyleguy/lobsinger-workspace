@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -15,22 +16,18 @@ import { GlistSidebarComponent } from './components/glist-sidebar/glist-sidebar.
 import { AppRoutingModule } from '../../app.routing.module';
 
 @NgModule({
-  declarations: [
-    GlistHeaderComponent,
-    GlistContainerComponent,
-    GlistContentComponent,
-    GlistSidebarComponent,
-  ],
+  declarations: [GlistHeaderComponent, GlistContainerComponent, GlistContentComponent, GlistSidebarComponent],
   imports: [
     CommonModule,
     FormsModule,
     AppRoutingModule,
     MatSidenavModule,
+    MatCardModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatListModule,
+    MatListModule
   ],
-  exports: [GlistContainerComponent],
+  exports: [GlistContainerComponent]
 })
 export class GlistLayoutModule {}
