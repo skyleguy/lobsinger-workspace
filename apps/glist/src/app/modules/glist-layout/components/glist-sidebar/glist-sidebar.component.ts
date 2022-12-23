@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface Page {
   title: string;
@@ -9,15 +10,17 @@ interface Page {
 @Component({
   selector: 'glist-sidebar',
   templateUrl: './glist-sidebar.component.html',
-  styleUrls: ['./glist-sidebar.component.scss'],
+  styleUrls: ['./glist-sidebar.component.scss']
 })
 export class GlistSidebarComponent {
   readonly pages: Page[] = [
     { title: 'Dashboard', icon: 'dashboard', route: 'dashboard' },
     { title: 'Current Glist', icon: 'list', route: 'glists' },
     { title: 'Recipes', icon: 'topic', route: 'recipes' },
-    { title: 'Menus', icon: 'menu_book', route: 'menus' },
+    { title: 'Menus', icon: 'menu_book', route: 'menus' }
   ];
 
   selectedPage!: Page;
+
+  constructor(public router: Router) {}
 }

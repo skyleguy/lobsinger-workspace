@@ -2,16 +2,8 @@
   <div class="flex align-items-center justify-content-center">
     <mat-icon class="scale-2 mt-3">image</mat-icon>
   </div>
-  <mat-selection-list
-    #pageList
-    [multiple]="false"
-    (selectionChange)="selectedPage = $event.options[0].value"
-  >
-    <mat-list-option
-      *ngFor="let page of pages"
-      [value]="page"
-      [routerLink]="page.route"
-    >
+  <mat-selection-list #pageList [multiple]="false" (selectionChange)="selectedPage = $event.options[0].value">
+    <mat-list-option *ngFor="let page of pages" [value]="page" [routerLink]="page.route" [selected]="router.url.includes(page.route)">
       <mat-icon matListItemIcon>{{ page.icon }}</mat-icon>
       {{ page.title }}
     </mat-list-option>
