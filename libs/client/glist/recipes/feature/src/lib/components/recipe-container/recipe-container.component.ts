@@ -1,210 +1,52 @@
-import { Component, OnInit } from '@angular/core';
-import { of } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 import { Recipe } from '@lob/client/glist/recipes/data';
-import { FirestoreService } from '@lob/client/shared/firebase/data-access';
+import { RecipeFacadeService } from '@lob/client/glist/recipes/data-access';
+import { RecipeEditorComponent } from '@lob/client/glist/recipes/ui';
+import { SubSinker } from '@lob/client/shared/lifecycle-management/data';
 
 @Component({
   selector: 'glist-recipe-container',
   templateUrl: './recipe-container.component.html',
   styleUrls: ['./recipe-container.component.scss']
 })
-export class RecipeContainerComponent implements OnInit {
+export class RecipeContainerComponent implements OnInit, OnDestroy {
+  readonly sub: SubSinker = new SubSinker();
+
   recipes: Recipe[] = [];
   favoriteRecipes: Recipe[] = [];
-  fakeRecipes: Recipe[] = [
-    {
-      title: 'Buffalo Cauliflower Bites',
-      directions: [
-        'Cut up the cauliflower into small pieces',
-        'Bake the cauliflower for 30 minutes on 350 degrees in the oven',
-        'while the cauliflower bakes make the sauce',
-        'when cauliflower is done combine and serve!'
-      ],
-      ingredients: [
-        { name: 'Cauliflower', amount: 1 },
-        { name: 'Buffalo Sauce', amount: 4, unit: 'Tablespoon' }
-      ],
-      description: 'Simple and easy buffalo "wings" for all the vegan lovers',
-      tags: [
-        { value: 'spicy', type: 'Cusine' },
-        { value: 'vegan', type: 'Cusine' },
-        { value: 'game-day', type: 'Cusine' }
-      ]
-    },
-    {
-      title: 'Gnocchi Alfredo',
-      directions: [
-        'Bring water to boil',
-        'cut broccolli into small pieces',
-        'Combine sauce ingredients into blender and blend until smooth',
-        'cook gnocci to specifications on packaging',
-        'combine into one pot and serve!'
-      ],
-      ingredients: [
-        {
-          name: 'Broccolli',
-          amount: 1
-        },
-        {
-          name: 'Gnocchi',
-          amount: 1
-        },
-        {
-          name: 'Nutritional Yeast',
-          amount: 4,
-          unit: 'Tablespoon'
-        }
-      ],
-      description: 'A soupy version of alfredo sauce with gnocchi swimming in it.',
-      tags: [
-        { value: 'spicy', type: 'Cusine' },
-        { value: 'vegan', type: 'Cusine' },
-        { value: 'game-day', type: 'Cusine' },
-        { value: 'spicy', type: 'Cusine' },
-        { value: 'vegan', type: 'Cusine' },
-        { value: 'game-day', type: 'Cusine' },
-        { value: 'spicy', type: 'Cusine' },
-        { value: 'vegan', type: 'Cusine' },
-        { value: 'game-day', type: 'Cusine' }
-      ]
-    },
-    {
-      title: 'Moroccan Chickpea',
-      directions: [
-        'boil water for potatoes',
-        'chop potatoes into small 1 inch pieces',
-        'add potatoes to boiling water for 10 minuts',
-        'combine spices and chickpeas into skillet',
-        'combine all over rice and serve'
-      ],
-      ingredients: [
-        {
-          name: 'potatoes',
-          amount: 5
-        },
-        {
-          name: 'chickpeas',
-          amount: 15,
-          unit: 'ounces'
-        },
-        {
-          name: 'spies',
-          amount: 5,
-          unit: 'sticks'
-        }
-      ],
-      description: 'A delicious morrocan stew made of potatoes, spices, and chick peas. Served over rice.',
-      tags: [
-        { value: 'spicy', type: 'Cusine' },
-        { value: 'vegan', type: 'Cusine' },
-        { value: 'game-day', type: 'Cusine' }
-      ]
-    },
-    {
-      title: 'Buffalo Cauliflower Bites',
-      directions: [
-        'Cut up the cauliflower into small pieces',
-        'Bake the cauliflower for 30 minutes on 350 degrees in the oven',
-        'while the cauliflower bakes make the sauce',
-        'when cauliflower is done combine and serve!'
-      ],
-      ingredients: [
-        { name: 'Cauliflower', amount: 1 },
-        { name: 'Buffalo Sauce', amount: 4, unit: 'Tablespoon' }
-      ],
-      description: 'Simple and easy buffalo "wings" for all the vegan lovers',
-      tags: [
-        { value: 'spicy', type: 'Cusine' },
-        { value: 'vegan', type: 'Cusine' },
-        { value: 'game-day', type: 'Cusine' }
-      ]
-    },
-    {
-      title: 'Gnocchi Alfredo',
-      directions: [
-        'Bring water to boil',
-        'cut broccolli into small pieces',
-        'Combine sauce ingredients into blender and blend until smooth',
-        'cook gnocci to specifications on packaging',
-        'combine into one pot and serve!'
-      ],
-      ingredients: [
-        {
-          name: 'Broccolli',
-          amount: 1
-        },
-        {
-          name: 'Gnocchi',
-          amount: 1
-        },
-        {
-          name: 'Nutritional Yeast',
-          amount: 4,
-          unit: 'Tablespoon'
-        }
-      ],
-      description: 'A soupy version of alfredo sauce with gnocchi swimming in it.',
-      tags: [
-        { value: 'spicy', type: 'Cusine' },
-        { value: 'vegan', type: 'Cusine' },
-        { value: 'game-day', type: 'Cusine' }
-      ]
-    },
-    {
-      title: 'Moroccan Chickpea',
-      directions: [
-        'boil water for potatoes',
-        'chop potatoes into small 1 inch pieces',
-        'add potatoes to boiling water for 10 minuts',
-        'combine spices and chickpeas into skillet',
-        'combine all over rice and serve'
-      ],
-      ingredients: [
-        {
-          name: 'potatoes',
-          amount: 5
-        },
-        {
-          name: 'chickpeas',
-          amount: 15,
-          unit: 'ounces'
-        },
-        {
-          name: 'spies',
-          amount: 5,
-          unit: 'sticks'
-        }
-      ],
-      description: 'A delicious morrocan stew made of potatoes, spices, and chick peas. Served over rice.',
-      tags: [
-        { value: 'spicy', type: 'Cusine' },
-        { value: 'vegan', type: 'Cusine' },
-        { value: 'game-day', type: 'Cusine' }
-      ]
-    }
-  ];
 
-  constructor(private firestoreService: FirestoreService) {}
+  constructor(private recipeFacadeService: RecipeFacadeService, private dialog: MatDialog) {}
 
   public ngOnInit(): void {
     this.getRecipes();
     this.getFakeRecipes();
   }
 
+  public ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+
   public addRecipe(): void {
-    this.firestoreService.addDocument('recipes', { id: '12345' }).subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    });
+    this.dialog
+      .open(RecipeEditorComponent, {
+        height: '90%',
+        width: '100%'
+      })
+      .afterClosed()
+      .subscribe({
+        next: (res) => {
+          if (res) {
+            const recipe = res as Recipe;
+            this.recipeFacadeService.addRecipe(recipe);
+          }
+        }
+      });
   }
 
   private getRecipes(): void {
-    of(this.fakeRecipes).subscribe({
+    this.sub.sink = this.recipeFacadeService.recipes$.subscribe({
       next: (recipes) => {
         this.recipes = recipes;
       }
@@ -212,9 +54,9 @@ export class RecipeContainerComponent implements OnInit {
   }
 
   private getFakeRecipes(): void {
-    of(this.fakeRecipes).subscribe({
-      next: (recipes) => {
-        this.favoriteRecipes = recipes;
+    this.sub.sink = this.recipeFacadeService.favoriteRecipes$.subscribe({
+      next: (favRecipes) => {
+        this.favoriteRecipes = favRecipes;
       }
     });
   }

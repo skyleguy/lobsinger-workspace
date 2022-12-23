@@ -13,15 +13,14 @@ import {
   QueryConstraint,
   collectionGroup,
   limit,
-  orderBy
+  orderBy,
+  updateDoc
 } from 'firebase/firestore';
 import { from, map } from 'rxjs';
 
-import { FirebaseAppService } from '../firebase-app/firebase-app.service';
+import { FirestoreData } from '@lob/client/shared/firebase/data';
 
-interface DocumentWithId {
-  id: string;
-}
+import { FirebaseAppService } from '../firebase-app/firebase-app.service';
 
 @Injectable({
   providedIn: 'root'
@@ -38,15 +37,27 @@ export class FirestoreService {
   }
 
   /**
-   * adds the new document if it does not exist or updates it with the passed in values. requires the id field to exist on the payload regardless
+   * adds the new document if it does not exist or overwrites it with the passed in values. requires the id field to exist on the payload regardless
    * if the collectionGroup param is provided it will be used when adding the document
    * @param tableName
    * @param payload
    * @returns
    */
-  public addDocument(tableName: string, payload: DocumentWithId, collectionGroup?: string) {
+  public addDocument(tableName: string, payload: FirestoreData, collectionGroup?: string) {
     const tableRef = collection(this.db, tableName, collectionGroup ?? '');
     return from(setDoc(doc(tableRef, payload.id), payload));
+  }
+
+  /**
+   * updates the fields of the document that is matched by id
+   * if the collectionGroup param is provided it will be used when adding the document
+   * @param tableName
+   * @param payload
+   * @returns
+   */
+  public updateDocument(tableName: string, payload: FirestoreData, collectionGroup?: string) {
+    const tableRef = collection(this.db, tableName, collectionGroup ?? '');
+    return from(updateDoc(doc(tableRef, payload.id), { payload }));
   }
 
   /**
