@@ -1,15 +1,5 @@
-<mat-sidenav-container
-  [hasBackdrop]="false"
-  class="h-full max-h-full w-full max-w-full"
->
-  <mat-sidenav
-    #sideNav
-    mode="side"
-    position="start"
-    [(opened)]="isOpened"
-    [disableClose]="true"
-    class="surface-500"
-  >
+<mat-sidenav-container [hasBackdrop]="false" class="h-full max-h-full w-full max-w-full">
+  <mat-sidenav #sideNav mode="side" position="start" [(opened)]="isOpened" [disableClose]="true">
     <glist-sidebar></glist-sidebar>
   </mat-sidenav>
   <mat-sidenav-content>

@@ -1,16 +1,9 @@
 <ng-container *ngIf="recipe; else actionRecipe">
-  <mat-card
-    class="h-full cursor-pointer transition-colors transition-duration-300"
-  >
+  <mat-card class="h-full cursor-pointer transition-colors transition-duration-300">
     <mat-card-title>
       <span class="p-2">{{ recipe.title }}</span>
     </mat-card-title>
-    <img
-      class="p-2"
-      mat-card-xl-image
-      class="w-full"
-      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-    />
+    <img class="p-2" mat-card-xl-image class="w-full" src="https://material.angular.io/assets/img/examples/shiba2.jpg" />
     <mat-card-content>
       <mat-chip-set class="p-2">
         <mat-chip *ngFor="let tag of recipe.tags">
@@ -31,29 +24,18 @@
 </ng-container>
 
 <ng-template #actionRecipe>
-  <mat-card
-    class="h-full cursor-pointer transition-colors transition-duration-300"
-  >
+  <mat-card class="h-full cursor-pointer transition-colors transition-duration-300">
     <mat-card-title>
       <span class="p-2 text-grey-500">Recipe Title</span>
     </mat-card-title>
-    <img
-      class="p-2"
-      mat-card-xl-image
-      class="w-full"
-      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-    />
+    <img class="p-2" mat-card-xl-image class="w-full" src="https://material.angular.io/assets/img/examples/shiba2.jpg" />
     <mat-card-content>
       <mat-chip-set class="p-2">
         <mat-chip [disabled]="true"> None </mat-chip>
       </mat-chip-set>
     </mat-card-content>
     <mat-card-actions class="justify-content-between mt-auto">
-      <button
-        mat-flat-button
-        (click)="$event.stopPropagation()"
-        [disabled]="true"
-      >
+      <button mat-flat-button (click)="$event.stopPropagation()" [disabled]="true">
         <mat-icon>add</mat-icon>
         Add to Glist
       </button>
