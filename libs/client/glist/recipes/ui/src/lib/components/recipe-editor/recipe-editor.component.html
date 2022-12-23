@@ -1,0 +1,91 @@
+<div class="flex flex-column h-full">
+  <div class="flex justify-content-between p-2">
+    <h2>Add New Recipe</h2>
+    <button mat-icon-button mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <h4 class="p-2">General Info</h4>
+  <div class="flex-grow-1 overflow-y-auto p-2">
+    <mat-stepper [linear]="true" labelPosition="bottom" headerPosition="bottom" #stepper class="h-full">
+      <mat-step [stepControl]="generalInfoForm">
+        <form [formGroup]="generalInfoForm">
+          <p>
+            <mat-form-field>
+              <mat-label>Recipe Name</mat-label>
+              <input type="text" matInput formControlName="name" />
+              <mat-error *ngIf="name?.hasError('required')">Recipe name is <strong>required</strong></mat-error>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Serving Size</mat-label>
+              <input type="text" matInput formControlName="servingSize" />
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Prep + Cook Time</mat-label>
+              <input type="text" matInput formControlName="prepCookTime" />
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Tools Needed</mat-label>
+              <input type="text" matInput formControlName="toolsNeeded" />
+            </mat-form-field>
+          </p>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+    <!-- <ng-container *ngTemplateOutlet="generalInfo"></ng-container> -->
+  </div>
+  <!-- <div class="flex justify-content-between p-2">
+    <button mat-button>Back</button>
+    <div class="flex gap-2">
+      <button mat-button>Next</button>
+      <button mat-button>Close</button>
+    </div>
+  </div> -->
+</div>
+
+<ng-template #generalInfo>
+  <form [formGroup]="generalInfoForm" (ngSubmit)="generalInfoSubmit()">
+    <p>
+      <mat-form-field>
+        <mat-label>Recipe Name</mat-label>
+        <input type="text" matInput formControlName="name" />
+        <mat-error *ngIf="name?.hasError('required')">Recipe name is <strong>required</strong></mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <mat-label>Serving Size</mat-label>
+        <input type="text" matInput formControlName="servingSize" />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <mat-label>Prep + Cook Time</mat-label>
+        <input type="text" matInput formControlName="prepCookTime" />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <mat-label>Tools Needed</mat-label>
+        <input type="text" matInput formControlName="toolsNeeded" />
+      </mat-form-field>
+    </p>
+  </form>
+</ng-template>

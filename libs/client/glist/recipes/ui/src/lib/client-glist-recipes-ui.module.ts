@@ -26,6 +26,6 @@ import { RecipeEditorComponent } from './components/recipe-editor/recipe-editor.
     ReactiveFormsModule
   ],
   declarations: [RecipeCardComponent, RecipeEditorComponent],
-  exports: [RecipeCardComponent]
+  exports: [RecipeCardComponent, RecipeEditorComponent]
 })
 export class ClientGlistRecipesUiModule {}
