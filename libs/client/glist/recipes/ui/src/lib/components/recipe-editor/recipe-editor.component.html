@@ -1,44 +1,95 @@
 <div class="flex flex-column h-full">
   <div class="flex justify-content-between p-2">
-    <h2>Add New Recipe</h2>
+    <h2 class="pl-4">Add New Recipe</h2>
     <button mat-icon-button mat-dialog-close>
       <mat-icon>close</mat-icon>
     </button>
   </div>
-  <h4 class="p-2">General Info</h4>
   <div class="flex-grow-1 overflow-y-auto p-2">
-    <mat-stepper [linear]="true" labelPosition="bottom" headerPosition="bottom" #stepper class="h-full">
+    <mat-stepper [linear]="true" headerPosition="top" #stepper class="h-full">
       <mat-step [stepControl]="generalInfoForm">
-        <form [formGroup]="generalInfoForm">
-          <p>
-            <mat-form-field>
-              <mat-label>Recipe Name</mat-label>
-              <input type="text" matInput formControlName="name" />
-              <mat-error *ngIf="name?.hasError('required')">Recipe name is <strong>required</strong></mat-error>
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field>
-              <mat-label>Serving Size</mat-label>
-              <input type="text" matInput formControlName="servingSize" />
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field>
-              <mat-label>Prep + Cook Time</mat-label>
-              <input type="text" matInput formControlName="prepCookTime" />
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field>
-              <mat-label>Tools Needed</mat-label>
-              <input type="text" matInput formControlName="toolsNeeded" />
-            </mat-form-field>
-          </p>
-          <div>
-            <button mat-button matStepperNext>Next</button>
+        <ng-template matStepLabel>General</ng-template>
+        <div class="flex flex-column h-full">
+          <h4 class="p-2 m-0">General Info</h4>
+          <form [formGroup]="generalInfoForm" class="flex-grow-1">
+            <p>
+              <mat-form-field>
+                <mat-label>Recipe Name</mat-label>
+                <input type="text" matInput formControlName="name" />
+                <mat-error *ngIf="name?.hasError('required')">Recipe name is <strong>required</strong></mat-error>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field>
+                <mat-label>Serving Size</mat-label>
+                <input type="text" matInput formControlName="servingSize" />
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field>
+                <mat-label>Prep + Cook Time</mat-label>
+                <input type="text" matInput formControlName="prepCookTime" />
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field>
+                <mat-label>Tools Needed</mat-label>
+                <input type="text" matInput formControlName="toolsNeeded" />
+              </mat-form-field>
+            </p>
+          </form>
+          <div class="flex justify-content-between">
+            <div>
+              <button mat-button matStepperBack>Back</button>
+            </div>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperNext>Cancel</button>
+            </div>
           </div>
-        </form>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>General 2</ng-template>
+        <div class="flex flex-column h-full">
+          <h4 class="p-2 m-0">General Info</h4>
+          <form [formGroup]="generalInfoForm" class="flex-grow-1">
+            <p>
+              <mat-form-field>
+                <mat-label>Recipe Name</mat-label>
+                <input type="text" matInput formControlName="name" />
+                <mat-error *ngIf="name?.hasError('required')">Recipe name is <strong>required</strong></mat-error>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field>
+                <mat-label>Serving Size</mat-label>
+                <input type="text" matInput formControlName="servingSize" />
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field>
+                <mat-label>Prep + Cook Time</mat-label>
+                <input type="text" matInput formControlName="prepCookTime" />
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field>
+                <mat-label>Tools Needed</mat-label>
+                <input type="text" matInput formControlName="toolsNeeded" />
+              </mat-form-field>
+            </p>
+          </form>
+          <div class="flex justify-content-between">
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+            </div>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperNext>Cancel</button>
+            </div>
+          </div>
+        </div>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>
