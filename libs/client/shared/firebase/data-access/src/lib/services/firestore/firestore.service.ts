@@ -104,7 +104,9 @@ export class FirestoreService {
     const q = query(tableRef, ...queryConstraints);
     return from(getDocs(q)).pipe(
       map((res) => {
-        return res.docs.map((doc) => doc.data);
+        return res.docs.map((doc) => {
+          return doc.data();
+        });
       })
     );
   }

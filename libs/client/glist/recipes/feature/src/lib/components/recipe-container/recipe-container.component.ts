@@ -46,6 +46,7 @@ export class RecipeContainerComponent implements OnInit, OnDestroy {
   }
 
   private getRecipes(): void {
+    this.recipeFacadeService.getUserRecipes();
     this.sub.sink = this.recipeFacadeService.recipes$.subscribe({
       next: (recipes) => {
         this.recipes = recipes;

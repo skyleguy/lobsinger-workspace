@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { deepCopy } from '@firebase/util';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { where } from 'firebase/firestore';
 import { catchError, of, switchMap } from 'rxjs';
 
 import { Recipe } from '@lob/client/glist/recipes/data';
@@ -20,7 +21,7 @@ export class RecipeEffects {
       switchMap(() =>
         this.userFacadeService.user$.pipe(
           switchMap((user) =>
-            this.firestoreService.getDocument(this.tableName, [], { collectionGroupName: user.id }).pipe(
+            this.firestoreService.getDocument(this.tableName, [where('userId', '==', user.id)]).pipe(
               switchMap((recipes) => of(fromRecipe.actions.getUserRecipesSuccess(recipes as unknown as Recipe[]))),
               catchError((err) => of(fromRecipe.actions.getUserRecipesError(err)))
             )

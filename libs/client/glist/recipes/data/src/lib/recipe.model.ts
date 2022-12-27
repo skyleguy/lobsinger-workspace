@@ -10,4 +10,8 @@ export interface Recipe extends FirestoreData, UserAttachedData {
   tags?: Tag[];
   description?: string;
   isFavorited?: boolean;
+  image?: string;
+  toolsNeeded?: string[];
+  servingSize?: string;
+  prepCookTime?: string;
 }

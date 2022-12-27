@@ -63,10 +63,39 @@ $secondary-palette: (
   )
 );
 
+$warn-palette: (
+  50: #eb5757,
+  100: #eb5757,
+  200: #eb5757,
+  300: #eb5757,
+  400: #eb5757,
+  500: #eb5757,
+  600: #eb5757,
+  700: #eb5757,
+  800: #eb5757,
+  900: #eb5757,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text
+  )
+);
+
 /* ======== Angular material custom themes ======== */
 $my-custom-primary: mat.define-palette($primary-palette);
 $my-custom-accent: mat.define-palette($secondary-palette);
-$my-custom-warn: mat.define-palette(mat.$lime-palette);
+$my-custom-warn: mat.define-palette($warn-palette);
 $my-custom-theme: mat.define-light-theme(
   (
     color: (

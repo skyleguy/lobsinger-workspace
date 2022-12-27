@@ -1,4 +1,4 @@
-export type TagType = 'Cusine' | 'Dish' | 'KeyIngredients';
+export type TagType = 'Cusine' | 'Dish' | 'Diet' | 'Other';
 
 export interface Tag {
   value: string;

@@ -1,4 +1,4 @@
-<div class="flex flex-column h-full">
+<div class="flex flex-column h-full form-grey">
   <div class="flex justify-content-between p-2">
     <h2 class="pl-4">Add New Recipe</h2>
     <button mat-icon-button mat-dialog-close>
@@ -6,137 +6,175 @@
     </button>
   </div>
   <div class="flex-grow-1 overflow-y-auto p-2">
-    <mat-stepper [linear]="true" headerPosition="top" #stepper class="h-full">
+    <mat-stepper [linear]="true" headerPosition="top" #stepper class="h-full form-grey" color="accent">
       <mat-step [stepControl]="generalInfoForm">
         <ng-template matStepLabel>General</ng-template>
         <div class="flex flex-column h-full">
-          <h4 class="p-2 m-0">General Info</h4>
-          <form [formGroup]="generalInfoForm" class="flex-grow-1">
+          <form [formGroup]="generalInfoForm" class="flex-grow-1 overflow-y-auto">
+            <h4 class="p-2 m-0">General Info</h4>
             <p>
-              <mat-form-field>
+              <mat-form-field class="w-6">
                 <mat-label>Recipe Name</mat-label>
                 <input type="text" matInput formControlName="name" />
                 <mat-error *ngIf="name?.hasError('required')">Recipe name is <strong>required</strong></mat-error>
               </mat-form-field>
             </p>
             <p>
-              <mat-form-field>
+              <mat-form-field class="w-6">
                 <mat-label>Serving Size</mat-label>
                 <input type="text" matInput formControlName="servingSize" />
               </mat-form-field>
             </p>
             <p>
-              <mat-form-field>
+              <mat-form-field class="w-6">
                 <mat-label>Prep + Cook Time</mat-label>
                 <input type="text" matInput formControlName="prepCookTime" />
               </mat-form-field>
             </p>
             <p>
-              <mat-form-field>
+              <mat-form-field class="w-6">
                 <mat-label>Tools Needed</mat-label>
                 <input type="text" matInput formControlName="toolsNeeded" />
+                <mat-hint>Enter as comma-separated list</mat-hint>
               </mat-form-field>
             </p>
+            <input type="file" accept="image/*" (change)="base64Image($event)" />
           </form>
           <div class="flex justify-content-between">
             <div>
-              <button mat-button matStepperBack>Back</button>
+              <button mat-button matStepperPrevious>{{ back }}</button>
             </div>
             <div>
-              <button mat-button matStepperNext>Next</button>
-              <button mat-button matStepperNext>Cancel</button>
+              <button mat-button matStepperNext>{{ next }}</button>
+              <button mat-button matStepperNext>{{ cancel }}</button>
             </div>
           </div>
         </div>
       </mat-step>
-      <mat-step>
-        <ng-template matStepLabel>General 2</ng-template>
+      <mat-step [stepControl]="ingredientsForm">
+        <ng-template matStepLabel>Add Ingredients</ng-template>
         <div class="flex flex-column h-full">
-          <h4 class="p-2 m-0">General Info</h4>
-          <form [formGroup]="generalInfoForm" class="flex-grow-1">
+          <h4 class="p-2 m-0">Add Ingredients</h4>
+          <form [formGroup]="ingredientsForm" class="flex-grow-1 overflow-y-auto">
+            <mat-list role="list">
+              <mat-list-item role="listitem" class="ingredient-item" *ngFor="let ingredient of ingredients?.value; let i = index">
+                <span matListItemTitle
+                  ><input
+                    placeholder="Enter Ingredient..."
+                    class="text-input w-99"
+                    [(ngModel)]="ingredients?.value[i].name"
+                    [ngModelOptions]="{ standalone: true }"
+                /></span>
+                <span matListItemLine
+                  ><input
+                    placeholder="Enter Amount..."
+                    class="text-input subtext w-99"
+                    [(ngModel)]="ingredients?.value[i].amount"
+                    [ngModelOptions]="{ standalone: true }"
+                /></span>
+                <div class="flex align-items-center h-full m-0" matListItemMeta *ngIf="ingredients?.value?.length > 1">
+                  <button mat-icon-button (click)="ingredients?.value?.splice(i, 1)"><mat-icon>close</mat-icon></button>
+                </div>
+              </mat-list-item>
+            </mat-list>
+            <button mat-button color="primary" (click)="ingredients?.value?.push({ name: '', amount: null })">
+              <mat-icon>add</mat-icon>
+              ADD ANOTHER
+            </button>
+          </form>
+          <div class="flex justify-content-between">
+            <div>
+              <button mat-button matStepperPrevious>{{ back }}</button>
+            </div>
+            <div>
+              <button mat-button matStepperNext>{{ next }}</button>
+              <button mat-button matStepperNext>{{ cancel }}</button>
+            </div>
+          </div>
+        </div>
+      </mat-step>
+      <mat-step [stepControl]="directionsForm">
+        <ng-template matStepLabel>Add Directions</ng-template>
+        <div class="flex flex-column h-full">
+          <h4 class="p-2 m-0">Add Directions</h4>
+          <form [formGroup]="directionsForm" class="flex-grow-1 overflow-y-auto">
+            <div formArrayName="directions">
+              <p *ngFor="let directionsControl of directions?.controls; let i = index">
+                <mat-form-field class="w-full">
+                  <mat-label>Step {{ i + 1 }}</mat-label>
+                  <textarea matInput placeholder="Enter Directions..." [formControlName]="i" name="step"></textarea>
+                </mat-form-field>
+              </p>
+            </div>
+            <button mat-button color="primary" (click)="addToFormArray()">
+              <mat-icon>add</mat-icon>
+              ADD ANOTHER
+            </button>
+          </form>
+          <div class="flex justify-content-between">
+            <div>
+              <button mat-button matStepperPrevious>{{ back }}</button>
+            </div>
+            <div>
+              <button mat-button matStepperNext>{{ next }}</button>
+              <button mat-button matStepperNext>{{ cancel }}</button>
+            </div>
+          </div>
+        </div>
+      </mat-step>
+      <mat-step [stepControl]="tagsForm">
+        <ng-template matStepLabel>Add Tags</ng-template>
+        <div class="flex flex-column h-full">
+          <h4 class="p-2 m-0">Add Tags</h4>
+          <form [formGroup]="tagsForm" class="flex-grow-1 overflow-y-auto">
             <p>
-              <mat-form-field>
-                <mat-label>Recipe Name</mat-label>
-                <input type="text" matInput formControlName="name" />
-                <mat-error *ngIf="name?.hasError('required')">Recipe name is <strong>required</strong></mat-error>
+              <mat-form-field appearance="fill" class="w-6">
+                <mat-label>Dish Type</mat-label>
+                <mat-select formControlName="dishType">
+                  <mat-option *ngFor="let dishType of dishTypes" [value]="dishType">
+                    {{ dishType }}
+                  </mat-option>
+                </mat-select>
               </mat-form-field>
             </p>
             <p>
-              <mat-form-field>
-                <mat-label>Serving Size</mat-label>
-                <input type="text" matInput formControlName="servingSize" />
+              <mat-form-field appearance="fill" class="w-6">
+                <mat-label>Cuisine Type</mat-label>
+                <mat-select formControlName="cuisineType">
+                  <mat-option *ngFor="let cuisineType of cuisineTypes" [value]="cuisineType">
+                    {{ cuisineType }}
+                  </mat-option>
+                </mat-select>
               </mat-form-field>
             </p>
             <p>
-              <mat-form-field>
-                <mat-label>Prep + Cook Time</mat-label>
-                <input type="text" matInput formControlName="prepCookTime" />
+              <mat-form-field appearance="fill" class="w-6">
+                <mat-label>Diet Type</mat-label>
+                <mat-select formControlName="dietType">
+                  <mat-option *ngFor="let dietType of dietTypes" [value]="dietType">
+                    {{ dietType }}
+                  </mat-option>
+                </mat-select>
               </mat-form-field>
             </p>
             <p>
-              <mat-form-field>
-                <mat-label>Tools Needed</mat-label>
-                <input type="text" matInput formControlName="toolsNeeded" />
+              <mat-form-field class="w-6">
+                <mat-label>Other Tags</mat-label>
+                <input type="text" matInput formControlName="otherTags" placeholder="Add other tags in a space separated format" />
               </mat-form-field>
             </p>
           </form>
           <div class="flex justify-content-between">
             <div>
-              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperPrevious>{{ back }}</button>
             </div>
             <div>
-              <button mat-button matStepperNext>Next</button>
-              <button mat-button matStepperNext>Cancel</button>
+              <button mat-button matStepperNext (click)="submitRecipe()">ADD NEW RECIPE</button>
+              <button mat-button matStepperNext>{{ cancel }}</button>
             </div>
           </div>
-        </div>
-      </mat-step>
-      <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <p>You are now done.</p>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
         </div>
       </mat-step>
     </mat-stepper>
-    <!-- <ng-container *ngTemplateOutlet="generalInfo"></ng-container> -->
   </div>
-  <!-- <div class="flex justify-content-between p-2">
-    <button mat-button>Back</button>
-    <div class="flex gap-2">
-      <button mat-button>Next</button>
-      <button mat-button>Close</button>
-    </div>
-  </div> -->
 </div>
-
-<ng-template #generalInfo>
-  <form [formGroup]="generalInfoForm" (ngSubmit)="generalInfoSubmit()">
-    <p>
-      <mat-form-field>
-        <mat-label>Recipe Name</mat-label>
-        <input type="text" matInput formControlName="name" />
-        <mat-error *ngIf="name?.hasError('required')">Recipe name is <strong>required</strong></mat-error>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field>
-        <mat-label>Serving Size</mat-label>
-        <input type="text" matInput formControlName="servingSize" />
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field>
-        <mat-label>Prep + Cook Time</mat-label>
-        <input type="text" matInput formControlName="prepCookTime" />
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field>
-        <mat-label>Tools Needed</mat-label>
-        <input type="text" matInput formControlName="toolsNeeded" />
-      </mat-form-field>
-    </p>
-  </form>
-</ng-template>
