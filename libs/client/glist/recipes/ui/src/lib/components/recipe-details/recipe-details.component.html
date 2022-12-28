@@ -1,0 +1,100 @@
+<div class="h-full overflow-y-auto p-2">
+  <div class="flex justify-content-between align-items-center">
+    <div class="flex align-items-center gap-1">
+      <h2 class="">Recipe Title</h2>
+      <button mat-icon-button><mat-icon>favorite_outline</mat-icon></button>
+      <span><a href="https://google.com">Recipe Link</a></span>
+    </div>
+    <div class="flex align-items-center gap-2">
+      <button mat-flat-button color="primary">
+        <mat-icon>add</mat-icon>
+        ADD RECIPE TO GLIST
+      </button>
+      <button mat-stroked-button color="primary">
+        <mat-icon>add</mat-icon>
+        ADD RECIPE TO A MENU
+      </button>
+      <button mat-stroked-button color="primary">
+        <mat-icon>print</mat-icon>
+        PRINT
+      </button>
+      <button mat-stroked-button color="primary">
+        <mat-icon>edit</mat-icon>
+        EDIT
+      </button>
+      <button mat-button color="primary">DELETE</button>
+    </div>
+  </div>
+  <div class="flex justify-content-start">
+    <h5 class="">Created on Day Month Year</h5>
+  </div>
+
+  <h4>Details</h4>
+  <div class="grid m-0">
+    <div class="col-3">
+      <div class="flex justify-content-center align-items-center h-full kycard"><mat-icon>image</mat-icon></div>
+    </div>
+    <div class="col-6 pb-0">
+      <div class="grid h-full">
+        <div class="col-6">
+          <div class="flex justify-content-start align-items-center kycard h-full pl-2">Serving Size: 2</div>
+        </div>
+        <div class="col-6">
+          <div class="flex justify-content-start align-items-center kycard h-full pl-2">Prep + Cook Time: 30 minutes</div>
+        </div>
+        <div class="col-12 pb-0">
+          <div class="flex align-items-center gap-3 kycard h-full px-2">
+            <div>Tags:</div>
+            <div class="flex flex-grow-1 justify-content-between gap-1">
+              <mat-chip>Cuisine Type</mat-chip>
+              <mat-chip>Dish Type</mat-chip>
+              <mat-chip>Key Ingredient</mat-chip>
+              <mat-chip>Key Ingredient</mat-chip>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="flex flex-column justify-content-start kycard h-full pl-3">
+        <span class="pt-3">Tools Needed:</span>
+        <ul style="list-style-position: inside; padding-left: 0px">
+          <li>Large Pot</li>
+          <li>Small Sauce Pan</li>
+          <li>Blender</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-content-between">
+    <h4>Ingredients</h4>
+    <mat-button-toggle-group name="favoriteColor" class="flex align-items-center">
+      <mat-button-toggle>1x</mat-button-toggle>
+      <mat-button-toggle>2x</mat-button-toggle>
+      <mat-button-toggle>3x</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <div class="grid m-0 kycard">
+    <div class="col-2" *ngFor="let ingredient of ingredients">
+      <ul>
+        <li>
+          {{ ingredient }}
+          <span style="display: block; color: grey">2</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Directions</h4>
+  <div class="grid m-0">
+    <ng-container *ngFor="let direction of directions; let i = index">
+      <div class="floating-step flex justify-content-center mt-3">
+        <span class="">Step {{ i + 1 }}</span>
+      </div>
+      <div class="col-12 kycard grey-border">
+        {{ direction }}
+      </div>
+    </ng-container>
+  </div>
+</div>
