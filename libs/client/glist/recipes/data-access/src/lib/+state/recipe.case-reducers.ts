@@ -15,7 +15,8 @@ export const recipeCaseReducers = {
     return {
       ...state,
       recipes: payload,
-      isLoading: false
+      isLoading: false,
+      hasAttempted: true
     };
   },
   getUserRecipesError: (state: RecipeState, { payload }: PayloadAction<Error>): RecipeState => {
@@ -23,7 +24,8 @@ export const recipeCaseReducers = {
       ...state,
       recipes: [],
       isLoading: false,
-      error: payload
+      error: payload,
+      hasAttempted: true
     };
   },
   addRecipe: (state: RecipeState, _action: PayloadAction<Recipe>): RecipeState => {

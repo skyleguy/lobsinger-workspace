@@ -6,5 +6,5 @@ import { RecipeContainerComponent } from './components/recipe-container/recipe-c
 
 export const clientGlistRecipesFeatureRoutes: Route[] = [
   { path: '', pathMatch: 'full', component: RecipeContainerComponent },
-  { path: 'details/:id', pathMatch: 'full', component: RecipeDetailsComponent }
+  { path: ':id', pathMatch: 'full', component: RecipeDetailsComponent }
 ];

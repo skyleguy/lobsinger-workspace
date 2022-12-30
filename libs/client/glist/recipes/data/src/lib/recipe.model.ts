@@ -14,4 +14,6 @@ export interface Recipe extends FirestoreData, UserAttachedData {
   toolsNeeded?: string[];
   servingSize?: string;
   prepCookTime?: string;
+  link?: string;
+  creationTime?: Date;
 }

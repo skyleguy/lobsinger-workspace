@@ -10,12 +10,14 @@ export interface RecipeState {
   recipes: Recipe[];
   isLoading: boolean;
   error: Error | null;
+  hasAttempted: boolean;
 }
 
 export const initialRecipeState: RecipeState = {
   recipes: [],
   isLoading: false,
-  error: null
+  error: null,
+  hasAttempted: false
 };
 
 export interface State {

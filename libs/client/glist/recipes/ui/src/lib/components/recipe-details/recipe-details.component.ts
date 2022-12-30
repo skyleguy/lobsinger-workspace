@@ -1,30 +1,72 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { NavigationEnd, Router, Scroll } from '@angular/router';
+import { deepCopy } from '@firebase/util';
+import { filter, map, switchMap } from 'rxjs';
+
+import { Ingredient, Recipe } from '@lob/client/glist/recipes/data';
+import { RecipeFacadeService } from '@lob/client/glist/recipes/data-access';
+import { ArrayUtils } from '@lob/client/shared/helpers/util';
+
+import { RecipeEditorComponent } from '../recipe-editor/recipe-editor.component';
 
 @Component({
   selector: 'glist-recipe-details',
   templateUrl: './recipe-details.component.html',
   styleUrls: ['./recipe-details.component.scss']
 })
-export class RecipeDetailsComponent {
-  readonly ingredients = [
-    'Carrots peeled and sliced into 4-inch pieces',
-    'Sourdough bread',
-    'Fresh Ginger',
-    'Salt',
-    'Carrots',
-    'Cucumber Diced',
-    'Cashew Yogurt',
-    'Tofu',
-    'Pepper',
-    'Yellow Onion',
-    'Curry Powder',
-    'Olive Oil',
-    'Lettuce',
-    'Red Onion'
-  ];
-  readonly directions = [
-    'Preheat the oven to 400°F. Trim and quarter the Brussels sprouts. Trim and thinly slice the mini sweet peppers. Roughly chop the cilantro leaves and stems. Drain and rinse the black beans.',
-    'Heat 1 tbsp vegetable oil in a large nonstick skillet over medium-high heat. Add quartered Brussels sprouts and a pinch of salt and pepper. Cook until lightly browned, 8 to 10 minutes. Place a small saucepan over medium-high heat. Add black beans, ¼ cup water, and a pinch of salt, and cook until hot. Mash with a fork.',
-    'Wrap corn tortillas in foil and warm in the oven, 3 to 4 minutes. Top with mashed black beans, charred Brussels sprouts, sliced mini sweet peppers, and chopped cilantro. Drizzle with spicy peanut sauce.'
-  ];
+export class RecipeDetailsComponent implements OnInit {
+  recipe!: Recipe;
+  originalIngredients: Ingredient[] = [];
+
+  constructor(private recipeFacadeService: RecipeFacadeService, private router: Router, private dialog: MatDialog) {}
+
+  public ngOnInit(): void {
+    this.router.events
+      .pipe(
+        map((event) => event as Scroll),
+        filter((scroll) => scroll.routerEvent instanceof NavigationEnd),
+        map((event) => event.routerEvent),
+        map((navEnd) => ArrayUtils.getLast<string>(navEnd.url?.split('/'))),
+        switchMap((recipeId) => this.recipeFacadeService.getUserById(recipeId ?? ''))
+      )
+      .subscribe({
+        next: (recipe) => {
+          if (!recipe) {
+            this.recipeFacadeService.getUserRecipes();
+          } else {
+            this.recipe = recipe;
+            this.originalIngredients = recipe.ingredients;
+          }
+        }
+      });
+  }
+
+  public editRecipe(): void {
+    this.dialog
+      .open(RecipeEditorComponent, {
+        height: '90%',
+        width: '100%',
+        data: this.recipe
+      })
+      .afterClosed()
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+        }
+      });
+  }
+
+  public buttonToggleChanged(buttonEvent: number | undefined): void {
+    if (buttonEvent) {
+      this.recipe = deepCopy(this.recipe);
+      this.recipe.ingredients = deepCopy(this.originalIngredients).map((ingredient) => {
+        const numberRegex = /[0-9]+/g;
+        const numberMatch: string = ingredient.amount.match(numberRegex)?.[0] ?? '';
+        const newNumberMatch = +numberMatch * buttonEvent;
+        ingredient.amount = ingredient.amount.replace(numberRegex, `${newNumberMatch}`);
+        return ingredient;
+      });
+    }
+  }
 }

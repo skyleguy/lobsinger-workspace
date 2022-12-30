@@ -28,6 +28,7 @@
       class="col-12 md:col-6 lg:col-4 md:px-6 lg:px-6"
       *ngFor="let recipe of chosenRecipes"
       [recipe]="recipe"
+      (click)="routeToRecipe(recipe.id)"
     ></glist-recipe-card>
     <glist-recipe-card class="col-12 md:col-6 lg:col-4 md:px-6 lg:px-6"></glist-recipe-card>
   </div>

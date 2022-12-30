@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Recipe, Tag } from '@lob/client/glist/recipes/data';
+import { Ingredient, Recipe, Tag } from '@lob/client/glist/recipes/data';
 
 @Component({
   selector: 'glist-recipe-editor',
@@ -128,9 +128,9 @@ export class RecipeEditorComponent implements OnInit {
       isFavorited: false,
       servingSize: this.servingSize?.value,
       prepCookTime: this.prepCookTime?.value,
-      toolsNeeded: this.toolsNeeded?.value,
+      toolsNeeded: this.toolsNeeded?.value.split(',').map((tool: string) => tool.trim()),
       tags: [
-        { type: 'Cusine', value: this.cuisineType?.value },
+        { type: 'Cuisine', value: this.cuisineType?.value },
         { type: 'Diet', value: this.dietType?.value },
         { type: 'Dish', value: this.dishType?.value }
       ]
@@ -144,46 +144,54 @@ export class RecipeEditorComponent implements OnInit {
     if (otherTags) {
       r.tags?.push(...otherTags);
     }
-    console.log(r);
     this.dialogRef.close(r);
   }
 
   private createGeneralInfoForm(): void {
     this.generalInfoForm = this.fb.group({
-      name: ['', Validators.required],
-      servingSize: [null],
-      prepCookTime: [null],
-      toolsNeeded: [''],
-      image: [null]
+      name: [this.recipe?.title ?? '', Validators.required],
+      servingSize: [this.recipe?.servingSize ?? null],
+      prepCookTime: [this.recipe?.prepCookTime ?? null],
+      toolsNeeded: [this.recipe?.toolsNeeded?.join(', ') ?? ''],
+      image: [this.recipe?.image ?? null]
     });
   }
 
   private createIngredientsForm(): void {
+    let initialIngredients: Ingredient[];
+    if (this.recipe) {
+      initialIngredients = this.recipe.ingredients;
+    } else {
+      initialIngredients = [
+        {
+          name: '',
+          amount: ''
+        }
+      ];
+    }
     this.ingredientsForm = this.fb.group({
-      ingredients: [
-        [
-          {
-            name: null,
-            amount: null
-          }
-        ],
-        Validators.required
-      ]
+      ingredients: [initialIngredients, Validators.required]
     });
   }
 
   private createDirectionsForm(): void {
+    let initialDirections: string[];
+    if (this.recipe) {
+      initialDirections = [...this.recipe.directions];
+    } else {
+      initialDirections = [''];
+    }
     this.directionsForm = this.fb.group({
-      directions: this.fb.array([''], Validators.required)
+      directions: this.fb.array(initialDirections, Validators.required)
     });
   }
 
   private createTagsForm(): void {
     this.tagsForm = this.fb.group({
-      dishType: [],
-      cuisineType: [],
-      dietType: [],
-      otherTags: []
+      dishType: [this.recipe?.tags?.find((tag) => tag.type === 'Dish')],
+      cuisineType: [this.recipe?.tags?.find((tag) => tag.type === 'Cuisine')],
+      dietType: [this.recipe?.tags?.find((tag) => tag.type === 'Diet')],
+      otherTags: [this.recipe?.tags?.map((tag) => tag.value).join(', ')]
     });
   }
 }

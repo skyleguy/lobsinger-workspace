@@ -1,14 +1,25 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { filter, switchMap } from 'rxjs';
 
 import { Recipe } from '@lob/client/glist/recipes/data';
 
 import * as selectors from './recipe.selectors';
+import { selectRecipeById } from './recipe.selectors';
 import { actions, RecipeState } from './recipe.slice';
 
 @Injectable()
 export class RecipeFacadeService {
-  recipes$ = this.store.pipe(select(selectors.selectRecipes));
+  recipes$ = this.store.pipe(
+    select(selectors.selectHasAttempted),
+    filter((hasAttempted) => {
+      if (!hasAttempted) {
+        this.getUserRecipes();
+      }
+      return hasAttempted;
+    }),
+    switchMap(() => this.store.pipe(select(selectors.selectRecipes)))
+  );
   favoriteRecipes$ = this.store.pipe(select(selectors.selectFavoriteRecipes));
   isLoading$ = this.store.pipe(select(selectors.selectRecipeLoading));
   userError$ = this.store.pipe(select(selectors.selectRecipeLoading));
@@ -21,5 +32,9 @@ export class RecipeFacadeService {
 
   public addRecipe(recipe: Recipe): void {
     this.store.dispatch(actions.addRecipe(recipe));
+  }
+
+  public getUserById(id: string) {
+    return this.store.pipe(select(selectRecipeById(id)));
   }
 }

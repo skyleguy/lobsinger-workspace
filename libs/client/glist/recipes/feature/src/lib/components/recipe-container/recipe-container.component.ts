@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Recipe } from '@lob/client/glist/recipes/data';
 import { RecipeFacadeService } from '@lob/client/glist/recipes/data-access';
@@ -17,7 +18,12 @@ export class RecipeContainerComponent implements OnInit, OnDestroy {
   recipes: Recipe[] = [];
   favoriteRecipes: Recipe[] = [];
 
-  constructor(private recipeFacadeService: RecipeFacadeService, private dialog: MatDialog) {}
+  constructor(
+    private recipeFacadeService: RecipeFacadeService,
+    private dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   public ngOnInit(): void {
     this.getRecipes();
@@ -45,8 +51,11 @@ export class RecipeContainerComponent implements OnInit, OnDestroy {
       });
   }
 
+  public routeToRecipe(id: string) {
+    this.router.navigate([id], { relativeTo: this.route });
+  }
+
   private getRecipes(): void {
-    this.recipeFacadeService.getUserRecipes();
     this.sub.sink = this.recipeFacadeService.recipes$.subscribe({
       next: (recipes) => {
         this.recipes = recipes;
