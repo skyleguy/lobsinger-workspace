@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule } from '@angular/router';
 
+import { ClientGlistGlistsDataAccessModule } from '@lob/client/glist/glists/data-access';
 import { ClientGlistRecipesDataAccessModule } from '@lob/client/glist/recipes/data-access';
 import { ClientGlistRecipesUiModule } from '@lob/client/glist/recipes/ui';
 
@@ -23,7 +24,8 @@ import { clientGlistRecipesFeatureRoutes } from './lib.routes';
     MatDialogModule,
     RouterModule.forChild(clientGlistRecipesFeatureRoutes),
     ClientGlistRecipesUiModule,
-    ClientGlistRecipesDataAccessModule
+    ClientGlistRecipesDataAccessModule,
+    ClientGlistGlistsDataAccessModule
   ],
   declarations: [RecipeContainerComponent]
 })

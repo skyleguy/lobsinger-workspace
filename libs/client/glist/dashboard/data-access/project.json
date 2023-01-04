@@ -16,10 +16,7 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "libs/client/glist/dashboard/data-access/**/*.ts",
-          "libs/client/glist/dashboard/data-access/**/*.html"
-        ]
+        "lintFilePatterns": ["libs/client/glist/dashboard/data-access/**/*.ts", "libs/client/glist/dashboard/data-access/**/*.html"]
       }
     }
   },

@@ -1,6 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 
 import { Recipe } from '@lob/client/glist/recipes/data';
+import { FirestoreData } from '@lob/client/shared/firebase/data';
 
 import { RecipeState } from './recipe.slice';
 
@@ -68,13 +69,13 @@ export const recipeCaseReducers = {
       error: payload
     };
   },
-  updateRecipe: (state: RecipeState, _action: PayloadAction<Recipe>): RecipeState => {
+  updateRecipe: (state: RecipeState, _action: PayloadAction<Partial<Recipe> & FirestoreData>): RecipeState => {
     return {
       ...state,
       isLoading: true
     };
   },
-  updateRecipeSuccess: (state: RecipeState, { payload }: PayloadAction<Recipe>): RecipeState => {
+  updateRecipeSuccess: (state: RecipeState, { payload }: PayloadAction<Partial<Recipe>>): RecipeState => {
     const newRecipes = [...state.recipes];
     const foundIndex = newRecipes.findIndex((rec) => rec.id === payload.id);
     if (foundIndex > -1) {

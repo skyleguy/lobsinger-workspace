@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { GlistFacadeService } from '@lob/client/glist/glists/data-access';
 import { Recipe } from '@lob/client/glist/recipes/data';
 import { RecipeFacadeService } from '@lob/client/glist/recipes/data-access';
 import { RecipeEditorComponent } from '@lob/client/glist/recipes/ui';
@@ -22,7 +23,8 @@ export class RecipeContainerComponent implements OnInit, OnDestroy {
     private recipeFacadeService: RecipeFacadeService,
     private dialog: MatDialog,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private glistFacadeService: GlistFacadeService
   ) {}
 
   public ngOnInit(): void {
@@ -53,6 +55,17 @@ export class RecipeContainerComponent implements OnInit, OnDestroy {
 
   public routeToRecipe(id: string) {
     this.router.navigate([id], { relativeTo: this.route });
+  }
+
+  public toggleRecipeFavorite(recipe: Recipe): void {
+    this.recipeFacadeService.updateRecipe({
+      id: recipe.id,
+      isFavorited: !recipe.isFavorited
+    });
+  }
+
+  public addRecipeToGlist(recipe: Recipe): void {
+    this.glistFacadeService.addRecipeToGlist(recipe.id);
   }
 
   private getRecipes(): void {

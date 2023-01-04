@@ -16,10 +16,7 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "libs/client/glist/recipes/data-access/**/*.ts",
-          "libs/client/glist/recipes/data-access/**/*.html"
-        ]
+        "lintFilePatterns": ["libs/client/glist/recipes/data-access/**/*.ts", "libs/client/glist/recipes/data-access/**/*.html"]
       }
     }
   },

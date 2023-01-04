@@ -8,13 +8,12 @@
         <mat-icon>add</mat-icon>
         Add New Recipe
       </button>
-      <button mat-button>Delete Recipes</button>
     </div>
   </div>
 
-  <mat-tab-group class="p-3 flex-grow-1 overflow-y-auto pt-0">
+  <mat-tab-group class="p-3 flex-grow-1 overflow-y-auto pt-0" mat-stretch-tabs="false" mat-align-tabs="start">
     <mat-tab label="All Recipes">
-      <ng-container *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: recipes }"></ng-container>
+      <ng-container *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: recipes, isAddCardVisible: true }"></ng-container>
     </mat-tab>
     <mat-tab label="Favorites">
       <ng-container *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: favoriteRecipes }"></ng-container>
@@ -22,14 +21,16 @@
   </mat-tab-group>
 </div>
 
-<ng-template #recipeGrid let-chosenRecipes="chosenRecipes">
+<ng-template #recipeGrid let-chosenRecipes="chosenRecipes" let-isAddCardVisible="isAddCardVisible">
   <div class="grid p-2">
     <glist-recipe-card
       class="col-12 md:col-6 lg:col-4 md:px-6 lg:px-6"
       *ngFor="let recipe of chosenRecipes"
       [recipe]="recipe"
+      (favoriteClicked)="toggleRecipeFavorite($event)"
+      (addToGlist)="addRecipeToGlist($event)"
       (click)="routeToRecipe(recipe.id)"
     ></glist-recipe-card>
-    <glist-recipe-card class="col-12 md:col-6 lg:col-4 md:px-6 lg:px-6"></glist-recipe-card>
+    <glist-recipe-card class="col-12 md:col-6 lg:col-4 md:px-6 lg:px-6" *ngIf="isAddCardVisible"></glist-recipe-card>
   </div>
 </ng-template>

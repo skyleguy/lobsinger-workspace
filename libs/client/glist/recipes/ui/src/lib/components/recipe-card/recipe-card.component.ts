@@ -1,13 +1,20 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Recipe } from '@lob/client/glist/recipes/data';
+import { favoritedRecipeText, Recipe, unfavoritedRecipeText } from '@lob/client/glist/recipes/data';
 
 @Component({
   selector: 'glist-recipe-card',
   templateUrl: './recipe-card.component.html',
-  styleUrls: ['./recipe-card.component.scss'],
+  styleUrls: ['./recipe-card.component.scss']
 })
 export class RecipeCardComponent {
+  readonly favoritedRecipeText = favoritedRecipeText;
+  readonly unfavoritedRecipeText = unfavoritedRecipeText;
   @Input()
   recipe!: Recipe;
+
+  @Output()
+  favoriteClicked: EventEmitter<Recipe> = new EventEmitter();
+  @Output()
+  addToGlist: EventEmitter<Recipe> = new EventEmitter();
 }

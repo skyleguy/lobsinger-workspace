@@ -4,9 +4,11 @@ import { NavigationEnd, Router, Scroll } from '@angular/router';
 import { deepCopy } from '@firebase/util';
 import { filter, map, switchMap } from 'rxjs';
 
-import { Ingredient, Recipe } from '@lob/client/glist/recipes/data';
+import { GlistFacadeService } from '@lob/client/glist/glists/data-access';
+import { favoritedRecipeText, Ingredient, Recipe, unfavoritedRecipeText } from '@lob/client/glist/recipes/data';
 import { RecipeFacadeService } from '@lob/client/glist/recipes/data-access';
 import { ArrayUtils } from '@lob/client/shared/helpers/util';
+import { ConfirmActionComponent } from '@lob/client/shared/user-actions/ui';
 
 import { RecipeEditorComponent } from '../recipe-editor/recipe-editor.component';
 
@@ -16,10 +18,18 @@ import { RecipeEditorComponent } from '../recipe-editor/recipe-editor.component'
   styleUrls: ['./recipe-details.component.scss']
 })
 export class RecipeDetailsComponent implements OnInit {
+  readonly favoritedRecipeText = favoritedRecipeText;
+  readonly unfavoritedRecipeText = unfavoritedRecipeText;
+
   recipe!: Recipe;
   originalIngredients: Ingredient[] = [];
 
-  constructor(private recipeFacadeService: RecipeFacadeService, private router: Router, private dialog: MatDialog) {}
+  constructor(
+    private recipeFacadeService: RecipeFacadeService,
+    private router: Router,
+    private dialog: MatDialog,
+    private glistFacadeService: GlistFacadeService
+  ) {}
 
   public ngOnInit(): void {
     this.router.events
@@ -47,12 +57,14 @@ export class RecipeDetailsComponent implements OnInit {
       .open(RecipeEditorComponent, {
         height: '90%',
         width: '100%',
-        data: this.recipe
+        data: deepCopy(this.recipe)
       })
       .afterClosed()
       .subscribe({
         next: (res) => {
-          console.log(res);
+          if (res) {
+            this.recipeFacadeService.updateRecipe(res);
+          }
         }
       });
   }
@@ -68,5 +80,34 @@ export class RecipeDetailsComponent implements OnInit {
         return ingredient;
       });
     }
+  }
+
+  public toggleRecipeFavorite(): void {
+    this.recipeFacadeService.updateRecipe({
+      id: this.recipe.id,
+      isFavorited: !this.recipe.isFavorited
+    });
+  }
+
+  public addRecipeToGlist(): void {
+    this.glistFacadeService.addRecipeToGlist(this.recipe.id);
+  }
+
+  public deleteRecipe(): void {
+    this.dialog
+      .open(ConfirmActionComponent, {
+        data: {
+          phrase: `Are you sure you want to delete the recipe titled ${this.recipe.title}?`
+        }
+      })
+      .afterClosed()
+      .subscribe({
+        next: (result) => {
+          if (result) {
+            this.recipeFacadeService.deleteRecipe(this.recipe);
+            this.router.navigate(['recipes']);
+          }
+        }
+      });
   }
 }

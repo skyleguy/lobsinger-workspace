@@ -1,12 +1,14 @@
 <div class="h-full overflow-y-auto p-2" *ngIf="recipe">
   <div class="flex justify-content-between align-items-center">
     <div class="flex align-items-center gap-1">
-      <h2 class="mb-0">{{ recipe.title }}</h2>
-      <button mat-icon-button><mat-icon>favorite_outline</mat-icon></button>
-      <span><a [href]="recipe.link">Recipe Link</a></span>
+      <h2 class="my-0">{{ recipe.title }}</h2>
+      <button mat-icon-button (click)="toggleRecipeFavorite()">
+        <mat-icon>{{ recipe.isFavorited ? favoritedRecipeText : unfavoritedRecipeText }}</mat-icon>
+      </button>
+      <span><a [href]="recipe.link" target="_blank">Recipe Link</a></span>
     </div>
     <div class="flex align-items-center gap-2">
-      <button mat-flat-button color="primary">
+      <button mat-flat-button color="primary" (click)="addRecipeToGlist()">
         <mat-icon>add</mat-icon>
         ADD RECIPE TO GLIST
       </button>
@@ -22,7 +24,7 @@
         <mat-icon>edit</mat-icon>
         EDIT
       </button>
-      <button mat-button color="primary">DELETE</button>
+      <button mat-button color="primary" (click)="deleteRecipe()">DELETE</button>
     </div>
   </div>
   <div class="flex justify-content-start">

@@ -1,0 +1,13 @@
+<div class="flex flex-column h-full">
+  <glist-header (menuClicked)="sideNav.toggle()"></glist-header>
+  <mat-sidenav-container [hasBackdrop]="false" class="h-full max-h-full w-full max-w-full flex-grow-1">
+    <mat-sidenav #sideNav mode="side" position="start" [(opened)]="isOpened" [disableClose]="true">
+      <glist-sidebar></glist-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="h-full max-h-full flex flex-column">
+        <glist-content class="flex-grow-1 overflow-y-auto"></glist-content>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

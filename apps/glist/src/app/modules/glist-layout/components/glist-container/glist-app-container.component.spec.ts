@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GlistContainerComponent } from './glist-container.component';
+import { GlistContainerComponent } from './glist-app-container.component';
 
 describe('GlistContainerComponent', () => {
   let component: GlistContainerComponent;
@@ -8,7 +8,7 @@ describe('GlistContainerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GlistContainerComponent],
+      declarations: [GlistContainerComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(GlistContainerComponent);

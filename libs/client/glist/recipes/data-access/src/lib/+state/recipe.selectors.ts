@@ -12,6 +12,8 @@ export const selectRecipeById = (id: string) =>
     return state.recipes.find((rec) => rec.id === id);
   });
 export const selectHasAttempted = createSelector(selectRecipeState, (state): boolean => state.hasAttempted);
-export const selectFavoriteRecipes = createSelector(selectRecipeState, (state): Recipe[] => state.recipes);
+export const selectFavoriteRecipes = createSelector(selectRecipeState, (state): Recipe[] =>
+  state.recipes.filter((recipe) => recipe.isFavorited)
+);
 export const selectRecipeLoading = createSelector(selectRecipeState, (state): boolean => state.isLoading);
 export const selectRecipeError = createSelector(selectRecipeState, (state): Error | null => state.error);

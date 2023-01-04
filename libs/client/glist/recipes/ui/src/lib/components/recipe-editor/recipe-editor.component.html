@@ -38,6 +38,12 @@
                 <mat-hint>Enter as comma-separated list</mat-hint>
               </mat-form-field>
             </p>
+            <p>
+              <mat-form-field class="w-6">
+                <mat-label>Recipe Link</mat-label>
+                <input type="text" matInput formControlName="recipeLink" />
+              </mat-form-field>
+            </p>
             <input type="file" accept="image/*" (change)="base64Image($event)" />
           </form>
           <div class="flex justify-content-between">
@@ -169,7 +175,7 @@
               <button mat-button matStepperPrevious>{{ back }}</button>
             </div>
             <div>
-              <button mat-button matStepperNext (click)="submitRecipe()">ADD NEW RECIPE</button>
+              <button mat-button matStepperNext (click)="submitRecipe()">{{ recipe ? 'EDIT RECIPE' : 'ADD NEW RECIPE' }}</button>
               <button mat-button matStepperNext>{{ cancel }}</button>
             </div>
           </div>

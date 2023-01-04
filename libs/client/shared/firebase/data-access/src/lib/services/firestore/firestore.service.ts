@@ -57,7 +57,7 @@ export class FirestoreService {
    */
   public updateDocument(tableName: string, payload: FirestoreData, collectionGroup?: string) {
     const tableRef = collection(this.db, tableName, collectionGroup ?? '');
-    return from(updateDoc(doc(tableRef, payload.id), { payload }));
+    return from(updateDoc(doc(tableRef, payload.id), { ...payload }));
   }
 
   /**

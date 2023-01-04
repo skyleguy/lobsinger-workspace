@@ -63,6 +63,10 @@ export class RecipeEditorComponent implements OnInit {
     return this.generalInfoForm.get('toolsNeeded');
   }
 
+  get recipeLink() {
+    return this.generalInfoForm.get('recipeLink');
+  }
+
   get image() {
     return this.generalInfoForm.get('image');
   }
@@ -122,13 +126,15 @@ export class RecipeEditorComponent implements OnInit {
     const r: Recipe = {
       title: this.name?.value,
       directions: this.directions.controls.map((control) => control.value),
-      id: uuidv4(),
+      id: this.recipe?.id ?? uuidv4(),
       ingredients: this.ingredients?.value,
+      link: this.recipeLink?.value,
       image: this.image?.value,
       isFavorited: false,
       servingSize: this.servingSize?.value,
       prepCookTime: this.prepCookTime?.value,
       toolsNeeded: this.toolsNeeded?.value.split(',').map((tool: string) => tool.trim()),
+      // TODO something odd going on when editing tags, current recipe values not being set in dropdowns either
       tags: [
         { type: 'Cuisine', value: this.cuisineType?.value },
         { type: 'Diet', value: this.dietType?.value },
@@ -153,6 +159,7 @@ export class RecipeEditorComponent implements OnInit {
       servingSize: [this.recipe?.servingSize ?? null],
       prepCookTime: [this.recipe?.prepCookTime ?? null],
       toolsNeeded: [this.recipe?.toolsNeeded?.join(', ') ?? ''],
+      recipeLink: [this.recipe?.link ?? ''],
       image: [this.recipe?.image ?? null]
     });
   }
@@ -187,11 +194,20 @@ export class RecipeEditorComponent implements OnInit {
   }
 
   private createTagsForm(): void {
+    console.log(this.recipe?.tags?.find((tag) => tag.type === 'Dish'));
+    console.log(this.recipe?.tags?.find((tag) => tag.type === 'Cuisine'));
+    console.log(this.recipe?.tags?.find((tag) => tag.type === 'Diet'));
+    console.log(this.recipe?.tags?.map((tag) => tag.value).join(', '));
     this.tagsForm = this.fb.group({
-      dishType: [this.recipe?.tags?.find((tag) => tag.type === 'Dish')],
-      cuisineType: [this.recipe?.tags?.find((tag) => tag.type === 'Cuisine')],
-      dietType: [this.recipe?.tags?.find((tag) => tag.type === 'Diet')],
-      otherTags: [this.recipe?.tags?.map((tag) => tag.value).join(', ')]
+      dishType: [this.recipe?.tags?.find((tag) => tag.type === 'Dish')?.value],
+      cuisineType: [this.recipe?.tags?.find((tag) => tag.type === 'Cuisine')?.value],
+      dietType: [this.recipe?.tags?.find((tag) => tag.type === 'Diet')?.value],
+      otherTags: [
+        this.recipe?.tags
+          ?.filter((res) => res.type === 'Other')
+          ?.map((tag) => tag.value)
+          .join(', ')
+      ]
     });
   }
 }

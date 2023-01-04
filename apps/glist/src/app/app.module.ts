@@ -27,7 +27,10 @@ export function initializeAppWithService(glistInitializationService: GlistInitia
     GlistLayoutModule,
     StoreModule.forRoot(),
     EffectsModule.forRoot(),
-    StoreDevtoolsModule,
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      serialize: true
+    }),
     ClientSharedAuthDataAccessModule,
     HttpClientModule
   ],

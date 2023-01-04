@@ -3,6 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { filter, switchMap } from 'rxjs';
 
 import { Recipe } from '@lob/client/glist/recipes/data';
+import { FirestoreData } from '@lob/client/shared/firebase/data';
 
 import * as selectors from './recipe.selectors';
 import { selectRecipeById } from './recipe.selectors';
@@ -32,6 +33,14 @@ export class RecipeFacadeService {
 
   public addRecipe(recipe: Recipe): void {
     this.store.dispatch(actions.addRecipe(recipe));
+  }
+
+  public updateRecipe(recipe: Partial<Recipe> & FirestoreData): void {
+    this.store.dispatch(actions.updateRecipe(recipe));
+  }
+
+  public deleteRecipe(recipe: Recipe): void {
+    this.store.dispatch(actions.deleteRecipe(recipe));
   }
 
   public getUserById(id: string) {
