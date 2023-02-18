@@ -1,4 +1,5 @@
 @import '/node_modules/primeflex/primeflex.css';
+@import './variables.scss';
 
 html,
 body {
@@ -22,5 +23,17 @@ body {
 }
 
 .subtext {
-  color: #828282;
+  color: $ui-gray-4;
+}
+
+.gray-hover:hover {
+  background-color: $ui-gray-8 !important;
+}
+
+.cursor-grab {
+  cursor: grab;
+}
+
+.cursor-grabbing {
+  cursor: grabbing;
 }

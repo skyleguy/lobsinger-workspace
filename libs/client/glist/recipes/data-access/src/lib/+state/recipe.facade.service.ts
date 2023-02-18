@@ -6,7 +6,7 @@ import { Recipe } from '@lob/client/glist/recipes/data';
 import { FirestoreData } from '@lob/client/shared/firebase/data';
 
 import * as selectors from './recipe.selectors';
-import { selectRecipeById } from './recipe.selectors';
+import { selectRecipeById, selectRecipesByIds } from './recipe.selectors';
 import { actions, RecipeState } from './recipe.slice';
 
 @Injectable()
@@ -21,6 +21,7 @@ export class RecipeFacadeService {
     }),
     switchMap(() => this.store.pipe(select(selectors.selectRecipes)))
   );
+
   favoriteRecipes$ = this.store.pipe(select(selectors.selectFavoriteRecipes));
   isLoading$ = this.store.pipe(select(selectors.selectRecipeLoading));
   userError$ = this.store.pipe(select(selectors.selectRecipeLoading));
@@ -43,7 +44,20 @@ export class RecipeFacadeService {
     this.store.dispatch(actions.deleteRecipe(recipe));
   }
 
-  public getUserById(id: string) {
+  public getRecipeById(id: string) {
     return this.store.pipe(select(selectRecipeById(id)));
+  }
+
+  public getRecipesByIds(ids: string[]) {
+    return this.store.pipe(
+      select(selectors.selectHasAttempted),
+      filter((hasAttempted) => {
+        if (!hasAttempted) {
+          this.getUserRecipes();
+        }
+        return hasAttempted;
+      }),
+      switchMap(() => this.store.pipe(select(selectRecipesByIds(ids))))
+    );
   }
 }

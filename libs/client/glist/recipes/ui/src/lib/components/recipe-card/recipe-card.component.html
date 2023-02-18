@@ -1,5 +1,5 @@
 <ng-container *ngIf="recipe; else actionRecipe">
-  <mat-card class="h-full cursor-pointer transition-colors transition-duration-300">
+  <mat-card class="h-full cursor-pointer transition-colors transition-duration-300 gray-hover">
     <mat-card-subtitle><span class="p-2">RECIPE</span></mat-card-subtitle>
     <mat-card-title>
       <span class="p-2">{{ recipe.title }}</span>
@@ -25,7 +25,7 @@
 </ng-container>
 
 <ng-template #actionRecipe>
-  <mat-card class="h-full cursor-pointer transition-colors transition-duration-300">
+  <mat-card class="h-full cursor-pointer transition-colors transition-duration-300 gray-hover">
     <mat-card-subtitle><span class="p-2">RECIPE</span></mat-card-subtitle>
     <mat-card-title>
       <span class="p-2 text-grey-500">Recipe Title</span>

@@ -11,6 +11,10 @@ export const selectRecipeById = (id: string) =>
   createSelector(selectRecipeState, (state): Recipe | undefined => {
     return state.recipes.find((rec) => rec.id === id);
   });
+export const selectRecipesByIds = (ids: string[]) =>
+  createSelector(selectRecipeState, (state): Recipe[] => {
+    return state.recipes.filter((rec) => ids.includes(rec.id));
+  });
 export const selectHasAttempted = createSelector(selectRecipeState, (state): boolean => state.hasAttempted);
 export const selectFavoriteRecipes = createSelector(selectRecipeState, (state): Recipe[] =>
   state.recipes.filter((recipe) => recipe.isFavorited)

@@ -38,7 +38,7 @@ export class RecipeDetailsComponent implements OnInit {
         filter((scroll) => scroll.routerEvent instanceof NavigationEnd),
         map((event) => event.routerEvent),
         map((navEnd) => ArrayUtils.getLast<string>(navEnd.url?.split('/'))),
-        switchMap((recipeId) => this.recipeFacadeService.getUserById(recipeId ?? ''))
+        switchMap((recipeId) => this.recipeFacadeService.getRecipeById(recipeId ?? ''))
       )
       .subscribe({
         next: (recipe) => {

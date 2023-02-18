@@ -4,7 +4,7 @@
       <h2 class="m-0">My Glist</h2>
       <span>This is your Grocery List! The common ingredients and their amounts have been combined.</span>
     </div>
-    <div class="flex gap-2">
+    <div class="flex gap-2 align-items-center">
       <button mat-flat-button color="primary">
         <mat-icon>add</mat-icon>
         ADD RECIPES
@@ -17,7 +17,18 @@
   </div>
   <mat-tab-group class="p-3 flex-grow-1 overflow-y-auto pt-0" mat-stretch-tabs="false" mat-align-tabs="start">
     <mat-tab label="Glist Items">
-      <glist-ingredients-list></glist-ingredients-list>
+      <mat-card class="mt-3">
+        <div class="flex justify-content-between align-items-center">
+          <span class="px-2">GLIST ITEMS</span>
+          <button mat-button color="primary">CLEAR ALL</button>
+        </div>
+        <mat-divider class="py-2"></mat-divider>
+        <glist-ingredients-list
+          class="px-2"
+          [recipes]="(recipes$ | async)!"
+          [ingredients]="(ingredients$ | async)!"
+        ></glist-ingredients-list>
+      </mat-card>
     </mat-tab>
     <mat-tab label="Recipes in Glist (#)">
       <ng-container *ngTemplateOutlet="recipesInList"></ng-container>
@@ -26,8 +37,11 @@
 </div>
 
 <ng-template #recipesInList>
-  hi!
   <div class="grid p-2">
-    <glist-recipe-card class="col-12 md:col-6 lg:col-4 md:px-6 lg:px-6" *ngFor="let recipe of []" [recipe]="recipe"></glist-recipe-card>
+    <glist-recipe-card
+      class="col-12 md:col-6 lg:col-4 md:px-6 lg:px-6"
+      *ngFor="let recipe of recipes$ | async"
+      [recipe]="recipe"
+    ></glist-recipe-card>
   </div>
 </ng-template>
