@@ -6,6 +6,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule } from '@angular/router';
+import { LetModule } from '@ngrx/component';
 
 import { ClientGlistGlistsDataAccessModule } from '@lob/client/glist/glists/data-access';
 import { ClientGlistGlistsUiModule } from '@lob/client/glist/glists/ui';
@@ -27,7 +28,8 @@ import { clientGlistGlistsFeatureRoutes } from './lib.routes';
     MatIconModule,
     MatTabsModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    LetModule
   ],
   declarations: [GlistContainerComponent]
 })

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { deepCopy } from '@firebase/util';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { where } from 'firebase/firestore';
@@ -95,7 +96,7 @@ export class GlistEffects {
         return { state: state[fromGlist.glistSliceName], payload };
       }),
       switchMap(({ state, payload }) => {
-        const newGlist: Glist = { ...state.glist };
+        const newGlist: Glist = deepCopy(state.glist);
         newGlist.ingredients.push(payload);
         return this.firestoreService.updateDocument(this.tableName, newGlist).pipe(
           switchMap(() => of(fromGlist.actions.addIngredientToGlistSuccess(payload))),

@@ -2,7 +2,7 @@
   <ng-container *ngFor="let ingredient of totalIngredients">
     <div class="flex justify-content-between w-full bg-white draggable-ingredient py-2" cdkDrag cdkDragBoundary="#ingredient-list">
       <div class="w-full">
-        <mat-checkbox
+        <mat-checkbox (change)="$event.checked ? ingredientChecked.next(ingredient) : null"
           >{{ ingredient.name }}
           <h5 class="m-0 subtext">{{ ingredient.amount }}</h5></mat-checkbox
         >
@@ -13,11 +13,20 @@
   </ng-container>
   <div class="flex justify-content-between w-full">
     <div class="w-full">
-      <mat-checkbox
-        ><span class="subtext">Enter new item...</span>
-        <h5 class="m-0 subtext">Enter Item amount...</h5></mat-checkbox
-      >
+      <mat-checkbox>
+        <input
+          #newItemName
+          placeholder="Enter new item..."
+          class="block"
+          (focusout)="validateNewIngredient(newItemName.value, newItemAmount.value)"
+        />
+        <input
+          #newItemAmount
+          placeholder="Enter item amount..."
+          class="block"
+          (focusout)="validateNewIngredient(newItemName.value, newItemAmount.value)"
+        />
+      </mat-checkbox>
     </div>
   </div>
-  <mat-divider></mat-divider>
 </div>
