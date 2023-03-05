@@ -152,5 +152,29 @@ export const glistCaseReducers = {
       isLoading: false,
       error: payload
     };
+  },
+  clearGlist: (state: GlistState): GlistState => {
+    return {
+      ...state,
+      isLoading: true
+    };
+  },
+  clearGlistSuccess: (state: GlistState): GlistState => {
+    return {
+      ...state,
+      glist: {
+        ...state.glist,
+        ingredients: [],
+        recipes: []
+      },
+      isLoading: false
+    };
+  },
+  clearGlistError: (state: GlistState, { payload }: PayloadAction<Error>): GlistState => {
+    return {
+      ...state,
+      isLoading: false,
+      error: payload
+    };
   }
 };

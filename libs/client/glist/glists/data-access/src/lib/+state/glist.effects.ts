@@ -88,6 +88,22 @@ export class GlistEffects {
     )
   );
 
+  clearGlist$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(fromGlist.actions.clearGlist),
+      withLatestFrom(this.store, (payload, state) => {
+        return { state: state[fromGlist.glistSliceName], payload };
+      }),
+      switchMap(({ state }) => {
+        const newGlist: Glist = { ...state.glist, recipes: [], ingredients: [] };
+        return this.firestoreService.updateDocument(this.tableName, newGlist).pipe(
+          switchMap(() => of(fromGlist.actions.clearGlistSuccess())),
+          catchError((err) => of(fromGlist.actions.clearGlistError(err)))
+        );
+      })
+    )
+  );
+
   addIngredientToGlist$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromGlist.actions.addIngredientToGlist),

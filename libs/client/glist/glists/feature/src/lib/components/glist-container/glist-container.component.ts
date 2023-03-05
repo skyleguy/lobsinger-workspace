@@ -25,4 +25,8 @@ export class GlistContainerComponent {
   public removeIngredientFromGlist(ingredient: Ingredient): void {
     this.glistFacadeService.deleteIngredientFromGlist(ingredient);
   }
+
+  public clearGlist(): void {
+    this.glistFacadeService.clearGlist();
+  }
 }

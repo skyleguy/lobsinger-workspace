@@ -41,4 +41,8 @@ export class GlistFacadeService {
   public deleteIngredientFromGlist(ingredient: Ingredient): void {
     this.store.dispatch(actions.deleteIngredientFromGlist(ingredient));
   }
+
+  public clearGlist(): void {
+    this.store.dispatch(actions.clearGlist());
+  }
 }
