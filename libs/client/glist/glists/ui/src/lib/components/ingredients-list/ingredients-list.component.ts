@@ -51,8 +51,9 @@ export class IngredientsListComponent implements OnChanges {
 
   private calculateAllIngredients(): void {
     const ingredientsFromRecipes: Ingredient[] =
-      this.recipes?.reduce((accumulator: Ingredient[], current: Recipe): Ingredient[] => [...accumulator, ...current.ingredients], []) ??
-      [];
+      this.recipes
+        ?.reduce((accumulator: Ingredient[], current: Recipe): Ingredient[] => [...accumulator, ...current.ingredients], [])
+        ?.sort((a, b) => a.name.localeCompare(b.name)) ?? [];
     this.totalIngredients = [...ingredientsFromRecipes, ...this.ingredients];
   }
 }
