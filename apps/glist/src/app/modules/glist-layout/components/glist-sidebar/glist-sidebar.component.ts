@@ -20,7 +20,5 @@ export class GlistSidebarComponent {
     { title: 'Menus', icon: 'menu_book', route: 'menus' }
   ];
 
-  selectedPage!: Page;
-
   constructor(public router: Router) {}
 }
