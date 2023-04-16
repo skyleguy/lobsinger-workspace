@@ -8,9 +8,11 @@ import { ScrapeResponse } from '@lob/shared/ingredients/data';
   providedIn: 'root'
 })
 export class RecipeScrapeService {
+  readonly baseUrl = 'https://lobsinger-workspace-production.up.railway.app';
+
   constructor(private readonly http: HttpClient) {}
 
   public scrapeRecipe(url: string): Observable<ScrapeResponse> {
-    return this.http.post<ScrapeResponse>('http://localhost:3333/api/scrape', { url });
+    return this.http.post<ScrapeResponse>(`${this.baseUrl}/api/scrape`, { url });
   }
 }
