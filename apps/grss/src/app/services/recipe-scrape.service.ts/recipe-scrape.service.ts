@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import axios from 'axios';
+import got from 'got';
 import soup from 'jssoup';
 import { catchError, from, map, Observable, throwError } from 'rxjs';
 
@@ -11,6 +11,8 @@ import { ScrapeResponse } from '../../models';
 export class RecipeScrapeService {
   readonly containerItems = ['div', 'ul', 'ol', 'li'];
   readonly directionsLabels = ['directions', 'instructions'];
+  readonly ampersandEscapeSequence = '&#038;';
+  readonly whitespaceCharacter = '&#32;';
   readonly units: string[] = [
     'cups',
     'cup',
@@ -32,21 +34,10 @@ export class RecipeScrapeService {
     'fl oz'
   ];
   readonly scrapeRegex: RegExp = new RegExp(`([\\d/\\.]*)\\s?(${this.units.join('|')})?\\s?([^\\d]*)`, '');
+  readonly whitespaceRegex: RegExp = new RegExp(this.whitespaceCharacter, 'g');
 
   public scrapeRecipe(url: string): Observable<ScrapeResponse> {
-    return from(
-      axios.post(
-        // 'https://www.hellmanns.com/us/en/recipes/vegan-chili-stuffed-baked-potatoes.html',
-        // 'https://www.noracooks.com/vegan-teriyaki-noodle-bowls/',
-        // 'https://www.loveandlemons.com/squash-stuffed-shells/',
-        // 'https://sweetpotatosoul.com/watermelon-peach-salad-with-lime/',
-        url,
-        null,
-        {
-          responseType: 'text'
-        }
-      )
-    ).pipe(
+    return from(got.get(url)).pipe(
       map((data) => {
         const tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
         const scrapeResponse: ScrapeResponse = {
@@ -54,7 +45,7 @@ export class RecipeScrapeService {
           directions: [],
           title: ''
         };
-        const theSoup = new soup(data.data);
+        const theSoup = new soup(data.body);
         tags.forEach((tag) => {
           this.findItems(theSoup, tag, scrapeResponse);
         });
@@ -72,7 +63,7 @@ export class RecipeScrapeService {
     headerTags.forEach((header) => {
       const headerText = header.text.toLowerCase();
       if (tag === 'h1' && header.attrs.class?.includes('title')) {
-        scrapeResponse.title = headerText.replace('&#038;', '&');
+        scrapeResponse.title = headerText.replace(this.ampersandEscapeSequence, '&');
       }
       if (headerText.includes('ingredients')) {
         if (header?.nextSiblings?.length >= 1) {
@@ -105,7 +96,7 @@ export class RecipeScrapeService {
   }
 
   private sanitizeText(input: string): Ingredient {
-    input = input.replace(/&#32;/g, ' ');
+    input = input.replace(this.whitespaceRegex, ' ');
     const [_whole, amount, unit, name] = input.match(this.scrapeRegex);
     if (amount?.length > 0 && unit?.length > 0 && name?.length > 0) {
       return { amount, unit, name };
