@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Recipe, Tag } from '@lob/client/glist/recipes/data';
+import { RecipeScrapeService } from '@lob/client/glist/recipes/data-access';
 import { Ingredient } from '@lob/shared/ingredients/data';
 
 @Component({
@@ -43,10 +44,17 @@ export class RecipeEditorComponent implements OnInit {
     'Vegetarian'
   ];
 
+  urlInfoForm!: FormGroup;
   generalInfoForm!: FormGroup;
   ingredientsForm!: FormGroup;
   directionsForm!: FormGroup;
   tagsForm!: FormGroup;
+  isFromUrl = false;
+  isFromForm = false;
+
+  get url() {
+    return this.urlInfoForm.get('url');
+  }
 
   get name() {
     return this.generalInfoForm.get('name');
@@ -99,10 +107,12 @@ export class RecipeEditorComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<RecipeEditorComponent>,
     @Inject(MAT_DIALOG_DATA) public recipe: Recipe,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private readonly recipeScrapeService: RecipeScrapeService
   ) {}
 
   public ngOnInit(): void {
+    this.createUrlInfoForm();
     this.createGeneralInfoForm();
     this.createIngredientsForm();
     this.createDirectionsForm();
@@ -126,6 +136,36 @@ export class RecipeEditorComponent implements OnInit {
     }
   }
 
+  public submitRecipeFromUrl(): void {
+    this.recipeScrapeService.scrapeRecipe(this.url?.value).subscribe({
+      next: (res) => {
+        const r: Recipe = {
+          title: res.title,
+          directions: res.directions,
+          id: uuidv4(),
+          ingredients: res.ingredients,
+          link: this.url?.value,
+          tags: [
+            { type: 'Cuisine', value: this.cuisineType?.value },
+            { type: 'Diet', value: this.dietType?.value },
+            { type: 'Dish', value: this.dishType?.value }
+          ],
+          creationTime: new Date()
+        };
+        const otherTags: Tag[] = this.otherTags?.value?.split(',').map((tag: string): Tag => {
+          return {
+            type: 'Other',
+            value: tag.trim()
+          };
+        });
+        if (otherTags) {
+          r.tags?.push(...otherTags);
+        }
+        this.dialogRef.close(r);
+      }
+    });
+  }
+
   public submitRecipe(): void {
     const r: Recipe = {
       title: this.name?.value,
@@ -143,7 +183,8 @@ export class RecipeEditorComponent implements OnInit {
         { type: 'Cuisine', value: this.cuisineType?.value },
         { type: 'Diet', value: this.dietType?.value },
         { type: 'Dish', value: this.dishType?.value }
-      ]
+      ],
+      creationTime: new Date()
     };
     const otherTags: Tag[] = this.otherTags?.value?.split(',').map((tag: string): Tag => {
       return {
@@ -155,6 +196,12 @@ export class RecipeEditorComponent implements OnInit {
       r.tags?.push(...otherTags);
     }
     this.dialogRef.close(r);
+  }
+
+  private createUrlInfoForm(): void {
+    this.urlInfoForm = this.fb.group({
+      url: ['', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]]
+    });
   }
 
   private createGeneralInfoForm(): void {
@@ -198,10 +245,6 @@ export class RecipeEditorComponent implements OnInit {
   }
 
   private createTagsForm(): void {
-    console.log(this.recipe?.tags?.find((tag) => tag.type === 'Dish'));
-    console.log(this.recipe?.tags?.find((tag) => tag.type === 'Cuisine'));
-    console.log(this.recipe?.tags?.find((tag) => tag.type === 'Diet'));
-    console.log(this.recipe?.tags?.map((tag) => tag.value).join(', '));
     this.tagsForm = this.fb.group({
       dishType: [this.recipe?.tags?.find((tag) => tag.type === 'Dish')?.value],
       cuisineType: [this.recipe?.tags?.find((tag) => tag.type === 'Cuisine')?.value],

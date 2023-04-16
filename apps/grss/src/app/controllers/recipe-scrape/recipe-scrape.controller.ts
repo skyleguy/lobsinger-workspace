@@ -1,4 +1,4 @@
-import { Body, Controller, Get } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 
 import { ScrapeRequest } from '../../models';
 import { RecipeScrapeService } from '../../services/recipe-scrape.service.ts/recipe-scrape.service';
@@ -7,7 +7,7 @@ import { RecipeScrapeService } from '../../services/recipe-scrape.service.ts/rec
 export class RecipeScrapeController {
   constructor(private readonly recipeScrapeService: RecipeScrapeService) {}
 
-  @Get()
+  @Post()
   getData(@Body() request: ScrapeRequest) {
     return this.recipeScrapeService.scrapeRecipe(request.url);
   }

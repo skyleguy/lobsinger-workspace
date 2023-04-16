@@ -3,9 +3,7 @@ import got from 'got';
 import soup from 'jssoup';
 import { catchError, from, map, Observable, throwError } from 'rxjs';
 
-import { Ingredient } from '@lob/shared/ingredients/data';
-
-import { ScrapeResponse } from '../../models';
+import { Ingredient, ScrapeResponse } from '@lob/shared/ingredients/data';
 
 // https://www.purplecarrot.com/recipe/kimchi-grilled-cheese-sandwiches-with-charred-asparagus-carrot-fries?plan=chefs_choice
 // https://www.noracooks.com/vegan-teriyaki-noodle-bowls/

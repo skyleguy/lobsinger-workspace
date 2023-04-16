@@ -5,7 +5,94 @@
       <mat-icon>close</mat-icon>
     </button>
   </div>
-  <div class="flex-grow-1 overflow-y-auto p-2">
+  <div class="flex-grow-1 overflow-y-auto p-2" *ngIf="!isFromUrl && !isFromForm">
+    <h3>Create a Custom Recipe or Paste a Website Link?</h3>
+    <mat-checkbox (change)="isFromForm = true">Create Custom Recipe</mat-checkbox>
+    <mat-checkbox (change)="isFromUrl = true">Paste a Website Link</mat-checkbox>
+  </div>
+  <div class="flex-grow-1 overflow-y-auto p-2" *ngIf="isFromUrl">
+    <mat-stepper [linear]="true" headerPosition="top" #stepper class="h-full form-grey" color="accent">
+      <mat-step [stepControl]="urlInfoForm">
+        <ng-template matStepLabel>Paste Website Link</ng-template>
+        <div class="flex flex-column h-full">
+          <form [formGroup]="urlInfoForm" class="flex-grow-1 overflow-y-auto">
+            <h4 class="p-2 m-0">Paste a Website Link</h4>
+            <p>
+              <mat-form-field class="w-6">
+                <mat-label>Paste Link</mat-label>
+                <input type="text" matInput formControlName="url" />
+                <mat-error *ngIf="url?.hasError('required')">Url is <strong>required</strong></mat-error>
+                <mat-error *ngIf="url?.hasError('pattern')">Url is not in correct format</mat-error>
+              </mat-form-field>
+            </p>
+          </form>
+          <div class="flex justify-content-between">
+            <div>
+              <button mat-button (click)="isFromUrl = false">{{ back }}</button>
+            </div>
+            <div>
+              <button mat-button matStepperNext>{{ next }}</button>
+              <button mat-button matStepperNext>{{ cancel }}</button>
+            </div>
+          </div>
+        </div>
+      </mat-step>
+      <mat-step [stepControl]="tagsForm">
+        <ng-template matStepLabel>Add Tags</ng-template>
+        <div class="flex flex-column h-full">
+          <h4 class="p-2 m-0">Add Tags</h4>
+          <form [formGroup]="tagsForm" class="flex-grow-1 overflow-y-auto">
+            <p>
+              <mat-form-field appearance="fill" class="w-6">
+                <mat-label>Dish Type</mat-label>
+                <mat-select formControlName="dishType">
+                  <mat-option *ngFor="let dishType of dishTypes" [value]="dishType">
+                    {{ dishType }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="fill" class="w-6">
+                <mat-label>Cuisine Type</mat-label>
+                <mat-select formControlName="cuisineType">
+                  <mat-option *ngFor="let cuisineType of cuisineTypes" [value]="cuisineType">
+                    {{ cuisineType }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="fill" class="w-6">
+                <mat-label>Diet Type</mat-label>
+                <mat-select formControlName="dietType">
+                  <mat-option *ngFor="let dietType of dietTypes" [value]="dietType">
+                    {{ dietType }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field class="w-6">
+                <mat-label>Other Tags</mat-label>
+                <input type="text" matInput formControlName="otherTags" placeholder="Add other tags in a space separated format" />
+              </mat-form-field>
+            </p>
+          </form>
+          <div class="flex justify-content-between">
+            <div>
+              <button mat-button matStepperPrevious>{{ back }}</button>
+            </div>
+            <div>
+              <button mat-button matStepperNext (click)="submitRecipeFromUrl()">{{ recipe ? 'EDIT RECIPE' : 'ADD NEW RECIPE' }}</button>
+              <button mat-button matStepperNext>{{ cancel }}</button>
+            </div>
+          </div>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </div>
+  <div class="flex-grow-1 overflow-y-auto p-2" *ngIf="isFromForm">
     <mat-stepper [linear]="true" headerPosition="top" #stepper class="h-full form-grey" color="accent">
       <mat-step [stepControl]="generalInfoForm">
         <ng-template matStepLabel>General</ng-template>
@@ -48,7 +135,7 @@
           </form>
           <div class="flex justify-content-between">
             <div>
-              <button mat-button matStepperPrevious>{{ back }}</button>
+              <button mat-button (click)="isFromForm = false">{{ back }}</button>
             </div>
             <div>
               <button mat-button matStepperNext>{{ next }}</button>
