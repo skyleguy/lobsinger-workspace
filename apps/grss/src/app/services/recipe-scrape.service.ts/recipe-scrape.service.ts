@@ -7,6 +7,9 @@ import { Ingredient } from '@lob/shared/ingredients/data';
 
 import { ScrapeResponse } from '../../models';
 
+// https://www.purplecarrot.com/recipe/kimchi-grilled-cheese-sandwiches-with-charred-asparagus-carrot-fries?plan=chefs_choice
+// https://www.noracooks.com/vegan-teriyaki-noodle-bowls/
+
 @Injectable()
 export class RecipeScrapeService {
   readonly containerItems = ['div', 'ul', 'ol', 'li'];
@@ -62,23 +65,35 @@ export class RecipeScrapeService {
     const headerTags = soup.findAll(tag);
     headerTags.forEach((header) => {
       const headerText = header.text.toLowerCase();
-      if (tag === 'h1' && header.attrs.class?.includes('title')) {
-        scrapeResponse.title = headerText.replace(this.ampersandEscapeSequence, '&');
-      }
-      if (headerText.includes('ingredients')) {
-        if (header?.nextSiblings?.length >= 1) {
-          this.pluckNodes(header?.nextSiblings[0], scrapeResponse.ingredients, true);
-        }
-      } else if (this.directionsLabels.some((label) => headerText.includes(label))) {
-        if (header?.nextSiblings?.length >= 1) {
-          this.pluckNodes(header?.nextSiblings[0], scrapeResponse.directions, false);
-        }
+      if (header?.nextSiblings?.length > 0) {
+        this.findSpecificHeaderTitles(header, headerText, scrapeResponse, tag);
+      } else {
+        const headerText = header.text.toLowerCase();
+        const newRootTag = header.parent;
+        this.findSpecificHeaderTitles(newRootTag, headerText, scrapeResponse, tag);
       }
     });
   }
 
+  private findSpecificHeaderTitles(node, headerText, scrapeResponse, tag) {
+    if (node?.nextSiblings?.length > 0) {
+      if (tag === 'h1' && node.attrs.class?.includes('title')) {
+        scrapeResponse.title = headerText.replace(this.ampersandEscapeSequence, '&');
+      }
+      if (headerText.includes('ingredients')) {
+        if (node?.nextSiblings?.length >= 1) {
+          this.pluckNodes(node?.nextSiblings[0], scrapeResponse.ingredients, true);
+        }
+      } else if (this.directionsLabels.some((label) => headerText.includes(label))) {
+        if (node?.nextSiblings?.length >= 1) {
+          this.pluckNodes(node?.nextSiblings[0], scrapeResponse.directions, false);
+        }
+      }
+    }
+  }
+
   private pluckNodes(node, items, shouldSanitizeText) {
-    if (node.name === 'li') {
+    if (node.name === 'li' || node.name === 'p') {
       if (shouldSanitizeText) {
         items.push(this.sanitizeText(node.text));
       } else {
