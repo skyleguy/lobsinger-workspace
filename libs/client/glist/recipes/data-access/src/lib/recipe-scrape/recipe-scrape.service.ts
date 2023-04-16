@@ -11,6 +11,6 @@ export class RecipeScrapeService {
   constructor(private readonly http: HttpClient) {}
 
   public scrapeRecipe(url: string): Observable<ScrapeResponse> {
-    return this.http.post<ScrapeResponse>('http://localhost:3333/api', { url });
+    return this.http.post<ScrapeResponse>('http://localhost:3333/api/scrape', { url });
   }
 }
