@@ -7,8 +7,12 @@
   </div>
   <div class="flex-grow-1 overflow-y-auto p-2" *ngIf="!isFromUrl && !isFromForm">
     <h3>Create a Custom Recipe or Paste a Website Link?</h3>
-    <mat-checkbox (change)="isFromForm = true">Create Custom Recipe</mat-checkbox>
-    <mat-checkbox (change)="isFromUrl = true">Paste a Website Link</mat-checkbox>
+    <p>
+      <mat-checkbox (change)="isFromForm = true">Create Custom Recipe</mat-checkbox>
+    </p>
+    <p>
+      <mat-checkbox (change)="isFromUrl = true">Paste a Website Link</mat-checkbox>
+    </p>
   </div>
   <div class="flex-grow-1 overflow-y-auto p-2" *ngIf="isFromUrl">
     <mat-stepper [linear]="true" headerPosition="top" #stepper class="h-full form-grey" color="accent">
