@@ -10,6 +10,7 @@ import { ScrapeResponse } from '../../models';
 @Injectable()
 export class RecipeScrapeService {
   readonly containerItems = ['div', 'ul', 'ol', 'li'];
+  readonly directionsLabels = ['directions', 'instructions'];
   readonly units: string[] = [
     'cups',
     'cup',
@@ -48,14 +49,16 @@ export class RecipeScrapeService {
     ).pipe(
       map((data) => {
         const tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
-        const response: ScrapeResponse = {
-          ingredients: []
+        const scrapeResponse: ScrapeResponse = {
+          ingredients: [],
+          directions: [],
+          title: ''
         };
         const theSoup = new soup(data.data);
         tags.forEach((tag) => {
-          this.findItems(theSoup, tag, response.ingredients);
+          this.findItems(theSoup, tag, scrapeResponse);
         });
-        return response;
+        return scrapeResponse;
       }),
       catchError((err) => {
         console.error(err);
@@ -64,29 +67,41 @@ export class RecipeScrapeService {
     );
   }
 
-  private pluckNodes(node, items) {
-    if (node.name === 'li') {
-      items.push(this.sanitizeText(node.text));
-    }
-    if (this.containerItems.includes(node.name) || node?.name?.[0] === 'h') {
-      if (node?.nextSiblings?.length >= 1) {
-        this.pluckNodes(node?.nextSiblings[0], items);
-      }
-      if (node?.contents?.length >= 1) {
-        this.pluckNodes(node?.contents[0], items);
-      }
-    }
-  }
-
-  private findItems(soup, tag, items) {
+  private findItems(soup, tag, scrapeResponse: ScrapeResponse) {
     const headerTags = soup.findAll(tag);
     headerTags.forEach((header) => {
-      if (header.text.toLowerCase().includes('ingredients')) {
+      const headerText = header.text.toLowerCase();
+      if (tag === 'h1' && header.attrs.class?.includes('title')) {
+        scrapeResponse.title = headerText.replace('&#038;', '&');
+      }
+      if (headerText.includes('ingredients')) {
         if (header?.nextSiblings?.length >= 1) {
-          this.pluckNodes(header?.nextSiblings[0], items);
+          this.pluckNodes(header?.nextSiblings[0], scrapeResponse.ingredients, true);
+        }
+      } else if (this.directionsLabels.some((label) => headerText.includes(label))) {
+        if (header?.nextSiblings?.length >= 1) {
+          this.pluckNodes(header?.nextSiblings[0], scrapeResponse.directions, false);
         }
       }
     });
+  }
+
+  private pluckNodes(node, items, shouldSanitizeText) {
+    if (node.name === 'li') {
+      if (shouldSanitizeText) {
+        items.push(this.sanitizeText(node.text));
+      } else {
+        items.push(node.text);
+      }
+    }
+    if (this.containerItems.includes(node.name) || node?.name?.[0] === 'h') {
+      if (node?.nextSiblings?.length >= 1) {
+        this.pluckNodes(node?.nextSiblings[0], items, shouldSanitizeText);
+      }
+      if (node?.contents?.length >= 1) {
+        this.pluckNodes(node?.contents[0], items, shouldSanitizeText);
+      }
+    }
   }
 
   private sanitizeText(input: string): Ingredient {
