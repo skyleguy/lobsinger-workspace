@@ -13,6 +13,7 @@ import { ScrapeResponse } from '../../models';
 @Injectable()
 export class RecipeScrapeService {
   readonly containerItems = ['div', 'ul', 'ol', 'li'];
+  readonly contentItems = ['li', 'p'];
   readonly directionsLabels = ['directions', 'instructions'];
   readonly ampersandEscapeSequence = '&#038;';
   readonly whitespaceCharacter = '&#32;';
@@ -66,8 +67,10 @@ export class RecipeScrapeService {
     headerTags.forEach((header) => {
       const headerText = header.text.toLowerCase();
       if (header?.nextSiblings?.length > 0) {
+        // search for content in sibling element to h tag
         this.findSpecificHeaderTitles(header, headerText, scrapeResponse, tag);
       } else {
+        // search for content after going up one level to the h tags parent and getting its first sibling to search in
         const headerText = header.text.toLowerCase();
         const newRootTag = header.parent;
         this.findSpecificHeaderTitles(newRootTag, headerText, scrapeResponse, tag);
@@ -82,35 +85,35 @@ export class RecipeScrapeService {
       }
       if (headerText.includes('ingredients')) {
         if (node?.nextSiblings?.length >= 1) {
-          this.pluckNodes(node?.nextSiblings[0], scrapeResponse.ingredients, true);
+          this.traverseNodes(node?.nextSiblings[0], scrapeResponse.ingredients, (content) => this.convertContentToIngredient(content));
         }
       } else if (this.directionsLabels.some((label) => headerText.includes(label))) {
         if (node?.nextSiblings?.length >= 1) {
-          this.pluckNodes(node?.nextSiblings[0], scrapeResponse.directions, false);
+          this.traverseNodes(node?.nextSiblings[0], scrapeResponse.directions, null);
         }
       }
     }
   }
 
-  private pluckNodes(node, items, shouldSanitizeText) {
-    if (node.name === 'li' || node.name === 'p') {
-      if (shouldSanitizeText) {
-        items.push(this.sanitizeText(node.text));
+  private traverseNodes(node, items, sanitizeTextCallback) {
+    if (this.contentItems.includes(node.name)) {
+      if (sanitizeTextCallback) {
+        items.push(sanitizeTextCallback(node.text));
       } else {
         items.push(node.text);
       }
     }
     if (this.containerItems.includes(node.name) || node?.name?.[0] === 'h') {
       if (node?.nextSiblings?.length >= 1) {
-        this.pluckNodes(node?.nextSiblings[0], items, shouldSanitizeText);
+        this.traverseNodes(node?.nextSiblings[0], items, sanitizeTextCallback);
       }
       if (node?.contents?.length >= 1) {
-        this.pluckNodes(node?.contents[0], items, shouldSanitizeText);
+        this.traverseNodes(node?.contents[0], items, sanitizeTextCallback);
       }
     }
   }
 
-  private sanitizeText(input: string): Ingredient {
+  private convertContentToIngredient(input: string): Ingredient {
     input = input.replace(this.whitespaceRegex, ' ');
     const [_whole, amount, unit, name] = input.match(this.scrapeRegex);
     if (amount?.length > 0 && unit?.length > 0 && name?.length > 0) {
