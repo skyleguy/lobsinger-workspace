@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { Glist } from '@lob/client/glist/glists/data';
-import { Ingredient } from '@lob/client/glist/recipes/data';
+import { Ingredient } from '@lob/shared/ingredients/data';
 
 import { glistSliceName, GlistState } from './glist.slice';
 

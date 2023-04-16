@@ -44,7 +44,7 @@
                 <input type="text" matInput formControlName="recipeLink" />
               </mat-form-field>
             </p>
-            <input type="file" accept="image/*" (change)="base64Image($event)" />
+            <input type="file" accept="image/*" (change)="base64Image($event.target)" />
           </form>
           <div class="flex justify-content-between">
             <div>

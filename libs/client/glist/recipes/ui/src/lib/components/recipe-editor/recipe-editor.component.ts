@@ -3,7 +3,8 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Ingredient, Recipe, Tag } from '@lob/client/glist/recipes/data';
+import { Recipe, Tag } from '@lob/client/glist/recipes/data';
+import { Ingredient } from '@lob/shared/ingredients/data';
 
 @Component({
   selector: 'glist-recipe-editor',
@@ -112,13 +113,16 @@ export class RecipeEditorComponent implements OnInit {
     this.directions?.push(new FormControl(''));
   }
 
-  public base64Image(imgFile: any): void {
-    if (imgFile.target.files && imgFile.target.files[0]) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.generalInfoForm.get('image')?.setValue(e.target.result);
-      };
-      reader.readAsDataURL(imgFile.target.files[0]);
+  public base64Image(imgFile: EventTarget | null): void {
+    if (imgFile) {
+      const inputEventTarget = imgFile as HTMLInputElement;
+      if (inputEventTarget.files && inputEventTarget.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.generalInfoForm.get('image')?.setValue(e.target?.result);
+        };
+        reader.readAsDataURL(inputEventTarget.files[0]);
+      }
     }
   }
 

@@ -1,7 +1,8 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, OnChanges, Output, ViewChildren } from '@angular/core';
 
-import { Ingredient, Recipe } from '@lob/client/glist/recipes/data';
+import { Recipe } from '@lob/client/glist/recipes/data';
+import { Ingredient } from '@lob/shared/ingredients/data';
 
 @Component({
   selector: 'glist-ingredients-list',

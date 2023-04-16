@@ -1,7 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 
 import { Glist } from '@lob/client/glist/glists/data';
-import { Ingredient } from '@lob/client/glist/recipes/data';
+import { Ingredient } from '@lob/shared/ingredients/data';
 
 import { GlistState } from './glist.slice';
 

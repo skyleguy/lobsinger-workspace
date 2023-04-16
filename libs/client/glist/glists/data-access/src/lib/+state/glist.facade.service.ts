@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 
-import { Ingredient } from '@lob/client/glist/recipes/data';
+import { Ingredient } from '@lob/shared/ingredients/data';
 
 import * as selectors from './glist.selectors';
 import { actions, GlistState } from './glist.slice';

@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { switchMap } from 'rxjs';
 
 import { GlistFacadeService } from '@lob/client/glist/glists/data-access';
-import { Ingredient } from '@lob/client/glist/recipes/data';
 import { RecipeFacadeService } from '@lob/client/glist/recipes/data-access';
+import { Ingredient } from '@lob/shared/ingredients/data';
 
 @Component({
   selector: 'glist-glist-container',
