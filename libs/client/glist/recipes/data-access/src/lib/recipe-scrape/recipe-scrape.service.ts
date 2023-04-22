@@ -8,7 +8,7 @@ import { ScrapeResponse } from '@lob/shared/ingredients/data';
   providedIn: 'root'
 })
 export class RecipeScrapeService {
-  readonly baseUrl = 'http://localhost:3333';
+  readonly baseUrl = 'http://lobsinger-workspace-production.up.railway.app';
 
   constructor(private readonly http: HttpClient) {}
 
