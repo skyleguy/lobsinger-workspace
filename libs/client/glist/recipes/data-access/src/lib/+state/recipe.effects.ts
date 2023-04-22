@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { deepCopy } from '@firebase/util';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { where } from 'firebase/firestore';
 import { catchError, of, switchMap } from 'rxjs';
 
 import { Recipe } from '@lob/client/glist/recipes/data';
@@ -12,7 +10,8 @@ import * as fromRecipe from './recipe.slice';
 
 @Injectable()
 export class RecipeEffects {
-  readonly tableName = 'recipes';
+  readonly tableName = 'recipe';
+  readonly subCollectionName = 'recipes';
   constructor(private actions$: Actions, private userFacadeService: UserFacadeService, private firestoreService: FirestoreService) {}
 
   getUserRecipes$ = createEffect(() =>
@@ -21,7 +20,7 @@ export class RecipeEffects {
       switchMap(() =>
         this.userFacadeService.user$.pipe(
           switchMap((user) =>
-            this.firestoreService.getDocument(this.tableName, [where('userId', '==', user.id)]).pipe(
+            this.firestoreService.getDocument(this.tableName, [], { collectionGroup: [user.id, this.subCollectionName] }).pipe(
               switchMap((recipes) => of(fromRecipe.actions.getUserRecipesSuccess(recipes as unknown as Recipe[]))),
               catchError((err) => of(fromRecipe.actions.getUserRecipesError(err)))
             )
@@ -36,14 +35,12 @@ export class RecipeEffects {
       ofType(fromRecipe.actions.addRecipe),
       switchMap(({ payload }) =>
         this.userFacadeService.user$.pipe(
-          switchMap((user) => {
-            const payloadCopy = deepCopy(payload);
-            payloadCopy.userId = user.id;
-            return this.firestoreService.addDocument(this.tableName, payloadCopy).pipe(
+          switchMap((user) =>
+            this.firestoreService.addDocument(this.tableName, payload, [user.id, this.subCollectionName]).pipe(
               switchMap(() => of(fromRecipe.actions.addRecipeSuccess(payload))),
               catchError((err) => of(fromRecipe.actions.addRecipeError(err)))
-            );
-          })
+            )
+          )
         )
       )
     )
@@ -53,9 +50,13 @@ export class RecipeEffects {
     this.actions$.pipe(
       ofType(fromRecipe.actions.deleteRecipe),
       switchMap(({ payload }) =>
-        this.firestoreService.deleteDocument(this.tableName, payload.id).pipe(
-          switchMap(() => of(fromRecipe.actions.deleteRecipeSuccess(payload))),
-          catchError((err) => of(fromRecipe.actions.deleteRecipeError(err)))
+        this.userFacadeService.user$.pipe(
+          switchMap((user) =>
+            this.firestoreService.deleteDocument(this.tableName, payload.id, [user.id, this.subCollectionName]).pipe(
+              switchMap(() => of(fromRecipe.actions.deleteRecipeSuccess(payload))),
+              catchError((err) => of(fromRecipe.actions.deleteRecipeError(err)))
+            )
+          )
         )
       )
     )
@@ -65,9 +66,13 @@ export class RecipeEffects {
     this.actions$.pipe(
       ofType(fromRecipe.actions.updateRecipe),
       switchMap(({ payload }) =>
-        this.firestoreService.updateDocument(this.tableName, payload).pipe(
-          switchMap(() => of(fromRecipe.actions.updateRecipeSuccess(payload))),
-          catchError((err) => of(fromRecipe.actions.updateRecipeError(err)))
+        this.userFacadeService.user$.pipe(
+          switchMap((user) =>
+            this.firestoreService.updateDocument(this.tableName, payload, [user.id, this.subCollectionName]).pipe(
+              switchMap(() => of(fromRecipe.actions.updateRecipeSuccess(payload))),
+              catchError((err) => of(fromRecipe.actions.updateRecipeError(err)))
+            )
+          )
         )
       )
     )

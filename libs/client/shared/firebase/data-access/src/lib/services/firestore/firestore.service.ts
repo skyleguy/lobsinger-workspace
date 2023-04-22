@@ -11,7 +11,6 @@ import {
   query,
   getDocs,
   QueryConstraint,
-  collectionGroup,
   limit,
   orderBy,
   updateDoc
@@ -43,8 +42,8 @@ export class FirestoreService {
    * @param payload
    * @returns
    */
-  public addDocument(tableName: string, payload: FirestoreData, collectionGroup?: string) {
-    const tableRef = collection(this.db, tableName, collectionGroup ?? '');
+  public addDocument(tableName: string, payload: FirestoreData, collectionGroup: string[] = []) {
+    const tableRef = collection(this.db, tableName, collectionGroup.length > 0 ? collectionGroup.join('/') : '');
     return from(setDoc(doc(tableRef, payload.id), payload));
   }
 
@@ -55,8 +54,8 @@ export class FirestoreService {
    * @param payload
    * @returns
    */
-  public updateDocument(tableName: string, payload: FirestoreData, collectionGroup?: string) {
-    const tableRef = collection(this.db, tableName, collectionGroup ?? '');
+  public updateDocument(tableName: string, payload: FirestoreData, collectionGroup: string[] = []) {
+    const tableRef = collection(this.db, tableName, collectionGroup.length > 0 ? collectionGroup.join('/') : '');
     return from(updateDoc(doc(tableRef, payload.id), { ...payload }));
   }
 
@@ -66,8 +65,9 @@ export class FirestoreService {
    * @param id
    * @returns
    */
-  public getDocumentById(tableName: string, id: string) {
-    const docRef = doc(this.db, tableName, id);
+  public getDocumentById(tableName: string, id: string, collectionGroup: string[] = []) {
+    collectionGroup.push(id);
+    const docRef = doc(this.db, tableName, collectionGroup.join('/'));
     return from(getDoc(docRef)).pipe(
       map((res) => {
         if (res.exists()) {
@@ -91,10 +91,10 @@ export class FirestoreService {
   public getDocument(
     tableName: string,
     queryConstraints: QueryConstraint[],
-    options: { orderBy?: string; limit?: number; collectionGroupName: string } = { collectionGroupName: '' }
+    options: { orderBy?: string; limit?: number; collectionGroup: string[] } = { collectionGroup: [] }
   ) {
-    const tableRef =
-      options?.collectionGroupName?.length > 0 ? collectionGroup(this.db, options.collectionGroupName) : collection(this.db, tableName);
+    options.collectionGroup = [tableName, ...options.collectionGroup];
+    const tableRef = collection(this.db, options.collectionGroup.join('/'));
     if (options?.limit) {
       queryConstraints.push(limit(options.limit));
     }
@@ -117,8 +117,9 @@ export class FirestoreService {
    * @param id
    * @returns
    */
-  public deleteDocument(tableName: string, id: string) {
-    const docRef = doc(this.db, tableName, id);
+  public deleteDocument(tableName: string, id: string, collectionGroup: string[] = []) {
+    const fullReference = [tableName, ...collectionGroup];
+    const docRef = doc(this.db, fullReference.join('/'), id);
     return from(deleteDoc(docRef));
   }
 }
