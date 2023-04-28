@@ -7,9 +7,11 @@
     <img class="p-2" mat-card-xl-image class="w-full" [src]="recipe.image" *ngIf="recipe?.image; else defaultImage" />
     <mat-card-content>
       <mat-chip-set class="p-2">
-        <mat-chip *ngFor="let tag of recipe.tags">
-          {{ tag.value }}
-        </mat-chip>
+        <ng-container *ngFor="let tag of recipe.tags">
+          <mat-chip *ngIf="tag?.value?.length! > 0">
+            {{ tag.value }}
+          </mat-chip>
+        </ng-container>
       </mat-chip-set>
     </mat-card-content>
     <mat-card-actions class="justify-content-between mt-auto">

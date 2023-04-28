@@ -180,9 +180,9 @@ export class RecipeEditorComponent implements OnInit {
       toolsNeeded: this.toolsNeeded?.value.split(',').map((tool: string) => tool.trim()),
       // TODO something odd going on when editing tags, current recipe values not being set in dropdowns either
       tags: [
-        { type: 'Cuisine', value: this.cuisineType?.value },
-        { type: 'Diet', value: this.dietType?.value },
-        { type: 'Dish', value: this.dishType?.value }
+        { type: 'Cuisine', value: this.cuisineType?.value ?? '' },
+        { type: 'Diet', value: this.dietType?.value ?? '' },
+        { type: 'Dish', value: this.dishType?.value ?? '' }
       ],
       creationTime: new Date()
     };
