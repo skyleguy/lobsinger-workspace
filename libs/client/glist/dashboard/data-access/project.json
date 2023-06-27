@@ -6,15 +6,16 @@
   "prefix": "glist",
   "targets": {
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "libs/client/glist/dashboard/data-access/jest.config.ts",
+        "tsConfig": "libs/client/glist/dashboard/data-access/tsconfig.lib.json",
         "passWithNoTests": true
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": ["libs/client/glist/dashboard/data-access/**/*.ts", "libs/client/glist/dashboard/data-access/**/*.html"]
       }

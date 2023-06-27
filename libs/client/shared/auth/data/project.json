@@ -5,23 +5,18 @@
   "projectType": "library",
   "targets": {
     "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/client/shared/auth/data/**/*.ts"
-        ]
+        "lintFilePatterns": ["libs/client/shared/auth/data/**/*.ts"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "libs/client/shared/auth/data/jest.config.ts",
+        "tsConfig": "libs/client/shared/auth/data/tsconfig.lib.json",
         "passWithNoTests": true
       }
     }
