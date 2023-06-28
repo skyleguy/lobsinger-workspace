@@ -11,7 +11,7 @@
     "lint": "nx lint",
     "prepare": "husky install",
     "pre-commit": "npx lint-staged",
-    "firebase-deploy": "nx run glist:build --prod && firebase deploy"
+    "firebase-deploy": "npx nx run glist:build --prod && firebase deploy"
   },
   "private": true,
   "dependencies": {
