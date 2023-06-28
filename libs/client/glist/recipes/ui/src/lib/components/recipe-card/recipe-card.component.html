@@ -1,10 +1,10 @@
 <ng-container *ngIf="recipe; else actionRecipe">
-  <mat-card class="h-full cursor-pointer transition-colors transition-duration-300 gray-hover">
+  <mat-card class="h-full cursor-pointer transition-colors duration-300 gray-hover">
     <mat-card-subtitle><span class="p-2">RECIPE</span></mat-card-subtitle>
     <mat-card-title>
-      <span class="p-2">{{ recipe.title }}</span>
+      <span class="w-full px-2 line-clamp-1" [title]="recipe.title | titlecase">{{ recipe.title | titlecase }}</span>
     </mat-card-title>
-    <img class="p-2" mat-card-xl-image class="w-full" [src]="recipe.image" *ngIf="recipe?.image; else defaultImage" />
+    <img class="!w-full p-2 max-h-56" mat-card-xl-image [src]="recipe.image" *ngIf="recipe?.image; else defaultImage" />
     <mat-card-content>
       <mat-chip-set class="p-2">
         <ng-container *ngFor="let tag of recipe.tags">
@@ -14,7 +14,7 @@
         </ng-container>
       </mat-chip-set>
     </mat-card-content>
-    <mat-card-actions class="justify-content-between mt-auto">
+    <mat-card-actions class="justify-between mt-auto">
       <button mat-flat-button (click)="$event.stopPropagation(); addToGlist.emit(recipe)">
         <mat-icon>add</mat-icon>
         Add to Glist
@@ -27,7 +27,7 @@
 </ng-container>
 
 <ng-template #actionRecipe>
-  <mat-card class="h-full cursor-pointer transition-colors transition-duration-300 gray-hover">
+  <mat-card class="h-full cursor-pointer transition-colors duration-300 gray-hover">
     <mat-card-subtitle><span class="p-2">RECIPE</span></mat-card-subtitle>
     <mat-card-title>
       <span class="p-2 text-grey-500">Recipe Title</span>
@@ -38,7 +38,7 @@
         <mat-chip [disabled]="true"> None </mat-chip>
       </mat-chip-set>
     </mat-card-content>
-    <mat-card-actions class="justify-content-between mt-auto">
+    <mat-card-actions class="justify-between mt-auto">
       <button mat-flat-button (click)="$event.stopPropagation()" [disabled]="true">
         <mat-icon>add</mat-icon>
         Add to Glist
@@ -48,5 +48,5 @@
 >
 
 <ng-template #defaultImage>
-  <img class="material-icons" src="/assets/image.svg" />
+  <img class="material-icons !w-full p-2 max-h-56" src="/assets/image.svg" />
 </ng-template>

@@ -8,6 +8,7 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
@@ -15,10 +16,6 @@ body {
 
 .w-99 {
   width: 99%;
-}
-
-.scale-2 {
-  transform: scale(2);
 }
 
 .form-grey {
@@ -31,12 +28,4 @@ body {
 
 .gray-hover:hover {
   background-color: $ui-gray-8 !important;
-}
-
-.cursor-grab {
-  cursor: grab;
-}
-
-.cursor-grabbing {
-  cursor: grabbing;
 }
