@@ -1,6 +1,6 @@
-<div class="flex flex-column gap-2">
-  <div class="flex align-items-center justify-content-center">
-    <mat-icon class="scale-2 mt-3">image</mat-icon>
+<div class="flex flex-col gap-2">
+  <div class="flex items-center justify-center">
+    <mat-icon class="scale-200 mt-3">image</mat-icon>
   </div>
   <mat-nav-list>
     <mat-list-item *ngFor="let page of pages" [routerLink]="page.route" [activated]="router.url.includes(page.route)">

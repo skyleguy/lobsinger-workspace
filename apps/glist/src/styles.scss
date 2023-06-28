@@ -1,5 +1,8 @@
-@import '/node_modules/primeflex/primeflex.css';
 @import './variables.scss';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html,
 body {
