@@ -1,7 +1,7 @@
 <div class="h-full overflow-y-auto p-2" *ngIf="recipe">
   <div class="flex justify-between items-center">
     <div class="flex items-center gap-1">
-      <h2 class="my-0">{{ recipe.title }}</h2>
+      <h2 class="my-0">{{ recipe.title | titlecase }}</h2>
       <button mat-icon-button (click)="toggleRecipeFavorite()">
         <mat-icon>{{ recipe.isFavorited ? favoritedRecipeText : unfavoritedRecipeText }}</mat-icon>
       </button>
