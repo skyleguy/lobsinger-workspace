@@ -1,6 +1,6 @@
-<div class="flex flex-column h-full overflow-y-auto">
-  <div class="flex justify-content-between p-2">
-    <div class="flex gap-2 align-items-center">
+<div class="flex flex-col h-full overflow-y-auto">
+  <div class="flex justify-between p-2">
+    <div class="flex gap-2 items-center">
       <h2 class="m-0">Recipes</h2>
     </div>
     <div class="flex gap-2">
@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <mat-tab-group class="p-3 flex-grow-1 overflow-y-auto pt-0" mat-stretch-tabs="false" mat-align-tabs="start">
+  <mat-tab-group class="p-3 grow overflow-y-auto pt-0" mat-stretch-tabs="false" mat-align-tabs="start">
     <mat-tab label="All Recipes">
       <ng-container *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: recipes, isAddCardVisible: true }"></ng-container>
     </mat-tab>
@@ -22,15 +22,14 @@
 </div>
 
 <ng-template #recipeGrid let-chosenRecipes="chosenRecipes" let-isAddCardVisible="isAddCardVisible">
-  <div class="grid p-2">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 py-2">
     <glist-recipe-card
-      class="col-12 md:col-6 lg:col-4 md:px-6 lg:px-6"
       *ngFor="let recipe of chosenRecipes"
       [recipe]="recipe"
       (favoriteClicked)="toggleRecipeFavorite($event)"
       (addToGlist)="addRecipeToGlist($event)"
       (click)="routeToRecipe(recipe.id)"
     ></glist-recipe-card>
-    <glist-recipe-card class="col-12 md:col-6 lg:col-4 md:px-6 lg:px-6" *ngIf="isAddCardVisible"></glist-recipe-card>
+    <glist-recipe-card *ngIf="isAddCardVisible"></glist-recipe-card>
   </div>
 </ng-template>

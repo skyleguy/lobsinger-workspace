@@ -19,6 +19,7 @@ export class RecipeEditorComponent implements OnInit {
   readonly dishTypes = ['Appetizer', 'Breakfast', 'Dessert', 'Lunch', 'Salad', 'Side Dish', 'Snack', 'Soup'];
   readonly cuisineTypes = [
     'American',
+    'Asian',
     'Chinese',
     'French',
     'Indian',

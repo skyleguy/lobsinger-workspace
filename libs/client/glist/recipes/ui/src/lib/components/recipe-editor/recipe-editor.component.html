@@ -1,11 +1,11 @@
-<div class="flex flex-column h-full form-grey">
-  <div class="flex justify-content-between p-2">
+<div class="flex flex-col h-full form-grey">
+  <div class="flex justify-between p-2">
     <h2 class="pl-4">Add New Recipe</h2>
     <button mat-icon-button mat-dialog-close>
       <mat-icon>close</mat-icon>
     </button>
   </div>
-  <div class="flex-grow-1 overflow-y-auto p-2" *ngIf="!isFromUrl && !isFromForm">
+  <div class="grow overflow-y-auto p-2" *ngIf="!isFromUrl && !isFromForm">
     <h3>Create a Custom Recipe or Paste a Website Link?</h3>
     <p>
       <mat-checkbox (change)="isFromForm = true">Create Custom Recipe</mat-checkbox>
@@ -14,15 +14,15 @@
       <mat-checkbox (change)="isFromUrl = true">Paste a Website Link</mat-checkbox>
     </p>
   </div>
-  <div class="flex-grow-1 overflow-y-auto p-2" *ngIf="isFromUrl">
+  <div class="grow overflow-y-auto p-2" *ngIf="isFromUrl">
     <mat-stepper [linear]="true" headerPosition="top" #stepper class="h-full form-grey" color="accent">
       <mat-step [stepControl]="urlInfoForm">
         <ng-template matStepLabel>Paste Website Link</ng-template>
-        <div class="flex flex-column h-full">
-          <form [formGroup]="urlInfoForm" class="flex-grow-1 overflow-y-auto">
+        <div class="flex flex-col h-full">
+          <form [formGroup]="urlInfoForm" class="grow overflow-y-auto">
             <h4 class="p-2 m-0">Paste a Website Link</h4>
             <p>
-              <mat-form-field class="w-6">
+              <mat-form-field class="w-1/2">
                 <mat-label>Paste Link</mat-label>
                 <input type="text" matInput formControlName="url" />
                 <mat-error *ngIf="url?.hasError('required')">Url is <strong>required</strong></mat-error>
@@ -30,7 +30,7 @@
               </mat-form-field>
             </p>
           </form>
-          <div class="flex justify-content-between">
+          <div class="flex justify-between">
             <div>
               <button mat-button (click)="isFromUrl = false">{{ back }}</button>
             </div>
@@ -43,11 +43,11 @@
       </mat-step>
       <mat-step [stepControl]="tagsForm">
         <ng-template matStepLabel>Add Tags</ng-template>
-        <div class="flex flex-column h-full">
+        <div class="flex flex-col h-full">
           <h4 class="p-2 m-0">Add Tags</h4>
-          <form [formGroup]="tagsForm" class="flex-grow-1 overflow-y-auto">
+          <form [formGroup]="tagsForm" class="grow overflow-y-auto">
             <p>
-              <mat-form-field appearance="fill" class="w-6">
+              <mat-form-field appearance="fill" class="w-1/2">
                 <mat-label>Dish Type</mat-label>
                 <mat-select formControlName="dishType">
                   <mat-option *ngFor="let dishType of dishTypes" [value]="dishType">
@@ -57,7 +57,7 @@
               </mat-form-field>
             </p>
             <p>
-              <mat-form-field appearance="fill" class="w-6">
+              <mat-form-field appearance="fill" class="w-1/2">
                 <mat-label>Cuisine Type</mat-label>
                 <mat-select formControlName="cuisineType">
                   <mat-option *ngFor="let cuisineType of cuisineTypes" [value]="cuisineType">
@@ -67,7 +67,7 @@
               </mat-form-field>
             </p>
             <p>
-              <mat-form-field appearance="fill" class="w-6">
+              <mat-form-field appearance="fill" class="w-1/2">
                 <mat-label>Diet Type</mat-label>
                 <mat-select formControlName="dietType">
                   <mat-option *ngFor="let dietType of dietTypes" [value]="dietType">
@@ -77,13 +77,13 @@
               </mat-form-field>
             </p>
             <p>
-              <mat-form-field class="w-6">
+              <mat-form-field class="w-1/2">
                 <mat-label>Other Tags</mat-label>
                 <input type="text" matInput formControlName="otherTags" placeholder="Add other tags in a space separated format" />
               </mat-form-field>
             </p>
           </form>
-          <div class="flex justify-content-between">
+          <div class="flex justify-between">
             <div>
               <button mat-button matStepperPrevious>{{ back }}</button>
             </div>
@@ -96,48 +96,48 @@
       </mat-step>
     </mat-stepper>
   </div>
-  <div class="flex-grow-1 overflow-y-auto p-2" *ngIf="isFromForm">
+  <div class="grow overflow-y-auto p-2" *ngIf="isFromForm">
     <mat-stepper [linear]="true" headerPosition="top" #stepper class="h-full form-grey" color="accent">
       <mat-step [stepControl]="generalInfoForm">
         <ng-template matStepLabel>General</ng-template>
-        <div class="flex flex-column h-full">
-          <form [formGroup]="generalInfoForm" class="flex-grow-1 overflow-y-auto">
+        <div class="flex flex-col h-full">
+          <form [formGroup]="generalInfoForm" class="grow overflow-y-auto">
             <h4 class="p-2 m-0">General Info</h4>
             <p>
-              <mat-form-field class="w-6">
+              <mat-form-field class="w-1/2">
                 <mat-label>Recipe Name</mat-label>
                 <input type="text" matInput formControlName="name" />
                 <mat-error *ngIf="name?.hasError('required')">Recipe name is <strong>required</strong></mat-error>
               </mat-form-field>
             </p>
             <p>
-              <mat-form-field class="w-6">
+              <mat-form-field class="w-1/2">
                 <mat-label>Serving Size</mat-label>
                 <input type="text" matInput formControlName="servingSize" />
               </mat-form-field>
             </p>
             <p>
-              <mat-form-field class="w-6">
+              <mat-form-field class="w-1/2">
                 <mat-label>Prep + Cook Time</mat-label>
                 <input type="text" matInput formControlName="prepCookTime" />
               </mat-form-field>
             </p>
             <p>
-              <mat-form-field class="w-6">
+              <mat-form-field class="w-1/2">
                 <mat-label>Tools Needed</mat-label>
                 <input type="text" matInput formControlName="toolsNeeded" />
                 <mat-hint>Enter as comma-separated list</mat-hint>
               </mat-form-field>
             </p>
             <p>
-              <mat-form-field class="w-6">
+              <mat-form-field class="w-1/2">
                 <mat-label>Recipe Link</mat-label>
                 <input type="text" matInput formControlName="recipeLink" />
               </mat-form-field>
             </p>
             <input type="file" accept="image/*" (change)="base64Image($event.target)" />
           </form>
-          <div class="flex justify-content-between">
+          <div class="flex justify-between">
             <div>
               <button mat-button (click)="isFromForm = false">{{ back }}</button>
             </div>
@@ -150,9 +150,9 @@
       </mat-step>
       <mat-step [stepControl]="ingredientsForm">
         <ng-template matStepLabel>Add Ingredients</ng-template>
-        <div class="flex flex-column h-full">
+        <div class="flex flex-col h-full">
           <h4 class="p-2 m-0">Add Ingredients</h4>
-          <form [formGroup]="ingredientsForm" class="flex-grow-1 overflow-y-auto">
+          <form [formGroup]="ingredientsForm" class="grow overflow-y-auto">
             <mat-list role="list">
               <mat-list-item role="listitem" class="ingredient-item" *ngFor="let ingredient of ingredients?.value; let i = index">
                 <span matListItemTitle
@@ -169,7 +169,7 @@
                     [(ngModel)]="ingredients?.value[i].amount"
                     [ngModelOptions]="{ standalone: true }"
                 /></span>
-                <div class="flex align-items-center h-full m-0" matListItemMeta *ngIf="ingredients?.value?.length > 1">
+                <div class="flex items-center h-full m-0" matListItemMeta *ngIf="ingredients?.value?.length > 1">
                   <button mat-icon-button (click)="ingredients?.value?.splice(i, 1)"><mat-icon>close</mat-icon></button>
                 </div>
               </mat-list-item>
@@ -179,7 +179,7 @@
               ADD ANOTHER
             </button>
           </form>
-          <div class="flex justify-content-between">
+          <div class="flex justify-between">
             <div>
               <button mat-button matStepperPrevious>{{ back }}</button>
             </div>
@@ -192,9 +192,9 @@
       </mat-step>
       <mat-step [stepControl]="directionsForm">
         <ng-template matStepLabel>Add Directions</ng-template>
-        <div class="flex flex-column h-full">
+        <div class="flex flex-col h-full">
           <h4 class="p-2 m-0">Add Directions</h4>
-          <form [formGroup]="directionsForm" class="flex-grow-1 overflow-y-auto">
+          <form [formGroup]="directionsForm" class="grow overflow-y-auto">
             <div formArrayName="directions">
               <p *ngFor="let directionsControl of directions?.controls; let i = index">
                 <mat-form-field class="w-full">
@@ -208,7 +208,7 @@
               ADD ANOTHER
             </button>
           </form>
-          <div class="flex justify-content-between">
+          <div class="flex justify-between">
             <div>
               <button mat-button matStepperPrevious>{{ back }}</button>
             </div>
@@ -221,11 +221,11 @@
       </mat-step>
       <mat-step [stepControl]="tagsForm">
         <ng-template matStepLabel>Add Tags</ng-template>
-        <div class="flex flex-column h-full">
+        <div class="flex flex-col h-full">
           <h4 class="p-2 m-0">Add Tags</h4>
-          <form [formGroup]="tagsForm" class="flex-grow-1 overflow-y-auto">
+          <form [formGroup]="tagsForm" class="grow overflow-y-auto">
             <p>
-              <mat-form-field appearance="fill" class="w-6">
+              <mat-form-field appearance="fill" class="w-1/2">
                 <mat-label>Dish Type</mat-label>
                 <mat-select formControlName="dishType">
                   <mat-option *ngFor="let dishType of dishTypes" [value]="dishType">
@@ -235,7 +235,7 @@
               </mat-form-field>
             </p>
             <p>
-              <mat-form-field appearance="fill" class="w-6">
+              <mat-form-field appearance="fill" class="w-1/2">
                 <mat-label>Cuisine Type</mat-label>
                 <mat-select formControlName="cuisineType">
                   <mat-option *ngFor="let cuisineType of cuisineTypes" [value]="cuisineType">
@@ -245,7 +245,7 @@
               </mat-form-field>
             </p>
             <p>
-              <mat-form-field appearance="fill" class="w-6">
+              <mat-form-field appearance="fill" class="w-1/2">
                 <mat-label>Diet Type</mat-label>
                 <mat-select formControlName="dietType">
                   <mat-option *ngFor="let dietType of dietTypes" [value]="dietType">
@@ -255,13 +255,13 @@
               </mat-form-field>
             </p>
             <p>
-              <mat-form-field class="w-6">
+              <mat-form-field class="w-1/2">
                 <mat-label>Other Tags</mat-label>
                 <input type="text" matInput formControlName="otherTags" placeholder="Add other tags in a space separated format" />
               </mat-form-field>
             </p>
           </form>
-          <div class="flex justify-content-between">
+          <div class="flex justify-between">
             <div>
               <button mat-button matStepperPrevious>{{ back }}</button>
             </div>
