@@ -79,5 +79,5 @@
       }
     }
   },
-  "tags": []
+  "tags": ["scope:glist", "scope:client"]
 }
