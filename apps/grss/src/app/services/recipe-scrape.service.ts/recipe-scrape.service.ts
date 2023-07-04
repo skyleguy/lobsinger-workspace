@@ -5,9 +5,6 @@ import { catchError, from, map, Observable, throwError } from 'rxjs';
 
 import { Ingredient, ScrapeResponse } from '@lob/shared/ingredients/data';
 
-// https://www.purplecarrot.com/recipe/kimchi-grilled-cheese-sandwiches-with-charred-asparagus-carrot-fries?plan=chefs_choice
-// https://www.noracooks.com/vegan-teriyaki-noodle-bowls/
-
 @Injectable()
 export class RecipeScrapeService {
   readonly containerItems = ['div', 'ul', 'ol', 'li'];
