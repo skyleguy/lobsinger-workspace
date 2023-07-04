@@ -201,7 +201,10 @@ export class RecipeEditorComponent implements OnInit {
 
   private createUrlInfoForm(): void {
     this.urlInfoForm = this.fb.group({
-      url: ['', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]]
+      url: [
+        '',
+        [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[\\/\\w .-]*\\??[a-z=_&+%$.*!()\\"\']+')]
+      ]
     });
   }
 
