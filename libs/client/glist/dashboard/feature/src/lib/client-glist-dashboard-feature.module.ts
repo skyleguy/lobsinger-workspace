@@ -6,10 +6,7 @@ import { DashboardComponent } from './components/dashboard/glint-dashboard.compo
 import { clientGlistDashboardFeatureRoutes } from './lib.routes';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(clientGlistDashboardFeatureRoutes),
-  ],
-  declarations: [DashboardComponent],
+  imports: [CommonModule, RouterModule.forChild(clientGlistDashboardFeatureRoutes)],
+  declarations: [DashboardComponent]
 })
 export class ClientGlistDashboardFeatureModule {}

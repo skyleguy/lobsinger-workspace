@@ -38,10 +38,13 @@
       "@lob/client/shared/auth/data": ["libs/client/shared/auth/data/src/index.ts"],
       "@lob/client/shared/auth/data-access": ["libs/client/shared/auth/data-access/src/index.ts"],
       "@lob/client/shared/auth/ui": ["libs/client/shared/auth/ui/src/index.ts"],
+      "@lob/client/shared/device/data": ["libs/client/shared/device/data/src/index.ts"],
+      "@lob/client/shared/device/data-access": ["libs/client/shared/device/data-access/src/index.ts"],
       "@lob/client/shared/firebase/data": ["libs/client/shared/firebase/data/src/index.ts"],
       "@lob/client/shared/firebase/data-access": ["libs/client/shared/firebase/data-access/src/index.ts"],
       "@lob/client/shared/helpers/util": ["libs/client/shared/helpers/util/src/index.ts"],
       "@lob/client/shared/lifecycle-management/data": ["libs/client/shared/lifecycle-management/data/src/index.ts"],
+      "@lob/client/shared/lifecycle-management/data-access": ["libs/client/shared/lifecycle-management/data-access/src/index.ts"],
       "@lob/client/shared/user-actions/ui": ["libs/client/shared/user-actions/ui/src/index.ts"],
       "@lob/shared/ingredients/data": ["libs/shared/ingredients/data/src/index.ts"]
     }
