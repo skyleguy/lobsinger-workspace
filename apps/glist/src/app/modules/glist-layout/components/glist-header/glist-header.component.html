@@ -1,7 +1,11 @@
 <mat-toolbar color="primary">
-  <span (click)="menuClicked.emit()">Glist</span>
-  <span class="flex-auto"></span>
-  <button mat-icon-button>
-    <mat-icon><img class="rounded-avatar" [src]="imageUrl$ | async" /></mat-icon>
-  </button>
+  <div class="w-full flex justify-between items-center">
+    <button mat-icon-button (click)="menuClicked.emit()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Glist</span>
+    <button mat-icon-button>
+      <mat-icon><img class="rounded-avatar" [src]="imageUrl$ | async" /></mat-icon>
+    </button>
+  </div>
 </mat-toolbar>

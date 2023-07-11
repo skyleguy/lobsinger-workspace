@@ -11,6 +11,7 @@ import { DeviceModule } from '../../device.module';
 })
 export class DeviceService extends AbstractSubscriptionComponent {
   deviceSize$ = new BehaviorSubject(DeviceSize.COMPUTER);
+  isMobile$ = new BehaviorSubject(false);
 
   constructor(@Inject(DeviceConfigSymbol) private readonly deviceConfig: DeviceConfig) {
     super();
@@ -36,11 +37,15 @@ export class DeviceService extends AbstractSubscriptionComponent {
     for (const [breakpointWidth, breakpointDeviceSize] of Object.entries(this.deviceConfig.breakpointMap)) {
       const entryWidth = +breakpointWidth;
       if (width < entryWidth) {
-        console.log(DeviceSize[breakpointDeviceSize]);
         this.deviceSize$.next(breakpointDeviceSize);
+        this.isMobile$.next(this.isDeviceSizeMobileBreakpoint(breakpointDeviceSize));
         break;
       }
     }
+  }
+
+  private isDeviceSizeMobileBreakpoint(deviceSize: DeviceSize): boolean {
+    return deviceSize === DeviceSize.MOBILE || deviceSize === DeviceSize.TABLET;
   }
 
   private isWindow(data: any): data is Window {
