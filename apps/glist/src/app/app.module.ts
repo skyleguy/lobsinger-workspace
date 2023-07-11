@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { ClientSharedAuthDataAccessModule } from '@lob/client/shared/auth/data-access';
+import { DeviceModule } from '@lob/client/shared/device/data-access';
 import { FirebaseOptionsToken } from '@lob/client/shared/firebase/data';
 
 import { AppComponent } from './app.component';
@@ -24,6 +25,7 @@ export function initializeAppWithService(glistInitializationService: GlistInitia
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    DeviceModule.forRoot(),
     GlistLayoutModule,
     StoreModule.forRoot(),
     EffectsModule.forRoot(),
