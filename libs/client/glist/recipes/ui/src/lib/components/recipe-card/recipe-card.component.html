@@ -15,7 +15,7 @@
       </mat-chip-set>
     </mat-card-content>
     <mat-card-actions class="justify-between mt-auto">
-      <button mat-flat-button (click)="$event.stopPropagation(); addToGlist.emit(recipe)">
+      <button mat-button (click)="$event.stopPropagation(); addToGlist.emit(recipe)" color="primary">
         <mat-icon>add</mat-icon>
         Add to Glist
       </button>

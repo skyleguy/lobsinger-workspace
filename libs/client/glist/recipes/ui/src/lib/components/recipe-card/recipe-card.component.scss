@@ -1,6 +1,11 @@
 ::ng-deep mat-chip-set .mdc-evolution-chip-set__chips {
   flex-wrap: unset;
   overflow-x: auto;
+
+  mat-chip {
+    border: 1px solid #27ae60;
+    background-color: white !important;
+  }
 }
 
 .recipe-card {
