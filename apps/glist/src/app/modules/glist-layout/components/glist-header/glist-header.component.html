@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="transition-all duration-300" [class.!h-0]="!isHeaderVisible && (deviceService.isMobile$ | async)">
   <div class="w-full flex justify-between items-center">
     <button mat-icon-button (click)="menuClicked.emit()">
       <mat-icon>menu</mat-icon>

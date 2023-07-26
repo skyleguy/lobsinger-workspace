@@ -45,6 +45,8 @@
       "@lob/client/shared/helpers/util": ["libs/client/shared/helpers/util/src/index.ts"],
       "@lob/client/shared/lifecycle-management/data": ["libs/client/shared/lifecycle-management/data/src/index.ts"],
       "@lob/client/shared/lifecycle-management/data-access": ["libs/client/shared/lifecycle-management/data-access/src/index.ts"],
+      "@lob/client/shared/mobile/utilities/data": ["libs/client/shared/mobile/utilities/data/src/index.ts"],
+      "@lob/client/shared/mobile/utilities/data-access": ["libs/client/shared/mobile/utilities/data-access/src/index.ts"],
       "@lob/client/shared/user-actions/ui": ["libs/client/shared/user-actions/ui/src/index.ts"],
       "@lob/shared/ingredients/data": ["libs/shared/ingredients/data/src/index.ts"]
     }

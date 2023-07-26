@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { ClientGlistGlistsDataAccessModule } from '@lob/client/glist/glists/data-access';
 import { ClientGlistRecipesDataAccessModule } from '@lob/client/glist/recipes/data-access';
 import { ClientGlistRecipesUiModule } from '@lob/client/glist/recipes/ui';
+import { ClientSharedMobileUtilitiesDataAccessModule } from '@lob/client/shared/mobile/utilities/data-access';
 
 import { RecipeContainerComponent } from './components/recipe-container/recipe-container.component';
 import { clientGlistRecipesFeatureRoutes } from './lib.routes';
@@ -20,6 +21,7 @@ import { clientGlistRecipesFeatureRoutes } from './lib.routes';
     MatButtonModule,
     MatIconModule,
     MatInputModule,
+    ClientSharedMobileUtilitiesDataAccessModule,
     MatTabsModule,
     MatDialogModule,
     RouterModule.forChild(clientGlistRecipesFeatureRoutes),
