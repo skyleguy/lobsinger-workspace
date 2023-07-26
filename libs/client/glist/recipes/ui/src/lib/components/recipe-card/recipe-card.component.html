@@ -14,7 +14,7 @@
         </ng-container>
       </mat-chip-set>
     </mat-card-content>
-    <mat-card-actions class="justify-between mt-auto">
+    <mat-card-actions class="justify-between mt-auto !pt-0">
       <button mat-button (click)="$event.stopPropagation(); addToGlist.emit(recipe)" color="primary">
         <mat-icon>add</mat-icon>
         Add to Glist
@@ -30,18 +30,18 @@
   <mat-card class="h-full cursor-pointer transition-colors duration-300 gray-hover">
     <mat-card-subtitle><span class="p-2">RECIPE</span></mat-card-subtitle>
     <mat-card-title>
-      <span class="p-2 text-grey-500">Recipe Title</span>
+      <span class="p-2 text-grey-500">Title</span>
     </mat-card-title>
-    <ng-container *ngTemplateOutlet="defaultImage"></ng-container>
+    <ng-container *ngTemplateOutlet="addDefault"></ng-container>
     <mat-card-content>
       <mat-chip-set class="p-2">
-        <mat-chip [disabled]="true"> None </mat-chip>
+        <mat-chip [disabled]="true" style="border: 1px solid grey"> None </mat-chip>
       </mat-chip-set>
     </mat-card-content>
     <mat-card-actions class="justify-between mt-auto">
-      <button mat-flat-button (click)="$event.stopPropagation()" [disabled]="true">
+      <button mat-button (click)="$event.stopPropagation()" [disabled]="true">
         <mat-icon>add</mat-icon>
-        Add to Glist
+        ADD TO GLIST
       </button>
     </mat-card-actions>
   </mat-card></ng-template
@@ -49,4 +49,13 @@
 
 <ng-template #defaultImage>
   <img class="material-icons !w-full p-2 max-h-56 bg-[#F2F2F2]" src="/assets/ramen_dining.svg" />
+</ng-template>
+
+<ng-template #addDefault>
+  <div class="!w-full p-2 h-56 bg-[#F2F2F2] flex justify-center items-center">
+    <button mat-flat-button color="primary" class="!bg-white themed-styles !text-[#27ae60]">
+      <mat-icon>add</mat-icon>
+      ADD NEW RECIPE
+    </button>
+  </div>
 </ng-template>

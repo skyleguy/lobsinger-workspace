@@ -3,12 +3,16 @@
   overflow-x: auto;
 
   mat-chip {
-    border: 1px solid #27ae60;
-    background-color: white !important;
+    @extend .themed-styles;
   }
 }
 
 .recipe-card {
   min-width: 250px;
   max-width: 500px;
+}
+
+.themed-styles {
+  border: 1px solid #27ae60;
+  background-color: white !important;
 }
