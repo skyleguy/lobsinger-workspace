@@ -3,37 +3,41 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { GlistFacadeService } from '@lob/client/glist/glists/data-access';
-import { Recipe } from '@lob/client/glist/recipes/data';
+import { Recipe, RecipeFilter } from '@lob/client/glist/recipes/data';
 import { RecipeFacadeService } from '@lob/client/glist/recipes/data-access';
 import { RecipeEditorComponent } from '@lob/client/glist/recipes/ui';
-import { SubSinker } from '@lob/client/shared/lifecycle-management/data';
+import { DeviceService } from '@lob/client/shared/device/data-access';
+import { AbstractSubscriptionComponent } from '@lob/client/shared/lifecycle-management/data-access';
 
 @Component({
   selector: 'glist-recipe-container',
   templateUrl: './recipe-container.component.html',
   styleUrls: ['./recipe-container.component.scss']
 })
-export class RecipeContainerComponent implements OnInit, OnDestroy {
-  readonly sub: SubSinker = new SubSinker();
-
+export class RecipeContainerComponent extends AbstractSubscriptionComponent implements OnInit, OnDestroy {
+  readonly tabNames = ['All Recipes', 'Favorites'];
   recipes: Recipe[] = [];
   favoriteRecipes: Recipe[] = [];
+  selectedTab = 'All Recipes';
 
   constructor(
     private recipeFacadeService: RecipeFacadeService,
     private dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-    private glistFacadeService: GlistFacadeService
-  ) {}
+    private glistFacadeService: GlistFacadeService,
+    public deviceService: DeviceService
+  ) {
+    super();
+  }
 
   public ngOnInit(): void {
     this.getRecipes();
     this.getFakeRecipes();
   }
 
-  public ngOnDestroy(): void {
-    this.sub.unsubscribe();
+  onRecipeFilterChange(recipeFilter: RecipeFilter): void {
+    console.warn(`Filtering not yet supported: ${JSON.stringify(recipeFilter, null, 2)}`);
   }
 
   public addRecipe(): void {

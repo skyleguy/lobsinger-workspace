@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Recipe, Tag } from '@lob/client/glist/recipes/data';
+import { Recipe, Tag, cuisineTypes, dietTypes, dishTypes } from '@lob/client/glist/recipes/data';
 import { RecipeScrapeService } from '@lob/client/glist/recipes/data-access';
 import { Ingredient } from '@lob/shared/ingredients/data';
 
@@ -16,35 +16,9 @@ export class RecipeEditorComponent implements OnInit {
   readonly next = 'NEXT';
   readonly back = 'BACK';
   readonly cancel = 'CANCEL';
-  readonly dishTypes = ['Appetizer', 'Breakfast', 'Dessert', 'Lunch', 'Salad', 'Side Dish', 'Snack', 'Soup'];
-  readonly cuisineTypes = [
-    'American',
-    'Asian',
-    'Chinese',
-    'French',
-    'Indian',
-    'Italian',
-    'Japanese',
-    'Mediterranean',
-    'Mexican',
-    'Middle Eastern',
-    'Spanish',
-    'Vietnamese'
-  ];
-  readonly dietTypes = [
-    'Dairy-Free',
-    'Egg-Free',
-    'Gluten-Free',
-    'Keto',
-    'Nut-Free',
-    'Oil-Free',
-    'Paleo',
-    'Pescatarian',
-    'Soy-Free',
-    'Vegan',
-    'Vegetarian'
-  ];
-
+  readonly cuisineTypes = cuisineTypes;
+  readonly dishTypes = dishTypes;
+  readonly dietTypes = dietTypes;
   urlInfoForm!: FormGroup;
   generalInfoForm!: FormGroup;
   ingredientsForm!: FormGroup;

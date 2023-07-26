@@ -6,7 +6,7 @@ import { SubSinker } from '@lob/client/shared/lifecycle-management/data';
   template: ''
 })
 export abstract class AbstractSubscriptionComponent implements OnDestroy {
-  private sub: SubSinker = new SubSinker();
+  sub: SubSinker = new SubSinker();
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();

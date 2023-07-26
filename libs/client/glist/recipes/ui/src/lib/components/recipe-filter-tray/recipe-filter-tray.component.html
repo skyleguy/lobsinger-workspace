@@ -1,0 +1,32 @@
+<div class="flex justify-between mt-3">
+  <mat-form-field>
+    <mat-icon matPrefix>search</mat-icon>
+    <input #searchInput matInput type="search" (keyup)="onSearchInputChange(searchInput.value)" placeholder="Search" class="search-input" />
+  </mat-form-field>
+  <div>
+    <mat-form-field>
+      <mat-label>Dish Type</mat-label>
+      <mat-select [(value)]="recipeFilter.dishTypes" (closed)="emitModifiedRecipeFilter()" multiple>
+        <mat-option *ngFor="let type of dishTypes" [value]="type">
+          {{ type }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Dish Type</mat-label>
+      <mat-select [(value)]="recipeFilter.cuisineTypes" (closed)="emitModifiedRecipeFilter()" multiple>
+        <mat-option *ngFor="let type of cuisineTypes" [value]="type">
+          {{ type }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Dish Type</mat-label>
+      <mat-select [(value)]="recipeFilter.dietTypes" (closed)="emitModifiedRecipeFilter()" multiple>
+        <mat-option *ngFor="let type of dietTypes" [value]="type">
+          {{ type }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>

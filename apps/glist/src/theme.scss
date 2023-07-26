@@ -5,6 +5,9 @@
 $dark-primary-text: rgba(black, 0.87);
 $light-primary-text: white;
 
+$my-typography: mat.define-typography-config();
+@include mat.typography-hierarchy($my-typography);
+
 $primary-palette: (
   50: #e6f5eb,
   100: #c2e6cd,
@@ -103,7 +106,7 @@ $my-custom-theme: mat.define-light-theme(
       accent: $my-custom-accent,
       warn: $my-custom-warn
     ),
-    typography: mat.define-typography-config(),
+    typography: $my-typography,
     density: 0
   )
 );

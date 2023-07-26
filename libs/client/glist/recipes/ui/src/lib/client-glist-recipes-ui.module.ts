@@ -16,6 +16,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import { RecipeEditorComponent } from './components/recipe-editor/recipe-editor.component';
+import { RecipeFilterTrayComponent } from './components/recipe-filter-tray/recipe-filter-tray.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,7 @@ import { RecipeEditorComponent } from './components/recipe-editor/recipe-editor.
     ReactiveFormsModule,
     MatListModule
   ],
-  declarations: [RecipeCardComponent, RecipeEditorComponent, RecipeDetailsComponent],
-  exports: [RecipeCardComponent, RecipeEditorComponent]
+  declarations: [RecipeCardComponent, RecipeEditorComponent, RecipeDetailsComponent, RecipeFilterTrayComponent],
+  exports: [RecipeCardComponent, RecipeEditorComponent, RecipeFilterTrayComponent]
 })
 export class ClientGlistRecipesUiModule {}

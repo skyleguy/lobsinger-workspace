@@ -1,28 +1,32 @@
-<div class="flex flex-col h-full overflow-y-auto">
-  <div class="flex justify-between p-2">
-    <div class="flex gap-2 items-center">
-      <h2 class="m-0">Recipes</h2>
-    </div>
-    <div class="flex gap-2">
-      <button mat-flat-button color="primary" (click)="addRecipe()">
+<div class="flex h-full overflow-y-auto">
+  <div class="flex flex-col w-full p-5">
+    <div class="flex gap-2 justify-between">
+      <div class="flex gap-2 sm:gap-7 sm:items-center flex-col sm:flex-row">
+        <h2 class="!inline-block !m-0">Recipes</h2>
+        <nav mat-tab-nav-bar [tabPanel]="tabPanel">
+          <a mat-tab-link *ngFor="let tab of tabNames" (click)="selectedTab = tab" [active]="selectedTab === tab"> {{ tab }} </a>
+        </nav>
+        <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+      </div>
+      <button *ngIf="deviceService.isComputer$ | async" class="!text-white" mat-flat-button color="primary" (click)="addRecipe()">
         <mat-icon>add</mat-icon>
         Add New Recipe
       </button>
     </div>
+    <!-- uncomment this when hideous material inputs look good <glist-recipe-filter-tray (selectedFilters)="onRecipeFilterChange($event)"></glist-recipe-filter-tray> -->
+    <div [ngSwitch]="selectedTab">
+      <ng-container *ngSwitchCase="'All Recipes'">
+        <ng-container *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: recipes, isAddCardVisible: true }"></ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="'Favorites'">
+        <ng-container *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: favoriteRecipes }"></ng-container>
+      </ng-container>
+    </div>
   </div>
-
-  <mat-tab-group class="p-3 grow overflow-y-auto pt-0" mat-stretch-tabs="false" mat-align-tabs="start">
-    <mat-tab label="All Recipes">
-      <ng-container *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: recipes, isAddCardVisible: true }"></ng-container>
-    </mat-tab>
-    <mat-tab label="Favorites">
-      <ng-container *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: favoriteRecipes }"></ng-container>
-    </mat-tab>
-  </mat-tab-group>
 </div>
 
 <ng-template #recipeGrid let-chosenRecipes="chosenRecipes" let-isAddCardVisible="isAddCardVisible">
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 py-2">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 py-4 justify-between">
     <glist-recipe-card
       *ngFor="let recipe of chosenRecipes"
       [recipe]="recipe"
@@ -33,3 +37,9 @@
     <glist-recipe-card *ngIf="isAddCardVisible"></glist-recipe-card>
   </div>
 </ng-template>
+
+<div class="absolute right-0 bottom-0 z-50 p-2" *ngIf="deviceService.isMobile$ | async">
+  <button mat-fab color="primary" (click)="addRecipe()">
+    <mat-icon class="text-white">add</mat-icon>
+  </button>
+</div>
