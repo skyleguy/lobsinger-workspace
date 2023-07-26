@@ -9,6 +9,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ClientSharedAuthDataAccessModule } from '@lob/client/shared/auth/data-access';
 import { DeviceModule } from '@lob/client/shared/device/data-access';
 import { FirebaseOptionsToken } from '@lob/client/shared/firebase/data';
+import { ClientSharedMobileUtilitiesDataAccessModule } from '@lob/client/shared/mobile/utilities/data-access';
 
 import { AppComponent } from './app.component';
 import { GlistInitializationService } from './glist-initialization.service';
@@ -33,6 +34,7 @@ export function initializeAppWithService(glistInitializationService: GlistInitia
       maxAge: 25,
       serialize: true
     }),
+    ClientSharedMobileUtilitiesDataAccessModule,
     ClientSharedAuthDataAccessModule,
     HttpClientModule
   ],

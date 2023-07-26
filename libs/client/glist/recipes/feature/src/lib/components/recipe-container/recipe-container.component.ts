@@ -8,6 +8,8 @@ import { RecipeFacadeService } from '@lob/client/glist/recipes/data-access';
 import { RecipeEditorComponent } from '@lob/client/glist/recipes/ui';
 import { DeviceService } from '@lob/client/shared/device/data-access';
 import { AbstractSubscriptionComponent } from '@lob/client/shared/lifecycle-management/data-access';
+import { UiVisibilityTarget } from '@lob/client/shared/mobile/utilities/data';
+import { UiVisibilityService } from '@lob/client/shared/mobile/utilities/data-access';
 
 @Component({
   selector: 'glist-recipe-container',
@@ -16,6 +18,7 @@ import { AbstractSubscriptionComponent } from '@lob/client/shared/lifecycle-mana
 })
 export class RecipeContainerComponent extends AbstractSubscriptionComponent implements OnInit, OnDestroy {
   readonly tabNames = ['All Recipes', 'Favorites'];
+  readonly scrollVisibilityKey = UiVisibilityTarget.TOP_BAR;
   recipes: Recipe[] = [];
   favoriteRecipes: Recipe[] = [];
   selectedTab = 'All Recipes';
@@ -26,7 +29,8 @@ export class RecipeContainerComponent extends AbstractSubscriptionComponent impl
     private router: Router,
     private route: ActivatedRoute,
     private glistFacadeService: GlistFacadeService,
-    public deviceService: DeviceService
+    public deviceService: DeviceService,
+    private readonly uiVisibilityService: UiVisibilityService
   ) {
     super();
   }
