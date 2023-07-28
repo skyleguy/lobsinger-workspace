@@ -1,6 +1,7 @@
 import { Directive, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges } from '@angular/core';
 import { debounceTime, fromEvent, map } from 'rxjs';
 
+import { DeviceService } from '@lob/client/shared/device/data-access';
 import { SubSinker } from '@lob/client/shared/lifecycle-management/data';
 
 import { UiVisibilityService } from '../../services';
@@ -19,7 +20,11 @@ export class ScrollVisibilityDirective implements OnChanges, OnDestroy {
 
   currentPosition = 0;
 
-  constructor(private el: ElementRef, private readonly uiVisibilityService: UiVisibilityService) {
+  constructor(
+    private el: ElementRef,
+    private readonly deviceService: DeviceService,
+    private readonly uiVisibilityService: UiVisibilityService
+  ) {
     this.subscribeToElementScroll();
   }
 
@@ -36,18 +41,16 @@ export class ScrollVisibilityDirective implements OnChanges, OnDestroy {
   private subscribeToElementScroll(): void {
     this.sub.sink = fromEvent<Event>(this.el.nativeElement, 'scrollend')
       .pipe(
-        debounceTime(50),
-        map((event: Event) => {
-          const ele = event.target as HTMLElement;
+        debounceTime(300),
+        map(() => {
           return {
-            scrollTop: ele.scrollTop,
-            clientHeight: ele.clientHeight
+            scrollTop: this.el.nativeElement.scrollTop,
+            clientHeight: this.el.nativeElement.clientHeight
           };
         })
       )
       .subscribe({
         next: (targetInfo) => {
-          console.log(targetInfo);
           const isScrollingDown = targetInfo.scrollTop > this.currentPosition;
           if (this.visibilityKey) {
             this.uiVisibilityService.setVisibility(this.visibilityKey, !isScrollingDown);

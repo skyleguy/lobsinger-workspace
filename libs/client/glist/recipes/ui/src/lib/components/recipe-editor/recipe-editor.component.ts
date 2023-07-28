@@ -5,6 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { Recipe, Tag, cuisineTypes, dietTypes, dishTypes } from '@lob/client/glist/recipes/data';
 import { RecipeScrapeService } from '@lob/client/glist/recipes/data-access';
+import { ImageRetrievalService } from '@lob/client/shared/images/data-access';
+import { arrayBufferToImageString } from '@lob/client/shared/images/util';
 import { Ingredient } from '@lob/shared/ingredients/data';
 
 @Component({
@@ -83,7 +85,8 @@ export class RecipeEditorComponent implements OnInit {
     public dialogRef: MatDialogRef<RecipeEditorComponent>,
     @Inject(MAT_DIALOG_DATA) public recipe: Recipe,
     private fb: FormBuilder,
-    private readonly recipeScrapeService: RecipeScrapeService
+    private readonly recipeScrapeService: RecipeScrapeService,
+    private readonly imageRetrievalService: ImageRetrievalService
   ) {}
 
   public ngOnInit(): void {
@@ -113,13 +116,15 @@ export class RecipeEditorComponent implements OnInit {
 
   public submitRecipeFromUrl(): void {
     this.recipeScrapeService.scrapeRecipe(this.url?.value).subscribe({
-      next: (res) => {
+      next: (scrapeResponse) => {
+        const imageString = `data:image/jpeg;base64,${arrayBufferToImageString(scrapeResponse?.image?.data)}`;
         const r: Recipe = {
-          title: res.title,
-          directions: res.directions,
+          title: scrapeResponse.title,
+          directions: scrapeResponse.directions,
           id: uuidv4(),
-          ingredients: res.ingredients,
+          ingredients: scrapeResponse.ingredients,
           link: this.url?.value,
+          image: imageString,
           tags: [
             { type: 'Cuisine', value: this.cuisineType?.value },
             { type: 'Diet', value: this.dietType?.value },

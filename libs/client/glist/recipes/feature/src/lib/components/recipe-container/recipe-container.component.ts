@@ -9,7 +9,6 @@ import { RecipeEditorComponent } from '@lob/client/glist/recipes/ui';
 import { DeviceService } from '@lob/client/shared/device/data-access';
 import { AbstractSubscriptionComponent } from '@lob/client/shared/lifecycle-management/data-access';
 import { UiVisibilityTarget } from '@lob/client/shared/mobile/utilities/data';
-import { UiVisibilityService } from '@lob/client/shared/mobile/utilities/data-access';
 
 @Component({
   selector: 'glist-recipe-container',
@@ -29,8 +28,7 @@ export class RecipeContainerComponent extends AbstractSubscriptionComponent impl
     private router: Router,
     private route: ActivatedRoute,
     private glistFacadeService: GlistFacadeService,
-    public deviceService: DeviceService,
-    private readonly uiVisibilityService: UiVisibilityService
+    public deviceService: DeviceService
   ) {
     super();
   }

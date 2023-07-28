@@ -26,7 +26,7 @@
 </div>
 
 <ng-template #recipeGrid let-chosenRecipes="chosenRecipes" let-isAddCardVisible="isAddCardVisible">
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 py-4 justify-between">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-10 py-4 justify-between">
     <glist-recipe-card
       *ngFor="let recipe of chosenRecipes"
       [recipe]="recipe"

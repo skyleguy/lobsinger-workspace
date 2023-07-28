@@ -1,12 +1,12 @@
 <ng-container *ngIf="recipe; else actionRecipe">
   <mat-card class="h-full cursor-pointer transition-colors duration-300 gray-hover recipe-card m-auto">
-    <mat-card-subtitle><span class="p-2">RECIPE</span></mat-card-subtitle>
-    <mat-card-title>
-      <span class="w-full px-2 line-clamp-1" [title]="recipe.title | titlecase">{{ recipe.title | titlecase }}</span>
+    <mat-card-subtitle class="px-2 pt-3"><span>RECIPE</span></mat-card-subtitle>
+    <mat-card-title class="p-2">
+      <span class="w-full line-clamp-1" [title]="recipe.title | titlecase">{{ recipe.title | titlecase }}</span>
     </mat-card-title>
-    <img class="!w-full p-2 max-h-56" mat-card-xl-image [src]="recipe.image" *ngIf="recipe?.image; else defaultImage" />
-    <mat-card-content>
-      <mat-chip-set class="p-2">
+    <img class="!w-full max-h-56" mat-card-xl-image [src]="recipe.image" *ngIf="recipe?.image; else defaultImage" />
+    <mat-card-content class="!px-2">
+      <mat-chip-set class="pt-3">
         <ng-container *ngFor="let tag of recipe.tags">
           <mat-chip *ngIf="tag?.value?.length! > 0">
             {{ tag.value }}
@@ -27,10 +27,10 @@
 </ng-container>
 
 <ng-template #actionRecipe>
-  <mat-card class="h-full cursor-pointer transition-colors duration-300 gray-hover">
+  <mat-card class="h-full cursor-pointer transition-colors duration-300 gray-hover recipe-card m-auto">
     <mat-card-subtitle><span class="p-2">RECIPE</span></mat-card-subtitle>
     <mat-card-title>
-      <span class="p-2 text-grey-500">Title</span>
+      <span class="w-full px-2 line-clamp-1">Title</span>
     </mat-card-title>
     <ng-container *ngTemplateOutlet="addDefault"></ng-container>
     <mat-card-content>

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import got from 'got';
 import soup from 'jssoup';
-import { catchError, from, map, Observable, throwError } from 'rxjs';
+import sharp from 'sharp';
 
 import { Ingredient, ScrapeResponse } from '@lob/shared/ingredients/data';
 
@@ -35,26 +35,27 @@ export class RecipeScrapeService {
   readonly scrapeRegex: RegExp = new RegExp(`([\\d/\\.]*)\\s?(${this.units.join('|')})?\\s?([^\\d]*)`, '');
   readonly whitespaceRegex: RegExp = new RegExp(this.whitespaceCharacter, 'g');
 
-  public scrapeRecipe(url: string): Observable<ScrapeResponse> {
-    return from(got.get(url)).pipe(
-      map((data) => {
-        const tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
-        const scrapeResponse: ScrapeResponse = {
-          ingredients: [],
-          directions: [],
-          title: ''
-        };
-        const theSoup = new soup(data.body);
-        tags.forEach((tag) => {
-          this.findItems(theSoup, tag, scrapeResponse);
-        });
-        return scrapeResponse;
-      }),
-      catchError((err) => {
-        console.error(err);
-        return throwError(() => err);
-      })
-    );
+  public async scrapeRecipe(url: string): Promise<ScrapeResponse> {
+    let data;
+    try {
+      data = await got.get(url);
+    } catch (err) {
+      console.error(err);
+      return Promise.reject(err);
+    }
+    const tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+    const scrapeResponse: ScrapeResponse = {
+      ingredients: [],
+      directions: [],
+      image: null,
+      title: ''
+    };
+    const theSoup = new soup(data.body);
+    tags.forEach((tag) => {
+      this.findItems(theSoup, tag, scrapeResponse);
+    });
+    await this.searchForImage(theSoup, scrapeResponse);
+    return scrapeResponse;
   }
 
   private findItems(soup, tag, scrapeResponse: ScrapeResponse) {
@@ -76,7 +77,7 @@ export class RecipeScrapeService {
   private findSpecificHeaderTitles(node, headerText, scrapeResponse, tag) {
     if (node?.nextSiblings?.length > 0) {
       if (tag === 'h1' && node.attrs.class?.includes('title')) {
-        scrapeResponse.title = headerText.replace(this.ampersandEscapeSequence, '&');
+        scrapeResponse.title = headerText.replace(this.ampersandEscapeSequence, '&').trim();
       }
       if (headerText.includes('ingredients')) {
         if (node?.nextSiblings?.length >= 1) {
@@ -120,5 +121,17 @@ export class RecipeScrapeService {
     } else {
       return { amount: '1', name: input, unit: '' };
     }
+  }
+
+  private async searchForImage(soup, scrapeResponse: ScrapeResponse) {
+    const [firstImage] = soup.findAll('img');
+    const imageSrc = firstImage?.attrs?.src;
+    const imageRes = await got.get(imageSrc);
+    await sharp(imageRes.rawBody)
+      .resize({ width: 500, height: 300 })
+      .toBuffer()
+      .then((data) => {
+        scrapeResponse.image = data;
+      });
   }
 }

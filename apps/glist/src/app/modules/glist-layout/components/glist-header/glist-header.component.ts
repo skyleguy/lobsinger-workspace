@@ -1,10 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { distinctUntilChanged, map, Observable, switchMap } from 'rxjs';
 
 import { UserFacadeService } from '@lob/client/shared/auth/data-access';
 import { DeviceService } from '@lob/client/shared/device/data-access';
+import { ImageRetrievalService } from '@lob/client/shared/images/data-access';
 import { UiVisibilityTarget } from '@lob/client/shared/mobile/utilities/data';
 import { UiVisibilityService } from '@lob/client/shared/mobile/utilities/data-access';
 
@@ -29,8 +28,7 @@ export class GlistHeaderComponent implements OnInit {
 
   constructor(
     private userFacadeService: UserFacadeService,
-    private http: HttpClient,
-    private sanitizer: DomSanitizer,
+    private readonly imageRetrievalService: ImageRetrievalService,
     private readonly uiVisibilityService: UiVisibilityService,
     private changeDetectorRef: ChangeDetectorRef,
     public readonly deviceService: DeviceService
@@ -43,18 +41,7 @@ export class GlistHeaderComponent implements OnInit {
 
   private getUserImage(): void {
     this.imageUrl$ = this.userFacadeService.user$.pipe(
-      switchMap((res) =>
-        this.http.get(res.pictureUrl ?? '', { responseType: 'arraybuffer' }).pipe(
-          map((res) => {
-            const image = btoa(
-              Array.from(new Uint8Array(res))
-                .map((b) => String.fromCharCode(b))
-                .join('')
-            );
-            return this.sanitizer.bypassSecurityTrustUrl(`data:image/jpeg;base64,${image}`);
-          })
-        )
-      )
+      switchMap((res) => this.imageRetrievalService.retrieveImage(res.pictureUrl ?? '', true))
     );
   }
 

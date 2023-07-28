@@ -43,6 +43,8 @@
       "@lob/client/shared/firebase/data": ["libs/client/shared/firebase/data/src/index.ts"],
       "@lob/client/shared/firebase/data-access": ["libs/client/shared/firebase/data-access/src/index.ts"],
       "@lob/client/shared/helpers/util": ["libs/client/shared/helpers/util/src/index.ts"],
+      "@lob/client/shared/images/data-access": ["libs/client/shared/images/data-access/src/index.ts"],
+      "@lob/client/shared/images/util": ["libs/client/shared/images/util/src/index.ts"],
       "@lob/client/shared/lifecycle-management/data": ["libs/client/shared/lifecycle-management/data/src/index.ts"],
       "@lob/client/shared/lifecycle-management/data-access": ["libs/client/shared/lifecycle-management/data-access/src/index.ts"],
       "@lob/client/shared/mobile/utilities/data": ["libs/client/shared/mobile/utilities/data/src/index.ts"],

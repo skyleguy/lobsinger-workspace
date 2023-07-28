@@ -1,7 +1,7 @@
 export const favoritedRecipeText = 'favorite';
 export const unfavoritedRecipeText = 'favorite_outline';
 
-export const dishTypes = ['Appetizer', 'Breakfast', 'Dessert', 'Lunch', 'Salad', 'Side Dish', 'Snack', 'Soup'] as const;
+export const dishTypes = ['Appetizer', 'Breakfast', 'Dessert', 'Dinner', 'Lunch', 'Salad', 'Side Dish', 'Snack', 'Soup'] as const;
 export const cuisineTypes = [
   'American',
   'Asian',
