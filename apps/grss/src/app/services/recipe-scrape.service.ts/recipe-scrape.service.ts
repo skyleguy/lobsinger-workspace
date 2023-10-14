@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import got from 'got';
 import soup from 'jssoup';
 import sharp from 'sharp';
@@ -7,6 +7,7 @@ import { Ingredient, ScrapeResponse } from '@lob/shared/ingredients/data';
 
 @Injectable()
 export class RecipeScrapeService {
+  readonly logger = new Logger(RecipeScrapeService.name);
   readonly containerItems = ['div', 'ul', 'ol', 'li'];
   readonly contentItems = ['li', 'p'];
   readonly directionsLabels = ['directions', 'instructions'];
@@ -34,13 +35,15 @@ export class RecipeScrapeService {
   ];
   readonly scrapeRegex: RegExp = new RegExp(`([\\d/\\.]*)\\s?(${this.units.join('|')})?\\s?([^\\d]*)`, '');
   readonly whitespaceRegex: RegExp = new RegExp(this.whitespaceCharacter, 'g');
+  readonly headers = {};
 
   public async scrapeRecipe(url: string): Promise<ScrapeResponse> {
     let data;
     try {
+      this.logger.log(`making call to: ${url}`);
       data = await got.get(url);
     } catch (err) {
-      console.error(err);
+      this.logger.log(`Recieved error when calling ${url}`, err);
       return Promise.reject(err);
     }
     const tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];

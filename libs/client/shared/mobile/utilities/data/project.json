@@ -11,7 +11,8 @@
         "outputPath": "dist/libs/client/shared/mobile/utilities/data",
         "main": "libs/client/shared/mobile/utilities/data/src/index.ts",
         "tsConfig": "libs/client/shared/mobile/utilities/data/tsconfig.lib.json",
-        "assets": ["libs/client/shared/mobile/utilities/data/*.md"]
+        "assets": ["libs/client/shared/mobile/utilities/data/*.md"],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "lint": {

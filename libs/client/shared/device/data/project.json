@@ -11,7 +11,8 @@
         "outputPath": "dist/libs/client/shared/device/data",
         "main": "libs/client/shared/device/data/src/index.ts",
         "tsConfig": "libs/client/shared/device/data/tsconfig.lib.json",
-        "assets": ["libs/client/shared/device/data/*.md"]
+        "assets": ["libs/client/shared/device/data/*.md"],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "lint": {
