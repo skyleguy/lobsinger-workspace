@@ -57,7 +57,7 @@ export class RecipeScrapeService {
     tags.forEach((tag) => {
       this.findItems(theSoup, tag, scrapeResponse);
     });
-    await this.searchForImage(theSoup, scrapeResponse);
+    await this.searchForImage(theSoup, scrapeResponse, url);
     return scrapeResponse;
   }
 
@@ -126,15 +126,21 @@ export class RecipeScrapeService {
     }
   }
 
-  private async searchForImage(soup, scrapeResponse: ScrapeResponse) {
-    const [firstImage] = soup.findAll('img');
-    const imageSrc = firstImage?.attrs?.src;
-    const imageRes = await got.get(imageSrc);
-    await sharp(imageRes.rawBody)
-      .resize({ width: 500, height: 300 })
-      .toBuffer()
-      .then((data) => {
-        scrapeResponse.image = data;
-      });
+  private async searchForImage(soup, scrapeResponse: ScrapeResponse, url: string) {
+    const images: any[] = soup.findAll('img');
+    const imageSrc = images.find((img) => {
+      return img.attrs.src.includes('https');
+    })?.attrs.src;
+    if (imageSrc) {
+      const imageRes = await got.get(imageSrc);
+      await sharp(imageRes.rawBody)
+        .resize({ width: 500, height: 300 })
+        .toBuffer()
+        .then((data) => {
+          scrapeResponse.image = data;
+        });
+    } else {
+      this.logger.warn(`No image with valid source found for ${url}`);
+    }
   }
 }
