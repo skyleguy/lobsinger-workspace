@@ -11,7 +11,8 @@
         "outputPath": "dist/libs/client/shared/images/util",
         "main": "libs/client/shared/images/util/src/index.ts",
         "tsConfig": "libs/client/shared/images/util/tsconfig.lib.json",
-        "assets": ["libs/client/shared/images/util/*.md"]
+        "assets": ["libs/client/shared/images/util/*.md"],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "lint": {
