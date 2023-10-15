@@ -10,15 +10,32 @@ import { GoogleAuthProviderService } from '../services';
 export class UserEffects {
   constructor(private actions$: Actions, private googleAuthProviderService: GoogleAuthProviderService) {}
 
-  getUser$ = createEffect(() =>
+  signUserIn$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(fromUser.actions.getUser),
+      ofType(fromUser.actions.signUserIn),
       switchMap(({ payload }) =>
-        from(this.googleAuthProviderService.signIn(payload.app)).pipe(
-          switchMap((res) => of(fromUser.actions.getUserSuccess(res))),
-          catchError((err) => of(fromUser.actions.getUserError(err)))
+        from(
+          payload.isSilent ? this.googleAuthProviderService.silentSignIn(payload.app) : this.googleAuthProviderService.signIn(payload.app)
+        ).pipe(
+          switchMap((res) => {
+            if (res) {
+              return of(fromUser.actions.signUserInSuccess(res));
+            } else {
+              return of(fromUser.actions.silentSignInError());
+            }
+          }),
+          catchError((err) => of(fromUser.actions.signUserInError(err)))
         )
       )
     )
+  );
+
+  logUserOut$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(fromUser.actions.logUserOut),
+        switchMap(() => this.googleAuthProviderService.signOut())
+      ),
+    { dispatch: false }
   );
 }

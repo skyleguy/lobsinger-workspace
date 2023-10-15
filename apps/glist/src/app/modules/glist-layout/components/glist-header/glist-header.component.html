@@ -4,8 +4,16 @@
       <mat-icon>menu</mat-icon>
     </button>
     <span>Glist</span>
-    <button mat-icon-button>
-      <mat-icon><img class="rounded-avatar" [src]="imageUrl$ | async" /></mat-icon>
+    <button mat-icon-button (click)="changeSignInStatus()">
+      <ng-container *ngrxLet="imageUrl$ as url; suspenseTpl: defaultUser">
+        <mat-icon *ngIf="url; else defaultUser">
+          <img class="rounded-avatar" [src]="url" />
+        </mat-icon>
+      </ng-container>
     </button>
   </div>
 </mat-toolbar>
+
+<ng-template #defaultUser>
+  <mat-icon>person</mat-icon>
+</ng-template>

@@ -2,29 +2,39 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { FirebaseApp } from 'firebase/app';
 
 import { User } from '@lob/client/shared/auth/data';
+import { createAjaxState } from '@lob/shared/data-management/util';
 
 import { UserState } from './user.slice';
 
 export const userCaseReducers = {
-  getUser: (state: UserState, _action: PayloadAction<{ app?: FirebaseApp }>): UserState => {
+  signUserIn: (state: UserState, _action: PayloadAction<{ app?: FirebaseApp; isSilent: boolean }>): UserState => {
     return {
       ...state,
-      isLoading: true
+      user: createAjaxState(null, true)
     };
   },
-  getUserSuccess: (state: UserState, { payload }: PayloadAction<User>): UserState => {
+  signUserInSuccess: (state: UserState, { payload }: PayloadAction<User>): UserState => {
     return {
       ...state,
-      user: payload,
-      isLoading: false
+      user: createAjaxState(payload)
     };
   },
-  getUserError: (state: UserState, { payload }: PayloadAction<Error>): UserState => {
+  signUserInError: (state: UserState, { payload }: PayloadAction<Error>): UserState => {
     return {
       ...state,
-      user: { id: '' },
-      isLoading: false,
-      error: payload
+      user: createAjaxState(null, false, payload)
+    };
+  },
+  logUserOut: (state: UserState): UserState => {
+    return {
+      ...state,
+      user: createAjaxState(null, false)
+    };
+  },
+  silentSignInError: (state: UserState): UserState => {
+    return {
+      ...state,
+      user: createAjaxState(null, false, new Error('User no silently signed in'))
     };
   }
 };

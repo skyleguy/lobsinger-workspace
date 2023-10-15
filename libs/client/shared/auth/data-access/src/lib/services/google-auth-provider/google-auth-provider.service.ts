@@ -24,6 +24,20 @@ export class GoogleAuthProviderService implements AuthProvider {
     }
   }
 
+  public async silentSignIn(app?: FirebaseApp): Promise<User | null> {
+    if (this.auth?.currentUser) {
+      return this.mapToUser(this.auth.currentUser);
+    } else {
+      const auth = getAuth(app);
+      await setPersistence(auth, browserLocalPersistence);
+      this.auth = auth;
+      if (auth.currentUser) {
+        return this.mapToUser(this.auth.currentUser);
+      }
+    }
+    return null;
+  }
+
   public async signOut(): Promise<void> {
     await this.auth?.signOut();
     this.auth = null;

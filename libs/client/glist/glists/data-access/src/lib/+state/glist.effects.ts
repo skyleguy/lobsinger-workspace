@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { deepCopy } from '@firebase/util';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { catchError, map, of, switchMap, withLatestFrom } from 'rxjs';
+import { catchError, filter, map, of, switchMap, withLatestFrom } from 'rxjs';
 
 import { Glist } from '@lob/client/glist/glists/data';
 import { UserFacadeService } from '@lob/client/shared/auth/data-access';
@@ -26,6 +26,7 @@ export class GlistEffects {
       ofType(fromGlist.actions.getUserGlist),
       switchMap(() =>
         this.userFacadeService.user$.pipe(
+          filter((user) => !!user),
           switchMap((user) =>
             this.firestoreService.getDocument(this.tableName, [], { collectionGroup: [user.id, this.subCollectionName] }).pipe(
               switchMap((glist) => {
