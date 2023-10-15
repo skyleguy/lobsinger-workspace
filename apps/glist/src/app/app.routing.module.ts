@@ -1,43 +1,51 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule, inject } from '@angular/core';
+import { Router, RouterModule, Routes, UrlTree } from '@angular/router';
+import { map } from 'rxjs';
+
+import { UserFacadeService } from '@lob/client/shared/auth/data-access';
+
+const isSignedIn = () => {
+  const facadeService: UserFacadeService = inject(UserFacadeService);
+  const router = inject(Router);
+  return facadeService.isUserSignedIn$.pipe(
+    map((isSignedIn): boolean | UrlTree => {
+      if (isSignedIn) {
+        return true;
+      } else {
+        return router.parseUrl('/dashboard');
+      }
+    })
+  );
+};
 
 const routes: Routes = [
   {
     path: 'dashboard',
-    loadChildren: () =>
-      import('@lob/client/glist/dashboard/feature').then(
-        (m) => m.ClientGlistDashboardFeatureModule
-      ),
+    loadChildren: () => import('@lob/client/glist/dashboard/feature').then((m) => m.ClientGlistDashboardFeatureModule)
   },
   {
     path: 'recipes',
-    loadChildren: () =>
-      import('@lob/client/glist/recipes/feature').then(
-        (m) => m.ClientGlistRecipesFeatureModule
-      ),
+    canActivate: [isSignedIn],
+    loadChildren: () => import('@lob/client/glist/recipes/feature').then((m) => m.ClientGlistRecipesFeatureModule)
   },
   {
     path: 'menus',
-    loadChildren: () =>
-      import('@lob/client/glist/menus/feature').then(
-        (m) => m.ClientGlistMenusFeatureModule
-      ),
+    canActivate: [isSignedIn],
+    loadChildren: () => import('@lob/client/glist/menus/feature').then((m) => m.ClientGlistMenusFeatureModule)
   },
   {
     path: 'glists',
-    loadChildren: () =>
-      import('@lob/client/glist/glists/feature').then(
-        (m) => m.ClientGlistGlistsFeatureModule
-      ),
+    canActivate: [isSignedIn],
+    loadChildren: () => import('@lob/client/glist/glists/feature').then((m) => m.ClientGlistGlistsFeatureModule)
   },
   {
     path: '**',
-    redirectTo: 'dashboard',
-  },
+    redirectTo: 'dashboard'
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}
