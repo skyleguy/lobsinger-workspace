@@ -1,1 +1,11 @@
-<glist-container></glist-container>
+<ng-container [ngSwitch]="appState">
+  <ng-container *ngSwitchCase="appStateEnum.LOADING">
+    <div class="flex h-full w-full items-center justify-center">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchCase="appStateEnum.LOADED">
+    <glist-container></glist-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="appStateEnum.ERROR">ERROR!</ng-container>
+</ng-container>

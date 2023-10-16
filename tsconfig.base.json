@@ -42,6 +42,7 @@
       "@lob/client/shared/device/data-access": ["libs/client/shared/device/data-access/src/index.ts"],
       "@lob/client/shared/firebase/data": ["libs/client/shared/firebase/data/src/index.ts"],
       "@lob/client/shared/firebase/data-access": ["libs/client/shared/firebase/data-access/src/index.ts"],
+      "@lob/client/shared/firebase/feature": ["libs/client/shared/firebase/feature/src/index.ts"],
       "@lob/client/shared/helpers/util": ["libs/client/shared/helpers/util/src/index.ts"],
       "@lob/client/shared/images/data-access": ["libs/client/shared/images/data-access/src/index.ts"],
       "@lob/client/shared/images/util": ["libs/client/shared/images/util/src/index.ts"],

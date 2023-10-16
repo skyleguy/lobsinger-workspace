@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { initializeApp, FirebaseApp, FirebaseOptions } from 'firebase/app';
-import { BehaviorSubject, filter, Observable } from 'rxjs';
+import { BehaviorSubject, filter, Observable, of } from 'rxjs';
 
 import { FirebaseOptionsToken } from '@lob/client/shared/firebase/data';
 
@@ -12,11 +12,11 @@ export class FirebaseAppService {
   appSubject: BehaviorSubject<FirebaseApp | null> = new BehaviorSubject<FirebaseApp | null>(null);
   app$: Observable<FirebaseApp> = this.appSubject.asObservable().pipe(filter((app) => app !== null)) as Observable<FirebaseApp>;
 
-  constructor(@Inject(FirebaseOptionsToken) options: FirebaseOptions) {
-    this.initializeApp(options);
-  }
+  constructor(@Inject(FirebaseOptionsToken) private readonly options: FirebaseOptions) {}
 
-  private initializeApp(options: FirebaseOptions): void {
-    this.appSubject.next(initializeApp(options));
+  public initializeApp() {
+    const app = initializeApp(this.options);
+    this.appSubject.next(app);
+    return of(app);
   }
 }

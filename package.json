@@ -85,6 +85,7 @@
     "jest-environment-jsdom": "29.5.0",
     "jest-environment-node": "^29.5.0",
     "jest-preset-angular": "13.1.1",
+    "jsonc-eslint-parser": "^2.1.0",
     "lint-staged": "^13.1.0",
     "ng-mocks": "^14.3.3",
     "nx": "16.10.0",

@@ -1,15 +1,16 @@
 import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
+import { FirebaseApp } from 'firebase/app';
 import { distinctUntilChanged, map, Observable, of, switchMap } from 'rxjs';
 
 import { UserFacadeService } from '@lob/client/shared/auth/data-access';
 import { DeviceService } from '@lob/client/shared/device/data-access';
+import { FirebaseAppFacadeService } from '@lob/client/shared/firebase/data-access';
 import { ImageRetrievalService } from '@lob/client/shared/images/data-access';
 import { UiVisibilityTarget } from '@lob/client/shared/mobile/utilities/data';
 import { UiVisibilityService } from '@lob/client/shared/mobile/utilities/data-access';
 // TODO fix issue where app cant import from itself using relative path
 // eslint-disable-next-line @nx/enforce-module-boundaries
-import { GlistInitializationService } from 'apps/glist/src/app/glist-initialization.service';
 
 @Component({
   selector: 'glist-header',
@@ -30,6 +31,7 @@ export class GlistHeaderComponent implements OnInit {
   imageUrl$!: Observable<string | SafeUrl | null>;
   isSignedIn = false;
   isHeaderVisible = true;
+  app!: FirebaseApp;
 
   constructor(
     private userFacadeService: UserFacadeService,
@@ -37,20 +39,25 @@ export class GlistHeaderComponent implements OnInit {
     private readonly uiVisibilityService: UiVisibilityService,
     private changeDetectorRef: ChangeDetectorRef,
     public readonly deviceService: DeviceService,
-    private readonly glistInitializationService: GlistInitializationService
+    private readonly firebaseAppFacadeService: FirebaseAppFacadeService
   ) {}
 
   public ngOnInit(): void {
     this.getUserImage();
     this.getIsUserSignedIn();
     this.getHeaderVisibility();
+    this.firebaseAppFacadeService.app$.subscribe({
+      next: (app) => {
+        this.app = app;
+      }
+    });
   }
 
   public changeSignInStatus(): void {
     if (this.isSignedIn) {
       this.userFacadeService.logUserOut();
     } else {
-      this.userFacadeService.signUserIn(this.glistInitializationService.app, false);
+      this.userFacadeService.signUserIn(this.app, false);
     }
   }
 
