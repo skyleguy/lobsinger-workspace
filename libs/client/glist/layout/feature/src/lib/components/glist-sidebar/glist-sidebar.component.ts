@@ -8,7 +8,7 @@ interface Page {
 }
 
 @Component({
-  selector: 'glist-sidebar',
+  selector: 'glist-layout-feature-sidebar',
   templateUrl: './glist-sidebar.component.html',
   styleUrls: ['./glist-sidebar.component.scss']
 })

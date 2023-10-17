@@ -11,9 +11,9 @@ import { ClientSharedAuthDataAccessModule } from '@lob/client/shared/auth/data-a
 import { DeviceModule } from '@lob/client/shared/device/data-access';
 import { ClientSharedFirebaseDataAccessModule } from '@lob/client/shared/firebase/data-access';
 import { ClientSharedMobileUtilitiesDataAccessModule } from '@lob/client/shared/mobile/utilities/data-access';
+import { ClientGlistLayoutFeatureModule } from '@lob/client-glist-layout-feature';
 
 import { AppComponent } from './app.component';
-import { GlistLayoutModule } from './modules/glist-layout/glist-layout.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +22,7 @@ import { GlistLayoutModule } from './modules/glist-layout/glist-layout.module';
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
     DeviceModule.forRoot(),
-    GlistLayoutModule,
+    ClientGlistLayoutFeatureModule,
     StoreModule.forRoot(),
     EffectsModule.forRoot(),
     StoreDevtoolsModule.instrument({

@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@lob/client-glist-layout-feature": ["libs/client/glist/layout/feature/src/index.ts"],
       "@lob/client/glist/dashboard/data": ["libs/client/glist/dashboard/data/src/index.ts"],
       "@lob/client/glist/dashboard/data-access": ["libs/client/glist/dashboard/data-access/src/index.ts"],
       "@lob/client/glist/dashboard/feature": ["libs/client/glist/dashboard/feature/src/index.ts"],

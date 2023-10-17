@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GlistSidebarComponent } from './glist-sidebar.component';
+import { GlistHeaderComponent } from './glist-header.component';
 
-describe('GlistSidebarComponent', () => {
-  let component: GlistSidebarComponent;
-  let fixture: ComponentFixture<GlistSidebarComponent>;
+describe('GlistHeaderComponent', () => {
+  let component: GlistHeaderComponent;
+  let fixture: ComponentFixture<GlistHeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GlistSidebarComponent],
+      declarations: [GlistHeaderComponent]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(GlistSidebarComponent);
+    fixture = TestBed.createComponent(GlistHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

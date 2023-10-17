@@ -13,23 +13,22 @@ import { GlistContainerComponent } from './components/glist-container/glist-app-
 import { GlistContentComponent } from './components/glist-content/glist-content.component';
 import { GlistHeaderComponent } from './components/glist-header/glist-header.component';
 import { GlistSidebarComponent } from './components/glist-sidebar/glist-sidebar.component';
-
-import { AppRoutingModule } from '../../app.routing.module';
+import { GlistRoutingModule } from './glist.routing.module';
 
 @NgModule({
   declarations: [GlistHeaderComponent, GlistContainerComponent, GlistContentComponent, GlistSidebarComponent],
   imports: [
     CommonModule,
     FormsModule,
-    AppRoutingModule,
     MatSidenavModule,
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatListModule,
-    LetDirective
+    LetDirective,
+    GlistRoutingModule
   ],
   exports: [GlistContainerComponent]
 })
-export class GlistLayoutModule {}
+export class ClientGlistLayoutFeatureModule {}

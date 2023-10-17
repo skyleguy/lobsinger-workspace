@@ -13,7 +13,7 @@ import { UiVisibilityService } from '@lob/client/shared/mobile/utilities/data-ac
 // eslint-disable-next-line @nx/enforce-module-boundaries
 
 @Component({
-  selector: 'glist-header',
+  selector: 'glist-layout-feature-header',
   templateUrl: './glist-header.component.html',
   styleUrls: ['./glist-header.component.scss']
 })

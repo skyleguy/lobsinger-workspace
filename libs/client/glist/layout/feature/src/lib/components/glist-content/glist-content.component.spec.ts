@@ -8,7 +8,7 @@ describe('GlistContentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GlistContentComponent],
+      declarations: [GlistContentComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(GlistContentComponent);

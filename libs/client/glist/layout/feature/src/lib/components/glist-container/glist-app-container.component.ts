@@ -5,7 +5,7 @@ import { distinctUntilChanged, filter } from 'rxjs';
 import { DeviceService } from '@lob/client/shared/device/data-access';
 
 @Component({
-  selector: 'glist-container',
+  selector: 'glist-layout-feature-container',
   templateUrl: './glist-app-container.component.html',
   styleUrls: ['./glist-app-container.component.scss']
 })

@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "../../libs/client/glist/layout/feature/src/lib/glist.routing.module.ts"],
   "compilerOptions": {
     "types": ["jest", "node"]
   }
