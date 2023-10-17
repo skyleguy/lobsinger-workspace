@@ -33,7 +33,7 @@ export class RecipeContainerComponent extends AbstractRedirectComponent implemen
     public deviceService: DeviceService,
     userFacadeService: UserFacadeService
   ) {
-    super(userFacadeService.isUserSignedIn$.pipe(map((isSignedIn) => !isSignedIn)));
+    super(userFacadeService.isUserSignedInAfterAttempt$.pipe(map((isSignedIn) => !isSignedIn)));
   }
 
   public ngOnInit(): void {

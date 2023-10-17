@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { FirebaseApp } from 'firebase/app';
-import { filter, map } from 'rxjs';
+import { combineLatest, filter, map } from 'rxjs';
 
 import { User } from '@lob/client/shared/auth/data';
 
 import * as fromUser from '../../+state';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UserFacadeService {
   user$ = this.store.pipe(
     select(fromUser.selectUser),
@@ -18,6 +20,11 @@ export class UserFacadeService {
   isLoading$ = this.store.pipe(select(fromUser.selectUserLoading));
   userError$ = this.store.pipe(select(fromUser.selectUserError));
   isUserSignedIn$ = this.store.pipe(select(fromUser.selectIsUserSignedIn));
+  hasAttemptedSignOn$ = this.store.pipe(select(fromUser.selectHasAttemptedSignOn));
+  isUserSignedInAfterAttempt$ = combineLatest([this.isUserSignedIn$, this.hasAttemptedSignOn$]).pipe(
+    filter(([, hasAttempted]) => hasAttempted),
+    map(([hasAttempted, isSignedIn]) => hasAttempted && isSignedIn)
+  );
 
   constructor(private readonly store: Store<fromUser.UserState>) {}
 

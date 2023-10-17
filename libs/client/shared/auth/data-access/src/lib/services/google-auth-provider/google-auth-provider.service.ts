@@ -4,7 +4,9 @@ import { GoogleAuthProvider, getAuth, signInWithPopup, Auth, UserInfo, setPersis
 
 import { AuthProvider, User } from '@lob/client/shared/auth/data';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class GoogleAuthProviderService implements AuthProvider {
   auth!: Auth | null;
 

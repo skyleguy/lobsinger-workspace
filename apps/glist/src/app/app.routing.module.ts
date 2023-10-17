@@ -1,5 +1,5 @@
 import { NgModule, inject } from '@angular/core';
-import { Router, RouterModule, Routes, UrlTree } from '@angular/router';
+import { Router, RouterModule, Routes } from '@angular/router';
 import { map } from 'rxjs';
 
 import { UserFacadeService } from '@lob/client/shared/auth/data-access';
@@ -7,8 +7,8 @@ import { UserFacadeService } from '@lob/client/shared/auth/data-access';
 const isSignedIn = () => {
   const facadeService: UserFacadeService = inject(UserFacadeService);
   const router = inject(Router);
-  return facadeService.isUserSignedIn$.pipe(
-    map((isSignedIn): boolean | UrlTree => {
+  return facadeService.isUserSignedInAfterAttempt$.pipe(
+    map((isSignedIn) => {
       if (isSignedIn) {
         return true;
       } else {

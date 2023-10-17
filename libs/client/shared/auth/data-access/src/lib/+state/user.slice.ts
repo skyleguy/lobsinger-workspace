@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { FirebaseApp } from 'firebase/app';
 
 import { User } from '@lob/client/shared/auth/data';
 import { AjaxState } from '@lob/shared/data-management/data';
@@ -10,13 +9,13 @@ import { userCaseReducers } from './user.case-reducers';
 export const userSliceName = 'user';
 
 export interface UserState {
-  user: AjaxState<User | null>;
-  app: FirebaseApp | null;
+  user: AjaxState<User | undefined | null>;
+  hasAttemptedSignOn: boolean;
 }
 
 export const initialUserState: UserState = {
-  user: createAjaxState<User | null>(null),
-  app: null
+  user: createAjaxState<User | undefined | null>(undefined),
+  hasAttemptedSignOn: false
 };
 
 export interface State {

@@ -10,31 +10,36 @@ export const userCaseReducers = {
   signUserIn: (state: UserState, _action: PayloadAction<{ app?: FirebaseApp; isSilent: boolean }>): UserState => {
     return {
       ...state,
-      user: createAjaxState(null, true)
+      user: createAjaxState(undefined, true),
+      hasAttemptedSignOn: false
     };
   },
   signUserInSuccess: (state: UserState, { payload }: PayloadAction<User>): UserState => {
     return {
       ...state,
-      user: createAjaxState(payload)
+      user: createAjaxState(payload),
+      hasAttemptedSignOn: true
     };
   },
   signUserInError: (state: UserState, { payload }: PayloadAction<Error>): UserState => {
     return {
       ...state,
-      user: createAjaxState(null, false, payload)
+      user: createAjaxState(null, false, payload),
+      hasAttemptedSignOn: true
     };
   },
   logUserOut: (state: UserState): UserState => {
     return {
       ...state,
-      user: createAjaxState(null, false)
+      user: createAjaxState(null, false),
+      hasAttemptedSignOn: false
     };
   },
   silentSignInError: (state: UserState): UserState => {
     return {
       ...state,
-      user: createAjaxState(null, false, new Error('User no silently signed in'))
+      user: createAjaxState(undefined, false, new Error('User no silently signed in')),
+      hasAttemptedSignOn: true
     };
   }
 };

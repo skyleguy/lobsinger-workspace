@@ -12,7 +12,7 @@ import { AbstractRedirectComponent } from '@lob/client/shared/lifecycle-manageme
 })
 export class MenuContainerComponent extends AbstractRedirectComponent {
   constructor(private readonly router: Router, userFacadeService: UserFacadeService) {
-    super(userFacadeService.isUserSignedIn$.pipe(map((isSignedIn) => !isSignedIn)));
+    super(userFacadeService.isUserSignedInAfterAttempt$.pipe(map((isSignedIn) => !isSignedIn)));
   }
 
   doRedirect(): void {

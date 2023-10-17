@@ -23,7 +23,7 @@ export class GlistContainerComponent extends AbstractRedirectComponent {
     private router: Router,
     userFacadeService: UserFacadeService
   ) {
-    super(userFacadeService.isUserSignedIn$.pipe(map((isSignedIn) => !isSignedIn)));
+    super(userFacadeService.isUserSignedInAfterAttempt$.pipe(map((isSignedIn) => !isSignedIn)));
     this.glistFacadeService.getUserGlist();
   }
 

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { map } from 'rxjs';
+import { catchError, map, throwError } from 'rxjs';
 
 import { arrayBufferToImageString } from '@lob/client/shared/images/util';
 
@@ -23,6 +23,10 @@ export class ImageRetrievalService {
       map((res): string | SafeUrl => {
         const image = arrayBufferToImageString(res);
         return makeSafeUrl ? this.sanitizer.bypassSecurityTrustUrl(`data:image/${mimeType};base64,${image}`) : image;
+      }),
+      catchError((err) => {
+        console.error(`Error during image retrieval: ${JSON.stringify(err)}`);
+        return throwError(() => err);
       })
     );
   }

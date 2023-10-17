@@ -8,3 +8,4 @@ export const selectUser = createSelector(selectUserState, (state) => state.user.
 export const selectUserLoading = createSelector(selectUserState, (state) => state.user.loading);
 export const selectUserError = createSelector(selectUserState, (state) => state.user.error);
 export const selectIsUserSignedIn = createSelector(selectUserState, (state) => !!state.user.data);
+export const selectHasAttemptedSignOn = createSelector(selectUserState, (state) => state.hasAttemptedSignOn);
