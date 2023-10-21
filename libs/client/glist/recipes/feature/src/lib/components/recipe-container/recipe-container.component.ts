@@ -6,11 +6,12 @@ import { map } from 'rxjs';
 import { GlistFacadeService } from '@lob/client/glist/glists/data-access';
 import { Recipe, RecipeFilter } from '@lob/client/glist/recipes/data';
 import { RecipeFacadeService } from '@lob/client/glist/recipes/data-access';
-import { RecipeEditorComponent } from '@lob/client/glist/recipes/ui';
 import { UserFacadeService } from '@lob/client/shared/auth/data-access';
 import { DeviceService } from '@lob/client/shared/device/data-access';
 import { AbstractRedirectComponent } from '@lob/client/shared/lifecycle-management/data-access';
 import { UiVisibilityTarget } from '@lob/client/shared/mobile/utilities/data';
+
+import { RecipeEditorComponent } from '../recipe-editor/recipe-editor.component';
 
 @Component({
   selector: 'glist-recipe-container',

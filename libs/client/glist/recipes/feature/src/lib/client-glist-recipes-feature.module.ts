@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -34,6 +36,8 @@ import { clientGlistRecipesFeatureRoutes } from './lib.routes';
     MatStepperModule,
     MatCheckboxModule,
     MatListModule,
+    MatButtonToggleModule,
+    MatChipsModule,
     RouterModule.forChild(clientGlistRecipesFeatureRoutes),
     FormsModule,
     ReactiveFormsModule,

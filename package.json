@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js",
-    "start": "nx serve --host=0.0.0.0",
+    "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
     "lint": "nx lint",
@@ -68,6 +68,8 @@
     "@nx/webpack": "^16.10.0",
     "@nx/workspace": "^16.10.0",
     "@schematics/angular": "^16.2.6",
+    "@swc-node/register": "^1.6.8",
+    "@swc/core": "^1.3.94",
     "@types/jest": "^29.4.0",
     "@types/lodash": "^4.14.155",
     "@types/node": "~18.7.1",
@@ -94,6 +96,7 @@
     "tailwindcss": "^3.3.2",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "5.1.3"
   },
   "lint-staged": {

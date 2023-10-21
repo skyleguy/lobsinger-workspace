@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -13,17 +12,7 @@ import { RecipeCardComponent } from './components/recipe-card/recipe-card.compon
 import { RecipeFilterTrayComponent } from './components/recipe-filter-tray/recipe-filter-tray.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatButtonToggleModule,
-    MatIconModule,
-    MatButtonModule,
-    MatChipsModule,
-    MatDialogModule,
-    MatInputModule,
-    MatSelectModule
-  ],
+  imports: [CommonModule, MatCardModule, MatIconModule, MatButtonModule, MatChipsModule, MatDialogModule, MatInputModule, MatSelectModule],
   declarations: [RecipeCardComponent, RecipeFilterTrayComponent],
   exports: [RecipeCardComponent, RecipeFilterTrayComponent]
 })
