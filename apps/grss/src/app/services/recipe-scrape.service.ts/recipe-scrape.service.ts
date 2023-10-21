@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import got from 'got';
+import { gotScraping } from 'got-scraping';
 import soup from 'jssoup';
 import sharp from 'sharp';
 
@@ -41,7 +41,7 @@ export class RecipeScrapeService {
     let data;
     try {
       this.logger.log(`making call to: ${url}`);
-      data = await got.get(url);
+      data = await gotScraping.get(url);
     } catch (err) {
       this.logger.log(`Recieved error when calling ${url}`, err);
       return Promise.reject(err);
@@ -132,13 +132,17 @@ export class RecipeScrapeService {
       return img.attrs.src.includes('https');
     })?.attrs.src;
     if (imageSrc) {
-      const imageRes = await got.get(imageSrc);
-      await sharp(imageRes.rawBody)
-        .resize({ width: 500, height: 300 })
-        .toBuffer()
-        .then((data) => {
-          scrapeResponse.image = data;
-        });
+      try {
+        const imageRes = await gotScraping.get(imageSrc);
+        await sharp(imageRes.rawBody)
+          .resize({ width: 500, height: 300 })
+          .toBuffer()
+          .then((data) => {
+            scrapeResponse.image = data;
+          });
+      } catch (e) {
+        this.logger.error(`Image was not retrieved successfully: ${e}`);
+      }
     } else {
       this.logger.warn(`No image with valid source found for ${url}`);
     }
