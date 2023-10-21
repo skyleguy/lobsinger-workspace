@@ -7,11 +7,10 @@ import { filter, map, switchMap } from 'rxjs';
 import { GlistFacadeService } from '@lob/client/glist/glists/data-access';
 import { favoritedRecipeText, Recipe, unfavoritedRecipeText } from '@lob/client/glist/recipes/data';
 import { RecipeFacadeService } from '@lob/client/glist/recipes/data-access';
+import { RecipeEditorComponent } from '@lob/client/glist/recipes/ui';
 import { ArrayUtils } from '@lob/client/shared/helpers/util';
 import { ConfirmActionComponent } from '@lob/client/shared/user-actions/ui';
 import { Ingredient } from '@lob/shared/ingredients/data';
-
-import { RecipeEditorComponent } from '../recipe-editor/recipe-editor.component';
 
 @Component({
   selector: 'glist-recipe-details',

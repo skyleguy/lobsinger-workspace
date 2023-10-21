@@ -1,21 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
-import { MatStepperModule } from '@angular/material/stepper';
 
 import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
-import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
-import { RecipeEditorComponent } from './components/recipe-editor/recipe-editor.component';
 import { RecipeFilterTrayComponent } from './components/recipe-filter-tray/recipe-filter-tray.component';
 
 @NgModule({
@@ -26,16 +20,11 @@ import { RecipeFilterTrayComponent } from './components/recipe-filter-tray/recip
     MatIconModule,
     MatButtonModule,
     MatChipsModule,
-    MatStepperModule,
     MatDialogModule,
     MatInputModule,
-    MatCheckboxModule,
-    MatSelectModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatListModule
+    MatSelectModule
   ],
-  declarations: [RecipeCardComponent, RecipeEditorComponent, RecipeDetailsComponent, RecipeFilterTrayComponent],
-  exports: [RecipeCardComponent, RecipeEditorComponent, RecipeFilterTrayComponent]
+  declarations: [RecipeCardComponent, RecipeFilterTrayComponent],
+  exports: [RecipeCardComponent, RecipeFilterTrayComponent]
 })
 export class ClientGlistRecipesUiModule {}
