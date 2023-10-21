@@ -28,7 +28,8 @@ describe('AppComponent', () => {
     declarations: [...MOCKED_COMPONENTS],
     providers: [
       mockProvider(FirebaseAppFacadeService, {
-        app$: of({} as FirebaseApp)
+        app$: of({} as FirebaseApp),
+        appError$: of(null)
       }),
       mockProvider(UserFacadeService, {
         signUserIn: () => {
