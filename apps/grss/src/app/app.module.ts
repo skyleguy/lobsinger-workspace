@@ -9,8 +9,4 @@ import { RecipeScrapeService } from './services/recipe-scrape.service.ts/recipe-
   controllers: [RecipeScrapeController, HealthController],
   providers: [RecipeScrapeService]
 })
-export class AppModule {
-  constructor() {
-    console.log('hello');
-  }
-}
+export class AppModule {}

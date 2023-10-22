@@ -25,6 +25,9 @@ export class RecipeFacadeService {
   favoriteRecipes$ = this.store.pipe(select(selectors.selectFavoriteRecipes));
   isLoading$ = this.store.pipe(select(selectors.selectRecipeLoading));
   userError$ = this.store.pipe(select(selectors.selectRecipeLoading));
+  deleteRecipeData$ = this.store.pipe(select(selectors.selectDeleteRecipeData));
+  deleteRecipeLoading$ = this.store.pipe(select(selectors.selectDeleteRecipeDataLoading));
+  deleteRecipeError$ = this.store.pipe(select(selectors.selectDeleteRecipeDataError));
 
   constructor(private readonly store: Store<RecipeState>) {}
 

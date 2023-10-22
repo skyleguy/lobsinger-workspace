@@ -2,6 +2,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 
 import { Recipe } from '@lob/client/glist/recipes/data';
 import { FirestoreData } from '@lob/client/shared/firebase/data';
+import { createAjaxState } from '@lob/shared/data-management/util';
 
 import { RecipeState } from './recipe.slice';
 
@@ -52,21 +53,20 @@ export const recipeCaseReducers = {
   deleteRecipe: (state: RecipeState, _action: PayloadAction<Recipe>): RecipeState => {
     return {
       ...state,
-      isLoading: true
+      deleteState: createAjaxState('', true)
     };
   },
   deleteRecipeSuccess: (state: RecipeState, { payload }: PayloadAction<Recipe>): RecipeState => {
     return {
       ...state,
       recipes: state.recipes.filter((rec) => rec.id !== payload.id),
-      isLoading: false
+      deleteState: createAjaxState(payload.id, false)
     };
   },
   deleteRecipeError: (state: RecipeState, { payload }: PayloadAction<Error>): RecipeState => {
     return {
       ...state,
-      isLoading: false,
-      error: payload
+      deleteState: createAjaxState('', false, payload)
     };
   },
   updateRecipe: (state: RecipeState, _action: PayloadAction<Partial<Recipe> & FirestoreData>): RecipeState => {

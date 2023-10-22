@@ -21,3 +21,8 @@ export const selectFavoriteRecipes = createSelector(selectRecipeState, (state): 
 );
 export const selectRecipeLoading = createSelector(selectRecipeState, (state): boolean => state.isLoading);
 export const selectRecipeError = createSelector(selectRecipeState, (state): Error | null => state.error);
+
+// delete selectors
+export const selectDeleteRecipeData = createSelector(selectRecipeState, (state) => state.deleteState.data);
+export const selectDeleteRecipeDataLoading = createSelector(selectRecipeState, (state) => state.deleteState.loading);
+export const selectDeleteRecipeDataError = createSelector(selectRecipeState, (state) => state.deleteState.error);

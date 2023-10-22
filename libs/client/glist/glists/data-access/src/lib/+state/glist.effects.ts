@@ -150,11 +150,7 @@ export class GlistEffects {
         return this.userFacadeService.user$.pipe(
           switchMap((user) => {
             const newGlist: Glist = { ...state.glist };
-            console.log('before filter');
-            console.log(newGlist.ingredients.length);
             newGlist.ingredients = newGlist.ingredients.filter((ingredient) => ingredient.name !== payload.name);
-            console.log('after filter');
-            console.log(newGlist.ingredients.length);
             return this.firestoreService.updateDocument(this.tableName, newGlist, [user.id, this.subCollectionName]).pipe(
               switchMap(() => of(fromGlist.actions.deleteIngredientFromGlistSuccess(payload))),
               catchError((err) => of(fromGlist.actions.deleteIngredientFromGlistError(err)))

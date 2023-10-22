@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { NavigationEnd, Router, Scroll } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { deepCopy } from '@firebase/util';
+import { isNil } from 'lodash';
 import { filter, map, switchMap } from 'rxjs';
 
 import { GlistFacadeService } from '@lob/client/glist/glists/data-access';
 import { favoritedRecipeText, Recipe, unfavoritedRecipeText } from '@lob/client/glist/recipes/data';
 import { RecipeFacadeService } from '@lob/client/glist/recipes/data-access';
-import { ArrayUtils } from '@lob/client/shared/helpers/util';
+import { AbstractSubscriptionComponent } from '@lob/client/shared/lifecycle-management/data-access';
 import { ConfirmActionComponent } from '@lob/client/shared/user-actions/ui';
 import { Ingredient } from '@lob/shared/ingredients/data';
 
@@ -18,7 +19,7 @@ import { RecipeEditorComponent } from '../recipe-editor/recipe-editor.component'
   templateUrl: './recipe-details.component.html',
   styleUrls: ['./recipe-details.component.scss']
 })
-export class RecipeDetailsComponent implements OnInit {
+export class RecipeDetailsComponent extends AbstractSubscriptionComponent implements OnInit {
   readonly favoritedRecipeText = favoritedRecipeText;
   readonly unfavoritedRecipeText = unfavoritedRecipeText;
 
@@ -29,17 +30,25 @@ export class RecipeDetailsComponent implements OnInit {
     private recipeFacadeService: RecipeFacadeService,
     private router: Router,
     private dialog: MatDialog,
-    private glistFacadeService: GlistFacadeService
-  ) {}
+    private glistFacadeService: GlistFacadeService,
+    private activatedRoute: ActivatedRoute
+  ) {
+    super();
+  }
 
   public ngOnInit(): void {
-    this.router.events
+    this.setLoadingState();
+    this.handleDeleteRecipeData();
+    this.handleDeleteRecipeError();
+    this.handleRouteState();
+  }
+
+  private handleRouteState() {
+    this.sub.sink = this.activatedRoute.params
       .pipe(
-        map((event) => event as Scroll),
-        filter((scroll) => scroll.routerEvent instanceof NavigationEnd),
-        map((event) => event.routerEvent),
-        map((navEnd) => ArrayUtils.getLast<string>(navEnd.url?.split('/'))),
-        switchMap((recipeId) => this.recipeFacadeService.getRecipeById(recipeId ?? ''))
+        map((params) => params?.['id']),
+        filter((id) => !isNil(id)),
+        switchMap((recipeId) => this.recipeFacadeService.getRecipeById(recipeId))
       )
       .subscribe({
         next: (recipe) => {
@@ -48,13 +57,34 @@ export class RecipeDetailsComponent implements OnInit {
           } else {
             this.recipe = recipe;
             this.originalIngredients = recipe.ingredients;
+            this.setDataState();
           }
         }
       });
   }
 
+  private handleDeleteRecipeData() {
+    this.sub.sink = this.recipeFacadeService.deleteRecipeData$.subscribe({
+      next: (deletedRecipeId) => {
+        if (this.recipe?.id === deletedRecipeId) {
+          this.router.navigate(['recipes']);
+        }
+      }
+    });
+  }
+
+  private handleDeleteRecipeError() {
+    this.sub.sink = this.recipeFacadeService.deleteRecipeError$.subscribe({
+      next: (deleteError) => {
+        if (deleteError) {
+          this.setErrorState();
+        }
+      }
+    });
+  }
+
   public editRecipe(): void {
-    this.dialog
+    this.sub.sink = this.dialog
       .open(RecipeEditorComponent, {
         height: '90%',
         width: '100%',
@@ -95,7 +125,7 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   public deleteRecipe(): void {
-    this.dialog
+    this.sub.sink = this.dialog
       .open(ConfirmActionComponent, {
         data: {
           phrase: `Are you sure you want to delete the recipe titled ${this.recipe.title}?`
@@ -105,8 +135,8 @@ export class RecipeDetailsComponent implements OnInit {
       .subscribe({
         next: (result) => {
           if (result) {
+            this.setLoadingState();
             this.recipeFacadeService.deleteRecipe(this.recipe);
-            this.router.navigate(['recipes']);
           }
         }
       });

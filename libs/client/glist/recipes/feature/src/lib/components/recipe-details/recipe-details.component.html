@@ -28,7 +28,7 @@
     </div>
   </div>
   <div class="flex justify-start">
-    <h5 class="mt-0">Created on: {{ recipe.creationTime | date : 'dd LLL YYYY' }}</h5>
+    <h5 *ngIf="recipe.creationTime" class="mt-0">Created on: {{ recipe.creationTime | date : 'dd LLL YYYY' }}</h5>
   </div>
 
   <h4>Details</h4>

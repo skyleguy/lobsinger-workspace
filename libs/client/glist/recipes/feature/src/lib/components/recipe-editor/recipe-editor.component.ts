@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { format } from 'date-fns';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Recipe, Tag, cuisineTypes, dietTypes, dishTypes } from '@lob/client/glist/recipes/data';
@@ -21,6 +22,7 @@ export class RecipeEditorComponent implements OnInit {
   readonly cuisineTypes = cuisineTypes;
   readonly dishTypes = dishTypes;
   readonly dietTypes = dietTypes;
+  readonly recipeCreationDateFormat = 'MM/dd/yyyy';
   urlInfoForm!: FormGroup;
   generalInfoForm!: FormGroup;
   ingredientsForm!: FormGroup;
@@ -130,7 +132,7 @@ export class RecipeEditorComponent implements OnInit {
             { type: 'Diet', value: this.dietType?.value },
             { type: 'Dish', value: this.dishType?.value }
           ],
-          creationTime: new Date()
+          creationTime: format(new Date(), this.recipeCreationDateFormat)
         };
         const otherTags: Tag[] = this.otherTags?.value?.split(',').map((tag: string): Tag => {
           return {
@@ -164,7 +166,7 @@ export class RecipeEditorComponent implements OnInit {
         { type: 'Diet', value: this.dietType?.value ?? '' },
         { type: 'Dish', value: this.dishType?.value ?? '' }
       ],
-      creationTime: new Date()
+      creationTime: format(new Date(), this.recipeCreationDateFormat)
     };
     const otherTags: Tag[] = this.otherTags?.value?.split(',').map((tag: string): Tag => {
       return {
