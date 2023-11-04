@@ -1,6 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 
 import { Glist } from '@lob/client/glist/glists/data';
+import { Recipe } from '@lob/client/glist/recipes/data';
 import { Ingredient } from '@lob/shared/ingredients/data';
 
 import { GlistState } from './glist.slice';
@@ -33,18 +34,19 @@ export const glistCaseReducers = {
       hasAttempted: true
     };
   },
-  addRecipeToGlist: (state: GlistState, _action: PayloadAction<string>): GlistState => {
+  addRecipeToGlist: (state: GlistState, _action: PayloadAction<Recipe>): GlistState => {
     return {
       ...state,
       isLoading: true
     };
   },
-  addRecipeToGlistSuccess: (state: GlistState, { payload }: PayloadAction<string>): GlistState => {
+  addRecipeToGlistSuccess: (state: GlistState, { payload }: PayloadAction<Recipe>): GlistState => {
     return {
       ...state,
       glist: {
         ...state.glist,
-        recipes: [...state.glist.recipes, payload]
+        recipes: [...state.glist.recipes, payload.id],
+        ingredients: [...state.glist.ingredients, ...payload.ingredients]
       },
       isLoading: false
     };
@@ -96,6 +98,29 @@ export const glistCaseReducers = {
     };
   },
   addIngredientToGlistError: (state: GlistState, { payload }: PayloadAction<Error>): GlistState => {
+    return {
+      ...state,
+      isLoading: false,
+      error: payload
+    };
+  },
+  changeIngredientOrder: (state: GlistState, _action: PayloadAction<Ingredient[]>): GlistState => {
+    return {
+      ...state,
+      isLoading: true
+    };
+  },
+  changeIngredientOrderSuccess: (state: GlistState, { payload }: PayloadAction<Ingredient[]>): GlistState => {
+    return {
+      ...state,
+      glist: {
+        ...state.glist,
+        ingredients: payload
+      },
+      isLoading: false
+    };
+  },
+  changeIngredientOrderError: (state: GlistState, { payload }: PayloadAction<Error>): GlistState => {
     return {
       ...state,
       isLoading: false,

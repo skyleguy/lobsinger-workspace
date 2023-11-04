@@ -22,15 +22,23 @@ export class IngredientsListComponent implements OnChanges {
   newIngredient = new EventEmitter<Ingredient>();
   @Output()
   ingredientChecked = new EventEmitter<Ingredient>();
+  @Output()
+  ingredientOrderChange = new EventEmitter<Ingredient[]>();
 
-  totalIngredients: Ingredient[] = [];
+  currentIngredients: Ingredient[] = [];
 
   public ngOnChanges(): void {
-    this.calculateAllIngredients();
+    this.currentIngredients = [...this.ingredients];
   }
 
   public drop(event: CdkDragDrop<string[]>): void {
-    moveItemInArray(this.totalIngredients, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.currentIngredients, event.previousIndex, event.currentIndex);
+    this.ingredientOrderChange.emit(this.currentIngredients);
+  }
+
+  public handleIngredientChecked(ingredient: Ingredient, index: number): void {
+    this.currentIngredients.splice(index, 1);
+    this.ingredientChecked.next(ingredient);
   }
 
   public validateNewIngredient(newIngredientName: string, newIngredientValue: string): void {
@@ -48,13 +56,5 @@ export class IngredientsListComponent implements OnChanges {
       return { name, amount: matches[1], unit: matches[2] };
     }
     return { name, amount: value };
-  }
-
-  private calculateAllIngredients(): void {
-    const ingredientsFromRecipes: Ingredient[] =
-      this.recipes
-        ?.reduce((accumulator: Ingredient[], current: Recipe): Ingredient[] => [...accumulator, ...current.ingredients], [])
-        ?.sort((a, b) => a.name.localeCompare(b.name)) ?? [];
-    this.totalIngredients = [...ingredientsFromRecipes, ...this.ingredients];
   }
 }

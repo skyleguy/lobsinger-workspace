@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { Recipe, Tag, cuisineTypes, dietTypes, dishTypes } from '@lob/client/glist/recipes/data';
 import { RecipeScrapeService } from '@lob/client/glist/recipes/data-access';
-import { ImageRetrievalService } from '@lob/client/shared/images/data-access';
 import { arrayBufferToImageString } from '@lob/client/shared/images/util';
 import { Ingredient } from '@lob/shared/ingredients/data';
 
@@ -23,6 +22,7 @@ export class RecipeEditorComponent implements OnInit {
   readonly dishTypes = dishTypes;
   readonly dietTypes = dietTypes;
   readonly recipeCreationDateFormat = 'MM/dd/yyyy';
+
   urlInfoForm!: FormGroup;
   generalInfoForm!: FormGroup;
   ingredientsForm!: FormGroup;
@@ -87,9 +87,12 @@ export class RecipeEditorComponent implements OnInit {
     public dialogRef: MatDialogRef<RecipeEditorComponent>,
     @Inject(MAT_DIALOG_DATA) public recipe: Recipe,
     private fb: FormBuilder,
-    private readonly recipeScrapeService: RecipeScrapeService,
-    private readonly imageRetrievalService: ImageRetrievalService
-  ) {}
+    private readonly recipeScrapeService: RecipeScrapeService
+  ) {
+    if (recipe) {
+      this.isFromForm = true;
+    }
+  }
 
   public ngOnInit(): void {
     this.createUrlInfoForm();

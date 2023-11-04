@@ -79,7 +79,7 @@ export class RecipeContainerComponent extends AbstractRedirectComponent implemen
   }
 
   public addRecipeToGlist(recipe: Recipe): void {
-    this.glistFacadeService.addRecipeToGlist(recipe.id);
+    this.glistFacadeService.addRecipeToGlist(recipe);
   }
 
   private getRecipes(): void {

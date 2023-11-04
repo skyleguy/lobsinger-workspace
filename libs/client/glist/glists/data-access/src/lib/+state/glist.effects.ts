@@ -64,7 +64,11 @@ export class GlistEffects {
       switchMap(({ state, payload }) => {
         return this.userFacadeService.user$.pipe(
           switchMap((user) => {
-            const newGlist: Glist = { ...state.glist, recipes: [...state.glist.recipes, payload] };
+            const newGlist: Glist = {
+              ...state.glist,
+              recipes: [...state.glist.recipes, payload.id],
+              ingredients: [...state.glist.ingredients, ...payload.ingredients]
+            };
             return this.firestoreService.updateDocument(this.tableName, newGlist, [user.id, this.subCollectionName]).pipe(
               switchMap(() => of(fromGlist.actions.addRecipeToGlistSuccess(payload))),
               catchError((err) => of(fromGlist.actions.addRecipeToGlistError(err)))
@@ -132,6 +136,28 @@ export class GlistEffects {
             return this.firestoreService.updateDocument(this.tableName, newGlist, [user.id, this.subCollectionName]).pipe(
               switchMap(() => of(fromGlist.actions.addIngredientToGlistSuccess(payload))),
               catchError((err) => of(fromGlist.actions.addIngredientToGlistError(err)))
+            );
+          })
+        );
+      })
+    )
+  );
+
+  changeIngredientOrder$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(fromGlist.actions.changeIngredientOrder),
+      map(({ payload }) => payload),
+      withLatestFrom(this.store, (payload, state) => {
+        return { state: state[fromGlist.glistSliceName], payload };
+      }),
+      switchMap(({ state, payload }) => {
+        return this.userFacadeService.user$.pipe(
+          switchMap((user) => {
+            const newGlist: Glist = deepCopy(state.glist);
+            newGlist.ingredients = payload;
+            return this.firestoreService.updateDocument(this.tableName, newGlist, [user.id, this.subCollectionName]).pipe(
+              switchMap(() => of(fromGlist.actions.changeIngredientOrderSuccess(payload))),
+              catchError((err) => of(fromGlist.actions.changeIngredientOrderError(err)))
             );
           })
         );

@@ -42,4 +42,8 @@ export class GlistContainerComponent extends AbstractRedirectComponent {
   public clearGlist(): void {
     this.glistFacadeService.clearGlist();
   }
+
+  public saveNewIngredientList(ingredients: Ingredient[]) {
+    this.glistFacadeService.changeIngredientOrder(ingredients);
+  }
 }

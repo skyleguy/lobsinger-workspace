@@ -121,7 +121,7 @@ export class RecipeDetailsComponent extends AbstractSubscriptionComponent implem
   }
 
   public addRecipeToGlist(): void {
-    this.glistFacadeService.addRecipeToGlist(this.recipe.id);
+    this.glistFacadeService.addRecipeToGlist(this.recipe);
   }
 
   public deleteRecipe(): void {

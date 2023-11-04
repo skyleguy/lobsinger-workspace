@@ -1,6 +1,6 @@
 <div class="flex flex-col h-full form-grey">
   <div class="flex justify-between p-2">
-    <h2 class="pl-4">Add New Recipe</h2>
+    <h2 class="pl-4">{{ recipe ? 'Edit Recipe' : 'Add New Recipe' }}</h2>
     <button mat-icon-button mat-dialog-close>
       <mat-icon>close</mat-icon>
     </button>
@@ -149,9 +149,9 @@
         </div>
       </mat-step>
       <mat-step [stepControl]="ingredientsForm">
-        <ng-template matStepLabel>Add Ingredients</ng-template>
+        <ng-template matStepLabel>{{ recipe ? 'Edit Ingredients' : 'Add Ingredients' }}</ng-template>
         <div class="flex flex-col h-full">
-          <h4 class="p-2 m-0">Add Ingredients</h4>
+          <h4 class="p-2 m-0">{{ recipe ? 'Edit Ingredients' : 'Add Ingredients' }}</h4>
           <form [formGroup]="ingredientsForm" class="grow overflow-y-auto">
             <mat-list role="list">
               <mat-list-item role="listitem" class="ingredient-item" *ngFor="let ingredient of ingredients?.value; let i = index">
@@ -191,9 +191,9 @@
         </div>
       </mat-step>
       <mat-step [stepControl]="directionsForm">
-        <ng-template matStepLabel>Add Directions</ng-template>
+        <ng-template matStepLabel>{{ recipe ? 'Edit Directions' : 'Add Directions' }}</ng-template>
         <div class="flex flex-col h-full">
-          <h4 class="p-2 m-0">Add Directions</h4>
+          <h4 class="p-2 m-0">{{ recipe ? 'Edit Directions' : 'Add Directions' }}</h4>
           <form [formGroup]="directionsForm" class="grow overflow-y-auto">
             <div formArrayName="directions">
               <p *ngFor="let directionsControl of directions?.controls; let i = index">
@@ -220,9 +220,9 @@
         </div>
       </mat-step>
       <mat-step [stepControl]="tagsForm">
-        <ng-template matStepLabel>Add Tags</ng-template>
+        <ng-template matStepLabel>{{ recipe ? 'Edit Tags' : 'Add Tags' }}</ng-template>
         <div class="flex flex-col h-full">
-          <h4 class="p-2 m-0">Add Tags</h4>
+          <h4 class="p-2 m-0">{{ recipe ? 'Edit Tags' : 'Add Tags' }}</h4>
           <form [formGroup]="tagsForm" class="grow overflow-y-auto">
             <p>
               <mat-form-field appearance="fill" class="w-1/2">
@@ -266,7 +266,7 @@
               <button mat-button matStepperPrevious>{{ back }}</button>
             </div>
             <div>
-              <button mat-button matStepperNext (click)="submitRecipe()">{{ recipe ? 'EDIT RECIPE' : 'ADD NEW RECIPE' }}</button>
+              <button mat-button matStepperNext (click)="submitRecipe()">{{ recipe ? 'SUBMIT EDITS' : 'ADD NEW RECIPE' }}</button>
               <button mat-button matStepperNext>{{ cancel }}</button>
             </div>
           </div>

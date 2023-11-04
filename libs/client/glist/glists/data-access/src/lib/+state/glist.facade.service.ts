@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 
+import { Recipe } from '@lob/client/glist/recipes/data';
 import { Ingredient } from '@lob/shared/ingredients/data';
 
 import * as selectors from './glist.selectors';
@@ -22,8 +23,8 @@ export class GlistFacadeService {
     this.store.dispatch(actions.getUserGlist());
   }
 
-  public addRecipeToGlist(recipeId: string): void {
-    this.store.dispatch(actions.addRecipeToGlist(recipeId));
+  public addRecipeToGlist(recipe: Recipe): void {
+    this.store.dispatch(actions.addRecipeToGlist(recipe));
   }
 
   public deleteRecipeFromGlist(recipeId: string): void {
@@ -40,6 +41,10 @@ export class GlistFacadeService {
 
   public deleteIngredientFromGlist(ingredient: Ingredient): void {
     this.store.dispatch(actions.deleteIngredientFromGlist(ingredient));
+  }
+
+  public changeIngredientOrder(ingredients: Ingredient[]): void {
+    this.store.dispatch(actions.changeIngredientOrder(ingredients));
   }
 
   public clearGlist(): void {
