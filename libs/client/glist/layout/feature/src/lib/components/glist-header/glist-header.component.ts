@@ -1,5 +1,10 @@
+import { AsyncPipe } from '@angular/common';
 import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { SafeUrl } from '@angular/platform-browser';
+import { LetDirective } from '@ngrx/component';
 import { FirebaseApp } from 'firebase/app';
 import { distinctUntilChanged, map, Observable, of, switchMap } from 'rxjs';
 
@@ -15,7 +20,9 @@ import { UiVisibilityService } from '@lob/client/shared/mobile/utilities/data-ac
 @Component({
   selector: 'glist-layout-feature-header',
   templateUrl: './glist-header.component.html',
-  styleUrls: ['./glist-header.component.scss']
+  styleUrls: ['./glist-header.component.scss'],
+  standalone: true,
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule, LetDirective, AsyncPipe]
 })
 export class GlistHeaderComponent implements OnInit {
   readonly isMenuVisible$ = this.uiVisibilityService.visibilityMap$.pipe(

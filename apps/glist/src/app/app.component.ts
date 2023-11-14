@@ -5,7 +5,7 @@ import { filter } from 'rxjs';
 
 import { UserFacadeService } from '@lob/client/shared/auth/data-access';
 import { FirebaseAppFacadeService } from '@lob/client/shared/firebase/data-access';
-import { ClientGlistLayoutFeatureModule } from '@lob/client-glist-layout-feature';
+import { GlistContainerComponent } from '@lob/client-glist-layout-feature';
 
 enum AppState {
   LOADED = 'LOADED',
@@ -18,7 +18,7 @@ enum AppState {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [MatProgressSpinnerModule, ClientGlistLayoutFeatureModule]
+  imports: [MatProgressSpinnerModule, GlistContainerComponent]
 })
 export class AppComponent implements OnInit {
   constructor(

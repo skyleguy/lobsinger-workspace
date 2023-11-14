@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { Router, RouterLink } from '@angular/router';
 
 interface Page {
   title: string;
@@ -10,7 +12,9 @@ interface Page {
 @Component({
   selector: 'glist-layout-feature-sidebar',
   templateUrl: './glist-sidebar.component.html',
-  styleUrls: ['./glist-sidebar.component.scss']
+  styleUrls: ['./glist-sidebar.component.scss'],
+  standalone: true,
+  imports: [MatListModule, RouterLink, MatIconModule]
 })
 export class GlistSidebarComponent {
   readonly pages: Page[] = [
