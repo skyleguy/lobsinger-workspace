@@ -7,13 +7,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterModule } from '@angular/router';
 import { LetDirective } from '@ngrx/component';
 
 import { GlistContainerComponent } from './components/glist-container/glist-app-container.component';
 import { GlistContentComponent } from './components/glist-content/glist-content.component';
 import { GlistHeaderComponent } from './components/glist-header/glist-header.component';
 import { GlistSidebarComponent } from './components/glist-sidebar/glist-sidebar.component';
-import { GlistRoutingModule } from './glist.routing.module';
 
 @NgModule({
   declarations: [GlistHeaderComponent, GlistContainerComponent, GlistContentComponent, GlistSidebarComponent],
@@ -27,7 +27,7 @@ import { GlistRoutingModule } from './glist.routing.module';
     MatButtonModule,
     MatListModule,
     LetDirective,
-    GlistRoutingModule
+    RouterModule
   ],
   exports: [GlistContainerComponent]
 })
