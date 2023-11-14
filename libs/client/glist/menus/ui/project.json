@@ -10,12 +10,11 @@
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "libs/client/glist/menus/ui/jest.config.ts",
-        "tsConfig": "libs/client/glist/menus/ui/tsconfig.lib.json",
-        "passWithNoTests": true
+        "tsConfig": "libs/client/glist/menus/ui/tsconfig.lib.json"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": ["libs/client/glist/menus/ui/**/*.ts", "libs/client/glist/menus/ui/**/*.html"]
       }

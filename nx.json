@@ -1,28 +1,27 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "lob",
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx-cloud",
-      "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"],
-        "accessToken": "N2Y5ODRjZWYtYjA4Yi00YWI5LWI1NjktYmZjMTdhMmM1YjZhfHJlYWQtd3JpdGU="
-      }
-    }
-  },
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
-    },
-    "test": {
-      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
-    },
-    "e2e": {
-      "inputs": ["default", "^production"]
+      "inputs": ["production", "^production"],
+      "cache": true
     },
     "lint": {
-      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
+      "cache": true
+    },
+    "@nx/jest:jest": {
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "cache": true,
+      "options": {
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
     }
   },
   "namedInputs": {
@@ -52,5 +51,6 @@
       "style": "scss"
     }
   },
-  "defaultProject": "glist"
+  "defaultProject": "glist",
+  "nxCloudAccessToken": "N2Y5ODRjZWYtYjA4Yi00YWI5LWI1NjktYmZjMTdhMmM1YjZhfHJlYWQtd3JpdGU="
 }

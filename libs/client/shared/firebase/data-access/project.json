@@ -10,12 +10,11 @@
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "libs/client/shared/firebase/data-access/jest.config.ts",
-        "tsConfig": "libs/client/shared/firebase/data-access/tsconfig.lib.json",
-        "passWithNoTests": true
+        "tsConfig": "libs/client/shared/firebase/data-access/tsconfig.lib.json"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": ["libs/client/shared/firebase/data-access/**/*.ts", "libs/client/shared/firebase/data-access/**/*.html"]
       }
