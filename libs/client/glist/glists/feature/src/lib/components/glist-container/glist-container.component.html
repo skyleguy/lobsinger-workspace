@@ -46,7 +46,9 @@
 
 <ng-template #recipesInList>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-2">
-    <glist-recipe-card class="md:px-6 lg:px-6" *ngFor="let recipe of recipes$ | async" [recipe]="recipe"></glist-recipe-card>
+    @for (recipe of recipes$ | async; track recipe.id) {
+      <glist-recipe-card class="md:px-6 lg:px-6" [recipe]="recipe"></glist-recipe-card>
+    }
   </div>
 </ng-template>
 

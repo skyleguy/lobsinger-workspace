@@ -1,102 +1,113 @@
-<div class="h-full overflow-y-auto p-2" *ngIf="recipe">
-  <div class="flex justify-between items-center">
-    <div class="flex items-center gap-1">
-      <h2 class="my-0">{{ recipe.title | titlecase }}</h2>
-      <button mat-icon-button (click)="toggleRecipeFavorite()">
-        <mat-icon>{{ recipe.isFavorited ? favoritedRecipeText : unfavoritedRecipeText }}</mat-icon>
-      </button>
-      <span><a [href]="recipe.link" target="_blank">Recipe Link</a></span>
-    </div>
-    <div class="flex items-center gap-2">
-      <button mat-flat-button color="primary" (click)="addRecipeToGlist()">
-        <mat-icon>add</mat-icon>
-        ADD RECIPE TO GLIST
-      </button>
-      <button mat-stroked-button color="primary" [disabled]="true">
-        <mat-icon>add</mat-icon>
-        ADD RECIPE TO A MENU
-      </button>
-      <button mat-stroked-button color="primary" [disabled]="true">
-        <mat-icon>print</mat-icon>
-        PRINT
-      </button>
-      <button mat-stroked-button color="primary" (click)="editRecipe()">
-        <mat-icon>edit</mat-icon>
-        EDIT
-      </button>
-      <button mat-button color="primary" (click)="deleteRecipe()">DELETE</button>
-    </div>
-  </div>
-  <div class="flex justify-start">
-    <h5 *ngIf="recipe.creationTime" class="mt-0">Created on: {{ recipe.creationTime | date : 'dd LLL YYYY' }}</h5>
-  </div>
-
-  <h4>Details</h4>
-  <div class="grid m-0">
-    <div class="col-3">
-      <div class="flex justify-center items-center h-full kycard">
-        <img [src]="recipe.image" *ngIf="recipe.image; else backupImage" class="max-h-full max-w-full" />
-        <ng-template #backupImage>
-          <mat-icon>image</mat-icon>
-        </ng-template>
+@if (recipe) {
+  <div class="h-full overflow-y-auto p-2">
+    <div class="flex justify-between items-center">
+      <div class="flex items-center gap-1">
+        <h2 class="my-0">{{ recipe.title | titlecase }}</h2>
+        <button mat-icon-button (click)="toggleRecipeFavorite()">
+          <mat-icon>{{ recipe.isFavorited ? favoritedRecipeText : unfavoritedRecipeText }}</mat-icon>
+        </button>
+        <span><a [href]="recipe.link" target="_blank">Recipe Link</a></span>
+      </div>
+      <div class="flex items-center gap-2">
+        <button mat-flat-button color="primary" (click)="addRecipeToGlist()">
+          <mat-icon>add</mat-icon>
+          ADD RECIPE TO GLIST
+        </button>
+        <button mat-stroked-button color="primary" [disabled]="true">
+          <mat-icon>add</mat-icon>
+          ADD RECIPE TO A MENU
+        </button>
+        <button mat-stroked-button color="primary" [disabled]="true">
+          <mat-icon>print</mat-icon>
+          PRINT
+        </button>
+        <button mat-stroked-button color="primary" (click)="editRecipe()">
+          <mat-icon>edit</mat-icon>
+          EDIT
+        </button>
+        <button mat-button color="primary" (click)="deleteRecipe()">DELETE</button>
       </div>
     </div>
-    <div class="col-6 pb-0">
-      <div class="grid h-full">
-        <div class="col-span-6">
-          <div class="flex justify-start items-center kycard h-full pl-2">Serving Size: {{ recipe.servingSize }}</div>
+    <div class="flex justify-start">
+      @if (recipe.creationTime) {
+        <h5 class="mt-0">Created on: {{ recipe.creationTime | date: 'dd LLL YYYY' }}</h5>
+      }
+    </div>
+
+    <h4>Details</h4>
+    <div class="grid m-0">
+      <div class="col-3">
+        <div class="flex justify-center items-center h-full kycard">
+          @if (recipe.image) {
+            <img [src]="recipe.image" class="max-h-full max-w-full" />
+          } @else {
+            <mat-icon>image</mat-icon>
+          }
         </div>
-        <div class="col-span-6">
-          <div class="flex justify-start items-center kycard h-full pl-2">Prep + Cook Time: {{ recipe.prepCookTime }}</div>
-        </div>
-        <div class="col-span-12 pb-0">
-          <div class="flex items-center gap-3 kycard h-full px-2">
-            <div>Tags:</div>
-            <div class="flex grow justify-between gap-1 overflow-x-auto">
-              <mat-chip *ngFor="let tag of recipe.tags">{{ tag.value }}</mat-chip>
+      </div>
+      <div class="col-6 pb-0">
+        <div class="grid h-full">
+          <div class="col-span-6">
+            <div class="flex justify-start items-center kycard h-full pl-2">Serving Size: {{ recipe.servingSize }}</div>
+          </div>
+          <div class="col-span-6">
+            <div class="flex justify-start items-center kycard h-full pl-2">Prep + Cook Time: {{ recipe.prepCookTime }}</div>
+          </div>
+          <div class="col-span-12 pb-0">
+            <div class="flex items-center gap-3 kycard h-full px-2">
+              <div>Tags:</div>
+              <div class="flex grow justify-between gap-1 overflow-x-auto">
+                @for (tag of recipe.tags; track tag.value + tag.type) {
+                  <mat-chip>{{ tag.value }}</mat-chip>
+                }
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-3">
-      <div class="flex flex-col justify-start kycard h-full pl-3">
-        <span class="pt-3">Tools Needed:</span>
-        <ul class="list-inside pl-0">
-          <li *ngFor="let tool of recipe.toolsNeeded">{{ tool }}</li>
-        </ul>
+      <div class="col-3">
+        <div class="flex flex-col justify-start kycard h-full pl-3">
+          <span class="pt-3">Tools Needed:</span>
+          <ul class="list-inside pl-0">
+            @for (tool of recipe.toolsNeeded; track tool) {
+              <li>{{ tool }}</li>
+            }
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="flex justify-between">
-    <h4>Ingredients</h4>
-    <mat-button-toggle-group class="flex items-center" (valueChange)="buttonToggleChanged($event)">
-      <mat-button-toggle [value]="1">1x</mat-button-toggle>
-      <mat-button-toggle [value]="2">2x</mat-button-toggle>
-      <mat-button-toggle [value]="3">3x</mat-button-toggle>
-    </mat-button-toggle-group>
-  </div>
-  <div class="grid m-0 kycard">
-    <div class="col-span-2" *ngFor="let ingredient of recipe.ingredients">
-      <ul>
-        <li>
-          {{ ingredient.name }}
-          <span class="subtext block">{{ ingredient.amount }}</span>
-        </li>
-      </ul>
+    <div class="flex justify-between">
+      <h4>Ingredients</h4>
+      <mat-button-toggle-group class="flex items-center" (valueChange)="buttonToggleChanged($event)">
+        <mat-button-toggle [value]="1">1x</mat-button-toggle>
+        <mat-button-toggle [value]="2">2x</mat-button-toggle>
+        <mat-button-toggle [value]="3">3x</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <div class="grid m-0 kycard">
+      @for (ingredient of recipe.ingredients; track ingredient.amount + ingredient.name) {
+        <div class="col-span-2">
+          <ul>
+            <li>
+              {{ ingredient.name }}
+              <span class="subtext block">{{ ingredient.amount }}</span>
+            </li>
+          </ul>
+        </div>
+      }
+    </div>
+
+    <h4>Directions</h4>
+    <div class="grid m-0">
+      @for (direction of recipe.directions; track direction) {
+        <div class="floating-step flex justify-center mt-3 py-2">
+          <span>Step {{ $index + 1 }}</span>
+        </div>
+        <div class="col-span-12 kycard grey-border">
+          {{ direction }}
+        </div>
+      }
     </div>
   </div>
-
-  <h4>Directions</h4>
-  <div class="grid m-0">
-    <ng-container *ngFor="let direction of recipe.directions; let i = index">
-      <div class="floating-step flex justify-center mt-3 py-2">
-        <span>Step {{ i + 1 }}</span>
-      </div>
-      <div class="col-span-12 kycard grey-border">
-        {{ direction }}
-      </div>
-    </ng-container>
-  </div>
-</div>
+}

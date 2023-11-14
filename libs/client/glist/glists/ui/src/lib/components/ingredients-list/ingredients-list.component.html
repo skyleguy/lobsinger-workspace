@@ -1,8 +1,8 @@
 <div cdkDropList (cdkDropListDropped)="drop($event)" id="ingredient-list" class="cursor-move">
-  <ng-container *ngFor="let ingredient of currentIngredients; let i = index">
+  @for (ingredient of currentIngredients; track ingredient.name + ingredient.amount) {
     <div class="flex justify-between w-full bg-white draggable-ingredient py-2" cdkDrag cdkDragBoundary="#ingredient-list">
       <div class="w-full">
-        <mat-checkbox (change)="$event.checked ? handleIngredientChecked(ingredient, i) : null"
+        <mat-checkbox (change)="$event.checked ? handleIngredientChecked(ingredient, $index) : null"
           >{{ ingredient.name }}
           <h5 class="m-0 subtext">{{ ingredient.amount }}</h5></mat-checkbox
         >
@@ -10,7 +10,7 @@
       <mat-icon class="self-center cursor-grab">drag_handle</mat-icon>
     </div>
     <mat-divider></mat-divider>
-  </ng-container>
+  }
   <div class="flex justify-between w-full">
     <div class="w-full">
       <mat-checkbox>

@@ -64,7 +64,7 @@ export class RecipeEditorComponent implements OnInit {
   }
 
   get directions() {
-    return this.directionsForm.get('directions') as FormArray;
+    return this.directionsForm.get('directions') as FormArray | null;
   }
 
   get dishType() {
@@ -152,9 +152,13 @@ export class RecipeEditorComponent implements OnInit {
   }
 
   public submitRecipe(): void {
+    let directions: string[] = [];
+    if (this.directions) {
+      directions = this.directions.controls.map((controls) => controls.value);
+    }
     const r: Recipe = {
       title: this.name?.value,
-      directions: this.directions.controls.map((control) => control.value),
+      directions,
       id: this.recipe?.id ?? uuidv4(),
       ingredients: this.ingredients?.value,
       link: this.recipeLink?.value,

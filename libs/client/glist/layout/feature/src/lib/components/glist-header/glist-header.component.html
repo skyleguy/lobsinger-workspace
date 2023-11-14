@@ -6,9 +6,11 @@
     <span>Glist</span>
     <button mat-icon-button (click)="changeSignInStatus()">
       <ng-container *ngrxLet="imageUrl$ as url; suspenseTpl: defaultUser">
-        <mat-icon *ngIf="url; else defaultUser">
+        @if (url) {
           <img class="rounded-avatar" [src]="url" />
-        </mat-icon>
+        } @else {
+          <mat-icon>person</mat-icon>
+        }
       </ng-container>
     </button>
   </div>

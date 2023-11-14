@@ -1,17 +1,23 @@
-<ng-container *ngIf="recipe; else actionRecipe">
+@if (recipe) {
   <mat-card class="h-full cursor-pointer transition-colors duration-300 gray-hover recipe-card m-auto">
     <mat-card-subtitle class="px-2 pt-3"><span>RECIPE</span></mat-card-subtitle>
     <mat-card-title class="p-2">
       <span class="w-full line-clamp-1" [title]="recipe.title | titlecase">{{ recipe.title | titlecase }}</span>
     </mat-card-title>
-    <img class="!w-full max-h-56" mat-card-xl-image [src]="recipe.image" *ngIf="recipe?.image; else defaultImage" />
+    @if (recipe.image) {
+      <img class="!w-full max-h-56" mat-card-xl-image [src]="recipe.image" />
+    } @else {
+      <img class="material-icons !w-full p-2 max-h-56 bg-[#F2F2F2]" src="/assets/ramen_dining.svg" />
+    }
     <mat-card-content class="!px-2">
       <mat-chip-set class="pt-3">
-        <ng-container *ngFor="let tag of recipe.tags">
-          <mat-chip *ngIf="tag?.value?.length! > 0">
-            {{ tag.value }}
-          </mat-chip>
-        </ng-container>
+        @for (tag of recipe.tags; track tag) {
+          @if (tag?.value?.length! > 0) {
+            <mat-chip>
+              {{ tag.value }}
+            </mat-chip>
+          }
+        }
       </mat-chip-set>
     </mat-card-content>
     <mat-card-actions class="justify-between mt-auto !pt-0">
@@ -24,9 +30,7 @@
       </button>
     </mat-card-actions>
   </mat-card>
-</ng-container>
-
-<ng-template #actionRecipe>
+} @else {
   <mat-card class="h-full cursor-pointer transition-colors duration-300 gray-hover recipe-card m-auto">
     <mat-card-subtitle><span class="p-2">RECIPE</span></mat-card-subtitle>
     <mat-card-title>
@@ -44,12 +48,8 @@
         ADD TO GLIST
       </button>
     </mat-card-actions>
-  </mat-card></ng-template
->
-
-<ng-template #defaultImage>
-  <img class="material-icons !w-full p-2 max-h-56 bg-[#F2F2F2]" src="/assets/ramen_dining.svg" />
-</ng-template>
+  </mat-card>
+}
 
 <ng-template #addDefault>
   <div class="!w-full p-2 h-56 bg-[#F2F2F2] flex justify-center items-center">

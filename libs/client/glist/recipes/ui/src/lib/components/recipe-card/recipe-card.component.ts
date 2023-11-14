@@ -10,8 +10,9 @@ import { favoritedRecipeText, Recipe, unfavoritedRecipeText } from '@lob/client/
 export class RecipeCardComponent {
   readonly favoritedRecipeText = favoritedRecipeText;
   readonly unfavoritedRecipeText = unfavoritedRecipeText;
-  @Input()
-  recipe!: Recipe;
+
+  @Input({ required: true })
+  recipe!: Recipe | null;
 
   @Output()
   favoriteClicked: EventEmitter<Recipe> = new EventEmitter();
