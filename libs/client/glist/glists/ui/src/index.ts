@@ -1,1 +1,1 @@
-export * from './lib/client-glist-glists-ui.module';
+export * from './lib/components/ingredients-list/ingredients-list.component';

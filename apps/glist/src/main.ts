@@ -11,7 +11,6 @@ import { map } from 'rxjs';
 import { ClientSharedAuthDataAccessModule, UserFacadeService } from '@lob/client/shared/auth/data-access';
 import { DeviceModule } from '@lob/client/shared/device/data-access';
 import { ClientSharedFirebaseDataAccessModule } from '@lob/client/shared/firebase/data-access';
-import { ClientSharedMobileUtilitiesDataAccessModule } from '@lob/client/shared/mobile/utilities/data-access';
 
 import { AppComponent } from './app/app.component';
 
@@ -78,7 +77,6 @@ bootstrapApplication(AppComponent, {
           measurementId: 'G-V69BPDWWPB'
         }
       }),
-      ClientSharedMobileUtilitiesDataAccessModule,
       ClientSharedAuthDataAccessModule
     ),
     provideAnimations(),

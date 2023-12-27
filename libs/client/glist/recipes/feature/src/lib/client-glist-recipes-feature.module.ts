@@ -16,8 +16,8 @@ import { RouterModule } from '@angular/router';
 
 import { ClientGlistGlistsDataAccessModule } from '@lob/client/glist/glists/data-access';
 import { ClientGlistRecipesDataAccessModule } from '@lob/client/glist/recipes/data-access';
-import { ClientGlistRecipesUiModule } from '@lob/client/glist/recipes/ui';
-import { ClientSharedMobileUtilitiesDataAccessModule } from '@lob/client/shared/mobile/utilities/data-access';
+import { RecipeCardComponent } from '@lob/client/glist/recipes/ui';
+import { ScrollVisibilityDirective } from '@lob/client/shared/mobile/utilities/data-access';
 
 import { RecipeContainerComponent } from './components/recipe-container/recipe-container.component';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
@@ -41,10 +41,10 @@ import { clientGlistRecipesFeatureRoutes } from './lib.routes';
     RouterModule.forChild(clientGlistRecipesFeatureRoutes),
     FormsModule,
     ReactiveFormsModule,
-    ClientSharedMobileUtilitiesDataAccessModule,
-    ClientGlistRecipesUiModule,
     ClientGlistRecipesDataAccessModule,
-    ClientGlistGlistsDataAccessModule
+    ClientGlistGlistsDataAccessModule,
+    ScrollVisibilityDirective,
+    RecipeCardComponent
   ],
   declarations: [RecipeContainerComponent, RecipeDetailsComponent, RecipeEditorComponent]
 })

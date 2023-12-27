@@ -1,4 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MatOptionModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { cloneDeep, isEqual } from 'lodash';
 import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 
@@ -6,7 +11,9 @@ import { cuisineTypes, dishTypes, dietTypes, RecipeFilter } from '@lob/client/gl
 
 @Component({
   selector: 'glist-recipe-filter-tray',
-  templateUrl: './recipe-filter-tray.component.html'
+  templateUrl: './recipe-filter-tray.component.html',
+  standalone: true,
+  imports: [MatFormFieldModule, MatIconModule, MatInputModule, MatSelectModule, MatOptionModule]
 })
 export class RecipeFilterTrayComponent implements OnInit {
   readonly cuisineTypes = cuisineTypes;

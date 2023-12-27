@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 // TODO for extremely easy reuse of this in many places we should make a confirm dialog service that handles the triggering and closing of the modal itself.
@@ -7,7 +8,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'glist-confirm-action',
   templateUrl: './confirm-action.component.html',
-  styleUrls: ['./confirm-action.component.scss']
+  styleUrls: ['./confirm-action.component.scss'],
+  standalone: true,
+  imports: [MatButtonModule]
 })
 export class ConfirmActionComponent {
   constructor(

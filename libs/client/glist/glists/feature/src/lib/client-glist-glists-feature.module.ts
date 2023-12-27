@@ -9,9 +9,9 @@ import { RouterModule } from '@angular/router';
 import { LetDirective } from '@ngrx/component';
 
 import { ClientGlistGlistsDataAccessModule } from '@lob/client/glist/glists/data-access';
-import { ClientGlistGlistsUiModule } from '@lob/client/glist/glists/ui';
+import { IngredientsListComponent } from '@lob/client/glist/glists/ui';
 import { ClientGlistRecipesDataAccessModule } from '@lob/client/glist/recipes/data-access';
-import { ClientGlistRecipesUiModule } from '@lob/client/glist/recipes/ui';
+import { RecipeCardComponent } from '@lob/client/glist/recipes/ui';
 
 import { GlistContainerComponent } from './components/glist-container/glist-container.component';
 import { clientGlistGlistsFeatureRoutes } from './lib.routes';
@@ -20,8 +20,6 @@ import { clientGlistGlistsFeatureRoutes } from './lib.routes';
   imports: [
     CommonModule,
     ClientGlistGlistsDataAccessModule,
-    ClientGlistGlistsUiModule,
-    ClientGlistRecipesUiModule,
     ClientGlistRecipesDataAccessModule,
     RouterModule.forChild(clientGlistGlistsFeatureRoutes),
     MatButtonModule,
@@ -29,7 +27,9 @@ import { clientGlistGlistsFeatureRoutes } from './lib.routes';
     MatTabsModule,
     MatCardModule,
     MatDividerModule,
-    LetDirective
+    LetDirective,
+    IngredientsListComponent,
+    RecipeCardComponent
   ],
   declarations: [GlistContainerComponent]
 })

@@ -1,5 +1,8 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, CdkDropList, CdkDrag } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, OnChanges, Output, ViewChildren } from '@angular/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 
 import { Recipe } from '@lob/client/glist/recipes/data';
 import { Ingredient } from '@lob/shared/ingredients/data';
@@ -7,7 +10,9 @@ import { Ingredient } from '@lob/shared/ingredients/data';
 @Component({
   selector: 'glist-ingredients-list',
   templateUrl: './ingredients-list.component.html',
-  styleUrls: ['./ingredients-list.component.scss']
+  styleUrls: ['./ingredients-list.component.scss'],
+  standalone: true,
+  imports: [CdkDropList, CdkDrag, MatCheckboxModule, MatIconModule, MatDividerModule]
 })
 export class IngredientsListComponent implements OnChanges {
   @ViewChildren(HTMLInputElement)

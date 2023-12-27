@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-// import { ClientSharedMobileUtilitiesDataAccessModule } from '../../client-shared-mobile-utilities-data-access.module';
-
 @Injectable({
   providedIn: 'root'
 })
