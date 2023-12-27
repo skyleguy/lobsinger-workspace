@@ -4,7 +4,7 @@ import { FirebaseApp } from 'firebase/app';
 import { isNil } from 'lodash';
 import { filter, map } from 'rxjs';
 
-import * as fromFirebaseApp from '../+state';
+import * as fromFirebaseApp from '../../+state';
 
 @Injectable({
   providedIn: 'root'

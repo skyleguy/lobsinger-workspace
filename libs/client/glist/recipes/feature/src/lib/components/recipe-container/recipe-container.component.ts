@@ -1,22 +1,30 @@
+import { NgTemplateOutlet, AsyncPipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
 
 import { GlistFacadeService } from '@lob/client/glist/glists/data-access';
 import { Recipe, RecipeFilter } from '@lob/client/glist/recipes/data';
 import { RecipeFacadeService } from '@lob/client/glist/recipes/data-access';
+import { RecipeCardComponent } from '@lob/client/glist/recipes/ui';
 import { UserFacadeService } from '@lob/client/shared/auth/data-access';
 import { DeviceService } from '@lob/client/shared/device/data-access';
 import { AbstractRedirectComponent } from '@lob/client/shared/lifecycle-management/data-access';
 import { UiVisibilityTarget } from '@lob/client/shared/mobile/utilities/data';
+import { ScrollVisibilityDirective } from '@lob/client/shared/mobile/utilities/data-access';
 
 import { RecipeEditorComponent } from '../recipe-editor/recipe-editor.component';
 
 @Component({
   selector: 'glist-recipe-container',
   templateUrl: './recipe-container.component.html',
-  styleUrls: ['./recipe-container.component.scss']
+  styleUrls: ['./recipe-container.component.scss'],
+  standalone: true,
+  imports: [ScrollVisibilityDirective, MatTabsModule, MatButtonModule, MatIconModule, NgTemplateOutlet, RecipeCardComponent, AsyncPipe]
 })
 export class RecipeContainerComponent extends AbstractRedirectComponent implements OnInit, OnDestroy {
   readonly tabNames = ['All Recipes', 'Favorites'];

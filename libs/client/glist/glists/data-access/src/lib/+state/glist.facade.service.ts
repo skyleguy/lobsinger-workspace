@@ -7,7 +7,9 @@ import { Ingredient } from '@lob/shared/ingredients/data';
 import * as selectors from './glist.selectors';
 import { actions, GlistState } from './glist.slice';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class GlistFacadeService {
   glist$ = this.store.pipe(select(selectors.selectGlist));
   recipesIds$ = this.store.pipe(select(selectors.selectGlistRecipes));
@@ -15,9 +17,7 @@ export class GlistFacadeService {
   isLoading$ = this.store.pipe(select(selectors.selectGlistLoading));
   userError$ = this.store.pipe(select(selectors.selectGlistError));
 
-  constructor(private readonly store: Store<GlistState>) {
-    this.getUserGlist();
-  }
+  constructor(private readonly store: Store<GlistState>) {}
 
   public getUserGlist(): void {
     this.store.dispatch(actions.getUserGlist());

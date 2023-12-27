@@ -22,6 +22,7 @@ export const userCaseReducers = {
     };
   },
   signUserInError: (state: UserState, { payload }: PayloadAction<Error>): UserState => {
+    console.error(payload);
     return {
       ...state,
       user: createAjaxState(null, false, payload),
@@ -38,7 +39,7 @@ export const userCaseReducers = {
   silentSignInError: (state: UserState): UserState => {
     return {
       ...state,
-      user: createAjaxState(undefined, false, new Error('User no silently signed in')),
+      user: createAjaxState(undefined, false, new Error('User not silently signed in')),
       hasAttemptedSignOn: true
     };
   }

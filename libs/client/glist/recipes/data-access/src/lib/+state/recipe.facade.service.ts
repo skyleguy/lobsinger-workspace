@@ -9,7 +9,9 @@ import * as selectors from './recipe.selectors';
 import { selectRecipeById, selectRecipesByIds } from './recipe.selectors';
 import { actions, RecipeState } from './recipe.slice';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class RecipeFacadeService {
   recipes$ = this.store.pipe(
     select(selectors.selectHasAttempted),

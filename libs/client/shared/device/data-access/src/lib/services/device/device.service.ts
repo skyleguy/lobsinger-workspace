@@ -4,10 +4,8 @@ import { BehaviorSubject, debounceTime, fromEvent, map, startWith } from 'rxjs';
 import { DeviceConfig, DeviceConfigSymbol, DeviceSize } from '@lob/client/shared/device/data';
 import { AbstractSubscriptionComponent } from '@lob/client/shared/lifecycle-management/data-access';
 
-import { DeviceModule } from '../../device.module';
-
 @Injectable({
-  providedIn: DeviceModule
+  providedIn: 'root'
 })
 export class DeviceService extends AbstractSubscriptionComponent {
   deviceSize$ = new BehaviorSubject(DeviceSize.COMPUTER);
@@ -53,7 +51,7 @@ export class DeviceService extends AbstractSubscriptionComponent {
     return deviceSize === DeviceSize.COMPUTER || deviceSize === DeviceSize.LARGE_COMPUTER;
   }
 
-  private isWindow(data: any): data is Window {
-    return 'innerWidth' in data;
+  private isWindow(data: unknown): data is Window {
+    return 'innerWidth' in (data as Window);
   }
 }

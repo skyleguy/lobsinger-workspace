@@ -4,11 +4,14 @@ import { catchError, of, switchMap } from 'rxjs';
 
 import * as fromFirebaseApp from './firebase-app.slice';
 
-import { FirebaseAppService } from '../firebase-app/firebase-app.service';
+import { FirebaseAppService } from '../services/firebase-app/firebase-app.service';
 
 @Injectable()
 export class FirebaseAppEffects {
-  constructor(private actions$: Actions, private firebaseAppService: FirebaseAppService) {}
+  constructor(
+    private actions$: Actions,
+    private firebaseAppService: FirebaseAppService
+  ) {}
 
   getFirebaseApp$ = createEffect(() =>
     this.actions$.pipe(
