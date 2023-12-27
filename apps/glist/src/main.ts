@@ -11,7 +11,7 @@ import { map } from 'rxjs';
 import { GlistEffects, slice as glistSlice } from '@lob/client/glist/glists/data-access';
 import { RecipeEffects, slice as recipeSlice } from '@lob/client/glist/recipes/data-access';
 import { UserEffects, UserFacadeService, slice as userSlice } from '@lob/client/shared/auth/data-access';
-import { DeviceModule } from '@lob/client/shared/device/data-access';
+import { provideDevice } from '@lob/client/shared/device/data-access';
 import { FirebaseOptionsToken } from '@lob/client/shared/firebase/data';
 import { FirebaseAppEffects, slice as firebaseSlice } from '@lob/client/shared/firebase/data-access';
 
@@ -60,7 +60,11 @@ const routes: Routes = [
   {
     path: 'glists',
     canActivate: [isSignedIn],
-    providers: [provideState(glistSlice.name, glistSlice.reducer), provideEffects(GlistEffects)],
+    providers: [
+      provideState(glistSlice.name, glistSlice.reducer),
+      provideState(recipeSlice.name, recipeSlice.reducer),
+      provideEffects(GlistEffects, RecipeEffects)
+    ],
     loadChildren: () => import('@lob/client/glist/glists/feature').then((m) => m.clientGlistGlistsFeatureRoutes)
   },
   {
@@ -72,14 +76,13 @@ const routes: Routes = [
 // TODO look into getting rid of more modules here
 bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom(BrowserModule, DeviceModule.forRoot()),
+    importProvidersFrom(BrowserModule),
     { provide: FirebaseOptionsToken, useValue: firebaseOptions },
+    provideDevice(),
     provideStore({
       [firebaseSlice.name]: firebaseSlice.reducer,
       [userSlice.name]: userSlice.reducer
     }),
-    // provideState(userSlice.name, userSlice.reducer),
-    // provideState(firebaseSlice.name, firebaseSlice.reducer),
     provideEffects(UserEffects, FirebaseAppEffects),
     provideStoreDevtools({
       maxAge: 25,

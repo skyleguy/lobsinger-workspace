@@ -17,9 +17,7 @@ export class GlistFacadeService {
   isLoading$ = this.store.pipe(select(selectors.selectGlistLoading));
   userError$ = this.store.pipe(select(selectors.selectGlistError));
 
-  constructor(private readonly store: Store<GlistState>) {
-    this.getUserGlist();
-  }
+  constructor(private readonly store: Store<GlistState>) {}
 
   public getUserGlist(): void {
     this.store.dispatch(actions.getUserGlist());
