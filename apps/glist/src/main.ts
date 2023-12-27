@@ -31,7 +31,7 @@ const isSignedIn = () => {
 const routes: Routes = [
   {
     path: 'dashboard',
-    loadChildren: () => import('@lob/client/glist/dashboard/feature').then((m) => m.ClientGlistDashboardFeatureModule)
+    loadChildren: () => import('@lob/client/glist/dashboard/feature').then((m) => m.clientGlistDashboardFeatureRoutes)
   },
   {
     path: 'recipes',
