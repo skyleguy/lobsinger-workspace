@@ -21,12 +21,15 @@ enum AppState {
   imports: [MatProgressSpinnerModule, GlistContainerComponent]
 })
 export class AppComponent implements OnInit {
+  appStateEnum: typeof AppState = AppState;
+  appState: AppState = AppState.LOADING;
+
   constructor(
     private readonly firebaseAppFacadeService: FirebaseAppFacadeService,
     private readonly userFacadeService: UserFacadeService
-  ) {}
-  appStateEnum: typeof AppState = AppState;
-  appState: AppState = AppState.LOADING;
+  ) {
+    firebaseAppFacadeService.getFirebaseApp();
+  }
 
   ngOnInit(): void {
     this.firebaseAppFacadeService.app$.subscribe({

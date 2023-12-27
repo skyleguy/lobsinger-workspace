@@ -1,5 +1,10 @@
+import { TitleCasePipe, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { deepCopy } from '@firebase/util';
 import { isNil } from 'lodash';
@@ -17,7 +22,9 @@ import { RecipeEditorComponent } from '../recipe-editor/recipe-editor.component'
 @Component({
   selector: 'glist-recipe-details',
   templateUrl: './recipe-details.component.html',
-  styleUrls: ['./recipe-details.component.scss']
+  styleUrls: ['./recipe-details.component.scss'],
+  standalone: true,
+  imports: [MatButtonModule, MatIconModule, MatChipsModule, MatButtonToggleModule, TitleCasePipe, DatePipe]
 })
 export class RecipeDetailsComponent extends AbstractSubscriptionComponent implements OnInit {
   readonly favoritedRecipeText = favoritedRecipeText;

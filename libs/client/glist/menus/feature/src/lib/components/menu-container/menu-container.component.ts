@@ -8,10 +8,14 @@ import { AbstractRedirectComponent } from '@lob/client/shared/lifecycle-manageme
 @Component({
   selector: 'glist-menu-container',
   templateUrl: './menu-container.component.html',
-  styleUrls: ['./menu-container.component.scss']
+  styleUrls: ['./menu-container.component.scss'],
+  standalone: true
 })
 export class MenuContainerComponent extends AbstractRedirectComponent {
-  constructor(private readonly router: Router, userFacadeService: UserFacadeService) {
+  constructor(
+    private readonly router: Router,
+    userFacadeService: UserFacadeService
+  ) {
     super(userFacadeService.isUserSignedInAfterAttempt$.pipe(map((isSignedIn) => !isSignedIn)));
   }
 

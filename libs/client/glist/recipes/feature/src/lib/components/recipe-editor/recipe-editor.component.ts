@@ -1,6 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatOptionModule } from '@angular/material/core';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogClose } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
 import { format } from 'date-fns';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -12,7 +21,22 @@ import { Ingredient } from '@lob/shared/ingredients/data';
 @Component({
   selector: 'glist-recipe-editor',
   templateUrl: './recipe-editor.component.html',
-  styleUrls: ['./recipe-editor.component.scss']
+  styleUrls: ['./recipe-editor.component.scss'],
+  standalone: true,
+  imports: [
+    MatButtonModule,
+    MatDialogClose,
+    MatIconModule,
+    MatCheckboxModule,
+    MatStepperModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatListModule
+  ]
 })
 export class RecipeEditorComponent implements OnInit {
   readonly next = 'NEXT';

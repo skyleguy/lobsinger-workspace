@@ -7,7 +7,9 @@ import { Ingredient } from '@lob/shared/ingredients/data';
 import * as selectors from './glist.selectors';
 import { actions, GlistState } from './glist.slice';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class GlistFacadeService {
   glist$ = this.store.pipe(select(selectors.selectGlist));
   recipesIds$ = this.store.pipe(select(selectors.selectGlistRecipes));
