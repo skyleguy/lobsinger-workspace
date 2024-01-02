@@ -1,0 +1,57 @@
+{
+  "name": "kgpt",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/kgpt/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/kgpt",
+        "main": "apps/kgpt/src/main.ts",
+        "tsConfig": "apps/kgpt/tsconfig.app.json",
+        "assets": ["apps/kgpt/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/kgpt/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "kgpt:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "kgpt:build:development"
+        },
+        "production": {
+          "buildTarget": "kgpt:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/kgpt/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/kgpt/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

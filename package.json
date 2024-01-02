@@ -34,12 +34,14 @@
     "@ngrx/store-devtools": "^17.0.1",
     "@nx/angular": "~17.1.1",
     "@reduxjs/toolkit": "^1.9.1",
+    "axios": "^1.0.0",
     "date-fns": "^2.30.0",
     "firebase": "^9.14.0",
     "got": "^11.8.6",
     "got-scraping": "^3.2.15",
     "jssoup": "^0.0.15",
     "lodash": "^4.17.21",
+    "openai": "^4.24.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
     "sharp": "^0.32.4",
@@ -61,6 +63,7 @@
     "@nestjs/testing": "^10.0.3",
     "@ngneat/spectator": "^15.0.1",
     "@nx/cypress": "~17.1.1",
+    "@nx/eslint": "~17.1.1",
     "@nx/eslint-plugin": "~17.1.1",
     "@nx/jest": "~17.1.1",
     "@nx/js": "~17.1.1",
@@ -97,8 +100,7 @@
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "5.2.2",
-    "@nx/eslint": "~17.1.1"
+    "typescript": "5.2.2"
   },
   "lint-staged": {
     "*.ts": [
