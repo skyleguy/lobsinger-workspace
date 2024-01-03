@@ -22,6 +22,9 @@
           "codeCoverage": true
         }
       }
+    },
+    "e2e": {
+      "inputs": ["default", "^production"]
     }
   },
   "namedInputs": {

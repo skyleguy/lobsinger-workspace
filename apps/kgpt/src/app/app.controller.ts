@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import OpenAI from 'openai';
 import { ImageGenerateParams } from 'openai/resources/images';
 
@@ -9,23 +9,11 @@ export class AppController {
   openAi: OpenAI;
   constructor() {
     this.openAi = new OpenAI({
-      apiKey: 'YOUR_KEY_HERE'
+      apiKey: 'YOUR_KEY'
     });
   }
 
-  @Get(':threadId/messages')
-  listMessages(@Param() params: { threadId: string }) {
-    console.log(`getting messages for thread: ${params.threadId}`);
-    return this.openAi.beta.threads.messages.list(params.threadId);
-  }
-
-  @Get(':threadId/runs')
-  listRuns(@Param() params: { threadId: string }) {
-    console.log(`getting runs for thread: ${params.threadId}`);
-    return this.openAi.beta.threads.runs.list(params.threadId);
-  }
-
-  @Get(':threadId/content')
+  @Post(':threadId/content')
   async getLatestAssistantMessages(@Param() params: { threadId: string }, @Body() body: { after?: string }) {
     console.log(`getting latest messages for thread: ${params.threadId} after: ${body?.after ?? '0'}`);
     const res = await this.openAi.beta.threads.messages.list(params.threadId, body?.after ? { after: body.after } : {});
@@ -45,6 +33,18 @@ export class AppController {
     });
   }
 
+  @Get(':threadId/messages')
+  listMessages(@Param() params: { threadId: string }) {
+    console.log(`getting messages for thread: ${params.threadId}`);
+    return this.openAi.beta.threads.messages.list(params.threadId);
+  }
+
+  @Get(':threadId/runs')
+  listRuns(@Param() params: { threadId: string }) {
+    console.log(`getting runs for thread: ${params.threadId}`);
+    return this.openAi.beta.threads.runs.list(params.threadId);
+  }
+
   @Get(':threadId/:runId')
   async getRunStatus(@Param() params: { threadId: string; runId: string }) {
     console.log(`getting run status for thread: ${params.threadId} and run: ${params.runId}`);
@@ -53,7 +53,7 @@ export class AppController {
     return { status: run.status, threadId: run.thread_id, runId: run.id };
   }
 
-  @Put('/image')
+  @Post('/image')
   async generateImageFromPrompt(@Body() { prompt, size }: { prompt: string; size: ImageGenerateParams['size'] }) {
     const image = await this.openAi.images.generate({
       prompt,
@@ -81,9 +81,9 @@ export class AppController {
   }
 
   @Put('')
-  async createMystery(@Body() body: { message?: string }) {
+  async createMystery(@Body() body: { prompt?: string }) {
     console.log(`creating a new mystery!`);
-    const requestString = body.message ?? 'Lets solve a mystery';
+    const requestString = body.prompt ?? '{ "request": "Lets solve a mystery"}';
     const run = await this.openAi.beta.threads.createAndRun({
       assistant_id: this.nanceGptAssistantId,
       thread: {

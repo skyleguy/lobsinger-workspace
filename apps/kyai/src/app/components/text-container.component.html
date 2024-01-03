@@ -1,0 +1,19 @@
+@if (isInitialized) {
+  <div class="flex w-full h-full items-center justify-between">
+    <input
+      #mysteryPrompt
+      class="flex grow"
+      placeholder="Enter the description of the mystery you want to solve or leave blank for a random one!"
+    />
+    <button (click)="endMystery.emit()">End Game</button>
+  </div>
+} @else {
+  <div class="flex w-full h-full items-center justify-between">
+    <input
+      #mysteryPrompt
+      class="flex grow"
+      placeholder="Enter the description of the mystery you want to solve or leave blank for a random one!"
+    />
+    <button (click)="startMystery.emit(mysteryPrompt.value)">Start Game</button>
+  </div>
+}

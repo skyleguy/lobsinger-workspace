@@ -69,6 +69,7 @@
     "@nx/js": "~17.1.1",
     "@nx/nest": "~17.1.1",
     "@nx/node": "~17.1.1",
+    "@nx/web": "17.1.1",
     "@nx/webpack": "~17.1.1",
     "@nx/workspace": "~17.1.1",
     "@schematics/angular": "~17.0.0",
