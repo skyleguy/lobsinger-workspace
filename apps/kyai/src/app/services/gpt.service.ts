@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { ContentWrapper } from '../models/mystery.model';
+import { ContentWrapper, GptChatMessage } from '../models/mystery.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,11 @@ export class GptService {
     return this.http.post<{ url: string }[]>(`${this.baseurl}/image`, { prompt, ...(size ? { size } : {}) });
   }
 
+  /**
+   * Start a new thread with a run using the Beta Assistants API
+   * @param prompt
+   * @returns
+   */
   public startMysteryConversation(prompt?: string) {
     return this.http.put<{ status: string; threadId: string; runId: string }>(this.baseurl, { ...(prompt ? { prompt } : {}) });
   }
@@ -22,6 +27,12 @@ export class GptService {
     return this.http.post<ContentWrapper[]>(`${this.baseurl}/${threadId}/content`, {});
   }
 
+  /**
+   * Add to a new message and run to an existing thread using the Beta Assistants Api
+   * @param threadId
+   * @param message
+   * @returns
+   */
   public addMessageToThread(threadId: string, message: string) {
     return this.http.put<{ status: string; threadId: string; runId: string }>(`${this.baseurl}/${threadId}`, { message });
   }
@@ -31,12 +42,26 @@ export class GptService {
   }
 
   public getMessagesForThread(threadId: string) {
-    return this.http.get<{ data: { role: string; id: string; content: { text: { value: unknown } }[] }[] }>(
-      `${this.baseurl}/${threadId}/messages`
-    );
+    return this.http.get<ContentWrapper[]>(`${this.baseurl}/${threadId}/messages`);
   }
 
   public getRunsforThread(threadId: string) {
     return this.http.get<{ data: { id: string; status: string }[] }>(`${this.baseurl}/${threadId}/runs`);
+  }
+
+  /**
+   * Start mystery using the chat completions API
+   * @param prompt
+   */
+  public startMysteryChat(prompt?: string) {
+    return this.http.post<GptChatMessage[]>(`${this.baseurl}/chatStart`, { ...(prompt ? { prompt } : {}) });
+  }
+
+  /**
+   * Continue mystery using the chat completions API
+   * @param prompt
+   */
+  public continueMysteryChat(messages: GptChatMessage[]) {
+    return this.http.post<GptChatMessage>(`${this.baseurl}/chatContinue`, { messages });
   }
 }

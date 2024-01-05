@@ -1,5 +1,7 @@
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 
+import { Suggestion } from '../models';
+
 @Component({
   selector: 'app-text-container',
   standalone: true,
@@ -11,9 +13,11 @@ export class TextContainerComponent {
     required: true
   })
   isInitialized!: boolean;
+  @Input()
+  suggestions?: Suggestion[];
 
   @Output()
   startMystery: EventEmitter<string> = new EventEmitter();
   @Output()
-  endMystery: EventEmitter<void> = new EventEmitter();
+  submitPrompt: EventEmitter<string> = new EventEmitter();
 }

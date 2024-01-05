@@ -5,7 +5,7 @@
 }
 
 <div class="flex grow w-full h-full max-h-full max-w-full overflow-auto justify-center items-center flex-col gap-3">
-  @for (response of responses; track response.details) {
-    <p>{{ response.details }}</p>
+  @for (response of responses; track response) {
+    <p>{{ response }}</p>
   }
 </div>

@@ -38,3 +38,18 @@ export interface ContentWrapper {
   creationTime: number;
   content: Content[];
 }
+
+type MysteryDetailsRecord = {
+  [key in 'mysteryDetails']: MysteryDetails;
+};
+
+type ResponseRecord = {
+  [key in 'response']: Response;
+};
+
+type MysteryResponseRecord = ResponseRecord & MysteryDetailsRecord;
+
+export interface GptChatMessage {
+  role: 'user' | 'system' | 'assistant';
+  content: string | MysteryResponseRecord;
+}
