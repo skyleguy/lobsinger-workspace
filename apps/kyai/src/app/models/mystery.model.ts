@@ -24,7 +24,7 @@ export interface MysteryDetails {
   title: string;
   description: string;
   characters: Character[];
-  locations: Location[];
+  // locations: Location[];
 }
 
 export interface Content {

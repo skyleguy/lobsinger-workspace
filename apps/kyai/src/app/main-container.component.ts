@@ -6,6 +6,7 @@ import { SidebarComponent } from './components/sidebar.component';
 import { TextContainerComponent } from './components/text-container.component';
 import { TopMenuComponent } from './components/top-menu.component';
 import { GptChatMessage, MysteryDetails, Suggestion } from './models/mystery.model';
+import { offlineContent, offlineMysteryCoverPhotoUrl, offlineShownMessages } from './models/offline.constants';
 import { GptService } from './services/gpt.service';
 
 @Component({
@@ -18,10 +19,8 @@ import { GptService } from './services/gpt.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainContainerComponent {
-  // threadId!: string;
+  readonly isOfflineMode = true;
   mysteryDetails!: MysteryDetails | null;
-  // responses: Response[] = [];
-  // userRequests: string[] = [];
   accumulatingMessages: GptChatMessage[] = [];
   shownMessages: string[] = [];
   mysteryCoverPhoto!: string;
@@ -30,10 +29,17 @@ export class MainContainerComponent {
   constructor(
     private readonly gptService: GptService,
     private readonly cdRef: ChangeDetectorRef
-  ) {}
+  ) {
+    if (this.isOfflineMode) {
+      this.mysteryDetails = offlineContent.mysteryDetails;
+      this.suggestions = offlineContent.response.suggestions;
+      this.shownMessages = offlineShownMessages;
+      this.mysteryCoverPhoto = offlineMysteryCoverPhotoUrl;
+    }
+  }
 
   public requestMysteryStart(prompt: string) {
-    this.shownMessages.push(prompt?.trim() ?? 'Lets solve a mystery');
+    this.shownMessages = [...this.shownMessages, prompt?.trim() ?? 'Lets solve a mystery'];
     this.gptService.startMysteryChat(prompt).subscribe({
       next: (starterMessages) => {
         this.accumulatingMessages = this.accumulatingMessages.concat(starterMessages);
@@ -43,11 +49,11 @@ export class MainContainerComponent {
           if (typeof content !== 'string') {
             if (content.mysteryDetails) {
               this.mysteryDetails = content.mysteryDetails;
-              this.shownMessages = this.shownMessages.concat(this.mysteryDetails.description);
+              this.shownMessages = [...this.shownMessages, this.mysteryDetails.description];
               this.getImagesForItems();
             }
             if (content.response) {
-              this.shownMessages = this.shownMessages.concat(content.response.details);
+              this.shownMessages = [...this.shownMessages, content.response.details];
               this.suggestions = content.response.suggestions;
             }
           }
@@ -58,81 +64,23 @@ export class MainContainerComponent {
   }
 
   public addUserPrompt(message: string) {
-    this.suggestions = [];
-    this.shownMessages.push(message);
-    this.accumulatingMessages.push({ role: 'user', content: message });
-    this.gptService.continueMysteryChat(this.accumulatingMessages).subscribe({
-      next: (newMessage) => {
-        if (typeof newMessage.content !== 'string') {
-          this.shownMessages.push(newMessage.content.response.details);
-          this.suggestions = newMessage.content.response.suggestions;
-          this.cdRef.detectChanges();
+    if (this.isOfflineMode) {
+      this.shownMessages = [...this.shownMessages, message];
+    } else {
+      this.suggestions = [];
+      this.shownMessages = [...this.shownMessages, message];
+      this.accumulatingMessages.push({ role: 'user', content: message });
+      this.gptService.continueMysteryChat(this.accumulatingMessages).subscribe({
+        next: (newMessage) => {
+          if (typeof newMessage.content !== 'string') {
+            this.shownMessages = [...this.shownMessages, newMessage.content.response.details];
+            this.suggestions = newMessage.content.response.suggestions;
+            this.cdRef.detectChanges();
+          }
         }
-      }
-    });
+      });
+    }
   }
-
-  // public requestMysteryStart(prompt: string) {
-  //   this.userRequests.push(prompt);
-  //   this.gptService
-  //     .startMysteryConversation(prompt)
-  //     .pipe(
-  //       tap((res) => {
-  //         this.threadId = res.threadId;
-  //       }),
-  //       switchMap((res) =>
-  //         this.gptService.checkRunStatus(res.threadId, res.runId).pipe(
-  //           repeat({ delay: 1000 }),
-  //           filter((res) => res.status === 'completed'),
-  //           take(1)
-  //         )
-  //       ),
-  //       switchMap((res) => {
-  //         return this.gptService.getMessagesForThread(res.threadId);
-  //       })
-  //     )
-  //     .subscribe({
-  //       next: (res) => {
-  //         const [latestMessage] = res;
-  //         if (latestMessage.content?.[0]?.mysteryDetails) {
-  //           this.mysteryDetails = latestMessage.content?.[0]?.mysteryDetails;
-  //           this.responses.push({ details: latestMessage.content?.[0]?.mysteryDetails?.description, suggestions: [] });
-  //           this.getImagesForItems();
-  //         }
-  //         if (latestMessage.role === 'assistant' && latestMessage.content?.[0]?.response) {
-  //           this.responses.push(latestMessage.content?.[0].response);
-  //         }
-  //         this.cdRef.detectChanges();
-  //       }
-  //     });
-  // }
-
-  // public addUserPrompt(userPrompt: string) {
-  //   this.userRequests.push(userPrompt);
-  //   this.gptService
-  //     .addMessageToThread(this.threadId, userPrompt)
-  //     .pipe(
-  //       switchMap((res) =>
-  //         this.gptService.checkRunStatus(res.threadId, res.runId).pipe(
-  //           repeat({ delay: 1000 }),
-  //           filter((res) => res.status === 'completed'),
-  //           take(1)
-  //         )
-  //       ),
-  //       switchMap((res) => {
-  //         return this.gptService.getMessagesForThread(res.threadId);
-  //       })
-  //     )
-  //     .subscribe({
-  //       next: (res) => {
-  //         const [latestMessage] = res;
-  //         if (latestMessage.role === 'assistant' && latestMessage.content?.[0]?.response) {
-  //           this.responses.push(latestMessage.content?.[0].response);
-  //         }
-  //         this.cdRef.detectChanges();
-  //       }
-  //     });
-  // }
 
   public endMystery(): void {
     this.mysteryDetails = null;
