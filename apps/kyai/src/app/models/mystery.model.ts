@@ -1,9 +1,3 @@
-export interface Location {
-  name: string;
-  description: string;
-  imageUrl?: string;
-}
-
 export interface Character {
   name: string;
   description: string;
@@ -24,7 +18,6 @@ export interface MysteryDetails {
   title: string;
   description: string;
   characters: Character[];
-  // locations: Location[];
 }
 
 export interface Content {
