@@ -10,7 +10,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "kyaiLayoutFeature",
+            "prefix": "kyayMysteryFeature",
             "style": "camelCase"
           }
         ],
@@ -18,7 +18,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "kyai-layout-feature",
+            "prefix": "kyai-mystery-feature",
             "style": "kebab-case"
           }
         ]

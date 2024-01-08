@@ -1,4 +1,6 @@
-import { MysteryContent, MysteryDetails, Response } from './mystery.model';
+import { ConversationResponse } from '@lob/client/kyai/layout/data';
+
+import { MysteryContent, MysteryDetails } from './mystery.model';
 
 export const offlineMysteryCoverPhotoUrl = 'assets/offline-images/fake-cover.png';
 
@@ -28,7 +30,7 @@ export const offlineMysteryDetails: MysteryDetails = {
   ]
 };
 
-export const offlineResponse: Response = {
+export const offlineResponse: ConversationResponse = {
   details:
     "You're about to dive into the investigation of the missing ruby necklace at Sinclair Mansion. Let's start by interviewing the suspects and searching for clues.",
   suggestions: [

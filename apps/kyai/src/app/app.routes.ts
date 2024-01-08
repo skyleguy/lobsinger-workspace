@@ -1,12 +1,12 @@
 import { Route } from '@angular/router';
 
-import { MainContainerComponent } from '@lob/client/kyai/layout/feature';
+import { MysteryContainerComponent } from '@lob/client/kyai/mystery/feature';
 
 export const appRoutes: Route[] = [
   {
     path: 'home',
     pathMatch: 'full',
-    component: MainContainerComponent
+    component: MysteryContainerComponent
   },
   {
     path: '**',

@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'client-kyai-layout-feature',
+  displayName: 'client-kyai-mystery-feature',
   preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../../../coverage/libs/client/kyai/layout/feature',
+  coverageDirectory: '../../../../../coverage/libs/client/kyai/mystery/feature',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

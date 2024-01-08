@@ -1,28 +1,29 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
 
-import { GptChatMessage } from '@lob/client/kyai/chat/data';
+import { Conversation, ConversationType, GptChatMessage } from '@lob/client/kyai/chat/data';
 import { GptService } from '@lob/client/kyai/chat/data-access';
+import { Suggestion } from '@lob/client/kyai/layout/data';
+import { TopMenuComponent, TextContainerComponent, GameContainerComponent, SidebarComponent } from '@lob/client/kyai/layout/ui';
 import {
   MysteryDetails,
-  Suggestion,
   offlineContent,
   offlineMysteryCoverPhotoUrl,
   offlineShownMessages,
   MysteryContent
-} from '@lob/client/kyai/layout/data';
-import { TopMenuComponent, TextContainerComponent, GameContainerComponent, SidebarComponent } from '@lob/client/kyai/layout/ui';
+} from '@lob/client/kyai/mystery/data';
 
 @Component({
-  selector: 'kyai-layout-feature-main-container',
+  selector: 'kyai-mystery-feature-mystery-container',
   standalone: true,
   imports: [CommonModule, TopMenuComponent, TextContainerComponent, GameContainerComponent, SidebarComponent],
-  templateUrl: 'main-container.component.html',
+  providers: [{ provide: ConversationType, useValue: Conversation.MYSTERY }, GptService],
+  templateUrl: 'mystery-container.component.html',
   styles: [],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MainContainerComponent {
+export class MysteryContainerComponent {
   readonly isOfflineMode = true;
 
   mysteryDetails!: MysteryDetails | null;
@@ -32,7 +33,7 @@ export class MainContainerComponent {
   mysteryCoverPhoto!: string;
 
   constructor(
-    private readonly gptService: GptService,
+    private readonly gptService: GptService<MysteryContent>,
     private readonly cdRef: ChangeDetectorRef
   ) {
     if (this.isOfflineMode) {
@@ -45,7 +46,7 @@ export class MainContainerComponent {
 
   public requestMysteryStart(prompt: string) {
     this.shownMessages = [...this.shownMessages, prompt?.trim() ?? 'Lets solve a mystery'];
-    this.gptService.startChat<MysteryContent>(prompt).subscribe({
+    this.gptService.startChat(prompt).subscribe({
       next: (starterMessages) => {
         this.accumulatingMessages = this.accumulatingMessages.concat(starterMessages);
         const firstAssistantResponse = starterMessages.find((message) => message.role === 'assistant');
@@ -77,7 +78,7 @@ export class MainContainerComponent {
       this.suggestions = [];
       this.shownMessages = [...this.shownMessages, message];
       this.accumulatingMessages.push({ role: 'user', content: message });
-      this.gptService.continueChat<MysteryContent>(this.accumulatingMessages).subscribe({
+      this.gptService.continueChat(this.accumulatingMessages).subscribe({
         next: (newMessage) => {
           if (typeof newMessage.content !== 'string') {
             this.shownMessages = [...this.shownMessages, newMessage.content.response.details];

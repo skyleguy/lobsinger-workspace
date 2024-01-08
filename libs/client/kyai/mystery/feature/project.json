@@ -1,7 +1,7 @@
 {
-  "name": "client-kyai-layout-feature",
+  "name": "client-kyai-mystery-feature",
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/client/kyai/layout/feature/src",
+  "sourceRoot": "libs/client/kyai/mystery/feature/src",
   "prefix": "lib",
   "tags": ["scope:client", "type:feature"],
   "projectType": "library",
@@ -10,14 +10,14 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/client/kyai/layout/feature/jest.config.ts"
+        "jestConfig": "libs/client/kyai/mystery/feature/jest.config.ts"
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/client/kyai/layout/feature/**/*.ts", "libs/client/kyai/layout/feature/**/*.html"]
+        "lintFilePatterns": ["libs/client/kyai/mystery/feature/**/*.ts", "libs/client/kyai/mystery/feature/**/*.html"]
       }
     }
   }

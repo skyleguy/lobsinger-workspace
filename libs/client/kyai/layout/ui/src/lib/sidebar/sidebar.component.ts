@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 
-import { Character } from '@lob/client/kyai/layout/data';
+import { Entity } from '@lob/client/kyai/layout/data';
 
 @Component({
   selector: 'kyai-layout-ui-sidebar',
@@ -11,5 +11,5 @@ import { Character } from '@lob/client/kyai/layout/data';
 export class SidebarComponent {
   @HostBinding('class') classes = 'w-full h-full p-3';
   @Input()
-  characters: Character[] = [];
+  characters: Entity[] = [];
 }

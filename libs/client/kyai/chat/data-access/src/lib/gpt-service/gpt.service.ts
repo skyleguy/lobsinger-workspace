@@ -1,14 +1,20 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 
-import { GptChatMessage, ContentWrapper } from '@lob/client/kyai/chat/data';
+import { GptChatMessage, ContentWrapper, Conversation, ConversationType } from '@lob/client/kyai/chat/data';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
-export class GptService {
-  readonly baseurl = 'http://localhost:3000/api/mystery';
-  constructor(private http: HttpClient) {}
+export class GptService<MessageContent> {
+  readonly baseurl = `http://localhost:3000/api/`;
+
+  constructor(
+    private http: HttpClient,
+    @Inject(ConversationType) readonly conversation: Conversation
+  ) {
+    this.baseurl += conversation;
+  }
 
   public generateImage(prompt: string, size: '256x256' | '512x512' | '1024x1024' | '1792x1024' | '1024x1792') {
     return this.http.post<{ url: string }[]>(`${this.baseurl}/image`, { prompt, ...(size ? { size } : {}) });
@@ -19,12 +25,12 @@ export class GptService {
    * @param prompt
    * @returns
    */
-  public startMysteryConversation(prompt?: string) {
+  public startConversation(prompt?: string) {
     return this.http.put<{ status: string; threadId: string; runId: string }>(this.baseurl, { ...(prompt ? { prompt } : {}) });
   }
 
-  public listLatestContentForThread<T>(threadId: string) {
-    return this.http.post<ContentWrapper<T>[]>(`${this.baseurl}/${threadId}/content`, {});
+  public listLatestContentForThread(threadId: string) {
+    return this.http.post<ContentWrapper<MessageContent>[]>(`${this.baseurl}/${threadId}/content`, {});
   }
 
   /**
@@ -41,8 +47,8 @@ export class GptService {
     return this.http.get<{ status: string; threadId: string; runId: string }>(`${this.baseurl}/${threadId}/${runId}`);
   }
 
-  public getMessagesForThread<T>(threadId: string) {
-    return this.http.get<ContentWrapper<T>[]>(`${this.baseurl}/${threadId}/messages`);
+  public getMessagesForThread(threadId: string) {
+    return this.http.get<ContentWrapper<MessageContent>[]>(`${this.baseurl}/${threadId}/messages`);
   }
 
   public getRunsforThread(threadId: string) {
@@ -50,18 +56,18 @@ export class GptService {
   }
 
   /**
-   * Start mystery using the chat completions API
+   * Start conversation using the chat completions API
    * @param prompt
    */
-  public startChat<T>(prompt?: string) {
-    return this.http.post<GptChatMessage<T>[]>(`${this.baseurl}/chatStart`, { ...(prompt ? { prompt } : {}) });
+  public startChat(prompt?: string) {
+    return this.http.post<GptChatMessage<MessageContent>[]>(`${this.baseurl}/chatStart`, { ...(prompt ? { prompt } : {}) });
   }
 
   /**
-   * Continue mystery using the chat completions API
+   * Continue conversation using the chat completions API
    * @param prompt
    */
-  public continueChat<T>(messages: GptChatMessage<T>[]) {
-    return this.http.post<GptChatMessage<T>>(`${this.baseurl}/chatContinue`, { messages });
+  public continueChat(messages: GptChatMessage<MessageContent>[]) {
+    return this.http.post<GptChatMessage<MessageContent>>(`${this.baseurl}/chatContinue`, { messages });
   }
 }

@@ -1,2 +1,1 @@
-export * from './mystery.model';
-export * from './offline.constants';
+export * from './generic-data.model';
