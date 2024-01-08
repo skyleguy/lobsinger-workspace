@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
 
-import { MainContainerComponent } from './main-container.component';
+import { MainContainerComponent } from '@lob/client/kyai/layout/feature';
 
 export const appRoutes: Route[] = [
   {

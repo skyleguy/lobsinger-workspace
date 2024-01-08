@@ -1,0 +1,33 @@
+<div id="main-container" class="w-screen h-screen max-w-full max-h-full overflow-hidden flex flex-col border">
+  <div id="top-nav" class="flex w-full h-[50px] min-h-[50px] border items-center justify-center">
+    @if (mysteryDetails) {
+      <kyai-layout-ui-top-menu [gameTitle]="mysteryDetails.title"></kyai-layout-ui-top-menu>
+    }
+  </div>
+  <div class="flex grow min-h-0">
+    <div id="sidebar" class="flex basis-1/6 w-full h-full border border-orange items-center justify-center">
+      @if (mysteryDetails) {
+        <kyai-layout-ui-sidebar [characters]="mysteryDetails.characters"></kyai-layout-ui-sidebar>
+      }
+    </div>
+    <div id="content-container" class="flex flex-col basis-5/6 w-full h-full max-h-full border items-center justify-center overflow-hidden">
+      <div id="game-container" class="flex basis-5/6 border w-full h-full max-h-full overflow-hidden">
+        @if (shownMessages.length > 0) {
+          <kyai-layout-ui-game-container
+            [responses]="shownMessages"
+            [mysteryCoverPhotoUrl]="mysteryCoverPhoto"
+          ></kyai-layout-ui-game-container>
+        }
+      </div>
+      <div id="text-container" class="flex basis-1/6 border w-full h-full items-center justify-center">
+        <kyai-layout-ui-text-container
+          [suggestions]="suggestions"
+          [isInitialized]="!!mysteryDetails"
+          (startMystery)="requestMysteryStart($event)"
+          (submitPrompt)="addUserPrompt($event)"
+          (endMystery)="endMystery()"
+        ></kyai-layout-ui-text-container>
+      </div>
+    </div>
+  </div>
+</div>
