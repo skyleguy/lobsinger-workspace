@@ -24,7 +24,9 @@ export class GameContainerComponent implements OnChanges {
 
   private scrollDown(): void {
     if (this.hostElement) {
-      this.hostElement.nativeElement.scrollTop = this.hostElement.nativeElement.scrollHeight;
+      setTimeout(() => {
+        this.hostElement.nativeElement.scrollTop = this.hostElement.nativeElement.scrollHeight;
+      }, 0);
     }
   }
 }

@@ -24,7 +24,7 @@
           [suggestions]="suggestions"
           [isInitialized]="!!mysteryDetails"
           (startMystery)="requestMysteryStart($event)"
-          (submitPrompt)="addUserPrompt($event)"
+          (addToChat)="addUserPrompt($event)"
           (endMystery)="endMystery()"
         ></kyai-layout-ui-text-container>
       </div>
