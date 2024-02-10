@@ -21,16 +21,16 @@ export class Game {
 
   constructor(obj: Partial<Game>) {
     Object.assign(this, obj);
+  }
+
+  startGame() {
+    console.log('game started');
     this.pickDefaultLocation();
     this.pickDefaultScene();
     setInterval(() => {
       this.gameClock += 1;
     }, 1000);
     console.log('game created and clock is ticking');
-  }
-
-  startGame() {
-    console.log('game started');
   }
 
   endGame() {
