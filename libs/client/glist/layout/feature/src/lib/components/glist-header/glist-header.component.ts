@@ -14,8 +14,6 @@ import { FirebaseAppFacadeService } from '@lob/client/shared/firebase/data-acces
 import { ImageRetrievalService } from '@lob/client/shared/images/data-access';
 import { UiVisibilityTarget } from '@lob/client/shared/mobile/utilities/data';
 import { UiVisibilityService } from '@lob/client/shared/mobile/utilities/data-access';
-// TODO fix issue where app cant import from itself using relative path
-// eslint-disable-next-line @nx/enforce-module-boundaries
 
 @Component({
   selector: 'glist-layout-feature-header',

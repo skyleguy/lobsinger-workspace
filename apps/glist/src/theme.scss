@@ -111,3 +111,23 @@ $my-custom-theme: mat.define-light-theme(
   )
 );
 @include mat.all-component-themes($my-custom-theme);
+
+.primary-text {
+  color: mat.get-theme-color($my-custom-theme, primary, default);
+}
+
+.accent-text {
+  color: mat.get-theme-color($my-custom-theme, accent, default);
+}
+
+.warn-text {
+  color: mat.get-theme-color($my-custom-theme, warn, default);
+}
+
+.body-1-font-size {
+  font-size: mat.get-theme-typography($my-custom-theme, body-1, font-size) !important;
+}
+
+.headline-5-font-size {
+  font-size: mat.get-theme-typography($my-custom-theme, headline-5, font-size) !important;
+}
