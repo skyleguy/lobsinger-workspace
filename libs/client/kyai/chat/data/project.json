@@ -16,9 +16,8 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/client/kyai/chat/data/**/*.ts", "libs/client/kyai/chat/data/package.json"]
+        "lintFilePatterns": ["{projectRoot}/**/*.ts", "{projectRoot}/package.json"]
       }
     },
     "test": {
