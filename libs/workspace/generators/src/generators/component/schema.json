@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "Component",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "dashedNames": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "comma separated list of dash separated names. Ex [my-thing, my-other-thing]",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use for the component using dash separators (Ex. my-cool-thing)?"
+    },
+    "project": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "option",
+        "key": "project"
+      },
+      "x-prompt": "Where would you like the component to be generated? (Ex. libs/client/glist/recipes/ui/src/lib/components)"
+    },
+    "inlineTemplate": {
+      "type": "boolean",
+      "description": "whether or not to have the template be in-line or have its own .html file",
+      "$default": {
+        "$source": "option",
+        "key": "inlineTemplate"
+      },
+      "x-prompt": "Do you want the template to be inline? (Defaults to no)"
+    }
+  },
+  "required": ["dashedNames"]
+}

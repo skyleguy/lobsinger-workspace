@@ -1,0 +1,20 @@
+import { Spectator, createComponentFactory } from '@ngneat/spectator/jest';
+
+import { <%= componentName %> } from './<%= dashedName %>.component';
+
+describe('<%= componentName %>', () => {
+  let spectator: Spectator<<%= componentName %>>;
+  const createComponent = createComponentFactory({
+    component: <%= componentName %>,
+    imports: [],
+    providers: []
+  });
+
+  beforeEach(() => {
+    spectator = createComponent();
+  });
+
+  it('should create', () => {
+    expect(spectator.component).toBeTruthy();
+  })
+})

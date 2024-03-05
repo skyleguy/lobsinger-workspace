@@ -53,7 +53,8 @@
       "@lob/server/kgtp/chat": ["libs/server/kgtp/chat/src/index.ts"],
       "@lob/shared/data-management/data": ["libs/shared/data-management/data/src/index.ts"],
       "@lob/shared/data-management/util": ["libs/shared/data-management/util/src/index.ts"],
-      "@lob/shared/ingredients/data": ["libs/shared/ingredients/data/src/index.ts"]
+      "@lob/shared/ingredients/data": ["libs/shared/ingredients/data/src/index.ts"],
+      "workspace/generators": ["libs/workspace/generators/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

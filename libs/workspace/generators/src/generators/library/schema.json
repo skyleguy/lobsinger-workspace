@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "Library",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "libTypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Povide the library types to generate",
+      "x-prompt": {
+        "message": "Which type of library would you like to generate? Press Spacebar to select and Enter to continue",
+        "type": "list",
+        "multiselect": true,
+        "items": [
+          {
+            "value": "feature",
+            "label": "Feature"
+          },
+          {
+            "value": "ui",
+            "label": "UI"
+          },
+          {
+            "value": "data-access",
+            "label": "Data Access"
+          },
+          {
+            "value": "data",
+            "label": "Data"
+          },
+          {
+            "value": "util",
+            "label": "Util"
+          },
+          {
+            "value": "widget",
+            "label": "Widget"
+          }
+        ]
+      }
+    },
+    "scope": {
+      "type": "string",
+      "description": "Provide the Scope",
+      "x-prompt": {
+        "message": "What is the scope of this library?",
+        "type": "list",
+        "items": [
+          {
+            "value": "client",
+            "label": "Client"
+          },
+          {
+            "value": "shared",
+            "label": "Shared"
+          }
+        ]
+      }
+    },
+    "application": {
+      "type": "string",
+      "description": "Provide the Application",
+      "x-prompt": {
+        "message": "What application is this library for?",
+        "type": "list",
+        "items": [
+          {
+            "value": "glist",
+            "label": "GLIST"
+          },
+          {
+            "value": "shared",
+            "label": "SHARED"
+          }
+        ]
+      }
+    },
+    "name": {
+      "type": "string",
+      "description": "Provide the dash separated name. Ex: recipe or menu",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What dash (-) separated name would you like to use?"
+    }
+  },
+  "required": ["libTypes", "scope", "application", "name"]
+}
