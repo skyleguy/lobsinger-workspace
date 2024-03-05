@@ -1,13 +1,13 @@
 <div class="flex flex-col h-full">
   <glist-layout-feature-header (menuClicked)="sideNav.toggle()"></glist-layout-feature-header>
-  <mat-drawer-container class="grow" [hasBackdrop]="isMobile()">
+  <mat-drawer-container class="grow" [hasBackdrop]="deviceService.isMobile()">
     <mat-drawer
       id="sideNav"
       #sideNav
-      [mode]="isMobile() ? 'over' : 'side'"
+      [mode]="deviceService.isMobile() ? 'over' : 'side'"
       position="start"
       [(opened)]="isOpened"
-      [disableClose]="!isMobile()"
+      [disableClose]="!deviceService.isMobile()"
     >
       <glist-layout-feature-sidebar></glist-layout-feature-sidebar>
     </mat-drawer>

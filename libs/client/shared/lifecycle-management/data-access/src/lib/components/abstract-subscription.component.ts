@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, signal } from '@angular/core';
 
 import { SubSinker } from '@lob/client/shared/lifecycle-management/data';
 import { ComponentState } from '@lob/shared/data-management/data';
@@ -7,7 +7,7 @@ import { ComponentState } from '@lob/shared/data-management/data';
   template: ''
 })
 export abstract class AbstractSubscriptionComponent implements OnDestroy {
-  componentState!: ComponentState;
+  componentState = signal<ComponentState>(ComponentState.LOADING);
   sub: SubSinker = new SubSinker();
 
   ngOnDestroy(): void {
@@ -15,18 +15,18 @@ export abstract class AbstractSubscriptionComponent implements OnDestroy {
   }
 
   protected setLoadingState(): void {
-    this.componentState = ComponentState.LOADING;
+    this.componentState.set(ComponentState.LOADING);
   }
 
   protected setErrorState(): void {
-    this.componentState = ComponentState.ERROR;
+    this.componentState.set(ComponentState.ERROR);
   }
 
   protected setNoDataState(): void {
-    this.componentState = ComponentState.NO_DATA;
+    this.componentState.set(ComponentState.NO_DATA);
   }
 
   protected setDataState(): void {
-    this.componentState = ComponentState.DATA;
+    this.componentState.set(ComponentState.DATA);
   }
 }

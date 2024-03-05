@@ -10,7 +10,7 @@
         </nav>
         <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
       </div>
-      @if (deviceService.isComputer$ | async) {
+      @if (deviceService.isComputer()) {
         <button class="!text-white" mat-flat-button color="primary" (click)="addRecipe()">
           <mat-icon>add</mat-icon>
           Add New Recipe
@@ -21,10 +21,10 @@
     <div>
       @switch (selectedTab) {
         @case ('All Recipes') {
-          <ng-container *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: recipes, isAddCardVisible: true }"></ng-container>
+          <ng-container *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: recipes(), isAddCardVisible: true }"></ng-container>
         }
         @case ('Favorites') {
-          <ng-container *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: favoriteRecipes }"></ng-container>
+          <ng-container *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: favoriteRecipes() }"></ng-container>
         }
       }
     </div>
@@ -47,7 +47,7 @@
   </div>
 </ng-template>
 
-@if (deviceService.isMobile$ | async) {
+@if (deviceService.isMobile()) {
   <div class="absolute right-0 bottom-0 z-50 p-2">
     <button mat-fab color="primary" (click)="addRecipe()">
       <mat-icon class="text-white">add</mat-icon>

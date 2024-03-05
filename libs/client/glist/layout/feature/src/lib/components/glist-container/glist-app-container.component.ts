@@ -1,7 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NavigationStart, Router } from '@angular/router';
-import { distinctUntilChanged, filter } from 'rxjs';
+import { filter } from 'rxjs';
 
 import { DeviceService } from '@lob/client/shared/device/data-access';
 
@@ -17,11 +17,10 @@ import { GlistSidebarComponent } from '../glist-sidebar/glist-sidebar.component'
   imports: [GlistHeaderComponent, MatSidenavModule, GlistSidebarComponent, GlistContentComponent]
 })
 export class GlistContainerComponent {
-  isOpened!: boolean;
-  isMobile = signal(false);
+  isOpened = true;
 
   constructor(
-    private deviceService: DeviceService,
+    public deviceService: DeviceService,
     private router: Router
   ) {
     this.chooseSidebarBehavior();
@@ -29,16 +28,13 @@ export class GlistContainerComponent {
   }
 
   public chooseSidebarBehavior(): void {
-    this.deviceService.isMobile$.pipe(distinctUntilChanged()).subscribe({
-      next: (isMobile) => {
-        this.isMobile.set(isMobile);
-        this.isOpened = !isMobile;
-      }
+    effect(() => {
+      this.isOpened = !this.deviceService.isMobile();
     });
   }
 
   public closeMenuWhenRouteChanges(): void {
-    this.router.events.pipe(filter((event) => event instanceof NavigationStart && this.isMobile())).subscribe({
+    this.router.events.pipe(filter((event) => event instanceof NavigationStart && this.deviceService.isMobile())).subscribe({
       next: () => {
         this.isOpened = false;
       }

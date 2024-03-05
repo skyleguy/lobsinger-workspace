@@ -1,5 +1,6 @@
 import { NgTemplateOutlet, AsyncPipe } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,11 +27,12 @@ import { RecipeEditorComponent } from '../recipe-editor/recipe-editor.component'
   standalone: true,
   imports: [ScrollVisibilityDirective, MatTabsModule, MatButtonModule, MatIconModule, NgTemplateOutlet, RecipeCardComponent, AsyncPipe]
 })
-export class RecipeContainerComponent extends AbstractRedirectComponent implements OnInit, OnDestroy {
+export class RecipeContainerComponent extends AbstractRedirectComponent implements OnDestroy {
   readonly tabNames = ['All Recipes', 'Favorites'];
   readonly scrollVisibilityKey = UiVisibilityTarget.TOP_BAR;
-  recipes: Recipe[] = [];
-  favoriteRecipes: Recipe[] = [];
+
+  recipes = toSignal(this.recipeFacadeService.recipes$);
+  favoriteRecipes = toSignal(this.recipeFacadeService.favoriteRecipes$);
   selectedTab = 'All Recipes';
 
   constructor(
@@ -43,11 +45,6 @@ export class RecipeContainerComponent extends AbstractRedirectComponent implemen
     userFacadeService: UserFacadeService
   ) {
     super(userFacadeService.isUserSignedInAfterAttempt$.pipe(map((isSignedIn) => !isSignedIn)));
-  }
-
-  public ngOnInit(): void {
-    this.getRecipes();
-    this.getFakeRecipes();
   }
 
   doRedirect(): void {
@@ -88,21 +85,5 @@ export class RecipeContainerComponent extends AbstractRedirectComponent implemen
 
   public addRecipeToGlist(recipe: Recipe): void {
     this.glistFacadeService.addRecipeToGlist(recipe);
-  }
-
-  private getRecipes(): void {
-    this.sub.sink = this.recipeFacadeService.recipes$.subscribe({
-      next: (recipes) => {
-        this.recipes = recipes;
-      }
-    });
-  }
-
-  private getFakeRecipes(): void {
-    this.sub.sink = this.recipeFacadeService.favoriteRecipes$.subscribe({
-      next: (favRecipes) => {
-        this.favoriteRecipes = favRecipes;
-      }
-    });
   }
 }

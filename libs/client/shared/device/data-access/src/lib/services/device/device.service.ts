@@ -1,5 +1,5 @@
-import { Inject, Injectable } from '@angular/core';
-import { BehaviorSubject, debounceTime, fromEvent, map, startWith } from 'rxjs';
+import { Inject, Injectable, signal } from '@angular/core';
+import { debounceTime, fromEvent, map, startWith } from 'rxjs';
 
 import { DeviceConfig, DeviceConfigSymbol, DeviceSize } from '@lob/client/shared/device/data';
 import { AbstractSubscriptionComponent } from '@lob/client/shared/lifecycle-management/data-access';
@@ -8,9 +8,9 @@ import { AbstractSubscriptionComponent } from '@lob/client/shared/lifecycle-mana
   providedIn: 'root'
 })
 export class DeviceService extends AbstractSubscriptionComponent {
-  deviceSize$ = new BehaviorSubject(DeviceSize.COMPUTER);
-  isMobile$ = new BehaviorSubject(false);
-  isComputer$ = new BehaviorSubject(false);
+  deviceSize = signal(DeviceSize.COMPUTER);
+  isMobile = signal(false);
+  isComputer = signal(false);
 
   constructor(@Inject(DeviceConfigSymbol) private readonly deviceConfig: DeviceConfig) {
     super();
@@ -35,9 +35,9 @@ export class DeviceService extends AbstractSubscriptionComponent {
     for (const [breakpointWidth, breakpointDeviceSize] of Object.entries(this.deviceConfig.breakpointMap)) {
       const entryWidth = +breakpointWidth;
       if (width < entryWidth) {
-        this.deviceSize$.next(breakpointDeviceSize);
-        this.isMobile$.next(this.isDeviceSizeMobileBreakpoint(breakpointDeviceSize));
-        this.isComputer$.next(this.isDeviceSizeComputerBreakpoint(breakpointDeviceSize));
+        this.deviceSize.set(breakpointDeviceSize);
+        this.isMobile.set(this.isDeviceSizeMobileBreakpoint(breakpointDeviceSize));
+        this.isComputer.set(this.isDeviceSizeComputerBreakpoint(breakpointDeviceSize));
         break;
       }
     }

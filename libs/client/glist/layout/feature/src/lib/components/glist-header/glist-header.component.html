@@ -1,7 +1,4 @@
-<mat-toolbar
-  class="transition-all duration-300 !bg-container-fill-primary"
-  [class.!h-0]="!isHeaderVisible && (deviceService.isMobile$ | async)"
->
+<mat-toolbar class="transition-all duration-300 !bg-container-fill-primary" [class.!h-0]="!isHeaderVisible && deviceService.isMobile()">
   <div class="w-full flex justify-between items-center">
     <button mat-icon-button (click)="menuClicked.emit()">
       <mat-icon>menu</mat-icon>

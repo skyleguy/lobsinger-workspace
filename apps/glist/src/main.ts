@@ -2,7 +2,7 @@ import { withInterceptorsFromDi, provideHttpClient } from '@angular/common/http'
 import { importProvidersFrom, inject } from '@angular/core';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { Router, Routes, provideRouter } from '@angular/router';
+import { Router, Routes, provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
@@ -90,6 +90,6 @@ bootstrapApplication(AppComponent, {
     }),
     provideAnimations(),
     provideHttpClient(withInterceptorsFromDi()),
-    provideRouter(routes)
+    provideRouter(routes, withComponentInputBinding())
   ]
 }).catch((err) => console.error(err));
