@@ -20,7 +20,7 @@ export class Scene implements Defaultable, GameElement {
   description!: string;
   id!: string;
   image!: string;
-  isDefault: boolean = false;
+  isDefault = false;
   name!: string;
   status!: InteractionStatus;
 

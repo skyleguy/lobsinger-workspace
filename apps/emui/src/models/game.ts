@@ -7,7 +7,7 @@ import { Location, Scene } from './location';
 import { Trigger } from './trigger';
 
 export class Game {
-  gameClock: number = 0;
+  gameClock = 0;
   mysteryDetails: unknown;
   currentScene!: Scene | null;
   currentLocation!: Location | null;
