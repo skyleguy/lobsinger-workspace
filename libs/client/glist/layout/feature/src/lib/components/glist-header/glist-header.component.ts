@@ -1,17 +1,16 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { SafeUrl } from '@angular/platform-browser';
 import { LetDirective } from '@ngrx/component';
 import { FirebaseApp } from 'firebase/app';
-import { distinctUntilChanged, map, Observable, of, switchMap } from 'rxjs';
+import { distinctUntilChanged, map } from 'rxjs';
 
 import { UserFacadeService } from '@lob/client/shared/auth/data-access';
 import { DeviceService } from '@lob/client/shared/device/data-access';
 import { FirebaseAppFacadeService } from '@lob/client/shared/firebase/data-access';
-import { ImageRetrievalService } from '@lob/client/shared/images/data-access';
 import { UiVisibilityTarget } from '@lob/client/shared/mobile/utilities/data';
 import { UiVisibilityService } from '@lob/client/shared/mobile/utilities/data-access';
 
@@ -20,7 +19,7 @@ import { UiVisibilityService } from '@lob/client/shared/mobile/utilities/data-ac
   templateUrl: './glist-header.component.html',
   styleUrls: ['./glist-header.component.scss'],
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, LetDirective, AsyncPipe]
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule, LetDirective, AsyncPipe, NgOptimizedImage]
 })
 export class GlistHeaderComponent implements OnInit {
   readonly isMenuVisible$ = this.uiVisibilityService.visibilityMap$.pipe(
@@ -33,14 +32,22 @@ export class GlistHeaderComponent implements OnInit {
   @Output()
   menuClicked: EventEmitter<void> = new EventEmitter();
 
-  imageUrl$!: Observable<string | SafeUrl | null>;
+  imageUrl = toSignal(
+    this.userFacadeService.potentiallyNullUser$.pipe(
+      map((res) => {
+        if (res && res.pictureUrl) {
+          return res.pictureUrl;
+        }
+        return '';
+      })
+    )
+  );
   isSignedIn = false;
   isHeaderVisible = true;
   app!: FirebaseApp;
 
   constructor(
     private userFacadeService: UserFacadeService,
-    private readonly imageRetrievalService: ImageRetrievalService,
     private readonly uiVisibilityService: UiVisibilityService,
     private changeDetectorRef: ChangeDetectorRef,
     public readonly deviceService: DeviceService,
@@ -48,7 +55,6 @@ export class GlistHeaderComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.getUserImage();
     this.getIsUserSignedIn();
     this.getHeaderVisibility();
     this.firebaseAppFacadeService.app$.subscribe({
@@ -64,12 +70,6 @@ export class GlistHeaderComponent implements OnInit {
     } else {
       this.userFacadeService.signUserIn(this.app, false);
     }
-  }
-
-  private getUserImage(): void {
-    this.imageUrl$ = this.userFacadeService.potentiallyNullUser$.pipe(
-      switchMap((res) => (res ? this.imageRetrievalService.retrieveImage(res?.pictureUrl ?? '', true) : of(null)))
-    );
   }
 
   private getIsUserSignedIn(): void {

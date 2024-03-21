@@ -5,13 +5,11 @@
     </button>
     <span>Glist</span>
     <button mat-icon-button (click)="changeSignInStatus()">
-      <ng-container *ngrxLet="imageUrl$ as url; suspenseTpl: defaultUser">
-        @if (url) {
-          <img class="rounded-avatar" [src]="url" />
-        } @else {
-          <mat-icon>person</mat-icon>
-        }
-      </ng-container>
+      @if (imageUrl(); as url) {
+        <img class="rounded-avatar" [ngSrc]="url" width="48" height="48" />
+      } @else {
+        <mat-icon>person</mat-icon>
+      }
     </button>
   </div>
 </mat-toolbar>

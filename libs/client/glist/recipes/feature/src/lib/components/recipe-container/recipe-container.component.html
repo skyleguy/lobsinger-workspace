@@ -17,14 +17,19 @@
         </button>
       }
     </div>
-    <!-- uncomment this when hideous material inputs look good <glist-recipe-filter-tray (selectedFilters)="onRecipeFilterChange($event)"></glist-recipe-filter-tray> -->
-    <div>
-      @switch (selectedTab) {
-        @case ('All Recipes') {
-          <ng-container *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: recipes(), isAddCardVisible: true }"></ng-container>
-        }
-        @case ('Favorites') {
-          <ng-container *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: favoriteRecipes() }"></ng-container>
+    <div class="grow max-h-full overflow-y-auto">
+      @if (isLoading()) {
+        <div class="flex w-full h-full justify-center items-center">
+          <mat-spinner></mat-spinner>
+        </div>
+      } @else {
+        @switch (selectedTab) {
+          @case ('All Recipes') {
+            <ng-container *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: recipes(), isAddCardVisible: true }"></ng-container>
+          }
+          @case ('Favorites') {
+            <ng-container *ngTemplateOutlet="recipeGrid; context: { chosenRecipes: favoriteRecipes() }"></ng-container>
+          }
         }
       }
     </div>

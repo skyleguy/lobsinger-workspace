@@ -4,6 +4,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
@@ -25,13 +26,23 @@ import { RecipeEditorComponent } from '../recipe-editor/recipe-editor.component'
   templateUrl: './recipe-container.component.html',
   styleUrls: ['./recipe-container.component.scss'],
   standalone: true,
-  imports: [ScrollVisibilityDirective, MatTabsModule, MatButtonModule, MatIconModule, NgTemplateOutlet, RecipeCardComponent, AsyncPipe]
+  imports: [
+    ScrollVisibilityDirective,
+    MatTabsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatProgressSpinner,
+    NgTemplateOutlet,
+    RecipeCardComponent,
+    AsyncPipe
+  ]
 })
 export class RecipeContainerComponent extends AbstractRedirectComponent implements OnDestroy {
   readonly tabNames = ['All Recipes', 'Favorites'];
   readonly scrollVisibilityKey = UiVisibilityTarget.TOP_BAR;
 
   recipes = toSignal(this.recipeFacadeService.recipes$);
+  isLoading = toSignal(this.recipeFacadeService.isLoading$);
   favoriteRecipes = toSignal(this.recipeFacadeService.favoriteRecipes$);
   selectedTab = 'All Recipes';
 
