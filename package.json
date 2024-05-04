@@ -38,7 +38,7 @@
     "@reduxjs/toolkit": "^1.9.1",
     "axios": "1.6.7",
     "date-fns": "^3.2.0",
-    "firebase": "^9.14.0",
+    "firebase": "^10.11.1",
     "got": "^11.8.6",
     "got-scraping": "^3.2.15",
     "jssoup": "^0.0.15",
