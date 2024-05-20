@@ -1,4 +1,4 @@
-import { Body, Get, HttpException, HttpStatus, Param, Post, Put } from '@nestjs/common';
+import { Body, Get, HttpException, HttpStatus, Logger, Param, Post, Put } from '@nestjs/common';
 import OpenAI from 'openai';
 import { ChatCompletionMessageParam } from 'openai/resources/chat/completions';
 import { ImageGenerateParams } from 'openai/resources/images';
@@ -6,6 +6,9 @@ import { ImageGenerateParams } from 'openai/resources/images';
 import { OpenAiControllerOptions } from '../models/open-ai-controller-options.model';
 
 export class OpenAiBaseController {
+  readonly #jsonStringReplace = /json|```|\n/g;
+  readonly #logger = new Logger(OpenAiBaseController.name);
+
   openAi: OpenAI;
 
   constructor(private readonly controllerOptions: OpenAiControllerOptions) {
@@ -16,7 +19,7 @@ export class OpenAiBaseController {
 
   @Post('/image')
   async generateImageFromPrompt(@Body() { prompt, size }: { prompt: string; size: ImageGenerateParams['size'] }) {
-    console.log(`${this.controllerOptions.route}: generating image`);
+    this.#logger.log(`${this.controllerOptions.route}: generating image`);
     const image = await this.openAi.images.generate({
       prompt,
       n: 1,
@@ -31,14 +34,16 @@ export class OpenAiBaseController {
 
   @Post(':threadId/content')
   async getLatestAssistantMessages(@Param() params: { threadId: string }, @Body() body: { after?: string }) {
-    console.log(`${this.controllerOptions.route}: getting latest messages for thread: ${params.threadId} after: ${body?.after ?? '0'}`);
+    this.#logger.log(
+      `${this.controllerOptions.route}: getting latest messages for thread: ${params.threadId} after: ${body?.after ?? '0'}`
+    );
     const message = await this.openAi.beta.threads.messages.list(params.threadId, body?.after ? { after: body.after } : {});
     return this.convertMessagesResponse(message);
   }
 
   @Get(':threadId/messages')
   async listMessages(@Param() params: { threadId: string }) {
-    console.log(`${this.controllerOptions.route}: getting messages for thread: ${params.threadId}`);
+    this.#logger.log(`${this.controllerOptions.route}: getting messages for thread: ${params.threadId}`);
     const message = await this.openAi.beta.threads.messages.list(params.threadId, {
       limit: 1
     });
@@ -47,25 +52,25 @@ export class OpenAiBaseController {
 
   @Get(':threadId/runs')
   listRuns(@Param() params: { threadId: string }) {
-    console.log(`${this.controllerOptions.route}: getting runs for thread: ${params.threadId}`);
+    this.#logger.log(`${this.controllerOptions.route}: getting runs for thread: ${params.threadId}`);
     return this.openAi.beta.threads.runs.list(params.threadId);
   }
 
   @Get(':threadId/:runId')
   async getRunStatus(@Param() params: { threadId: string; runId: string }) {
-    console.log(`${this.controllerOptions.route}: getting run status for thread: ${params.threadId} and run: ${params.runId}`);
+    this.#logger.log(`${this.controllerOptions.route}: getting run status for thread: ${params.threadId} and run: ${params.runId}`);
     const run = await this.openAi.beta.threads.runs.retrieve(params.threadId, params.runId);
     return { status: run.status, threadId: run.thread_id, runId: run.id };
   }
 
   @Put(':threadId')
   async addMessageToThread(@Body() body: { message: string }, @Param() params: { threadId: string }) {
-    console.log(`${this.controllerOptions.route}: adding message to thread: ${params.threadId}`);
+    this.#logger.log(`${this.controllerOptions.route}: adding message to thread: ${params.threadId}`);
     const _addMessageRes = this.openAi.beta.threads.messages.create(params.threadId, {
       role: 'user',
       content: body.message
     });
-    console.log(`${this.controllerOptions.route}: added message to thread successfully, now creating the run for it`);
+    this.#logger.log(`${this.controllerOptions.route}: added message to thread successfully, now creating the run for it`);
     try {
       const newRun = await this.openAi.beta.threads.runs.create(params.threadId, {
         assistant_id: this.controllerOptions.assistantId
@@ -80,7 +85,7 @@ export class OpenAiBaseController {
 
   @Put('')
   async createChat(@Body() body: { prompt?: string }) {
-    console.log(`${this.controllerOptions.route}: creating a new chat!`);
+    this.#logger.log(`${this.controllerOptions.route}: creating a new chat!`);
     const requestString = body.prompt ?? 'Lets solve a mystery';
     const run = await this.openAi.beta.threads.createAndRun({
       assistant_id: this.controllerOptions.assistantId,
@@ -97,14 +102,14 @@ export class OpenAiBaseController {
       try {
         return JSON.parse(value);
       } catch (e) {
-        console.error('Error parsing JSON string:', e);
+        this.#logger.error('Error parsing JSON string:', e);
       }
     }
 
     return value;
   }
 
-  private convertMessagesResponse(message: OpenAI.Beta.Threads.Messages.ThreadMessagesPage) {
+  private convertMessagesResponse(message: OpenAI.Beta.Threads.Messages.MessagesPage) {
     return message.data.map((message) => {
       return {
         role: message.role,
@@ -115,8 +120,10 @@ export class OpenAiBaseController {
             } else {
               return content.text.value;
             }
-          } else {
+          } else if (content.type === 'image_file') {
             return content.image_file;
+          } else {
+            return content.image_url;
           }
         }),
         creationTime: message.created_at,
@@ -183,11 +190,13 @@ export class OpenAiBaseController {
     const { message } = completion.choices[0];
     try {
       if (message.content && this.controllerOptions.isExpectingJsonInteractions) {
-        message.content = JSON.parse(message?.content);
+        const fixedContent = message?.content?.replace(this.#jsonStringReplace, '');
+        message.content = JSON.parse(fixedContent);
       }
       return message;
     } catch (e) {
-      throw new HttpException('JSON parsing of the GTP response failed.', HttpStatus.INTERNAL_SERVER_ERROR);
+      this.#logger.error(`Got JSON parsing error during the parsing of the GPT Response`);
+      throw new HttpException('JSON parsing of the GPT response failed.', HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 }

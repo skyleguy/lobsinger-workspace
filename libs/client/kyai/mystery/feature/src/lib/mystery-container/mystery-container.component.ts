@@ -24,7 +24,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MysteryContainerComponent {
-  readonly isOfflineMode = true;
+  readonly isOfflineMode = false;
 
   mysteryDetails!: MysteryDetails | null;
   accumulatingMessages: GptChatMessage<MysteryContent>[] = [];

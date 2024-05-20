@@ -79,10 +79,9 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(BrowserModule),
     { provide: FirebaseOptionsToken, useValue: firebaseOptions },
     provideDevice(),
-    provideStore({
-      [firebaseSlice.name]: firebaseSlice.reducer,
-      [userSlice.name]: userSlice.reducer
-    }),
+    provideStore({}),
+    provideState(firebaseSlice.name, firebaseSlice.reducer),
+    provideState(userSlice.name, userSlice.reducer),
     provideEffects(UserEffects, FirebaseAppEffects),
     provideStoreDevtools({
       maxAge: 25,

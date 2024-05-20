@@ -11,9 +11,9 @@ import { mysteryChatStartSystemPrompt } from './mystery-chat-start';
       apiKey: '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',
       completionOptions: {
         messages: [],
-        model: 'gpt-3.5-turbo-1106',
+        model: 'gpt-4o',
         n: 1,
-        max_tokens: 500
+        max_tokens: 1000
       },
       isExpectingJsonInteractions: true,
       chatStartPrompt: mysteryChatStartSystemPrompt,
@@ -24,9 +24,9 @@ import { mysteryChatStartSystemPrompt } from './mystery-chat-start';
       apiKey: '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',
       completionOptions: {
         messages: [],
-        model: 'gpt-3.5-turbo-1106',
+        model: 'gpt-4o',
         n: 1,
-        max_tokens: 500
+        max_tokens: 1000
       },
       isExpectingJsonInteractions: false,
       chatStartPrompt: 'You are an angular wizard and are helping tutor others in Angular',
