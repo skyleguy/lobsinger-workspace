@@ -4,5 +4,5 @@
   </div>
 }
 @for (response of responses; track response) {
-  <p>{{ response }}</p>
+  <p (click)="textClicked.emit(response)">{{ response }}</p>
 }

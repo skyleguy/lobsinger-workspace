@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostBinding, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostBinding, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'kyai-layout-ui-game-container',
@@ -13,6 +13,9 @@ export class GameContainerComponent implements OnChanges {
   responses: string[] = [];
   @Input()
   mysteryCoverPhotoUrl!: string;
+
+  @Output()
+  textClicked: EventEmitter<string> = new EventEmitter();
 
   constructor(private hostElement: ElementRef) {}
 

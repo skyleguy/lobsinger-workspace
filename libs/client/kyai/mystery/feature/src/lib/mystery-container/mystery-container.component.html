@@ -16,6 +16,7 @@
           <kyai-layout-ui-game-container
             [responses]="shownMessages"
             [mysteryCoverPhotoUrl]="mysteryCoverPhoto"
+            (textClicked)="generateAudio($event)"
           ></kyai-layout-ui-game-container>
         }
       </div>
