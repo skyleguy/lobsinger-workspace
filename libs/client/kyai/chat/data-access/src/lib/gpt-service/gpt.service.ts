@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { map } from 'rxjs';
 
 import { GptChatMessage, ContentWrapper, Conversation, ConversationType } from '@lob/client/kyai/chat/data';
 
@@ -69,5 +70,9 @@ export class GptService<MessageContent> {
    */
   public continueChat(messages: GptChatMessage<MessageContent>[]) {
     return this.http.post<GptChatMessage<MessageContent>>(`${this.baseurl}/chatContinue`, { messages });
+  }
+
+  public streamSpeechFromText(text: string) {
+    return this.http.post<{ url: string }>(`${this.baseurl}/submitSpeech`, { text }).pipe(map((res) => res.url));
   }
 }

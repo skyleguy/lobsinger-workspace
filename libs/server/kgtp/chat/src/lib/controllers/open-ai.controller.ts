@@ -1,13 +1,18 @@
-import { Body, Get, HttpException, HttpStatus, Logger, Param, Post, Put } from '@nestjs/common';
+import { Body, Get, HttpException, HttpStatus, Logger, Param, Post, Put, Res } from '@nestjs/common';
+import { Response } from 'express';
 import OpenAI from 'openai';
 import { ChatCompletionMessageParam } from 'openai/resources/chat/completions';
 import { ImageGenerateParams } from 'openai/resources/images';
+import { v4 as uuidv4 } from 'uuid';
+
+import { Readable } from 'stream';
 
 import { OpenAiControllerOptions } from '../models/open-ai-controller-options.model';
 
 export class OpenAiBaseController {
   readonly #jsonStringReplace = /json|```|\n/g;
   readonly #logger = new Logger(OpenAiBaseController.name);
+  readonly idMap: Record<string, string> = {};
 
   openAi: OpenAI;
 
@@ -15,6 +20,29 @@ export class OpenAiBaseController {
     this.openAi = new OpenAI({
       apiKey: controllerOptions.apiKey
     });
+  }
+
+  @Post('/submitSpeech')
+  async generateSpeechRequestFromText(@Body() { text }: { text: string }) {
+    const uuid = uuidv4();
+    this.idMap[uuid] = text;
+    this.#logger.log(this.idMap);
+    return { url: `http://localhost:3000/api/mystery/speech/${uuid}` };
+  }
+
+  @Get('/speech/:textId')
+  async generateSpeechFromText(@Param('textId') textId: string, @Res() res: Response) {
+    res.setHeader('Content-Type', 'media/opus');
+    const response = await this.openAi.audio.speech.create({
+      model: 'tts-1',
+      voice: 'shimmer',
+      input: this.idMap[textId],
+      response_format: 'opus'
+    });
+    delete this.idMap[textId];
+    this.#logger.log(this.idMap);
+    const readableStream = response.body as unknown as Readable;
+    readableStream.pipe(res);
   }
 
   @Post('/image')
@@ -130,6 +158,31 @@ export class OpenAiBaseController {
         id: message.id
       };
     });
+  }
+
+  /**
+   * endpoint used to test streaming a response
+   */
+  @Post('/chatStream')
+  async chatStream(@Body() { message }: { message: string }, @Res() res: Response) {
+    const readable = new Readable({
+      objectMode: true,
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      read() {}
+    });
+    readable.pipe(res);
+    const completion = await this.openAi.chat.completions.create({
+      ...this.controllerOptions.completionOptions,
+      messages: [{ role: 'user', content: message }],
+      stream: true
+    });
+    for await (const chunk of completion) {
+      const data = chunk?.choices[0]?.delta?.content;
+      if (data) {
+        readable.push(data);
+      }
+    }
+    readable.push(null);
   }
 
   /**

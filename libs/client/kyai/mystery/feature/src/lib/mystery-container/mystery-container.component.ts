@@ -25,6 +25,7 @@ import {
 })
 export class MysteryContainerComponent {
   readonly isOfflineMode = false;
+  readonly isTextOnlyMode = true;
 
   mysteryDetails!: MysteryDetails | null;
   accumulatingMessages: GptChatMessage<MysteryContent>[] = [];
@@ -58,7 +59,9 @@ export class MysteryContainerComponent {
               if (this.mysteryDetails?.description) {
                 this.shownMessages = [...this.shownMessages, this.mysteryDetails.description];
               }
-              this.getImagesForItems();
+              if (!this.isTextOnlyMode) {
+                this.getImagesForItems();
+              }
             }
             if (content.response) {
               this.shownMessages = [...this.shownMessages, content.response.details];
@@ -95,6 +98,18 @@ export class MysteryContainerComponent {
     this.shownMessages = [];
     this.accumulatingMessages = [];
     this.suggestions = [];
+  }
+
+  public generateAudio(text: string) {
+    this.gptService.streamSpeechFromText(text).subscribe({
+      next: (res) => {
+        const audio = new Audio(res);
+        audio.autoplay = true;
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
   }
 
   private getImagesForItems(): void {
