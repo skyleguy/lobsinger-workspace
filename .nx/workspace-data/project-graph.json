@@ -1,0 +1,3653 @@
+{
+  "nodes": {
+    "client-shared-lifecycle-management-data-access": {
+      "name": "client-shared-lifecycle-management-data-access",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/shared/lifecycle-management/data-access",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/shared/lifecycle-management/data-access/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/shared/lifecycle-management/data-access/**/*.ts",
+                "libs/client/shared/lifecycle-management/data-access/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-shared-lifecycle-management-data-access",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/shared/lifecycle-management/data-access/src",
+        "prefix": "lob",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:data-access"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-shared-mobile-utilities-data-access": {
+      "name": "client-shared-mobile-utilities-data-access",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/shared/mobile/utilities/data-access",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/shared/mobile/utilities/data-access/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/shared/mobile/utilities/data-access/**/*.ts",
+                "libs/client/shared/mobile/utilities/data-access/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-shared-mobile-utilities-data-access",
+        "$schema": "../../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/shared/mobile/utilities/data-access/src",
+        "prefix": "lob",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:data-access"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-shared-lifecycle-management-data": {
+      "name": "client-shared-lifecycle-management-data",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/shared/lifecycle-management/data",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/shared/lifecycle-management/data/jest.config.ts",
+              "tsConfig": "libs/client/shared/lifecycle-management/data/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/shared/lifecycle-management/data/**/*.ts"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-shared-lifecycle-management-data",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/shared/lifecycle-management/data/src",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:data"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-shared-mobile-utilities-data": {
+      "name": "client-shared-mobile-utilities-data",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/shared/mobile/utilities/data",
+        "name": "client-shared-mobile-utilities-data",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": []
+          }
+        },
+        "targets": {
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          },
+          "build": {
+            "executor": "@nx/js:tsc",
+            "cache": true,
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "options": {
+              "outputPath": "dist/libs/client/shared/mobile/utilities/data",
+              "main": "libs/client/shared/mobile/utilities/data/src/index.ts",
+              "tsConfig": "libs/client/shared/mobile/utilities/data/tsconfig.lib.json",
+              "assets": [
+                "libs/client/shared/mobile/utilities/data/*.md"
+              ]
+            },
+            "configurations": {}
+          },
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/shared/mobile/utilities/data/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/shared/mobile/utilities/data/**/*.ts"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "$schema": "../../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/shared/mobile/utilities/data/src",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:data"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-shared-firebase-data-access": {
+      "name": "client-shared-firebase-data-access",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/shared/firebase/data-access",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/shared/firebase/data-access/jest.config.ts",
+              "tsConfig": "libs/client/shared/firebase/data-access/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/shared/firebase/data-access/**/*.ts",
+                "libs/client/shared/firebase/data-access/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-shared-firebase-data-access",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "library",
+        "sourceRoot": "libs/client/shared/firebase/data-access/src",
+        "prefix": "lob",
+        "tags": [
+          "scope:client",
+          "type:data-access"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-glist-recipes-data-access": {
+      "name": "client-glist-recipes-data-access",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/glist/recipes/data-access",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/glist/recipes/data-access/jest.config.ts",
+              "tsConfig": "libs/client/glist/recipes/data-access/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/glist/recipes/data-access/**/*.ts",
+                "libs/client/glist/recipes/data-access/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-glist-recipes-data-access",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "library",
+        "sourceRoot": "libs/client/glist/recipes/data-access/src",
+        "prefix": "glist",
+        "tags": [
+          "scope:client",
+          "type:data-access"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-shared-device-data-access": {
+      "name": "client-shared-device-data-access",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/shared/device/data-access",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/shared/device/data-access/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/shared/device/data-access/**/*.ts",
+                "libs/client/shared/device/data-access/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-shared-device-data-access",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/shared/device/data-access/src",
+        "prefix": "lob",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:data-access"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-shared-images-data-access": {
+      "name": "client-shared-images-data-access",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/shared/images/data-access",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/shared/images/data-access/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/shared/images/data-access/**/*.ts",
+                "libs/client/shared/images/data-access/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-shared-images-data-access",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/shared/images/data-access/src",
+        "prefix": "lob",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:data-access"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-glist-glists-data-access": {
+      "name": "client-glist-glists-data-access",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/glist/glists/data-access",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/glist/glists/data-access/jest.config.ts",
+              "tsConfig": "libs/client/glist/glists/data-access/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/glist/glists/data-access/**/*.ts",
+                "libs/client/glist/glists/data-access/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-glist-glists-data-access",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "library",
+        "sourceRoot": "libs/client/glist/glists/data-access/src",
+        "prefix": "glist",
+        "tags": [
+          "scope:client",
+          "type:data-access"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-glist-dashboard-feature": {
+      "name": "client-glist-dashboard-feature",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/glist/dashboard/feature",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/glist/dashboard/feature/jest.config.ts",
+              "tsConfig": "libs/client/glist/dashboard/feature/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/glist/dashboard/feature/**/*.ts",
+                "libs/client/glist/dashboard/feature/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-glist-dashboard-feature",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "library",
+        "sourceRoot": "libs/client/glist/dashboard/feature/src",
+        "prefix": "lob",
+        "tags": [
+          "scope:client",
+          "type:feature"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-shared-auth-data-access": {
+      "name": "client-shared-auth-data-access",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/shared/auth/data-access",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/shared/auth/data-access/jest.config.ts",
+              "tsConfig": "libs/client/shared/auth/data-access/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/shared/auth/data-access/**/*.ts",
+                "libs/client/shared/auth/data-access/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-shared-auth-data-access",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "library",
+        "sourceRoot": "libs/client/shared/auth/data-access/src",
+        "prefix": "lob",
+        "tags": [
+          "scope:client",
+          "type:data-access"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-shared-user-actions-ui": {
+      "name": "client-shared-user-actions-ui",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/shared/user-actions/ui",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/shared/user-actions/ui/jest.config.ts",
+              "tsConfig": "libs/client/shared/user-actions/ui/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/shared/user-actions/ui/**/*.ts",
+                "libs/client/shared/user-actions/ui/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-shared-user-actions-ui",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "library",
+        "sourceRoot": "libs/client/shared/user-actions/ui/src",
+        "prefix": "glist",
+        "tags": [
+          "scope:client",
+          "type:ui"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-glist-recipes-feature": {
+      "name": "client-glist-recipes-feature",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/glist/recipes/feature",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/glist/recipes/feature/jest.config.ts",
+              "tsConfig": "libs/client/glist/recipes/feature/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/glist/recipes/feature/**/*.ts",
+                "libs/client/glist/recipes/feature/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-glist-recipes-feature",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "library",
+        "sourceRoot": "libs/client/glist/recipes/feature/src",
+        "prefix": "glist",
+        "tags": [
+          "scope:client",
+          "type:feature"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-kyai-chat-data-access": {
+      "name": "client-kyai-chat-data-access",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/kyai/chat/data-access",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/kyai/chat/data-access/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/kyai/chat/data-access/**/*.ts",
+                "libs/client/kyai/chat/data-access/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-kyai-chat-data-access",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/kyai/chat/data-access/src",
+        "prefix": "lib",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:data-access"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-glist-glists-feature": {
+      "name": "client-glist-glists-feature",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/glist/glists/feature",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/glist/glists/feature/jest.config.ts",
+              "tsConfig": "libs/client/glist/glists/feature/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/glist/glists/feature/**/*.ts",
+                "libs/client/glist/glists/feature/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-glist-glists-feature",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "library",
+        "sourceRoot": "libs/client/glist/glists/feature/src",
+        "prefix": "glist",
+        "tags": [
+          "scope:client",
+          "type:feature"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-glist-layout-feature": {
+      "name": "client-glist-layout-feature",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/glist/layout/feature",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/glist/layout/feature/jest.config.ts",
+              "tsConfig": "libs/client/glist/layout/feature/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/glist/layout/feature/**/*.ts",
+                "libs/client/glist/layout/feature/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-glist-layout-feature",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/glist/layout/feature/src",
+        "prefix": "glist",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:feature"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-kyai-mystery-feature": {
+      "name": "client-kyai-mystery-feature",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/kyai/mystery/feature",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/kyai/mystery/feature/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/kyai/mystery/feature/**/*.ts",
+                "libs/client/kyai/mystery/feature/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-kyai-mystery-feature",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/kyai/mystery/feature/src",
+        "prefix": "lib",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:feature"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-shared-firebase-data": {
+      "name": "client-shared-firebase-data",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/shared/firebase/data",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/shared/firebase/data/jest.config.ts",
+              "tsConfig": "libs/client/shared/firebase/data/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/shared/firebase/data/**/*.ts"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-shared-firebase-data",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/shared/firebase/data/src",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:data"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "data": {
+      "name": "data",
+      "type": "lib",
+      "data": {
+        "root": "libs/shared/data-management/data",
+        "name": "data",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": []
+          }
+        },
+        "targets": {
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          },
+          "build": {
+            "executor": "@nx/js:tsc",
+            "cache": true,
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "options": {
+              "outputPath": "dist/libs/shared/data-management/data",
+              "main": "libs/shared/data-management/data/src/index.ts",
+              "tsConfig": "libs/shared/data-management/data/tsconfig.lib.json",
+              "assets": [
+                "libs/shared/data-management/data/*.md"
+              ]
+            },
+            "configurations": {}
+          },
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/shared/data-management/data/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/shared/data-management/data/**/*.ts",
+                "libs/shared/data-management/data/package.json"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/shared/data-management/data/src",
+        "projectType": "library",
+        "tags": [
+          "scope:shared",
+          "type:data"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "util": {
+      "name": "util",
+      "type": "lib",
+      "data": {
+        "root": "libs/shared/data-management/util",
+        "name": "util",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": []
+          }
+        },
+        "targets": {
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          },
+          "build": {
+            "executor": "@nx/js:tsc",
+            "cache": true,
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "options": {
+              "outputPath": "dist/libs/shared/data-management/util",
+              "main": "libs/shared/data-management/util/src/index.ts",
+              "tsConfig": "libs/shared/data-management/util/tsconfig.lib.json",
+              "assets": [
+                "libs/shared/data-management/util/*.md"
+              ]
+            },
+            "configurations": {}
+          },
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/shared/data-management/util/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/shared/data-management/util/**/*.ts",
+                "libs/shared/data-management/util/package.json"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/shared/data-management/util/src",
+        "projectType": "library",
+        "tags": [
+          "scope:shared",
+          "type:util"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-glist-menus-feature": {
+      "name": "client-glist-menus-feature",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/glist/menus/feature",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/glist/menus/feature/jest.config.ts",
+              "tsConfig": "libs/client/glist/menus/feature/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/glist/menus/feature/**/*.ts",
+                "libs/client/glist/menus/feature/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-glist-menus-feature",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "library",
+        "sourceRoot": "libs/client/glist/menus/feature/src",
+        "prefix": "glist",
+        "tags": [
+          "scope:client",
+          "type:feature"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-shared-helpers-util": {
+      "name": "client-shared-helpers-util",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/shared/helpers/util",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/shared/helpers/util/jest.config.ts",
+              "tsConfig": "libs/client/shared/helpers/util/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/shared/helpers/util/**/*.ts"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-shared-helpers-util",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/shared/helpers/util/src",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:ui"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-glist-recipes-data": {
+      "name": "client-glist-recipes-data",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/glist/recipes/data",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/glist/recipes/data/jest.config.ts",
+              "tsConfig": "libs/client/glist/recipes/data/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/glist/recipes/data/**/*.ts"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-glist-recipes-data",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/glist/recipes/data/src",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:data"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-shared-device-data": {
+      "name": "client-shared-device-data",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/shared/device/data",
+        "name": "client-shared-device-data",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": []
+          }
+        },
+        "targets": {
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          },
+          "build": {
+            "executor": "@nx/js:tsc",
+            "cache": true,
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "options": {
+              "outputPath": "dist/libs/client/shared/device/data",
+              "main": "libs/client/shared/device/data/src/index.ts",
+              "tsConfig": "libs/client/shared/device/data/tsconfig.lib.json",
+              "assets": [
+                "libs/client/shared/device/data/*.md"
+              ]
+            },
+            "configurations": {}
+          },
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/shared/device/data/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/shared/device/data/**/*.ts"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/shared/device/data/src",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:data"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-shared-images-util": {
+      "name": "client-shared-images-util",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/shared/images/util",
+        "name": "client-shared-images-util",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": []
+          }
+        },
+        "targets": {
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          },
+          "build": {
+            "executor": "@nx/js:tsc",
+            "cache": true,
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "options": {
+              "outputPath": "dist/libs/client/shared/images/util",
+              "main": "libs/client/shared/images/util/src/index.ts",
+              "tsConfig": "libs/client/shared/images/util/tsconfig.lib.json",
+              "assets": [
+                "libs/client/shared/images/util/*.md"
+              ]
+            },
+            "configurations": {}
+          },
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/shared/images/util/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/shared/images/util/**/*.ts"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/shared/images/util/src",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:util"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-shared-tailwind-ui": {
+      "name": "client-shared-tailwind-ui",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/shared/tailwind/ui",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/shared/tailwind/ui/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/shared/tailwind/ui/**/*.ts",
+                "libs/client/shared/tailwind/ui/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-shared-tailwind-ui",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/shared/tailwind/ui/src",
+        "prefix": "lib",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:ui"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-glist-glists-data": {
+      "name": "client-glist-glists-data",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/glist/glists/data",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/glist/glists/data/jest.config.ts",
+              "tsConfig": "libs/client/glist/glists/data/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/glist/glists/data/**/*.ts"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-glist-glists-data",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/glist/glists/data/src",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:data"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-glist-glists-util": {
+      "name": "client-glist-glists-util",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/glist/glists/util",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/glist/glists/util/jest.config.ts",
+              "tsConfig": "libs/client/glist/glists/util/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/glist/glists/util/**/*.ts"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-glist-glists-util",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/glist/glists/util/src",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:util"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-kyai-mystery-data": {
+      "name": "client-kyai-mystery-data",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/kyai/mystery/data",
+        "name": "client-kyai-mystery-data",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": []
+          }
+        },
+        "targets": {
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          },
+          "build": {
+            "executor": "@nx/js:tsc",
+            "cache": true,
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "options": {
+              "outputPath": "dist/libs/client/kyai/mystery/data",
+              "main": "libs/client/kyai/mystery/data/src/index.ts",
+              "tsConfig": "libs/client/kyai/mystery/data/tsconfig.lib.json",
+              "assets": [
+                "libs/client/kyai/mystery/data/*.md"
+              ]
+            },
+            "configurations": {}
+          },
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/kyai/mystery/data/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/kyai/mystery/data/**/*.ts",
+                "libs/client/kyai/mystery/data/package.json"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/kyai/mystery/data/src",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:data"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-glist-menus-data": {
+      "name": "client-glist-menus-data",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/glist/menus/data",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/glist/menus/data/jest.config.ts",
+              "tsConfig": "libs/client/glist/menus/data/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/glist/menus/data/**/*.ts"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-glist-menus-data",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/glist/menus/data/src",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:data"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-glist-recipes-ui": {
+      "name": "client-glist-recipes-ui",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/glist/recipes/ui",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/glist/recipes/ui/jest.config.ts",
+              "tsConfig": "libs/client/glist/recipes/ui/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/glist/recipes/ui/**/*.ts",
+                "libs/client/glist/recipes/ui/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-glist-recipes-ui",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "library",
+        "sourceRoot": "libs/client/glist/recipes/ui/src",
+        "prefix": "glist",
+        "tags": [
+          "scope:client",
+          "type:ui"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-kyai-layout-data": {
+      "name": "client-kyai-layout-data",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/kyai/layout/data",
+        "name": "client-kyai-layout-data",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": []
+          }
+        },
+        "targets": {
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          },
+          "build": {
+            "executor": "@nx/js:tsc",
+            "cache": true,
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "options": {
+              "outputPath": "dist/libs/client/kyai/layout/data",
+              "main": "libs/client/kyai/layout/data/src/index.ts",
+              "tsConfig": "libs/client/kyai/layout/data/tsconfig.lib.json",
+              "assets": [
+                "libs/client/kyai/layout/data/*.md"
+              ]
+            },
+            "configurations": {}
+          },
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/kyai/layout/data/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/kyai/layout/data/**/*.ts",
+                "libs/client/kyai/layout/data/package.json"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/kyai/layout/data/src",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:data"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-shared-auth-data": {
+      "name": "client-shared-auth-data",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/shared/auth/data",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/shared/auth/data/jest.config.ts",
+              "tsConfig": "libs/client/shared/auth/data/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/shared/auth/data/**/*.ts"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-shared-auth-data",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/shared/auth/data/src",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:data"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "shared-ingredients-data": {
+      "name": "shared-ingredients-data",
+      "type": "lib",
+      "data": {
+        "root": "libs/shared/ingredients/data",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/shared/ingredients/data/jest.config.ts",
+              "tsConfig": "libs/shared/ingredients/data/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/shared/ingredients/data/**/*.ts"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "shared-ingredients-data",
+        "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/shared/ingredients/data/src",
+        "projectType": "library",
+        "tags": [
+          "scope:shared",
+          "type:data"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-glist-glists-ui": {
+      "name": "client-glist-glists-ui",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/glist/glists/ui",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/glist/glists/ui/jest.config.ts",
+              "tsConfig": "libs/client/glist/glists/ui/tsconfig.lib.json"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/glist/glists/ui/**/*.ts",
+                "libs/client/glist/glists/ui/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-glist-glists-ui",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "library",
+        "sourceRoot": "libs/client/glist/glists/ui/src",
+        "prefix": "glist",
+        "tags": [
+          "scope:client",
+          "type:ui"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-kyai-chat-data": {
+      "name": "client-kyai-chat-data",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/kyai/chat/data",
+        "name": "client-kyai-chat-data",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": []
+          }
+        },
+        "targets": {
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          },
+          "build": {
+            "executor": "@nx/js:tsc",
+            "cache": true,
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "options": {
+              "outputPath": "dist/libs/client/kyai/chat/data",
+              "main": "libs/client/kyai/chat/data/src/index.ts",
+              "tsConfig": "libs/client/kyai/chat/data/tsconfig.lib.json",
+              "assets": [
+                "libs/client/kyai/chat/data/*.md"
+              ]
+            },
+            "configurations": {}
+          },
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/kyai/chat/data/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/kyai/chat/data/**/*.ts",
+                "libs/client/kyai/chat/data/package.json"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/kyai/chat/data/src",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:data"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "client-kyai-layout-ui": {
+      "name": "client-kyai-layout-ui",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/kyai/layout/ui",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/kyai/layout/ui/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/kyai/layout/ui/**/*.ts",
+                "libs/client/kyai/layout/ui/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-kyai-layout-ui",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/kyai/layout/ui/src",
+        "prefix": "lib",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:ui"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "workspace-generators": {
+      "name": "workspace-generators",
+      "type": "lib",
+      "data": {
+        "root": "libs/workspace/generators",
+        "name": "workspace-generators",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": []
+          }
+        },
+        "targets": {
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          },
+          "build": {
+            "executor": "@nx/js:tsc",
+            "cache": true,
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "options": {
+              "outputPath": "dist/libs/workspace/generators",
+              "main": "libs/workspace/generators/src/index.ts",
+              "tsConfig": "libs/workspace/generators/tsconfig.lib.json",
+              "assets": [
+                "libs/workspace/generators/*.md",
+                {
+                  "input": "./libs/workspace/generators/src",
+                  "glob": "**/!(*.ts)",
+                  "output": "./src"
+                },
+                {
+                  "input": "./libs/workspace/generators/src",
+                  "glob": "**/*.d.ts",
+                  "output": "./src"
+                },
+                {
+                  "input": "./libs/workspace/generators",
+                  "glob": "generators.json",
+                  "output": "."
+                },
+                {
+                  "input": "./libs/workspace/generators",
+                  "glob": "executors.json",
+                  "output": "."
+                }
+              ]
+            },
+            "configurations": {}
+          },
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/workspace/generators/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {},
+            "configurations": {}
+          }
+        },
+        "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/workspace/generators/src",
+        "projectType": "library",
+        "tags": [],
+        "implicitDependencies": []
+      }
+    },
+    "client-kyai-chat-ui": {
+      "name": "client-kyai-chat-ui",
+      "type": "lib",
+      "data": {
+        "root": "libs/client/kyai/chat/ui",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/client/kyai/chat/ui/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/client/kyai/chat/ui/**/*.ts",
+                "libs/client/kyai/chat/ui/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "client-kyai-chat-ui",
+        "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/client/kyai/chat/ui/src",
+        "prefix": "lib",
+        "projectType": "library",
+        "tags": [
+          "scope:client",
+          "type:ui"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "server-kgtp-chat": {
+      "name": "server-kgtp-chat",
+      "type": "lib",
+      "data": {
+        "root": "libs/server/kgtp/chat",
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "libs/server/kgtp/chat/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "libs/server/kgtp/chat/**/*.ts"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "name": "server-kgtp-chat",
+        "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/server/kgtp/chat/src",
+        "projectType": "library",
+        "tags": [],
+        "implicitDependencies": []
+      }
+    },
+    "glist": {
+      "name": "glist",
+      "type": "app",
+      "data": {
+        "root": "apps/glist",
+        "targets": {
+          "build": {
+            "executor": "@angular-devkit/build-angular:browser",
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "cache": true,
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "options": {
+              "outputPath": "dist/apps/glist",
+              "index": "apps/glist/src/index.html",
+              "main": "apps/glist/src/main.ts",
+              "polyfills": [
+                "zone.js"
+              ],
+              "tsConfig": "apps/glist/tsconfig.app.json",
+              "inlineStyleLanguage": "scss",
+              "assets": [
+                "apps/glist/src/favicon.ico",
+                "apps/glist/src/assets"
+              ],
+              "styles": [
+                "apps/glist/src/styles.scss",
+                "apps/glist/src/theme.scss"
+              ],
+              "scripts": []
+            },
+            "configurations": {
+              "production": {
+                "budgets": [
+                  {
+                    "type": "initial",
+                    "maximumWarning": "500kb",
+                    "maximumError": "2mb"
+                  },
+                  {
+                    "type": "anyComponentStyle",
+                    "maximumWarning": "2kb",
+                    "maximumError": "4kb"
+                  }
+                ],
+                "outputHashing": "all"
+              },
+              "development": {
+                "buildOptimizer": false,
+                "optimization": false,
+                "vendorChunk": true,
+                "extractLicenses": false,
+                "sourceMap": true,
+                "namedChunks": true
+              }
+            },
+            "defaultConfiguration": "production"
+          },
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "apps/glist/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "apps/glist/**/*.ts",
+                "apps/glist/**/*.html"
+              ]
+            },
+            "configurations": {}
+          },
+          "serve": {
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "configurations": {
+              "production": {
+                "buildTarget": "glist:build:production"
+              },
+              "development": {
+                "buildTarget": "glist:build:development"
+              }
+            },
+            "defaultConfiguration": "development",
+            "options": {}
+          },
+          "extract-i18n": {
+            "executor": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+              "buildTarget": "glist:build"
+            },
+            "configurations": {}
+          }
+        },
+        "name": "glist",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "application",
+        "sourceRoot": "apps/glist/src",
+        "prefix": "glist",
+        "tags": [
+          "scope:glist",
+          "scope:client"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "emui": {
+      "name": "emui",
+      "type": "app",
+      "data": {
+        "root": "apps/emui",
+        "targets": {
+          "build": {
+            "executor": "@angular-devkit/build-angular:application",
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "cache": true,
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "options": {
+              "outputPath": "dist/apps/emui",
+              "index": "apps/emui/src/index.html",
+              "browser": "apps/emui/src/main.ts",
+              "polyfills": [
+                "zone.js"
+              ],
+              "tsConfig": "apps/emui/tsconfig.app.json",
+              "inlineStyleLanguage": "scss",
+              "assets": [
+                "apps/emui/src/favicon.ico",
+                "apps/emui/src/assets"
+              ],
+              "styles": [
+                "apps/emui/src/styles.scss"
+              ],
+              "scripts": []
+            },
+            "configurations": {
+              "production": {
+                "budgets": [
+                  {
+                    "type": "initial",
+                    "maximumWarning": "500kb",
+                    "maximumError": "1mb"
+                  },
+                  {
+                    "type": "anyComponentStyle",
+                    "maximumWarning": "2kb",
+                    "maximumError": "4kb"
+                  }
+                ],
+                "outputHashing": "all"
+              },
+              "development": {
+                "optimization": false,
+                "extractLicenses": false,
+                "sourceMap": true
+              }
+            },
+            "defaultConfiguration": "production"
+          },
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "apps/emui/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "outputs": [
+              "{options.outputFile}"
+            ],
+            "options": {},
+            "configurations": {}
+          },
+          "serve": {
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "configurations": {
+              "production": {
+                "buildTarget": "emui:build:production"
+              },
+              "development": {
+                "buildTarget": "emui:build:development"
+              }
+            },
+            "defaultConfiguration": "development",
+            "options": {}
+          },
+          "extract-i18n": {
+            "executor": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+              "buildTarget": "emui:build"
+            },
+            "configurations": {}
+          },
+          "serve-static": {
+            "executor": "@nx/web:file-server",
+            "options": {
+              "buildTarget": "emui:build",
+              "staticFilePath": "dist/apps/emui/browser"
+            },
+            "configurations": {}
+          }
+        },
+        "name": "emui",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "application",
+        "prefix": "app",
+        "sourceRoot": "apps/emui/src",
+        "tags": [],
+        "implicitDependencies": []
+      }
+    },
+    "grss": {
+      "name": "grss",
+      "type": "app",
+      "data": {
+        "root": "apps/grss",
+        "targets": {
+          "build": {
+            "executor": "@nx/webpack:webpack",
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "cache": true,
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "defaultConfiguration": "production",
+            "options": {
+              "target": "node",
+              "compiler": "tsc",
+              "outputPath": "dist/apps/grss",
+              "main": "apps/grss/src/main.ts",
+              "tsConfig": "apps/grss/tsconfig.app.json",
+              "assets": [
+                "apps/grss/src/assets"
+              ],
+              "isolatedConfig": true,
+              "webpackConfig": "apps/grss/webpack.config.js"
+            },
+            "configurations": {
+              "development": {},
+              "production": {}
+            }
+          },
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "apps/grss/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "apps/grss/**/*.ts"
+              ]
+            },
+            "configurations": {}
+          },
+          "serve": {
+            "executor": "@nx/js:node",
+            "defaultConfiguration": "development",
+            "options": {
+              "buildTarget": "grss:build"
+            },
+            "configurations": {
+              "development": {
+                "buildTarget": "grss:build:development"
+              },
+              "production": {
+                "buildTarget": "grss:build:production"
+              }
+            }
+          }
+        },
+        "name": "grss",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "apps/grss/src",
+        "projectType": "application",
+        "tags": [
+          "scope:grss",
+          "scope:server"
+        ],
+        "implicitDependencies": []
+      }
+    },
+    "kgpt": {
+      "name": "kgpt",
+      "type": "app",
+      "data": {
+        "root": "apps/kgpt",
+        "targets": {
+          "build": {
+            "executor": "@nx/webpack:webpack",
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "cache": true,
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "defaultConfiguration": "production",
+            "options": {
+              "target": "node",
+              "compiler": "tsc",
+              "outputPath": "dist/apps/kgpt",
+              "main": "apps/kgpt/src/main.ts",
+              "tsConfig": "apps/kgpt/tsconfig.app.json",
+              "assets": [
+                "apps/kgpt/src/assets"
+              ],
+              "isolatedConfig": true,
+              "webpackConfig": "apps/kgpt/webpack.config.js"
+            },
+            "configurations": {
+              "development": {},
+              "production": {}
+            }
+          },
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "apps/kgpt/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "apps/kgpt/**/*.ts"
+              ]
+            },
+            "configurations": {}
+          },
+          "serve": {
+            "executor": "@nx/js:node",
+            "defaultConfiguration": "development",
+            "options": {
+              "buildTarget": "kgpt:build"
+            },
+            "configurations": {
+              "development": {
+                "buildTarget": "kgpt:build:development"
+              },
+              "production": {
+                "buildTarget": "kgpt:build:production"
+              }
+            }
+          }
+        },
+        "name": "kgpt",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "apps/kgpt/src",
+        "projectType": "application",
+        "tags": [],
+        "implicitDependencies": []
+      }
+    },
+    "kyai": {
+      "name": "kyai",
+      "type": "app",
+      "data": {
+        "root": "apps/kyai",
+        "targets": {
+          "build": {
+            "executor": "@angular-devkit/build-angular:application",
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "cache": true,
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "options": {
+              "outputPath": "dist/apps/kyai",
+              "index": "apps/kyai/src/index.html",
+              "browser": "apps/kyai/src/main.ts",
+              "polyfills": [
+                "zone.js"
+              ],
+              "tsConfig": "apps/kyai/tsconfig.app.json",
+              "inlineStyleLanguage": "scss",
+              "assets": [
+                "apps/kyai/src/favicon.ico",
+                "apps/kyai/src/assets"
+              ],
+              "styles": [
+                "apps/kyai/src/styles.scss"
+              ],
+              "scripts": []
+            },
+            "configurations": {
+              "production": {
+                "budgets": [
+                  {
+                    "type": "initial",
+                    "maximumWarning": "500kb",
+                    "maximumError": "1mb"
+                  },
+                  {
+                    "type": "anyComponentStyle",
+                    "maximumWarning": "2kb",
+                    "maximumError": "4kb"
+                  }
+                ],
+                "outputHashing": "all"
+              },
+              "development": {
+                "optimization": false,
+                "extractLicenses": false,
+                "sourceMap": true
+              }
+            },
+            "defaultConfiguration": "production"
+          },
+          "test": {
+            "executor": "@nx/jest:jest",
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "jestConfig": "apps/kyai/jest.config.ts"
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            }
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "cache": true,
+            "options": {
+              "lintFilePatterns": [
+                "apps/kyai/**/*.ts",
+                "apps/kyai/**/*.html"
+              ]
+            },
+            "configurations": {}
+          },
+          "serve": {
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "configurations": {
+              "production": {
+                "buildTarget": "kyai:build:production"
+              },
+              "development": {
+                "buildTarget": "kyai:build:development"
+              }
+            },
+            "defaultConfiguration": "development",
+            "options": {}
+          },
+          "extract-i18n": {
+            "executor": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+              "buildTarget": "kyai:build"
+            },
+            "configurations": {}
+          },
+          "serve-static": {
+            "executor": "@nx/web:file-server",
+            "options": {
+              "buildTarget": "kyai:build",
+              "staticFilePath": "dist/apps/kyai/browser"
+            },
+            "configurations": {}
+          }
+        },
+        "name": "kyai",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "application",
+        "prefix": "app",
+        "sourceRoot": "apps/kyai/src",
+        "tags": [],
+        "implicitDependencies": []
+      }
+    }
+  },
+  "externalNodes": {},
+  "dependencies": {
+    "client-shared-lifecycle-management-data-access": [
+      {
+        "source": "client-shared-lifecycle-management-data-access",
+        "target": "client-shared-lifecycle-management-data",
+        "type": "static"
+      },
+      {
+        "source": "client-shared-lifecycle-management-data-access",
+        "target": "data",
+        "type": "static"
+      }
+    ],
+    "client-shared-mobile-utilities-data-access": [
+      {
+        "source": "client-shared-mobile-utilities-data-access",
+        "target": "client-shared-lifecycle-management-data",
+        "type": "static"
+      }
+    ],
+    "client-shared-lifecycle-management-data": [],
+    "client-shared-mobile-utilities-data": [],
+    "client-shared-firebase-data-access": [
+      {
+        "source": "client-shared-firebase-data-access",
+        "target": "util",
+        "type": "static"
+      },
+      {
+        "source": "client-shared-firebase-data-access",
+        "target": "data",
+        "type": "static"
+      },
+      {
+        "source": "client-shared-firebase-data-access",
+        "target": "client-shared-firebase-data",
+        "type": "static"
+      }
+    ],
+    "client-glist-recipes-data-access": [
+      {
+        "source": "client-glist-recipes-data-access",
+        "target": "client-glist-recipes-data",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-recipes-data-access",
+        "target": "client-shared-firebase-data",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-recipes-data-access",
+        "target": "util",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-recipes-data-access",
+        "target": "client-shared-auth-data-access",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-recipes-data-access",
+        "target": "client-shared-firebase-data-access",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-recipes-data-access",
+        "target": "data",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-recipes-data-access",
+        "target": "shared-ingredients-data",
+        "type": "static"
+      }
+    ],
+    "client-shared-device-data-access": [
+      {
+        "source": "client-shared-device-data-access",
+        "target": "client-shared-device-data",
+        "type": "static"
+      },
+      {
+        "source": "client-shared-device-data-access",
+        "target": "client-shared-lifecycle-management-data-access",
+        "type": "static"
+      }
+    ],
+    "client-shared-images-data-access": [
+      {
+        "source": "client-shared-images-data-access",
+        "target": "client-shared-images-util",
+        "type": "static"
+      }
+    ],
+    "client-glist-glists-data-access": [
+      {
+        "source": "client-glist-glists-data-access",
+        "target": "client-glist-glists-data",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-glists-data-access",
+        "target": "client-glist-recipes-data",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-glists-data-access",
+        "target": "shared-ingredients-data",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-glists-data-access",
+        "target": "client-shared-auth-data-access",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-glists-data-access",
+        "target": "client-shared-firebase-data-access",
+        "type": "static"
+      }
+    ],
+    "client-glist-dashboard-feature": [],
+    "client-shared-auth-data-access": [
+      {
+        "source": "client-shared-auth-data-access",
+        "target": "client-shared-auth-data",
+        "type": "static"
+      },
+      {
+        "source": "client-shared-auth-data-access",
+        "target": "util",
+        "type": "static"
+      },
+      {
+        "source": "client-shared-auth-data-access",
+        "target": "data",
+        "type": "static"
+      }
+    ],
+    "client-shared-user-actions-ui": [],
+    "client-glist-recipes-feature": [
+      {
+        "source": "client-glist-recipes-feature",
+        "target": "client-glist-glists-data-access",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-recipes-feature",
+        "target": "client-glist-recipes-data",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-recipes-feature",
+        "target": "client-glist-recipes-data-access",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-recipes-feature",
+        "target": "client-glist-recipes-ui",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-recipes-feature",
+        "target": "client-shared-auth-data-access",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-recipes-feature",
+        "target": "client-shared-device-data-access",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-recipes-feature",
+        "target": "client-shared-lifecycle-management-data-access",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-recipes-feature",
+        "target": "client-shared-mobile-utilities-data",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-recipes-feature",
+        "target": "client-shared-mobile-utilities-data-access",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-recipes-feature",
+        "target": "client-shared-user-actions-ui",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-recipes-feature",
+        "target": "shared-ingredients-data",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-recipes-feature",
+        "target": "client-shared-images-util",
+        "type": "static"
+      }
+    ],
+    "client-kyai-chat-data-access": [
+      {
+        "source": "client-kyai-chat-data-access",
+        "target": "client-kyai-chat-data",
+        "type": "static"
+      }
+    ],
+    "client-glist-glists-feature": [
+      {
+        "source": "client-glist-glists-feature",
+        "target": "client-glist-glists-data-access",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-glists-feature",
+        "target": "client-glist-recipes-data-access",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-glists-feature",
+        "target": "client-shared-auth-data-access",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-glists-feature",
+        "target": "shared-ingredients-data",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-glists-feature",
+        "target": "client-glist-glists-ui",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-glists-feature",
+        "target": "client-glist-recipes-ui",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-glists-feature",
+        "target": "client-shared-lifecycle-management-data-access",
+        "type": "static"
+      }
+    ],
+    "client-glist-layout-feature": [
+      {
+        "source": "client-glist-layout-feature",
+        "target": "client-shared-device-data-access",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-layout-feature",
+        "target": "client-shared-auth-data-access",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-layout-feature",
+        "target": "client-shared-firebase-data-access",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-layout-feature",
+        "target": "client-shared-mobile-utilities-data",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-layout-feature",
+        "target": "client-shared-mobile-utilities-data-access",
+        "type": "static"
+      }
+    ],
+    "client-kyai-mystery-feature": [
+      {
+        "source": "client-kyai-mystery-feature",
+        "target": "client-kyai-chat-data",
+        "type": "static"
+      },
+      {
+        "source": "client-kyai-mystery-feature",
+        "target": "client-kyai-chat-data-access",
+        "type": "static"
+      },
+      {
+        "source": "client-kyai-mystery-feature",
+        "target": "client-kyai-layout-data",
+        "type": "static"
+      },
+      {
+        "source": "client-kyai-mystery-feature",
+        "target": "client-kyai-layout-ui",
+        "type": "static"
+      },
+      {
+        "source": "client-kyai-mystery-feature",
+        "target": "client-kyai-mystery-data",
+        "type": "static"
+      }
+    ],
+    "client-shared-firebase-data": [],
+    "data": [],
+    "util": [
+      {
+        "source": "util",
+        "target": "data",
+        "type": "static"
+      }
+    ],
+    "client-glist-menus-feature": [
+      {
+        "source": "client-glist-menus-feature",
+        "target": "client-shared-auth-data-access",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-menus-feature",
+        "target": "client-shared-lifecycle-management-data-access",
+        "type": "static"
+      }
+    ],
+    "client-shared-helpers-util": [],
+    "client-glist-recipes-data": [
+      {
+        "source": "client-glist-recipes-data",
+        "target": "client-shared-firebase-data",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-recipes-data",
+        "target": "shared-ingredients-data",
+        "type": "static"
+      }
+    ],
+    "client-shared-device-data": [],
+    "client-shared-images-util": [],
+    "client-shared-tailwind-ui": [],
+    "client-glist-glists-data": [
+      {
+        "source": "client-glist-glists-data",
+        "target": "client-shared-firebase-data",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-glists-data",
+        "target": "shared-ingredients-data",
+        "type": "static"
+      }
+    ],
+    "client-glist-glists-util": [],
+    "client-kyai-mystery-data": [
+      {
+        "source": "client-kyai-mystery-data",
+        "target": "client-kyai-layout-data",
+        "type": "static"
+      }
+    ],
+    "client-glist-menus-data": [
+      {
+        "source": "client-glist-menus-data",
+        "target": "client-glist-recipes-data",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-menus-data",
+        "target": "client-shared-firebase-data",
+        "type": "static"
+      }
+    ],
+    "client-glist-recipes-ui": [
+      {
+        "source": "client-glist-recipes-ui",
+        "target": "client-glist-recipes-data",
+        "type": "static"
+      }
+    ],
+    "client-kyai-layout-data": [],
+    "client-shared-auth-data": [],
+    "shared-ingredients-data": [],
+    "client-glist-glists-ui": [
+      {
+        "source": "client-glist-glists-ui",
+        "target": "client-glist-recipes-data",
+        "type": "static"
+      },
+      {
+        "source": "client-glist-glists-ui",
+        "target": "shared-ingredients-data",
+        "type": "static"
+      }
+    ],
+    "client-kyai-chat-data": [],
+    "client-kyai-layout-ui": [
+      {
+        "source": "client-kyai-layout-ui",
+        "target": "client-kyai-layout-data",
+        "type": "static"
+      }
+    ],
+    "workspace-generators": [],
+    "client-kyai-chat-ui": [],
+    "server-kgtp-chat": [],
+    "glist": [
+      {
+        "source": "glist",
+        "target": "client-shared-auth-data-access",
+        "type": "static"
+      },
+      {
+        "source": "glist",
+        "target": "client-shared-firebase-data-access",
+        "type": "static"
+      },
+      {
+        "source": "glist",
+        "target": "client-glist-layout-feature",
+        "type": "static"
+      },
+      {
+        "source": "glist",
+        "target": "client-glist-glists-data-access",
+        "type": "static"
+      },
+      {
+        "source": "glist",
+        "target": "client-glist-recipes-data-access",
+        "type": "static"
+      },
+      {
+        "source": "glist",
+        "target": "client-shared-device-data-access",
+        "type": "static"
+      },
+      {
+        "source": "glist",
+        "target": "client-shared-firebase-data",
+        "type": "static"
+      },
+      {
+        "source": "glist",
+        "target": "client-glist-dashboard-feature",
+        "type": "dynamic"
+      },
+      {
+        "source": "glist",
+        "target": "client-glist-recipes-feature",
+        "type": "dynamic"
+      },
+      {
+        "source": "glist",
+        "target": "client-glist-menus-feature",
+        "type": "dynamic"
+      },
+      {
+        "source": "glist",
+        "target": "client-glist-glists-feature",
+        "type": "dynamic"
+      }
+    ],
+    "emui": [],
+    "grss": [
+      {
+        "source": "grss",
+        "target": "shared-ingredients-data",
+        "type": "static"
+      }
+    ],
+    "kgpt": [
+      {
+        "source": "kgpt",
+        "target": "server-kgtp-chat",
+        "type": "static"
+      }
+    ],
+    "kyai": [
+      {
+        "source": "kyai",
+        "target": "client-kyai-mystery-feature",
+        "type": "static"
+      }
+    ]
+  },
+  "version": "6.0"
+}

@@ -1,0 +1,24 @@
+[NX Daemon Server] - 2024-06-16T15:15:00.024Z - Started listening on: /var/folders/fp/n_sbkwd90b1bkply58dggyw80000gn/T/c9361e1fb3b2aae9381f/d.sock
+[NX Daemon Server] - 2024-06-16T15:15:00.026Z - [WATCHER]: Subscribed to changes within: /Users/ky/Documents/repos/lobsinger-workspace (native)
+[NX Daemon Server] - 2024-06-16T15:15:00.029Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-16T15:15:00.030Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-16T15:15:00.031Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-16T15:15:00.032Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-06-16T15:15:00.032Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-06-16T15:15:00.032Z - Handled GLOB. Handling time: 1. Response time: 0.
+[NX Daemon Server] - 2024-06-16T15:15:00.055Z - [REQUEST]: Responding to the client. handleNxWorkspaceFiles
+[NX Daemon Server] - 2024-06-16T15:15:00.055Z - Done responding to the client handleNxWorkspaceFiles
+[NX Daemon Server] - 2024-06-16T15:15:00.055Z - Handled GET_NX_WORKSPACE_FILES. Handling time: 1. Response time: 0.
+[NX Daemon Server] - 2024-06-16T15:15:00.480Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2024-06-16T15:16:34.757Z - Started listening on: /var/folders/fp/n_sbkwd90b1bkply58dggyw80000gn/T/c9361e1fb3b2aae9381f/d.sock
+[NX Daemon Server] - 2024-06-16T15:16:34.759Z - [WATCHER]: Subscribed to changes within: /Users/ky/Documents/repos/lobsinger-workspace (native)
+[NX Daemon Server] - 2024-06-16T15:16:34.767Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-16T15:16:34.767Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-16T15:16:34.768Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-16T15:16:34.769Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-06-16T15:16:34.769Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-06-16T15:16:34.769Z - Handled GLOB. Handling time: 1. Response time: 0.
+[NX Daemon Server] - 2024-06-16T15:16:34.789Z - [REQUEST]: Responding to the client. handleNxWorkspaceFiles
+[NX Daemon Server] - 2024-06-16T15:16:34.789Z - Done responding to the client handleNxWorkspaceFiles
+[NX Daemon Server] - 2024-06-16T15:16:34.789Z - Handled GET_NX_WORKSPACE_FILES. Handling time: 1. Response time: 0.
+[NX Daemon Server] - 2024-06-16T15:16:34.803Z - Closed a connection. Number of open connections: 0
