@@ -4779,6 +4779,141 @@
         "hash": "sha512-NZ966Wy4mF34lLi+QOgY9mpOiiAL5UiJ+QqOZcg22QIVz0zPY5HbtbYDZTu8OmR4O/S+3ylguaP1O1P2xiYMBQ=="
       }
     },
+    "npm:@typescript-eslint/scope-manager@7.13.0": {
+      "type": "npm",
+      "name": "npm:@typescript-eslint/scope-manager@7.13.0",
+      "data": {
+        "version": "7.13.0",
+        "packageName": "@typescript-eslint/scope-manager",
+        "hash": "sha512-ZrMCe1R6a01T94ilV13egvcnvVJ1pxShkE0+NDjDzH4nvG1wXpwsVI5bZCvE7AEDH1mXEx5tJSVR68bLgG7Dng=="
+      }
+    },
+    "npm:@typescript-eslint/scope-manager": {
+      "type": "npm",
+      "name": "npm:@typescript-eslint/scope-manager",
+      "data": {
+        "version": "7.9.0",
+        "packageName": "@typescript-eslint/scope-manager",
+        "hash": "sha512-ZwPK4DeCDxr3GJltRz5iZejPFAAr4Wk3+2WIBaj1L5PYK5RgxExu/Y68FFVclN0y6GGwH8q+KgKRCvaTmFBbgQ=="
+      }
+    },
+    "npm:@typescript-eslint/scope-manager@8.0.0-alpha.30": {
+      "type": "npm",
+      "name": "npm:@typescript-eslint/scope-manager@8.0.0-alpha.30",
+      "data": {
+        "version": "8.0.0-alpha.30",
+        "packageName": "@typescript-eslint/scope-manager",
+        "hash": "sha512-FGW/iPWGyPFamAVZ60oCAthMqQrqafUGebF8UKuq/ha+e9SVG6YhJoRzurlQXOVf8dHfOhJ0ADMXyFnMc53clg=="
+      }
+    },
+    "npm:@typescript-eslint/types@7.13.0": {
+      "type": "npm",
+      "name": "npm:@typescript-eslint/types@7.13.0",
+      "data": {
+        "version": "7.13.0",
+        "packageName": "@typescript-eslint/types",
+        "hash": "sha512-QWuwm9wcGMAuTsxP+qz6LBBd3Uq8I5Nv8xb0mk54jmNoCyDspnMvVsOxI6IsMmway5d1S9Su2+sCKv1st2l6eA=="
+      }
+    },
+    "npm:@typescript-eslint/types": {
+      "type": "npm",
+      "name": "npm:@typescript-eslint/types",
+      "data": {
+        "version": "7.9.0",
+        "packageName": "@typescript-eslint/types",
+        "hash": "sha512-oZQD9HEWQanl9UfsbGVcZ2cGaR0YT5476xfWE0oE5kQa2sNK2frxOlkeacLOTh9po4AlUT5rtkGyYM5kew0z5w=="
+      }
+    },
+    "npm:@typescript-eslint/types@8.0.0-alpha.30": {
+      "type": "npm",
+      "name": "npm:@typescript-eslint/types@8.0.0-alpha.30",
+      "data": {
+        "version": "8.0.0-alpha.30",
+        "packageName": "@typescript-eslint/types",
+        "hash": "sha512-4WzLlw27SO9pK9UFj/Hu7WGo8WveT0SEiIpFVsV2WwtQmLps6kouwtVCB8GJPZKJyurhZhcqCoQVQFmpv441Vg=="
+      }
+    },
+    "npm:@typescript-eslint/typescript-estree@7.13.0": {
+      "type": "npm",
+      "name": "npm:@typescript-eslint/typescript-estree@7.13.0",
+      "data": {
+        "version": "7.13.0",
+        "packageName": "@typescript-eslint/typescript-estree",
+        "hash": "sha512-cAvBvUoobaoIcoqox1YatXOnSl3gx92rCZoMRPzMNisDiM12siGilSM4+dJAekuuHTibI2hVC2fYK79iSFvWjw=="
+      }
+    },
+    "npm:@typescript-eslint/typescript-estree": {
+      "type": "npm",
+      "name": "npm:@typescript-eslint/typescript-estree",
+      "data": {
+        "version": "7.9.0",
+        "packageName": "@typescript-eslint/typescript-estree",
+        "hash": "sha512-zBCMCkrb2YjpKV3LA0ZJubtKCDxLttxfdGmwZvTqqWevUPN0FZvSI26FalGFFUZU/9YQK/A4xcQF9o/VVaCKAg=="
+      }
+    },
+    "npm:@typescript-eslint/typescript-estree@8.0.0-alpha.30": {
+      "type": "npm",
+      "name": "npm:@typescript-eslint/typescript-estree@8.0.0-alpha.30",
+      "data": {
+        "version": "8.0.0-alpha.30",
+        "packageName": "@typescript-eslint/typescript-estree",
+        "hash": "sha512-WSXbc9ZcXI+7yC+6q95u77i8FXz6HOLsw3ST+vMUlFy1lFbXyFL/3e6HDKQCm2Clt0krnoCPiTGvIn+GkYPn4Q=="
+      }
+    },
+    "npm:@typescript-eslint/utils@7.13.0": {
+      "type": "npm",
+      "name": "npm:@typescript-eslint/utils@7.13.0",
+      "data": {
+        "version": "7.13.0",
+        "packageName": "@typescript-eslint/utils",
+        "hash": "sha512-jceD8RgdKORVnB4Y6BqasfIkFhl4pajB1wVxrF4akxD2QPM8GNYjgGwEzYS+437ewlqqrg7Dw+6dhdpjMpeBFQ=="
+      }
+    },
+    "npm:@typescript-eslint/utils@7.9.0": {
+      "type": "npm",
+      "name": "npm:@typescript-eslint/utils@7.9.0",
+      "data": {
+        "version": "7.9.0",
+        "packageName": "@typescript-eslint/utils",
+        "hash": "sha512-5KVRQCzZajmT4Ep+NEgjXCvjuypVvYHUW7RHlXzNPuak2oWpVoD1jf5xCP0dPAuNIchjC7uQyvbdaSTFaLqSdA=="
+      }
+    },
+    "npm:@typescript-eslint/utils": {
+      "type": "npm",
+      "name": "npm:@typescript-eslint/utils",
+      "data": {
+        "version": "8.0.0-alpha.30",
+        "packageName": "@typescript-eslint/utils",
+        "hash": "sha512-rfhqfLqFyXhHNDwMnHiVGxl/Z2q/3guQ1jLlGQ0hi9Rb7inmwz42crM+NnLPR+2vEnwyw1P/g7fnQgQ3qvFx4g=="
+      }
+    },
+    "npm:@typescript-eslint/visitor-keys@7.13.0": {
+      "type": "npm",
+      "name": "npm:@typescript-eslint/visitor-keys@7.13.0",
+      "data": {
+        "version": "7.13.0",
+        "packageName": "@typescript-eslint/visitor-keys",
+        "hash": "sha512-nxn+dozQx+MK61nn/JP+M4eCkHDSxSLDpgE3WcQo0+fkjEolnaB5jswvIKC4K56By8MMgIho7f1PVxERHEo8rw=="
+      }
+    },
+    "npm:@typescript-eslint/visitor-keys@8.0.0-alpha.30": {
+      "type": "npm",
+      "name": "npm:@typescript-eslint/visitor-keys@8.0.0-alpha.30",
+      "data": {
+        "version": "8.0.0-alpha.30",
+        "packageName": "@typescript-eslint/visitor-keys",
+        "hash": "sha512-XZuNurZxBqmr6ZIRIwWFq7j5RZd6ZlkId/HZEWyfciK+CWoyOxSF9Pv2VXH9Rlu2ZG2PfbhLz2Veszl4Pfn7yA=="
+      }
+    },
+    "npm:@typescript-eslint/visitor-keys": {
+      "type": "npm",
+      "name": "npm:@typescript-eslint/visitor-keys",
+      "data": {
+        "version": "7.9.0",
+        "packageName": "@typescript-eslint/visitor-keys",
+        "hash": "sha512-iESPx2TNLDNGQLyjKhUvIKprlP49XNEK+MvIf9nIO7ZZaZdbnfWKHnXAgufpxqfA0YryH8XToi4+CjBgVnFTSQ=="
+      }
+    },
     "npm:@nx/jest": {
       "type": "npm",
       "name": "npm:@nx/jest",
@@ -6687,24 +6822,6 @@
         "hash": "sha512-xMEtMzxq9eRkZy48XuxlBFzpVMDurUAfDu5Rz16GouAtXm0TaAoTFzqWUFPPuQYXI/CDaH/Bgx/fk/84t/Bc9A=="
       }
     },
-    "npm:@typescript-eslint/utils@7.9.0": {
-      "type": "npm",
-      "name": "npm:@typescript-eslint/utils@7.9.0",
-      "data": {
-        "version": "7.9.0",
-        "packageName": "@typescript-eslint/utils",
-        "hash": "sha512-5KVRQCzZajmT4Ep+NEgjXCvjuypVvYHUW7RHlXzNPuak2oWpVoD1jf5xCP0dPAuNIchjC7uQyvbdaSTFaLqSdA=="
-      }
-    },
-    "npm:@typescript-eslint/utils": {
-      "type": "npm",
-      "name": "npm:@typescript-eslint/utils",
-      "data": {
-        "version": "7.13.0",
-        "packageName": "@typescript-eslint/utils",
-        "hash": "sha512-jceD8RgdKORVnB4Y6BqasfIkFhl4pajB1wVxrF4akxD2QPM8GNYjgGwEzYS+437ewlqqrg7Dw+6dhdpjMpeBFQ=="
-      }
-    },
     "npm:@typescript-eslint/parser": {
       "type": "npm",
       "name": "npm:@typescript-eslint/parser",
@@ -6712,78 +6829,6 @@
         "version": "7.9.0",
         "packageName": "@typescript-eslint/parser",
         "hash": "sha512-qHMJfkL5qvgQB2aLvhUSXxbK7OLnDkwPzFalg458pxQgfxKDfT1ZDbHQM/I6mDIf/svlMkj21kzKuQ2ixJlatQ=="
-      }
-    },
-    "npm:@typescript-eslint/scope-manager": {
-      "type": "npm",
-      "name": "npm:@typescript-eslint/scope-manager",
-      "data": {
-        "version": "7.9.0",
-        "packageName": "@typescript-eslint/scope-manager",
-        "hash": "sha512-ZwPK4DeCDxr3GJltRz5iZejPFAAr4Wk3+2WIBaj1L5PYK5RgxExu/Y68FFVclN0y6GGwH8q+KgKRCvaTmFBbgQ=="
-      }
-    },
-    "npm:@typescript-eslint/scope-manager@7.13.0": {
-      "type": "npm",
-      "name": "npm:@typescript-eslint/scope-manager@7.13.0",
-      "data": {
-        "version": "7.13.0",
-        "packageName": "@typescript-eslint/scope-manager",
-        "hash": "sha512-ZrMCe1R6a01T94ilV13egvcnvVJ1pxShkE0+NDjDzH4nvG1wXpwsVI5bZCvE7AEDH1mXEx5tJSVR68bLgG7Dng=="
-      }
-    },
-    "npm:@typescript-eslint/types@7.13.0": {
-      "type": "npm",
-      "name": "npm:@typescript-eslint/types@7.13.0",
-      "data": {
-        "version": "7.13.0",
-        "packageName": "@typescript-eslint/types",
-        "hash": "sha512-QWuwm9wcGMAuTsxP+qz6LBBd3Uq8I5Nv8xb0mk54jmNoCyDspnMvVsOxI6IsMmway5d1S9Su2+sCKv1st2l6eA=="
-      }
-    },
-    "npm:@typescript-eslint/types": {
-      "type": "npm",
-      "name": "npm:@typescript-eslint/types",
-      "data": {
-        "version": "7.9.0",
-        "packageName": "@typescript-eslint/types",
-        "hash": "sha512-oZQD9HEWQanl9UfsbGVcZ2cGaR0YT5476xfWE0oE5kQa2sNK2frxOlkeacLOTh9po4AlUT5rtkGyYM5kew0z5w=="
-      }
-    },
-    "npm:@typescript-eslint/typescript-estree@7.13.0": {
-      "type": "npm",
-      "name": "npm:@typescript-eslint/typescript-estree@7.13.0",
-      "data": {
-        "version": "7.13.0",
-        "packageName": "@typescript-eslint/typescript-estree",
-        "hash": "sha512-cAvBvUoobaoIcoqox1YatXOnSl3gx92rCZoMRPzMNisDiM12siGilSM4+dJAekuuHTibI2hVC2fYK79iSFvWjw=="
-      }
-    },
-    "npm:@typescript-eslint/typescript-estree": {
-      "type": "npm",
-      "name": "npm:@typescript-eslint/typescript-estree",
-      "data": {
-        "version": "7.9.0",
-        "packageName": "@typescript-eslint/typescript-estree",
-        "hash": "sha512-zBCMCkrb2YjpKV3LA0ZJubtKCDxLttxfdGmwZvTqqWevUPN0FZvSI26FalGFFUZU/9YQK/A4xcQF9o/VVaCKAg=="
-      }
-    },
-    "npm:@typescript-eslint/visitor-keys@7.13.0": {
-      "type": "npm",
-      "name": "npm:@typescript-eslint/visitor-keys@7.13.0",
-      "data": {
-        "version": "7.13.0",
-        "packageName": "@typescript-eslint/visitor-keys",
-        "hash": "sha512-nxn+dozQx+MK61nn/JP+M4eCkHDSxSLDpgE3WcQo0+fkjEolnaB5jswvIKC4K56By8MMgIho7f1PVxERHEo8rw=="
-      }
-    },
-    "npm:@typescript-eslint/visitor-keys": {
-      "type": "npm",
-      "name": "npm:@typescript-eslint/visitor-keys",
-      "data": {
-        "version": "7.9.0",
-        "packageName": "@typescript-eslint/visitor-keys",
-        "hash": "sha512-iESPx2TNLDNGQLyjKhUvIKprlP49XNEK+MvIf9nIO7ZZaZdbnfWKHnXAgufpxqfA0YryH8XToi4+CjBgVnFTSQ=="
       }
     },
     "npm:@ungap/structured-clone": {
@@ -25334,7 +25379,7 @@
     },
     {
       "source": "npm:@nx/eslint-plugin",
-      "target": "npm:@typescript-eslint/utils",
+      "target": "npm:@typescript-eslint/utils@7.13.0",
       "type": "static"
     },
     {
@@ -25363,6 +25408,91 @@
       "type": "static"
     },
     {
+      "source": "npm:@typescript-eslint/scope-manager@7.13.0",
+      "target": "npm:@typescript-eslint/types@7.13.0",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/scope-manager@7.13.0",
+      "target": "npm:@typescript-eslint/visitor-keys@7.13.0",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/typescript-estree@7.13.0",
+      "target": "npm:@typescript-eslint/types@7.13.0",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/typescript-estree@7.13.0",
+      "target": "npm:@typescript-eslint/visitor-keys@7.13.0",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/typescript-estree@7.13.0",
+      "target": "npm:debug",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/typescript-estree@7.13.0",
+      "target": "npm:globby",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/typescript-estree@7.13.0",
+      "target": "npm:is-glob",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/typescript-estree@7.13.0",
+      "target": "npm:minimatch@9.0.4",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/typescript-estree@7.13.0",
+      "target": "npm:semver",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/typescript-estree@7.13.0",
+      "target": "npm:ts-api-utils",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/utils@7.13.0",
+      "target": "npm:eslint",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/utils@7.13.0",
+      "target": "npm:@eslint-community/eslint-utils",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/utils@7.13.0",
+      "target": "npm:@typescript-eslint/scope-manager@7.13.0",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/utils@7.13.0",
+      "target": "npm:@typescript-eslint/types@7.13.0",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/utils@7.13.0",
+      "target": "npm:@typescript-eslint/typescript-estree@7.13.0",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/visitor-keys@7.13.0",
+      "target": "npm:@typescript-eslint/types@7.13.0",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/visitor-keys@7.13.0",
+      "target": "npm:eslint-visitor-keys",
+      "type": "static"
+    },
+    {
       "source": "npm:ansi-styles@4.3.0",
       "target": "npm:color-convert@2.0.1",
       "type": "static"
@@ -25380,6 +25510,11 @@
     {
       "source": "npm:color-convert@2.0.1",
       "target": "npm:color-name@1.1.4",
+      "type": "static"
+    },
+    {
+      "source": "npm:minimatch@9.0.4",
+      "target": "npm:brace-expansion",
       "type": "static"
     },
     {
@@ -27764,7 +27899,7 @@
     },
     {
       "source": "npm:@typescript-eslint/type-utils",
-      "target": "npm:@typescript-eslint/utils",
+      "target": "npm:@typescript-eslint/utils@7.13.0",
       "type": "static"
     },
     {
@@ -27775,6 +27910,16 @@
     {
       "source": "npm:@typescript-eslint/type-utils",
       "target": "npm:ts-api-utils",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/scope-manager@7.13.0",
+      "target": "npm:@typescript-eslint/types@7.13.0",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/scope-manager@7.13.0",
+      "target": "npm:@typescript-eslint/visitor-keys@7.13.0",
       "type": "static"
     },
     {
@@ -27815,6 +27960,31 @@
     {
       "source": "npm:@typescript-eslint/typescript-estree@7.13.0",
       "target": "npm:ts-api-utils",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/utils@7.13.0",
+      "target": "npm:eslint",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/utils@7.13.0",
+      "target": "npm:@eslint-community/eslint-utils",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/utils@7.13.0",
+      "target": "npm:@typescript-eslint/scope-manager@7.13.0",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/utils@7.13.0",
+      "target": "npm:@typescript-eslint/types@7.13.0",
+      "type": "static"
+    },
+    {
+      "source": "npm:@typescript-eslint/utils@7.13.0",
+      "target": "npm:@typescript-eslint/typescript-estree@7.13.0",
       "type": "static"
     },
     {
@@ -27889,76 +28059,76 @@
     },
     {
       "source": "npm:@typescript-eslint/utils",
-      "target": "npm:@typescript-eslint/scope-manager@7.13.0",
+      "target": "npm:@typescript-eslint/scope-manager@8.0.0-alpha.30",
       "type": "static"
     },
     {
       "source": "npm:@typescript-eslint/utils",
-      "target": "npm:@typescript-eslint/types@7.13.0",
+      "target": "npm:@typescript-eslint/types@8.0.0-alpha.30",
       "type": "static"
     },
     {
       "source": "npm:@typescript-eslint/utils",
-      "target": "npm:@typescript-eslint/typescript-estree@7.13.0",
+      "target": "npm:@typescript-eslint/typescript-estree@8.0.0-alpha.30",
       "type": "static"
     },
     {
-      "source": "npm:@typescript-eslint/scope-manager@7.13.0",
-      "target": "npm:@typescript-eslint/types@7.13.0",
+      "source": "npm:@typescript-eslint/scope-manager@8.0.0-alpha.30",
+      "target": "npm:@typescript-eslint/types@8.0.0-alpha.30",
       "type": "static"
     },
     {
-      "source": "npm:@typescript-eslint/scope-manager@7.13.0",
-      "target": "npm:@typescript-eslint/visitor-keys@7.13.0",
+      "source": "npm:@typescript-eslint/scope-manager@8.0.0-alpha.30",
+      "target": "npm:@typescript-eslint/visitor-keys@8.0.0-alpha.30",
       "type": "static"
     },
     {
-      "source": "npm:@typescript-eslint/typescript-estree@7.13.0",
-      "target": "npm:@typescript-eslint/types@7.13.0",
+      "source": "npm:@typescript-eslint/typescript-estree@8.0.0-alpha.30",
+      "target": "npm:@typescript-eslint/types@8.0.0-alpha.30",
       "type": "static"
     },
     {
-      "source": "npm:@typescript-eslint/typescript-estree@7.13.0",
-      "target": "npm:@typescript-eslint/visitor-keys@7.13.0",
+      "source": "npm:@typescript-eslint/typescript-estree@8.0.0-alpha.30",
+      "target": "npm:@typescript-eslint/visitor-keys@8.0.0-alpha.30",
       "type": "static"
     },
     {
-      "source": "npm:@typescript-eslint/typescript-estree@7.13.0",
+      "source": "npm:@typescript-eslint/typescript-estree@8.0.0-alpha.30",
       "target": "npm:debug",
       "type": "static"
     },
     {
-      "source": "npm:@typescript-eslint/typescript-estree@7.13.0",
+      "source": "npm:@typescript-eslint/typescript-estree@8.0.0-alpha.30",
       "target": "npm:globby",
       "type": "static"
     },
     {
-      "source": "npm:@typescript-eslint/typescript-estree@7.13.0",
+      "source": "npm:@typescript-eslint/typescript-estree@8.0.0-alpha.30",
       "target": "npm:is-glob",
       "type": "static"
     },
     {
-      "source": "npm:@typescript-eslint/typescript-estree@7.13.0",
+      "source": "npm:@typescript-eslint/typescript-estree@8.0.0-alpha.30",
       "target": "npm:minimatch@9.0.4",
       "type": "static"
     },
     {
-      "source": "npm:@typescript-eslint/typescript-estree@7.13.0",
+      "source": "npm:@typescript-eslint/typescript-estree@8.0.0-alpha.30",
       "target": "npm:semver",
       "type": "static"
     },
     {
-      "source": "npm:@typescript-eslint/typescript-estree@7.13.0",
+      "source": "npm:@typescript-eslint/typescript-estree@8.0.0-alpha.30",
       "target": "npm:ts-api-utils",
       "type": "static"
     },
     {
-      "source": "npm:@typescript-eslint/visitor-keys@7.13.0",
-      "target": "npm:@typescript-eslint/types@7.13.0",
+      "source": "npm:@typescript-eslint/visitor-keys@8.0.0-alpha.30",
+      "target": "npm:@typescript-eslint/types@8.0.0-alpha.30",
       "type": "static"
     },
     {
-      "source": "npm:@typescript-eslint/visitor-keys@7.13.0",
+      "source": "npm:@typescript-eslint/visitor-keys@8.0.0-alpha.30",
       "target": "npm:eslint-visitor-keys",
       "type": "static"
     },
