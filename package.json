@@ -61,7 +61,7 @@
     "@angular/language-service": "18.2.3",
     "@nestjs/schematics": "^10.0.1",
     "@nestjs/testing": "^10.0.3",
-    "@ngneat/spectator": "^18.0.2",
+    "@ngneat/spectator": "^19.0.0",
     "@nx/cypress": "19.6.5",
     "@nx/eslint": "19.6.5",
     "@nx/eslint-plugin": "19.6.5",
