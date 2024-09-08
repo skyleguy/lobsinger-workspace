@@ -150,8 +150,10 @@ export class OpenAiBaseController {
             }
           } else if (content.type === 'image_file') {
             return content.image_file;
-          } else {
+          } else if (content.type === 'image_url') {
             return content.image_url;
+          } else {
+            return content.refusal;
           }
         }),
         creationTime: message.created_at,
