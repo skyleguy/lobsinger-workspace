@@ -9,8 +9,8 @@ env:
     branches:
       - main
 jobs:
-  environment: Prod
   build_and_deploy:
+    environment: Prod
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

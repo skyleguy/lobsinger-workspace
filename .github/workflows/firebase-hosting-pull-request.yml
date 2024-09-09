@@ -6,8 +6,8 @@ env:
   NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
 'on': pull_request
 jobs:
-  environment: Prod
   build_and_preview:
+    environment: Prod
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
     steps:
