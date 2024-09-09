@@ -8,7 +8,7 @@ import { mysteryChatStartSystemPrompt } from './mystery-chat-start';
   imports: [],
   controllers: [
     createController('mystery', {
-      apiKey: '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',
+      apiKey: process.env['OPEN_AI_API_KEY'],
       completionOptions: {
         messages: [],
         model: 'gpt-4o',
@@ -21,7 +21,7 @@ import { mysteryChatStartSystemPrompt } from './mystery-chat-start';
       defaultChatStartMessage: 'Lets solve a mystery'
     }),
     createController('angular', {
-      apiKey: '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',
+      apiKey: process.env['OPEN_AI_API_KEY'],
       completionOptions: {
         messages: [],
         model: 'gpt-4o',
