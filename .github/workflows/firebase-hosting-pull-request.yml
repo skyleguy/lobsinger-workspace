@@ -3,7 +3,7 @@
 
 name: Deploy to Firebase Hosting on PR
 env:
-  NX_CLOUD_ACCESS_TOKEN: secrets.NX_CLOUD_ACCESS_TOKEN
+  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
 'on': pull_request
 jobs:
   build_and_preview:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: 'echo $NX_CLOUD_ACCESS_TOKEN && npm ci && npx nx run glist:build --prod'
+      - run: 'npm ci && npx nx run glist:build --prod'
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
