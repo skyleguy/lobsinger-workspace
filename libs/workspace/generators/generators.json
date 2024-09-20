@@ -9,6 +9,11 @@
       "factory": "./src/generators/component/generator",
       "schema": "./src/generators/component/schema.json",
       "description": "component generator"
+    },
+    "spec": {
+      "factory": "./src/generators/spec/generator",
+      "schema": "./src/generators/spec/schema.json",
+      "description": "generates a spectator jest suite from source files"
     }
   }
 }
