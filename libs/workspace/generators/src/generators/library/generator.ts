@@ -9,6 +9,7 @@ export async function workspaceLibraryGenerator(tree: Tree, options: LibraryGene
   await Promise.all(
     options.libTypes.map(async (libType) => {
       const name = `${options.scope}/${options.application}/${options.name}/${libType}`;
+      const directory = `libs/${name}`;
       const dashSeparatedName = `${options.application}-${options.name}-${libType}`;
       const tags = `scope:client, type:${libType}`;
       const linter = Linter.EsLint;
@@ -33,7 +34,8 @@ export async function workspaceLibraryGenerator(tree: Tree, options: LibraryGene
             strict: true,
             style: 'scss',
             tags,
-            unitTestRunner: UnitTestRunner.Jest
+            unitTestRunner: UnitTestRunner.Jest,
+            directory
           });
         default:
           // https://nx.dev/nx-api/js/generators/library#nxjslibrary
@@ -48,7 +50,8 @@ export async function workspaceLibraryGenerator(tree: Tree, options: LibraryGene
             unitTestRunner: 'jest',
             tags,
             linter,
-            strict: true
+            strict: true,
+            directory
           });
       }
     })
