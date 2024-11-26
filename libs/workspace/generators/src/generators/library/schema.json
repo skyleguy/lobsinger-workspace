@@ -72,6 +72,10 @@
             "label": "GLIST"
           },
           {
+            "value": "aat",
+            "label": "AAT"
+          },
+          {
             "value": "shared",
             "label": "SHARED"
           }

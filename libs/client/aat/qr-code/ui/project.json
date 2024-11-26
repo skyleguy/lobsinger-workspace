@@ -1,0 +1,20 @@
+{
+  "name": "client/aat/qr-code/ui",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/client/aat/qr-code/ui/src",
+  "prefix": "aat-qr-code-ui",
+  "projectType": "library",
+  "tags": ["scope:client", "type:ui"],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/client/aat/qr-code/ui/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
