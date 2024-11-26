@@ -38,4 +38,4 @@ jobs:
       # Step 5: Run NX Affected Build
       - name: Run NX Affected Build
         run: |
-          npx nx affected --base=$PREVIOUS_SHA --head=$GITHUB_SHA
+          npx nx affected --target=build --base=$PREVIOUS_SHA --head=$GITHUB_SHA
