@@ -2,7 +2,7 @@ export type LibraryTypes = 'feature' | 'data-access' | 'ui' | 'util' | 'data' | 
 
 export interface LibraryGeneratorSchema {
   name: string;
-  application: 'glist' | 'shared';
+  application: 'glist' | 'aat' | 'shared';
   scope: 'client' | 'shared';
   libTypes: LibraryTypes[];
 }

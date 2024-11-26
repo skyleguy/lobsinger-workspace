@@ -67,7 +67,7 @@
       "style": "scss"
     }
   },
-  "defaultProject": "glist",
+  "defaultProject": "aat",
   "nxCloudAccessToken": "${NX_CLOUD_ACCESS_TOKEN}",
   "useLegacyCache": true,
   "plugins": [
