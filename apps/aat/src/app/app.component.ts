@@ -14,7 +14,7 @@ import { AppContainerComponent } from '@lob/client/shared/layout/ui';
         <span nav>Advantage Asset Tracker</span>
         <span>icon</span>
       </ng-container>
-      <ng-container sidebar> i am not a stegosaurus </ng-container>
+      <ng-container sidebar> i am not a t-rex </ng-container>
       <ng-container main-content>
         <div class="w-full h-full overflow-auto p-3">
           <router-outlet></router-outlet>
