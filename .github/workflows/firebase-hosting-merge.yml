@@ -4,6 +4,7 @@
 name: Deploy to Firebase Hosting on merge
 env:
   NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
+  PREVIOUS_SHA: `${{ github.event.before }}
 'on':
   push:
     branches:
@@ -14,10 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: 'npm ci && npx nx run glist:build --prod'
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GLIST_AED62 }}'
-          channelId: live
-          projectId: glist-aed62
+      - run: 'npx nx affected --base=$PREVIOUS_SHA --head=$GITHUB_SHA'
+      # - uses: FirebaseExtended/action-hosting-deploy@v0
+      #   with:
+      #     repoToken: '${{ secrets.GITHUB_TOKEN }}'
+      #     firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GLIST_AED62 }}'
+      #     channelId: live
+      #     projectId: glist-aed62
