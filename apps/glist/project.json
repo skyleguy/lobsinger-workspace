@@ -6,12 +6,12 @@
   "prefix": "glist",
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "apps/glist/dist",
         "index": "apps/glist/src/index.html",
-        "main": "apps/glist/src/main.ts",
+        "browser": "apps/glist/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/glist/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
@@ -36,9 +36,7 @@
           "outputHashing": "all"
         },
         "development": {
-          "buildOptimizer": false,
           "optimization": false,
-          "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true,
