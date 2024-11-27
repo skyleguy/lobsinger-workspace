@@ -8,16 +8,12 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/aat",
+        "outputPath": "apps/aat/dist",
         "index": "apps/aat/src/index.html",
         "browser": "apps/aat/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/aat/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -26,10 +22,7 @@
             "input": "apps/aat/public"
           }
         ],
-        "styles": [
-          "@angular/material/prebuilt-themes/cyan-orange.css",
-          "apps/aat/src/styles.scss"
-        ],
+        "styles": ["@angular/material/prebuilt-themes/cyan-orange.css", "apps/aat/src/styles.scss"],
         "scripts": []
       },
       "configurations": {
@@ -51,10 +44,16 @@
         "development": {
           "optimization": false,
           "extractLicenses": false,
-          "sourceMap": true
+          "sourceMap": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/aat/src/environments/environment.ts",
+              "with": "apps/aat/src/environments/environment.development.ts"
+            }
+          ]
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": "development"
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
@@ -79,9 +78,7 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/aat/jest.config.ts"
       }
