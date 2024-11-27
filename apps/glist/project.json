@@ -9,7 +9,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/glist",
+        "outputPath": "apps/glist/dist",
         "index": "apps/glist/src/index.html",
         "main": "apps/glist/src/main.ts",
         "polyfills": ["zone.js"],
@@ -41,10 +41,16 @@
           "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,
-          "namedChunks": true
+          "namedChunks": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/glist/src/environments/environment.ts",
+              "with": "apps/glist/src/environments/environment.development.ts"
+            }
+          ]
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": "development"
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",

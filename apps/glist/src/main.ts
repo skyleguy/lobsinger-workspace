@@ -16,16 +16,7 @@ import { FirebaseOptionsToken } from '@lob/client/shared/firebase/data';
 import { FirebaseAppEffects, slice as firebaseSlice } from '@lob/client/shared/firebase/data-access';
 
 import { AppComponent } from './app/app.component';
-
-const firebaseOptions = {
-  apiKey: 'AIzaSyADdudZWW-lO8qdTX5-oza_kvcjLGYMteY',
-  authDomain: 'glist-aed62.firebaseapp.com',
-  projectId: 'glist-aed62',
-  storageBucket: 'glist-aed62.appspot.com',
-  messagingSenderId: '655452293628',
-  appId: '1:655452293628:web:7e64fd6a67257d327e8a79',
-  measurementId: 'G-V69BPDWWPB'
-};
+import { environment } from './environments/environment';
 
 const isSignedIn = () => {
   const facadeService: UserFacadeService = inject(UserFacadeService);
@@ -77,7 +68,7 @@ const routes: Routes = [
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(BrowserModule),
-    { provide: FirebaseOptionsToken, useValue: firebaseOptions },
+    { provide: FirebaseOptionsToken, useValue: environment.firebase },
     provideDevice(),
     provideStore({}),
     provideState(firebaseSlice.name, firebaseSlice.reducer),
