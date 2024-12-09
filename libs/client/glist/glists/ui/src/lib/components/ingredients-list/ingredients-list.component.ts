@@ -8,11 +8,10 @@ import { Recipe } from '@lob/client/glist/recipes/data';
 import { Ingredient } from '@lob/shared/ingredients/data';
 
 @Component({
-  selector: 'glist-ingredients-list',
-  templateUrl: './ingredients-list.component.html',
-  styleUrls: ['./ingredients-list.component.scss'],
-  standalone: true,
-  imports: [CdkDropList, CdkDrag, MatCheckboxModule, MatIconModule, MatDividerModule]
+    selector: 'glist-ingredients-list',
+    templateUrl: './ingredients-list.component.html',
+    styleUrls: ['./ingredients-list.component.scss'],
+    imports: [CdkDropList, CdkDrag, MatCheckboxModule, MatIconModule, MatDividerModule]
 })
 export class IngredientsListComponent implements OnChanges {
   @ViewChildren(HTMLInputElement)

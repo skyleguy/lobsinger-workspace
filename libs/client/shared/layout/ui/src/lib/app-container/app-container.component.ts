@@ -1,10 +1,9 @@
 import { Component, input } from '@angular/core';
 
 @Component({
-  selector: 'shared-layout-ui-app-container',
-  standalone: true,
-  imports: [],
-  template: `
+    selector: 'shared-layout-ui-app-container',
+    imports: [],
+    template: `
     <div class="h-screen w-screen flex flex-col">
       @if (isHeader()) {
         <nav id="header" class="shrink flex items-center justify-between p-3 border-b-black border-2">

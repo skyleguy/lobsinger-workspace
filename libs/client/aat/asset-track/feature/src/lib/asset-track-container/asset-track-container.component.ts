@@ -6,10 +6,9 @@ import { ActivatedRoute } from '@angular/router';
 import { GoogleLocationService } from '@lob/client/aat/asset-track/data-access';
 
 @Component({
-  selector: 'aat-asset-track-feature-asset-track-container',
-  standalone: true,
-  imports: [TitleCasePipe],
-  template: `
+    selector: 'aat-asset-track-feature-asset-track-container',
+    imports: [TitleCasePipe],
+    template: `
     <div class="h-full w-full flex flex-col">
       @if (isValid()) {
         <h4>Asset Information</h4>
