@@ -21,7 +21,8 @@
             "prefix": "glist-layout-feature",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@angular-eslint/prefer-standalone": "off"
       }
     },
     {

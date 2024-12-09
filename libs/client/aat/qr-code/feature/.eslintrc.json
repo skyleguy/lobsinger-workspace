@@ -21,7 +21,8 @@
             "prefix": "aat-qr-code-feature",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@angular-eslint/prefer-standalone": "off"
       }
     },
     {
