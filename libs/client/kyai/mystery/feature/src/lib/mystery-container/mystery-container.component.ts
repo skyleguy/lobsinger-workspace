@@ -14,14 +14,13 @@ import {
 } from '@lob/client/kyai/mystery/data';
 
 @Component({
-  selector: 'kyai-mystery-feature-mystery-container',
-  standalone: true,
-  imports: [CommonModule, TopMenuComponent, TextContainerComponent, GameContainerComponent, SidebarComponent],
-  providers: [{ provide: ConversationType, useValue: Conversation.MYSTERY }, GptService],
-  templateUrl: 'mystery-container.component.html',
-  styles: [],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'kyai-mystery-feature-mystery-container',
+    imports: [CommonModule, TopMenuComponent, TextContainerComponent, GameContainerComponent, SidebarComponent],
+    providers: [{ provide: ConversationType, useValue: Conversation.MYSTERY }, GptService],
+    templateUrl: 'mystery-container.component.html',
+    styles: [],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MysteryContainerComponent {
   readonly isOfflineMode = false;

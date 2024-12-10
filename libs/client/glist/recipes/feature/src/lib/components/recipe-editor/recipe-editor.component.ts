@@ -19,24 +19,23 @@ import { arrayBufferToImageString } from '@lob/client/shared/images/util';
 import { Ingredient } from '@lob/shared/ingredients/data';
 
 @Component({
-  selector: 'glist-recipe-editor',
-  templateUrl: './recipe-editor.component.html',
-  styleUrls: ['./recipe-editor.component.scss'],
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    MatDialogClose,
-    MatIconModule,
-    MatCheckboxModule,
-    MatStepperModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatOptionModule,
-    MatListModule
-  ]
+    selector: 'glist-recipe-editor',
+    templateUrl: './recipe-editor.component.html',
+    styleUrls: ['./recipe-editor.component.scss'],
+    imports: [
+        MatButtonModule,
+        MatDialogClose,
+        MatIconModule,
+        MatCheckboxModule,
+        MatStepperModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatOptionModule,
+        MatListModule
+    ]
 })
 export class RecipeEditorComponent implements OnInit {
   readonly next = 'NEXT';

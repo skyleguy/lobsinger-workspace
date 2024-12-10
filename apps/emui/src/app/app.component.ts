@@ -6,11 +6,10 @@ import { Game } from '../models/game';
 import { mockGame } from '../models/test';
 
 @Component({
-  standalone: true,
-  imports: [RouterModule],
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    imports: [RouterModule],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent {
   game: Game;

@@ -22,20 +22,19 @@ import { ScrollVisibilityDirective } from '@lob/client/shared/mobile/utilities/d
 import { RecipeEditorComponent } from '../recipe-editor/recipe-editor.component';
 
 @Component({
-  selector: 'glist-recipe-container',
-  templateUrl: './recipe-container.component.html',
-  styleUrls: ['./recipe-container.component.scss'],
-  standalone: true,
-  imports: [
-    ScrollVisibilityDirective,
-    MatTabsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatProgressSpinner,
-    NgTemplateOutlet,
-    RecipeCardComponent,
-    AsyncPipe
-  ]
+    selector: 'glist-recipe-container',
+    templateUrl: './recipe-container.component.html',
+    styleUrls: ['./recipe-container.component.scss'],
+    imports: [
+        ScrollVisibilityDirective,
+        MatTabsModule,
+        MatButtonModule,
+        MatIconModule,
+        MatProgressSpinner,
+        NgTemplateOutlet,
+        RecipeCardComponent,
+        AsyncPipe
+    ]
 })
 export class RecipeContainerComponent extends AbstractRedirectComponent implements OnDestroy {
   readonly tabNames = ['All Recipes', 'Favorites'];

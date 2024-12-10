@@ -5,10 +5,9 @@ import { Router } from '@angular/router';
 import { QrScannerComponent } from '@lob/client/aat/qr-code/ui';
 
 @Component({
-  selector: 'aat-qr-code-feature-qr-code-container',
-  standalone: true,
-  imports: [],
-  template: `<div class="h-full w-full flex flex-col">
+    selector: 'aat-qr-code-feature-qr-code-container',
+    imports: [],
+    template: `<div class="h-full w-full flex flex-col">
     <div class="w-full flex items-center justify-center">
       <button class="border-2 border-black rounded-md p-3 hover:bg-black/35" (click)="openQRDialog()">Open QR Scanner</button>
     </div>

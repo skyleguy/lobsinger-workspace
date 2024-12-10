@@ -8,11 +8,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { favoritedRecipeText, Recipe, unfavoritedRecipeText } from '@lob/client/glist/recipes/data';
 
 @Component({
-  selector: 'glist-recipe-card',
-  templateUrl: './recipe-card.component.html',
-  styleUrls: ['./recipe-card.component.scss'],
-  standalone: true,
-  imports: [MatCardModule, MatChipsModule, MatButtonModule, MatIconModule, NgTemplateOutlet, TitleCasePipe]
+    selector: 'glist-recipe-card',
+    templateUrl: './recipe-card.component.html',
+    styleUrls: ['./recipe-card.component.scss'],
+    imports: [MatCardModule, MatChipsModule, MatButtonModule, MatIconModule, NgTemplateOutlet, TitleCasePipe]
 })
 export class RecipeCardComponent {
   readonly favoritedRecipeText = favoritedRecipeText;

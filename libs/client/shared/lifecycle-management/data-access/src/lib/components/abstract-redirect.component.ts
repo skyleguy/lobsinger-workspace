@@ -4,7 +4,8 @@ import { Observable, filter } from 'rxjs';
 import { AbstractSubscriptionComponent } from './abstract-subscription.component';
 
 @Component({
-  template: ''
+    template: '',
+    standalone: false
 })
 export abstract class AbstractRedirectComponent extends AbstractSubscriptionComponent {
   /**

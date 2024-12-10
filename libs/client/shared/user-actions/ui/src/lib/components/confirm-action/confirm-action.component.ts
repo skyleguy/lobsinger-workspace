@@ -6,11 +6,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 // Then consumers can just say this.confirmService.confirm({ someOptions }).subscribe({next: (res) => if(res) { doSomething} })
 // And then wont need to know about dialogs at all
 @Component({
-  selector: 'glist-confirm-action',
-  templateUrl: './confirm-action.component.html',
-  styleUrls: ['./confirm-action.component.scss'],
-  standalone: true,
-  imports: [MatButtonModule]
+    selector: 'glist-confirm-action',
+    templateUrl: './confirm-action.component.html',
+    styleUrls: ['./confirm-action.component.scss'],
+    imports: [MatButtonModule]
 })
 export class ConfirmActionComponent {
   constructor(

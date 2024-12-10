@@ -18,22 +18,21 @@ import { AbstractRedirectComponent } from '@lob/client/shared/lifecycle-manageme
 import { Ingredient } from '@lob/shared/ingredients/data';
 
 @Component({
-  selector: 'glist-glist-container',
-  templateUrl: './glist-container.component.html',
-  styleUrls: ['./glist-container.component.scss'],
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    MatIconModule,
-    LetDirective,
-    MatTabsModule,
-    MatCardModule,
-    MatDividerModule,
-    IngredientsListComponent,
-    NgTemplateOutlet,
-    RecipeCardComponent,
-    AsyncPipe
-  ]
+    selector: 'glist-glist-container',
+    templateUrl: './glist-container.component.html',
+    styleUrls: ['./glist-container.component.scss'],
+    imports: [
+        MatButtonModule,
+        MatIconModule,
+        LetDirective,
+        MatTabsModule,
+        MatCardModule,
+        MatDividerModule,
+        IngredientsListComponent,
+        NgTemplateOutlet,
+        RecipeCardComponent,
+        AsyncPipe
+    ]
 })
 export class GlistContainerComponent extends AbstractRedirectComponent {
   recipes$ = this.glistFacadeService.recipesIds$.pipe(switchMap((ids) => this.recipeFacadeService.getRecipesByIds(ids)));

@@ -4,7 +4,8 @@ import { SubSinker } from '@lob/client/shared/lifecycle-management/data';
 import { ComponentState } from '@lob/shared/data-management/data';
 
 @Component({
-  template: ''
+    template: '',
+    standalone: false
 })
 export abstract class AbstractSubscriptionComponent implements OnDestroy {
   componentState = signal<ComponentState>(ComponentState.LOADING);

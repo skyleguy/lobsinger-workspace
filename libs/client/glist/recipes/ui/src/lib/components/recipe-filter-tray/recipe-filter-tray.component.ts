@@ -10,10 +10,9 @@ import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 import { cuisineTypes, dishTypes, dietTypes, RecipeFilter } from '@lob/client/glist/recipes/data';
 
 @Component({
-  selector: 'glist-recipe-filter-tray',
-  templateUrl: './recipe-filter-tray.component.html',
-  standalone: true,
-  imports: [MatFormFieldModule, MatIconModule, MatInputModule, MatSelectModule, MatOptionModule]
+    selector: 'glist-recipe-filter-tray',
+    templateUrl: './recipe-filter-tray.component.html',
+    imports: [MatFormFieldModule, MatIconModule, MatInputModule, MatSelectModule, MatOptionModule]
 })
 export class RecipeFilterTrayComponent implements OnInit {
   readonly cuisineTypes = cuisineTypes;

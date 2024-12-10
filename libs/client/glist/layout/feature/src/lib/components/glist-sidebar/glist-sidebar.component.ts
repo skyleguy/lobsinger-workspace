@@ -10,11 +10,10 @@ interface Page {
 }
 
 @Component({
-  selector: 'glist-layout-feature-sidebar',
-  templateUrl: './glist-sidebar.component.html',
-  styleUrls: ['./glist-sidebar.component.scss'],
-  standalone: true,
-  imports: [MatListModule, RouterLink, MatIconModule]
+    selector: 'glist-layout-feature-sidebar',
+    templateUrl: './glist-sidebar.component.html',
+    styleUrls: ['./glist-sidebar.component.scss'],
+    imports: [MatListModule, RouterLink, MatIconModule]
 })
 export class GlistSidebarComponent {
   readonly pages: Page[] = [

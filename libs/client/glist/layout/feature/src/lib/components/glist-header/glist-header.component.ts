@@ -15,11 +15,10 @@ import { UiVisibilityTarget } from '@lob/client/shared/mobile/utilities/data';
 import { UiVisibilityService } from '@lob/client/shared/mobile/utilities/data-access';
 
 @Component({
-  selector: 'glist-layout-feature-header',
-  templateUrl: './glist-header.component.html',
-  styleUrls: ['./glist-header.component.scss'],
-  standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, LetDirective, AsyncPipe, NgOptimizedImage]
+    selector: 'glist-layout-feature-header',
+    templateUrl: './glist-header.component.html',
+    styleUrls: ['./glist-header.component.scss'],
+    imports: [MatToolbarModule, MatButtonModule, MatIconModule, LetDirective, AsyncPipe, NgOptimizedImage]
 })
 export class GlistHeaderComponent implements OnInit {
   readonly isMenuVisible$ = this.uiVisibilityService.visibilityMap$.pipe(
