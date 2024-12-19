@@ -2,12 +2,10 @@ import { NgClass } from '@angular/common';
 import { Component, inject, output, signal } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { Result, Exception } from '@zxing/library';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 @Component({
     selector: 'aat-qr-code-ui-qr-scanner',
-    imports: [ZXingScannerModule, MatProgressSpinnerModule, NgClass],
+    imports: [ZxingScannerComponent, MatProgressSpinnerModule, NgClass],
     template: `
     <div class="h-full w-full flex flex-col p-3">
       <div class="border-b-2 border-white flex items-center justify-center">

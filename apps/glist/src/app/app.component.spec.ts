@@ -1,7 +1,6 @@
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Spectator, createComponentFactory, mockProvider } from '@ngneat/spectator/jest';
 import { FirebaseApp } from 'firebase/app';
-import { MockComponent } from 'ng-mocks';
 import { of } from 'rxjs';
 
 import { UserFacadeService } from '@lob/client/shared/auth/data-access';
