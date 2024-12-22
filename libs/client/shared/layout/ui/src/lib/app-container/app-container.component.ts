@@ -6,13 +6,13 @@ import { Component, input } from '@angular/core';
   imports: [],
   template: `
     <div class="h-screen w-screen flex flex-col">
-      @if (isHeader()) {
-        <nav id="header" class="shrink flex items-center justify-between p-3 border-b-black border-2">
+      @if (isHeaderAvailable()) {
+        <nav id="header" class="shrink flex items-center justify-between">
           <ng-content select="[nav]"></ng-content>
         </nav>
       }
       <div class="grow flex min-h-0">
-        @if (isSidebar()) {
+        @if (isSidebarAvailable()) {
           <div id="sidebar" class="shrink p-3 border-r-2 border-black">
             <ng-content select="[sidebar]"></ng-content>
           </div>
@@ -25,7 +25,7 @@ import { Component, input } from '@angular/core';
   `
 })
 export class AppContainerComponent {
-  isSidebar = input(true);
+  isSidebarAvailable = input(true);
   isMainBodyScrollable = input(true);
-  isHeader = input(true);
+  isHeaderAvailable = input(true);
 }

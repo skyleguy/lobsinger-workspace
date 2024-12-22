@@ -1,34 +1,47 @@
-import { TitleCasePipe } from '@angular/common';
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { MatFabButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
+import { Asset, isAssetValid } from '@lob/client/aat/asset-track/data';
 import { GoogleLocationService } from '@lob/client/aat/asset-track/data-access';
+import { AssetCardComponent, AssetFormComponent } from '@lob/client/aat/asset-track/ui';
 
 @Component({
   selector: 'aat-asset-track-feature-asset-track-container',
   standalone: true,
-  imports: [TitleCasePipe],
+  imports: [MatIcon, MatFabButton, AssetFormComponent, AssetCardComponent, RouterLink],
   template: `
-    <div class="h-full w-full flex flex-col">
+    <div class="h-full w-full flex flex-col gap-3">
       @if (isValid()) {
-        <h4>Asset Information</h4>
-        <span>Asset Name: {{ assetName() | titlecase }}</span>
-        <span>Asset Id: {{ assetId() }}</span>
-        <br />
-        <h4 class="cursor-pointer" (click)="getLocationInfo()">Location Information</h4>
-        <br />
-        <div class="w-full flex justify-center items-center gap-3">
-          <button class="border-2 border-black p-3 rounded-md hover:bg-black/35">Return Home</button>
-          <button class="border-2 border-black p-3 rounded-md hover:bg-black/35">Check Out</button>
+        <button mat-fab aria-label="Back button to return to scanner" routerLink="/scan">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <div class="grow flex flex-col gap-3 md:items-center md:justify-center md:mx-auto">
+          @if (locationAjax().data; as currentAddress) {
+            <span>Current Address: {{ currentAddress }}</span>
+          }
+          <aat-asset-track-ui-asset-card class="w-full" [asset]="asset()"></aat-asset-track-ui-asset-card>
+          <aat-asset-track-ui-asset-form [isLocationLoading]="locationAjax().loading"></aat-asset-track-ui-asset-form>
+          <div class="w-full flex justify-center items-center gap-3 mt-auto md:mt-0 pb-3">
+            <button mat-fab extended>
+              <mat-icon>language</mat-icon>
+              Check-in
+            </button>
+            <button mat-fab extended>
+              <mat-icon>send</mat-icon>
+              Check-out
+            </button>
+          </div>
         </div>
-        @if (currentAddress()) {
-          <span>Current Address: {{ currentAddress() }}</span>
-        }
       } @else {
         <span
-          >Invalid asset name or asset id! You can try to <span><a href="/scan">Scan Again?</a></span></span
-        >
+          >Invalid asset name or asset id! You can try to
+          <span>
+            <a routerLink="/scan"> Scan Again?</a>
+          </span>
+        </span>
       }
     </div>
   `
@@ -38,31 +51,14 @@ export class AssetTrackContainerComponent {
   private readonly googleLocationService = inject(GoogleLocationService);
 
   private paramMap = toSignal(this.activatedRoute.paramMap);
-  protected assetName = computed(() => this.paramMap()?.get('assetName'));
-  protected assetId = computed(() => this.paramMap()?.get('assetId'));
-  protected isValid = computed(() => this.assetId() && this.assetName());
-  protected currentAddress = signal<string | null>(null);
 
-  getLocationInfo() {
-    navigator.geolocation.getCurrentPosition(
-      async (position) => {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        this.googleLocationService.getCurrentAddress(latitude, longitude).subscribe({
-          next: (currentAddress) => {
-            console.log(currentAddress);
-            this.currentAddress.set(currentAddress);
-          },
-          error: (err) => {
-            this.currentAddress.set(null);
-            console.error(err);
-          }
-        });
-      },
-      (error) => {
-        console.error('Error obtaining location', error);
-      },
-      { enableHighAccuracy: true }
-    );
-  }
+  protected asset = computed(
+    () =>
+      ({
+        assetId: this.paramMap()?.get('assetId'),
+        assetName: this.paramMap()?.get('assetName')
+      }) as Asset
+  );
+  protected isValid = computed(() => isAssetValid(this.asset()));
+  protected locationAjax = this.googleLocationService.getLocation();
 }
