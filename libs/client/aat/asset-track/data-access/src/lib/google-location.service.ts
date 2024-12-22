@@ -17,7 +17,7 @@ interface GeocodeApiResponse {
   providedIn: 'root'
 })
 export class GoogleLocationService {
-  private readonly apiKey = 'AIzaSyDMJjRVoHmRfuySBFNzlFvfDHHVBbfYeoE';
+  private readonly apiKey = '';
   private readonly http = inject(HttpClient);
 
   getLocation(): Signal<AjaxState<string | undefined>> {
