@@ -34,6 +34,7 @@
     "@ngrx/effects": "18.0.2",
     "@ngrx/store": "18.0.2",
     "@ngrx/store-devtools": "18.0.2",
+    "@ngrx/signals": "18.0.2",
     "@nx/angular": "20.1.2",
     "@nx/devkit": "20.1.2",
     "@reduxjs/toolkit": "^2.2.5",

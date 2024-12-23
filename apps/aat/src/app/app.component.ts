@@ -1,17 +1,14 @@
-import { Component } from '@angular/core';
-import { MatIcon } from '@angular/material/icon';
+import { Component, inject } from '@angular/core';
 import { MatToolbar } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
-import { getAnalytics } from 'firebase/analytics';
-import { initializeApp } from 'firebase/app';
 
+import { FirebaseAppStore } from '@lob/client/shared/firebase/data-access';
 import { AppContainerComponent } from '@lob/client/shared/layout/ui';
-
-import { environment } from '../environments/environment';
+import { UserAvatarComponent } from '@lob/client-shared-auth-feature';
 
 @Component({
   standalone: true,
-  imports: [RouterModule, AppContainerComponent, MatToolbar, MatIcon],
+  imports: [RouterModule, AppContainerComponent, MatToolbar, UserAvatarComponent],
   selector: 'aat-root',
   template: `
     <shared-layout-ui-app-container [isSidebarAvailable]="false">
@@ -19,7 +16,7 @@ import { environment } from '../environments/environment';
         <mat-toolbar color="primary">
           <span nav>Advantage Asset Tracker</span>
           <span class="flex grow shrink"></span>
-          <mat-icon>account_circle</mat-icon>
+          <client-shared-auth-feature-user-avatar></client-shared-auth-feature-user-avatar>
         </mat-toolbar>
       </ng-container>
       <ng-container main-content>
@@ -31,9 +28,9 @@ import { environment } from '../environments/environment';
   `
 })
 export class AppComponent {
-  title = 'aat';
+  private readonly firebaseAppStore = inject(FirebaseAppStore);
 
-  // Initialize Firebase
-  private app = initializeApp(environment.firebase);
-  private analytics = getAnalytics(this.app);
+  constructor() {
+    this.firebaseAppStore.initializeApp();
+  }
 }
