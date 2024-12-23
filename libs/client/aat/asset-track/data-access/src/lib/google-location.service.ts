@@ -21,26 +21,23 @@ export class GoogleLocationService {
   private readonly http = inject(HttpClient);
 
   getLocation(): Signal<AjaxState<string | undefined>> {
-    console.log('getting location');
     const location = signal(createAjaxState<string | undefined>(undefined, true));
     navigator.geolocation.getCurrentPosition(
       async (position) => {
-        console.log(`got current position: ${JSON.stringify(position)}`);
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
         this.getCurrentAddress(latitude, longitude).subscribe({
           next: (currentAddress: string | undefined) => {
-            console.log(`current address: ${currentAddress}`);
             location.set(createAjaxState(currentAddress));
           },
           error: (err) => {
-            console.log(`error: ${JSON.stringify(err)}`);
+            console.error(`error: ${JSON.stringify(err)}`);
             location.set(createAjaxState(undefined, false, err));
           }
         });
       },
       (geolocationError) => {
-        console.log('Error obtaining location', geolocationError);
+        console.error('Error obtaining location', geolocationError);
         const err = new Error(`${geolocationError.code}: ${geolocationError.message}`);
         location.set(createAjaxState(undefined, false, err));
       },
