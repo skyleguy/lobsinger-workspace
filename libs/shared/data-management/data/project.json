@@ -4,16 +4,6 @@
   "sourceRoot": "libs/shared/data-management/data/src",
   "projectType": "library",
   "targets": {
-    "build": {
-      "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/libs/shared/data-management/data",
-        "main": "libs/shared/data-management/data/src/index.ts",
-        "tsConfig": "libs/shared/data-management/data/tsconfig.lib.json",
-        "assets": ["libs/shared/data-management/data/*.md"]
-      }
-    },
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
