@@ -11,5 +11,9 @@ export const appRoutes: Route[] = [
   {
     path: 'scan',
     component: QrCodeContainerComponent
+  },
+  {
+    path: '**',
+    redirectTo: 'scan'
   }
 ];
