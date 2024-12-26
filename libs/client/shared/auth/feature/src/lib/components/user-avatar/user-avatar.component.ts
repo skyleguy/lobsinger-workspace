@@ -11,13 +11,15 @@ import { UserStore } from '@lob/client/shared/auth/data-access';
   imports: [MatIcon, MatIconButton, NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <button mat-icon-button (click)="changeSignInStatus()">
+    <div (click)="changeSignInStatus()">
       @if (imageUrl(); as url) {
-        <img class="rounded-avatar" [ngSrc]="url" width="48" height="48" />
+        <img class="rounded-lg" [ngSrc]="url" width="48" height="48" />
       } @else {
-        <mat-icon>person</mat-icon>
+        <button mat-icon-button>
+          <mat-icon>person</mat-icon>
+        </button>
       }
-    </button>
+    </div>
   `
 })
 export class UserAvatarComponent {
@@ -33,6 +35,7 @@ export class UserAvatarComponent {
   });
 
   protected changeSignInStatus() {
+    console.log('yeet');
     if (this.isSignedIn()) {
       this.userStoreService.logUserOut();
     } else {
