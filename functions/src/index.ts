@@ -5,7 +5,7 @@ import { defineSecret } from "firebase-functions/params";
 // import * as sheets from '@googleapis/sheets';
 
 const locationsApiKey = defineSecret("GOOGLE_LOCATIONS_API_KEY");
-const allowedOrigins = ["http://localhost:4200"];
+const allowedOrigins = ["http://localhost:4200", "https://lobsinger-workspace-aat--lobsinger-workspace-dev-e45e7.us-central1.hosted.app"];
 
 export const getCurrentAddress = onRequest(
   {
