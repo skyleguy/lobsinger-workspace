@@ -35,7 +35,6 @@ export class UserAvatarComponent {
   });
 
   protected changeSignInStatus() {
-    console.log('yeet');
     if (this.isSignedIn()) {
       this.userStoreService.logUserOut();
     } else {
