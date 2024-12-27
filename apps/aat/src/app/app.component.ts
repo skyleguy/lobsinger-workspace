@@ -12,7 +12,7 @@ import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-a
   imports: [RouterModule, AppContainerComponent, MatToolbar, UserAvatarComponent, SignInButtonComponent],
   selector: 'aat-root',
   template: `
-    <shared-layout-ui-app-container [isSidebarAvailable]="false">
+    <shared-layout-ui-app-container [isSidebarAvailable]="false" [isMainBodyScrollable]="false">
       <ng-container nav>
         <mat-toolbar color="primary">
           <span nav>Advantage Asset Tracker</span>

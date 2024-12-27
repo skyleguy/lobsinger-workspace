@@ -1,5 +1,7 @@
 import { Component, input, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatIcon } from '@angular/material/icon';
+import { debounceTime, fromEvent, map, startWith } from 'rxjs';
 
 interface ErrorConfig {
   icon: 'error' | 'warning';
@@ -20,7 +22,7 @@ interface ErrorConfig {
     `
   ],
   template: `
-    <div class="h-screen w-screen flex flex-col">
+    <div class="w-screen flex flex-col" [style.height]="deviceHeight() + 'px'">
       @if (isHeaderAvailable()) {
         <nav id="header" class="shrink flex items-center justify-between">
           <ng-content select="[nav]"></ng-content>
@@ -51,6 +53,14 @@ interface ErrorConfig {
   `
 })
 export class AppContainerComponent {
+  protected readonly deviceHeight = toSignal(
+    fromEvent(window, 'resize').pipe(
+      startWith(window.innerHeight),
+      debounceTime(200),
+      map(() => window.innerHeight)
+    )
+  );
+
   isSidebarAvailable = input(true);
   isMainBodyScrollable = input(true);
   isHeaderAvailable = input(true);
