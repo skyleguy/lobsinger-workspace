@@ -1,4 +1,5 @@
 import { Component, computed, effect, inject, untracked, viewChild } from '@angular/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbar } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 
@@ -9,7 +10,7 @@ import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-a
 
 @Component({
   standalone: true,
-  imports: [RouterModule, AppContainerComponent, MatToolbar, UserAvatarComponent, SignInButtonComponent],
+  imports: [RouterModule, AppContainerComponent, MatToolbar, UserAvatarComponent, SignInButtonComponent, MatSnackBarModule],
   selector: 'aat-root',
   template: `
     <shared-layout-ui-app-container [isSidebarAvailable]="false" [isMainBodyScrollable]="false">
