@@ -5,31 +5,26 @@ import { defineSecret } from 'firebase-functions/params';
 import { google } from 'googleapis';
 import { addDays, format } from 'date-fns';
 import { toZonedTime } from 'date-fns-tz';
-
-// const secretManager = require('@google-cloud/secret-manager');
+import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
 
 const locationsApiKey = defineSecret('GOOGLE_LOCATIONS_API_KEY');
 const allowedOrigins = ['http://localhost:4200', 'https://lobsinger-workspace-aat--lobsinger-workspace-dev-e45e7.us-central1.hosted.app'];
 
 const spreadsheetId = '1EDbvb6s_4K69GF9Gi9cWdw6P_23hGnEr2vp7w_87kHg';
 
-// const client = new secretManager.SecretManagerServiceClient();
+const client = new SecretManagerServiceClient();
 
-// async function getSecret() {
-//   const [accessResponse] = await client.accessSecretVersion({
-//     name: 'projects/151978710816/secrets/advantage_asset_tracker_sheets_service_account_credentials/versions/latest'
-//   });
+async function getAuth() {
+  const [accessResponse] = await client.accessSecretVersion({
+    name: 'projects/151978710816/secrets/advantage_asset_tracker_sheets_service_account_credentials/versions/latest'
+  });
 
-//   if (accessResponse?.payload?.data) {
-//     return JSON.parse(accessResponse.payload.data.toString());
-//   }
-//   return null;
-// }
-
-const auth = new google.auth.GoogleAuth({
-  keyFile: '/Users/ky/secrets/lobsinger-workspace-dev-e45e7-53edfe0f6f97.json',
-  scopes: ['https://www.googleapis.com/auth/spreadsheets']
-});
+  const credentials = JSON.parse(accessResponse?.payload?.data?.toString() ?? '');
+  return new google.auth.GoogleAuth({
+    credentials,
+    scopes: ['https://www.googleapis.com/auth/spreadsheets']
+  });
+}
 
 export const getCurrentAddress = onRequest(
   {
@@ -54,6 +49,8 @@ export const setUpAsset = onRequest(
     cors: allowedOrigins
   },
   async (request, response) => {
+    const auth = await getAuth();
+
     const data = request.body?.data;
     const address: string = data?.address;
     const roomLocation: string = data?.roomLocation;
@@ -132,6 +129,8 @@ export const pickUpAsset = onRequest(
     cors: allowedOrigins
   },
   async (request, response) => {
+    const auth = await getAuth();
+
     const data = request.body?.data;
     const assetName: string = data?.assetName;
     const assetId: string = data?.assetId;
@@ -205,6 +204,8 @@ export const returnAsset = onRequest(
     cors: allowedOrigins
   },
   async (request, response) => {
+    const auth = await getAuth();
+
     const data = request.body?.data;
     const assetName: string = data?.assetName;
     const assetId: string = data?.assetId;
