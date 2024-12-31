@@ -40,7 +40,12 @@ import { AjaxState } from '@lob/shared/data-management/data';
             Asset Address
           }
         </mat-label>
-        <input [formControl]="currentAddressControl" matInput placeholder="Estimating Address..." />
+        <input
+          [formControl]="currentAddressControl"
+          matInput
+          placeholder="Estimating Address..."
+          (focus)="isAddressInputTouched.emit(true)"
+        />
         @if (currentLocation()?.loading) {
           <mat-spinner matPrefix class="ml-2 !h-4 !w-4 !max-h-4 !max-w-4"></mat-spinner>
         }
@@ -80,7 +85,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
   `
 })
 export class AssetFormComponent {
-  protected readonly roomOptions = signal(['Living Room', 'Family Room', 'Dining Room']);
+  protected readonly roomOptions = signal(['Basement', 'Dining Room', 'Family Room', 'Living Room', 'Office', 'Primary Bedroom']);
 
   isLocationLoading = input(false);
   isFormLoading = input(false);
@@ -89,6 +94,7 @@ export class AssetFormComponent {
   setUp = output<{ currentAddress: string; roomLocation: string }>();
   pickUp = output<void>();
   return = output<void>();
+  isAddressInputTouched = output<boolean>();
 
   protected currentAddressControl = new FormControl('', {
     validators: [Validators.required]

@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 
@@ -12,8 +12,12 @@ import { UserStore } from '@lob/client/shared/auth/data-access';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div (click)="changeSignInStatus()">
-      @if (imageUrl(); as url) {
-        <img class="rounded-lg" [ngSrc]="url" width="48" height="48" />
+      @if (userContent(); as userContent) {
+        @if (isAvatarImageError()) {
+          <span>{{ userContent }}</span>
+        } @else {
+          <img class="rounded-lg" [ngSrc]="userContent" width="48" height="48" (error)="isAvatarImageError.set(true)" />
+        }
       } @else {
         <button mat-icon-button>
           <mat-icon>person</mat-icon>
@@ -26,12 +30,18 @@ export class UserAvatarComponent {
   private readonly userStoreService = inject(UserStore);
   private readonly isSignedIn = this.userStoreService.isUserSignedIn;
 
-  protected imageUrl = computed(() => {
+  protected readonly isAvatarImageError = signal(false);
+
+  protected userContent = computed(() => {
     const userData = this.userStoreService.userData();
-    if (userData) {
-      return userData.pictureUrl;
+    if (this.isAvatarImageError()) {
+      return userData?.name?.split(' ')?.[0];
+    } else {
+      if (userData) {
+        return userData.pictureUrl;
+      }
+      return null;
     }
-    return null;
   });
 
   protected changeSignInStatus() {

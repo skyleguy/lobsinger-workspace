@@ -4,6 +4,7 @@ import { MatFabButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { Asset, isAssetValid } from '@lob/client/aat/asset-track/data';
 import { AssetManagerService, GoogleLocationService } from '@lob/client/aat/asset-track/data-access';
@@ -27,6 +28,7 @@ import { createAjaxState } from '@lob/shared/data-management/util';
           <aat-asset-track-ui-asset-form
             [currentLocation]="currentLocation()"
             [isFormLoading]="isRequestInProgress()"
+            (isAddressInputTouched)="unsubscribeFromLocation()"
             (setUp)="setUp($event)"
             (pickUp)="pickUp()"
             (return)="return()"
@@ -64,9 +66,10 @@ export class AssetTrackContainerComponent implements OnInit {
   protected isLoading = signal(false);
   protected currentLocation = signal<AjaxState<string | null>>(createAjaxState<string | null>(null, true));
   protected isRequestInProgress = signal(false);
+  protected locationSub!: Subscription;
 
   public ngOnInit() {
-    this.getLocation();
+    this.locationSub = this.getLocation();
   }
 
   public pickUp() {
@@ -135,8 +138,13 @@ export class AssetTrackContainerComponent implements OnInit {
     });
   }
 
+  protected unsubscribeFromLocation() {
+    this.locationSub.unsubscribe();
+    this.currentLocation.set(createAjaxState(null, false));
+  }
+
   private getLocation() {
-    this.googleLocationService.getLocationFunction().subscribe({
+    return this.googleLocationService.getLocationFunction().subscribe({
       next: (res) => {
         const addressWithoutCountry = res.split(', ').slice(0, -1).join(', ');
         this.currentLocation.set(createAjaxState(addressWithoutCountry));
