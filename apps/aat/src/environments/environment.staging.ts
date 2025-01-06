@@ -1,6 +1,6 @@
 export const environment = {
   firebase: {
-    apiKey: 'AIzaSyDL9WxF63ZE6pxDn1bxiItR3OWDzkF620g',
+    apiKey: 'AIzaSyDW9S7RcQFuwFcw2lDj4ryCEOI-tcArHIg',
     authDomain: 'lobsinger-workspace-dev-e45e7.firebaseapp.com',
     projectId: 'lobsinger-workspace-dev-e45e7',
     storageBucket: 'lobsinger-workspace-dev-e45e7.firebasestorage.app',

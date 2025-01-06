@@ -18,12 +18,13 @@ export const FirebaseAppStore = signalStore(
   { providedIn: 'root' },
   withState<FirebaseAppState>({
     firebaseApp: createAjaxState<FirebaseApp | null>(null),
-    isLocalFunctionEmulation: false
+    isLocalFunctionEmulation: true
   }),
   withMethods((store, firebaseAppService = inject(FirebaseAppService)) => ({
     initializeApp() {
       try {
         const firebaseApp = firebaseAppService.initializeAppSync();
+        console.log(firebaseApp.name, firebaseApp.options.projectId, firebaseApp.options.authDomain);
         patchState(store, {
           firebaseApp: createAjaxState(firebaseApp)
         });
