@@ -8,7 +8,11 @@ import { toZonedTime } from 'date-fns-tz';
 import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
 
 const locationsApiKey = defineSecret('GOOGLE_LOCATIONS_API_KEY');
-const allowedOrigins = ['http://localhost:4200', 'https://lobsinger-workspace-aat--lobsinger-workspace-dev-e45e7.us-central1.hosted.app'];
+const allowedOrigins = [
+  'http://localhost:4200',
+  'https://lobsinger-workspace-aat--lobsinger-workspace-dev-e45e7.us-central1.hosted.app',
+  'https://lobsinger-workspace-prod-aat--lobsinger-workspace-prod.us-central1.hosted.app'
+];
 
 const spreadsheetIdParam = defineString('SPREADSHEET_ID');
 const credentialsGoogleCloudFileLocationParam = defineString(`CREDENTIALS_GOOGLE_CLOUD_FILE_LOCATION`);
