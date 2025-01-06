@@ -10,7 +10,7 @@ import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
 const locationsApiKey = defineSecret('GOOGLE_LOCATIONS_API_KEY');
 const allowedOrigins = ['http://localhost:4200', 'https://lobsinger-workspace-aat--lobsinger-workspace-dev-e45e7.us-central1.hosted.app'];
 
-const spreadsheetId = '1EDbvb6s_4K69GF9Gi9cWdw6P_23hGnEr2vp7w_87kHg';
+const spreadsheetId = '1BJlNRQkT7-sD21BWGBgoOyYWE5ON0cE-tGwWK0PM4Zc';
 
 const client = new SecretManagerServiceClient();
 
@@ -58,26 +58,25 @@ export const setUpAsset = onRequest(
     const assetName: string = data?.assetName;
     const assetId: string = data?.assetId;
 
-    const initialSheetRange = `${assetName}!A1:V12`;
+    const initialSheetRange = `${assetName}!A1:S101`;
     try {
       const spreadsheet = await google.sheets('v4').spreadsheets.values.get({ spreadsheetId, auth, range: initialSheetRange });
       const sheetData = spreadsheet.data.values;
       if (sheetData) {
-        const monitorRowIndex = sheetData.findIndex((row) => row?.[1] === `Monitor #${assetId}`);
+        const monitorRowIndex = sheetData.findIndex((row) => row?.[3]?.trim() === `Monitor #${assetId}`);
         if (monitorRowIndex >= 0) {
           const localDate = toZonedTime(new Date(), 'America/New_York');
           const monitorRow = sheetData[monitorRowIndex];
           const currentTimeDate = format(localDate, 'MM/dd/yyyy');
           const currentTimeHours = format(localDate, 'h:mm');
           const newMonitorRow = [...monitorRow];
-          newMonitorRow[2] = '';
-          newMonitorRow[5] = currentTimeDate;
-          newMonitorRow[7] = currentTimeHours;
-          newMonitorRow[9] = address;
-          newMonitorRow[11] = inspector;
-          newMonitorRow[13] = roomLocation;
-          newMonitorRow[15] = format(addDays(currentTimeDate, 2), 'MM/dd/yyyy');
-          newMonitorRow[17] = currentTimeHours;
+          newMonitorRow[5] = '';
+          newMonitorRow[6] = currentTimeDate;
+          newMonitorRow[8] = currentTimeHours;
+          newMonitorRow[10] = address;
+          newMonitorRow[12] = inspector;
+          newMonitorRow[14] = roomLocation;
+          newMonitorRow[16] = format(addDays(currentTimeDate, 2), 'MM/dd/yyyy');
           const updateRowRange = `${assetName}!A${monitorRowIndex + 1}:V${monitorRowIndex + 1}`;
           try {
             await google.sheets('v4').spreadsheets.values.update({
@@ -86,7 +85,6 @@ export const setUpAsset = onRequest(
               range: updateRowRange,
               valueInputOption: 'RAW',
               requestBody: {
-                range: updateRowRange,
                 values: [newMonitorRow]
               }
             });
@@ -136,23 +134,22 @@ export const pickUpAsset = onRequest(
     const assetId: string = data?.assetId;
     const inspector: string = data?.inspector;
 
-    const initialSheetRange = `${assetName}!A1:V12`;
+    const initialSheetRange = `${assetName}!A1:S101`;
     try {
       const spreadsheet = await google.sheets('v4').spreadsheets.values.get({ spreadsheetId, auth, range: initialSheetRange });
       const sheetData = spreadsheet.data.values;
       if (sheetData) {
-        const monitorRowIndex = sheetData.findIndex((row) => row?.[1] === `Monitor #${assetId}`);
+        const monitorRowIndex = sheetData.findIndex((row) => row?.[3]?.trim() === `Monitor #${assetId}`);
         if (monitorRowIndex >= 0) {
           const monitorRow = sheetData[monitorRowIndex];
           const newMonitorRow = [...monitorRow];
-          newMonitorRow[2] = inspector;
-          newMonitorRow[5] = '';
-          newMonitorRow[7] = '';
-          newMonitorRow[9] = '';
-          newMonitorRow[11] = '';
-          newMonitorRow[13] = '';
-          newMonitorRow[15] = '';
-          newMonitorRow[17] = '';
+          newMonitorRow[5] = inspector;
+          newMonitorRow[6] = '';
+          newMonitorRow[8] = '';
+          newMonitorRow[10] = '';
+          newMonitorRow[12] = '';
+          newMonitorRow[14] = '';
+          newMonitorRow[16] = '';
           const updateRowRange = `${assetName}!A${monitorRowIndex + 1}:V${monitorRowIndex + 1}`;
           try {
             await google.sheets('v4').spreadsheets.values.update({
@@ -161,7 +158,6 @@ export const pickUpAsset = onRequest(
               range: updateRowRange,
               valueInputOption: 'RAW',
               requestBody: {
-                range: updateRowRange,
                 values: [newMonitorRow]
               }
             });
@@ -211,23 +207,22 @@ export const returnAsset = onRequest(
     const assetId: string = data?.assetId;
     const inspector: string = data?.inspector;
 
-    const initialSheetRange = `${assetName}!A1:V12`;
+    const initialSheetRange = `${assetName}!A1:S101`;
     try {
       const spreadsheet = await google.sheets('v4').spreadsheets.values.get({ spreadsheetId, auth, range: initialSheetRange });
       const sheetData = spreadsheet.data.values;
       if (sheetData) {
-        const monitorRowIndex = sheetData.findIndex((row) => row?.[1] === `Monitor #${assetId}`);
+        const monitorRowIndex = sheetData.findIndex((row) => row?.[3]?.trim() === `Monitor #${assetId}`);
         if (monitorRowIndex >= 0) {
           const monitorRow = sheetData[monitorRowIndex];
           const newMonitorRow = [...monitorRow];
-          newMonitorRow[2] = '';
           newMonitorRow[5] = '';
-          newMonitorRow[7] = '';
-          newMonitorRow[9] = '';
-          newMonitorRow[11] = '';
-          newMonitorRow[13] = '';
-          newMonitorRow[15] = '';
-          newMonitorRow[17] = '';
+          newMonitorRow[6] = '';
+          newMonitorRow[8] = '';
+          newMonitorRow[10] = '';
+          newMonitorRow[12] = '';
+          newMonitorRow[14] = '';
+          newMonitorRow[16] = '';
           const updateRowRange = `${assetName}!A${monitorRowIndex + 1}:V${monitorRowIndex + 1}`;
           try {
             await google.sheets('v4').spreadsheets.values.update({
@@ -236,7 +231,6 @@ export const returnAsset = onRequest(
               range: updateRowRange,
               valueInputOption: 'RAW',
               requestBody: {
-                range: updateRowRange,
                 values: [newMonitorRow]
               }
             });

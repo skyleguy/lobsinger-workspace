@@ -24,7 +24,7 @@ export const FirebaseAppStore = signalStore(
     initializeApp() {
       try {
         const firebaseApp = firebaseAppService.initializeAppSync();
-        console.log(firebaseApp.name, firebaseApp.options.projectId, firebaseApp.options.authDomain);
+        console.log(firebaseApp.name, firebaseApp.options.projectId);
         patchState(store, {
           firebaseApp: createAjaxState(firebaseApp)
         });
