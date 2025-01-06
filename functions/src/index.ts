@@ -1,7 +1,7 @@
 import { onRequest } from 'firebase-functions/v2/https';
 import * as logger from 'firebase-functions/logger';
 import axios from 'axios';
-import { defineSecret } from 'firebase-functions/params';
+import { defineSecret, defineString } from 'firebase-functions/params';
 import { google } from 'googleapis';
 import { addDays, format } from 'date-fns';
 import { toZonedTime } from 'date-fns-tz';
@@ -10,13 +10,15 @@ import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
 const locationsApiKey = defineSecret('GOOGLE_LOCATIONS_API_KEY');
 const allowedOrigins = ['http://localhost:4200', 'https://lobsinger-workspace-aat--lobsinger-workspace-dev-e45e7.us-central1.hosted.app'];
 
-const spreadsheetId = '1BJlNRQkT7-sD21BWGBgoOyYWE5ON0cE-tGwWK0PM4Zc';
+const spreadsheetIdParam = defineString('SPREADSHEET_ID');
+const credentialsGoogleCloudFileLocationParam = defineString(`CREDENTIALS_GOOGLE_CLOUD_FILE_LOCATION`);
+const sheetRangeParam = defineString(`SHEET_RANGE`);
 
 const client = new SecretManagerServiceClient();
 
 async function getAuth() {
   const [accessResponse] = await client.accessSecretVersion({
-    name: 'projects/151978710816/secrets/advantage_asset_tracker_sheets_service_account_credentials/versions/latest'
+    name: credentialsGoogleCloudFileLocationParam.value() // if we ever need this earlier we can try the onInit(() => {}) approach
   });
 
   const credentials = JSON.parse(accessResponse?.payload?.data?.toString() ?? '');
@@ -58,7 +60,8 @@ export const setUpAsset = onRequest(
     const assetName: string = data?.assetName;
     const assetId: string = data?.assetId;
 
-    const initialSheetRange = `${assetName}!A1:S101`;
+    const initialSheetRange = `${assetName}!${sheetRangeParam.value()}`;
+    const spreadsheetId = spreadsheetIdParam.value();
     try {
       const spreadsheet = await google.sheets('v4').spreadsheets.values.get({ spreadsheetId, auth, range: initialSheetRange });
       const sheetData = spreadsheet.data.values;
@@ -134,7 +137,8 @@ export const pickUpAsset = onRequest(
     const assetId: string = data?.assetId;
     const inspector: string = data?.inspector;
 
-    const initialSheetRange = `${assetName}!A1:S101`;
+    const initialSheetRange = `${assetName}!${sheetRangeParam.value()}`;
+    const spreadsheetId = spreadsheetIdParam.value();
     try {
       const spreadsheet = await google.sheets('v4').spreadsheets.values.get({ spreadsheetId, auth, range: initialSheetRange });
       const sheetData = spreadsheet.data.values;
@@ -207,7 +211,8 @@ export const returnAsset = onRequest(
     const assetId: string = data?.assetId;
     const inspector: string = data?.inspector;
 
-    const initialSheetRange = `${assetName}!A1:S101`;
+    const initialSheetRange = `${assetName}!${sheetRangeParam.value()}`;
+    const spreadsheetId = spreadsheetIdParam.value();
     try {
       const spreadsheet = await google.sheets('v4').spreadsheets.values.get({ spreadsheetId, auth, range: initialSheetRange });
       const sheetData = spreadsheet.data.values;
