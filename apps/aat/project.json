@@ -76,7 +76,7 @@
           "sourceMap": true
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": "staging"
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
