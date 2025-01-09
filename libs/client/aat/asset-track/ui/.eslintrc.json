@@ -21,7 +21,8 @@
             "prefix": "aat-asset-track-ui",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@angular-eslint/prefer-standalone": "off"
       }
     },
     {
