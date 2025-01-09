@@ -69,7 +69,6 @@
   },
   "defaultProject": "aat",
   "nxCloudAccessToken": "${NX_CLOUD_ACCESS_TOKEN}",
-  "useLegacyCache": true,
   "plugins": [
     {
       "plugin": "@nx/playwright/plugin",
