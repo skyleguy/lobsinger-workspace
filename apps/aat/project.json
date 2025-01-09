@@ -22,7 +22,7 @@
             "input": "apps/aat/public"
           }
         ],
-        "styles": ["@angular/material/prebuilt-themes/azure-blue.css", "apps/aat/src/styles.scss"],
+        "styles": ["apps/aat/src/styles.scss"],
         "scripts": []
       },
       "configurations": {
