@@ -26,3 +26,15 @@ html {
     )
   );
 }
+
+.mat-primary {
+  color: var(--mat-sys-primary);
+}
+
+.mat-secondary {
+  color: var(--mat-sys-secondary);
+}
+
+.mat-tertiary {
+  color: var(--mat-sys-tertiary);
+}
