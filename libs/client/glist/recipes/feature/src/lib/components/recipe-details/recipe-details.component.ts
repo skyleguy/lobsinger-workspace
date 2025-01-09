@@ -20,11 +20,10 @@ import { Ingredient } from '@lob/shared/ingredients/data';
 import { RecipeEditorComponent } from '../recipe-editor/recipe-editor.component';
 
 @Component({
-  selector: 'glist-recipe-details',
-  templateUrl: './recipe-details.component.html',
-  styleUrls: ['./recipe-details.component.scss'],
-  standalone: true,
-  imports: [MatButtonModule, MatIconModule, MatChipsModule, MatButtonToggleModule, TitleCasePipe, DatePipe]
+    selector: 'glist-recipe-details',
+    templateUrl: './recipe-details.component.html',
+    styleUrls: ['./recipe-details.component.scss'],
+    imports: [MatButtonModule, MatIconModule, MatChipsModule, MatButtonToggleModule, TitleCasePipe, DatePipe]
 })
 export class RecipeDetailsComponent extends AbstractSubscriptionComponent implements OnInit {
   readonly favoritedRecipeText = favoritedRecipeText;

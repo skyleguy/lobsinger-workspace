@@ -5,10 +5,9 @@ import { MatIcon } from '@angular/material/icon';
 import { UserStore } from '@lob/client/shared/auth/data-access';
 
 @Component({
-  selector: 'client-shared-auth-feature-sign-in-button',
-  standalone: true,
-  imports: [MatIcon, MatFabButton],
-  template: `
+    selector: 'client-shared-auth-feature-sign-in-button',
+    imports: [MatIcon, MatFabButton],
+    template: `
     <button mat-fab extended (click)="logIn()">
       <mat-icon>login</mat-icon>
       Log In

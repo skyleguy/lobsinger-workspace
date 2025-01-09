@@ -10,22 +10,21 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { AjaxState } from '@lob/shared/data-management/data';
 
 @Component({
-  selector: 'aat-asset-track-ui-asset-form',
-  standalone: true,
-  imports: [
-    MatFormField,
-    MatLabel,
-    MatProgressSpinner,
-    MatAutocompleteModule,
-    MatHint,
-    MatInput,
-    MatPrefix,
-    ReactiveFormsModule,
-    MatIcon,
-    MatFabButton
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
+    selector: 'aat-asset-track-ui-asset-form',
+    imports: [
+        MatFormField,
+        MatLabel,
+        MatProgressSpinner,
+        MatAutocompleteModule,
+        MatHint,
+        MatInput,
+        MatPrefix,
+        ReactiveFormsModule,
+        MatIcon,
+        MatFabButton
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    template: `
     <form class="relative">
       @if (isFormLoading()) {
         <div class="absolute inset-0 bg-black/5 z-50 flex justify-center items-center">

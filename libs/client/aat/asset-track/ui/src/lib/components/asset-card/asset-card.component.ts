@@ -5,10 +5,9 @@ import { MatCard, MatCardContent } from '@angular/material/card';
 import { Asset } from '@lob/client/aat/asset-track/data';
 
 @Component({
-  selector: 'aat-asset-track-ui-asset-card',
-  standalone: true,
-  imports: [MatCard, MatCardContent, TitleCasePipe],
-  template: `
+    selector: 'aat-asset-track-ui-asset-card',
+    imports: [MatCard, MatCardContent, TitleCasePipe],
+    template: `
     <mat-card appearance="outlined" class="w-full">
       <mat-card-content>
         <div class="flex flex-col">

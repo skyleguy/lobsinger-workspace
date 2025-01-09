@@ -10,18 +10,17 @@ interface ErrorConfig {
 }
 
 @Component({
-  selector: 'shared-layout-ui-app-container',
-  standalone: true,
-  imports: [MatIcon],
-  styles: [
-    `
+    selector: 'shared-layout-ui-app-container',
+    imports: [MatIcon],
+    styles: [
+        `
       .scale-3 {
         transform: scale(3);
         transform-origin: center;
       }
     `
-  ],
-  template: `
+    ],
+    template: `
     <div class="w-screen flex flex-col" [style.height]="deviceHeight() + 'px'">
       @if (isHeaderAvailable()) {
         <nav id="header" class="shrink flex items-center justify-between">

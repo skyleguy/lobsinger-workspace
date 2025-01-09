@@ -10,11 +10,10 @@ import { GlistHeaderComponent } from '../glist-header/glist-header.component';
 import { GlistSidebarComponent } from '../glist-sidebar/glist-sidebar.component';
 
 @Component({
-  selector: 'glist-layout-feature-container',
-  templateUrl: './glist-app-container.component.html',
-  styleUrls: ['./glist-app-container.component.scss'],
-  standalone: true,
-  imports: [GlistHeaderComponent, MatSidenavModule, GlistSidebarComponent, GlistContentComponent]
+    selector: 'glist-layout-feature-container',
+    templateUrl: './glist-app-container.component.html',
+    styleUrls: ['./glist-app-container.component.scss'],
+    imports: [GlistHeaderComponent, MatSidenavModule, GlistSidebarComponent, GlistContentComponent]
 })
 export class GlistContainerComponent {
   isOpened = true;

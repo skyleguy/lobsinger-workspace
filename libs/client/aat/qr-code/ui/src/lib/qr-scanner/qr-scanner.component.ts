@@ -5,10 +5,9 @@ import { Result, Exception } from '@zxing/library';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 @Component({
-  selector: 'aat-qr-code-ui-qr-scanner',
-  standalone: true,
-  imports: [ZXingScannerModule, MatProgressSpinnerModule, NgClass],
-  template: `
+    selector: 'aat-qr-code-ui-qr-scanner',
+    imports: [ZXingScannerModule, MatProgressSpinnerModule, NgClass],
+    template: `
     <div class="h-full w-full flex flex-col p-3 gap-3">
       <div class="flex items-center justify-center flex-col">
         @if (!camFound()) {

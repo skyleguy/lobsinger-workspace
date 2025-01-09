@@ -14,11 +14,10 @@ enum AppState {
 }
 
 @Component({
-  selector: 'glist-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  standalone: true,
-  imports: [MatProgressSpinnerModule, GlistContainerComponent]
+    selector: 'glist-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    imports: [MatProgressSpinnerModule, GlistContainerComponent]
 })
 export class AppComponent implements OnInit {
   appStateEnum: typeof AppState = AppState;

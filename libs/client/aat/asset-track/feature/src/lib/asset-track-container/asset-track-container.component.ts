@@ -14,10 +14,9 @@ import { AjaxState } from '@lob/shared/data-management/data';
 import { createAjaxState } from '@lob/shared/data-management/util';
 
 @Component({
-  selector: 'aat-asset-track-feature-asset-track-container',
-  standalone: true,
-  imports: [MatIcon, MatFabButton, AssetFormComponent, AssetCardComponent, RouterLink],
-  template: `
+    selector: 'aat-asset-track-feature-asset-track-container',
+    imports: [MatIcon, MatFabButton, AssetFormComponent, AssetCardComponent, RouterLink],
+    template: `
     <div class="h-full w-full flex flex-col gap-3">
       @if (isValid()) {
         <button mat-fab aria-label="Back button to return to scanner" routerLink="/scan">

@@ -6,11 +6,10 @@ import { MatIcon } from '@angular/material/icon';
 import { UserStore } from '@lob/client/shared/auth/data-access';
 
 @Component({
-  selector: 'client-shared-auth-feature-user-avatar',
-  standalone: true,
-  imports: [MatIcon, MatIconButton, NgOptimizedImage],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
+    selector: 'client-shared-auth-feature-user-avatar',
+    imports: [MatIcon, MatIconButton, NgOptimizedImage],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    template: `
     <div (click)="changeSignInStatus()">
       @if (userContent(); as userContent) {
         @if (isAvatarImageError()) {
