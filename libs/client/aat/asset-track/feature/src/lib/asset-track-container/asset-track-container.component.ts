@@ -14,9 +14,9 @@ import { AjaxState } from '@lob/shared/data-management/data';
 import { createAjaxState } from '@lob/shared/data-management/util';
 
 @Component({
-    selector: 'aat-asset-track-feature-asset-track-container',
-    imports: [MatIcon, MatFabButton, AssetFormComponent, AssetCardComponent, RouterLink],
-    template: `
+  selector: 'aat-asset-track-feature-asset-track-container',
+  imports: [MatIcon, MatFabButton, AssetFormComponent, AssetCardComponent, RouterLink],
+  template: `
     <div class="h-full w-full flex flex-col gap-3">
       @if (isValid()) {
         <button mat-fab aria-label="Back button to return to scanner" routerLink="/scan">
@@ -28,6 +28,7 @@ import { createAjaxState } from '@lob/shared/data-management/util';
             [currentLocation]="currentLocation()"
             [isFormLoading]="isRequestInProgress()"
             (isAddressInputTouched)="unsubscribeFromLocation()"
+            (assign)="assign()"
             (setUp)="setUp($event)"
             (pickUp)="pickUp()"
             (return)="return()"
@@ -69,6 +70,27 @@ export class AssetTrackContainerComponent implements OnInit {
 
   public ngOnInit() {
     this.locationSub = this.getLocation();
+  }
+
+  public assign() {
+    this.isRequestInProgress.set(true);
+    this.assetManagerService
+      .assign({
+        assetName: this.asset().assetName ?? '',
+        assetId: this.asset().assetId ?? '',
+        inspector: this.userStore.userData()?.name?.split(' ')?.[0] ?? ''
+      })
+      .subscribe({
+        next: () => {
+          this.matSnackbar.open(`${this.asset().assetName} ${this.asset().assetId} successfully assigned!`);
+          this.assetFormComponent()?.resetForm();
+          this.isRequestInProgress.set(false);
+        },
+        error: (err) => {
+          this.matSnackbar.open(`${this.asset().assetName} ${this.asset().assetId} failed to be assigned due to: ${JSON.stringify(err)}`);
+          this.isRequestInProgress.set(false);
+        }
+      });
   }
 
   public pickUp() {

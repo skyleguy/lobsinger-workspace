@@ -10,21 +10,21 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { AjaxState } from '@lob/shared/data-management/data';
 
 @Component({
-    selector: 'aat-asset-track-ui-asset-form',
-    imports: [
-        MatFormField,
-        MatLabel,
-        MatProgressSpinner,
-        MatAutocompleteModule,
-        MatHint,
-        MatInput,
-        MatPrefix,
-        ReactiveFormsModule,
-        MatIcon,
-        MatFabButton
-    ],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    template: `
+  selector: 'aat-asset-track-ui-asset-form',
+  imports: [
+    MatFormField,
+    MatLabel,
+    MatProgressSpinner,
+    MatAutocompleteModule,
+    MatHint,
+    MatInput,
+    MatPrefix,
+    ReactiveFormsModule,
+    MatIcon,
+    MatFabButton
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
     <form class="relative">
       @if (isFormLoading()) {
         <div class="absolute inset-0 bg-black/5 z-50 flex justify-center items-center">
@@ -59,7 +59,19 @@ import { AjaxState } from '@lob/shared/data-management/data';
           }
         </mat-autocomplete>
       </mat-form-field>
-      <div class="w-full flex justify-center items-center gap-3 pb-3">
+      <div class="w-full flex justify-center items-center gap-3 pb-3 flex-wrap">
+        <button
+          mat-fab
+          extended
+          (click)="assign.emit()"
+          class="flex-auto"
+          type="button"
+          [disabled]="isFormLoading()"
+          title="Assign asset to yourself"
+        >
+          <mat-icon>assignment</mat-icon>
+          Assign
+        </button>
         <button
           mat-fab
           extended
@@ -67,15 +79,32 @@ import { AjaxState } from '@lob/shared/data-management/data';
           class="flex-auto"
           type="button"
           [disabled]="assetForm.invalid || isFormLoading()"
+          title="Set up this asset at the address indicated in the form"
         >
           <mat-icon>timer</mat-icon>
           Set Up
         </button>
-        <button mat-fab extended (click)="pickUp.emit()" class="flex-auto" type="button" [disabled]="isFormLoading()">
+        <button
+          mat-fab
+          extended
+          (click)="pickUp.emit()"
+          class="flex-auto"
+          type="button"
+          [disabled]="isFormLoading()"
+          title="Pick up this asset from client location"
+        >
           <mat-icon>backup</mat-icon>
           Pick Up
         </button>
-        <button mat-fab extended (click)="return.emit()" class="flex-auto" type="button" [disabled]="isFormLoading()">
+        <button
+          mat-fab
+          extended
+          (click)="return.emit()"
+          class="flex-auto"
+          type="button"
+          [disabled]="isFormLoading()"
+          title="Return this asset to the office"
+        >
           <mat-icon>home</mat-icon>
           Return
         </button>
@@ -93,6 +122,7 @@ export class AssetFormComponent {
   setUp = output<{ currentAddress: string; roomLocation: string }>();
   pickUp = output<void>();
   return = output<void>();
+  assign = output<void>();
   isAddressInputTouched = output<boolean>();
 
   protected currentAddressControl = new FormControl('', {
