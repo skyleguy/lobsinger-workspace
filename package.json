@@ -11,7 +11,9 @@
     "lint": "nx lint",
     "prepare": "husky install",
     "pre-commit": "npx lint-staged",
-    "firebase-deploy": "npx nx run glist:build --prod && firebase deploy"
+    "firebase-deploy": "npx nx run glist:build --prod && firebase deploy",
+    "functions-deploy-staging": "cd functions && firebase use 151978710816 && npm run deploy",
+    "functions-deploy-production": "cd functions && firebase use 663936241569 && npm run deploy"
   },
   "private": true,
   "dependencies": {
