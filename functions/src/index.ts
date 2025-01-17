@@ -169,7 +169,7 @@ export const assignAsset = onRequest(
                 values: [newMonitorRow]
               }
             });
-            const successMessage = `Asset ${assetName} ${assetId} successfully assigned to by ${inspector}`;
+            const successMessage = `Asset ${assetName} ${assetId} successfully assigned to ${inspector}`;
             logger.info(successMessage);
             response.status(200).send({ data: successMessage });
           } catch (e) {
