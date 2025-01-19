@@ -1,6 +1,6 @@
 {
   "extends": ["../../../../../.eslintrc.json"],
-  "ignorePatterns": ["!**/*", "storybook-static"],
+  "ignorePatterns": ["!**/*"],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -10,7 +10,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "sharedLayoutUi",
+            "prefix": "clientGlist2Feature",
             "style": "camelCase"
           }
         ],
@@ -18,11 +18,10 @@
           "error",
           {
             "type": "element",
-            "prefix": "shared-layout-ui",
+            "prefix": "client-glist2-feature",
             "style": "kebab-case"
           }
-        ],
-        "@angular-eslint/prefer-standalone": "off"
+        ]
       }
     },
     {

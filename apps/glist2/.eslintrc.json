@@ -1,5 +1,5 @@
 {
-  "extends": ["../../../../../.eslintrc.json"],
+  "extends": ["../../.eslintrc.json"],
   "ignorePatterns": ["!**/*", "storybook-static"],
   "overrides": [
     {
@@ -10,7 +10,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "sharedLayoutUi",
+            "prefix": "glist",
             "style": "camelCase"
           }
         ],
@@ -18,11 +18,10 @@
           "error",
           {
             "type": "element",
-            "prefix": "shared-layout-ui",
+            "prefix": "glist",
             "style": "kebab-case"
           }
-        ],
-        "@angular-eslint/prefer-standalone": "off"
+        ]
       }
     },
     {

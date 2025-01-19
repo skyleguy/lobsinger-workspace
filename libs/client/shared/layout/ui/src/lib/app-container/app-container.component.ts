@@ -1,7 +1,12 @@
 import { Component, input, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatIcon } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
 import { debounceTime, fromEvent, map, startWith } from 'rxjs';
+
+import { TabMenuItem } from '@lob/client/shared/layout/data';
+
+import { TabMenuComponent } from '../tab-menu/tab-menu.component';
 
 interface ErrorConfig {
   icon: 'error' | 'warning';
@@ -10,17 +15,17 @@ interface ErrorConfig {
 }
 
 @Component({
-    selector: 'shared-layout-ui-app-container',
-    imports: [MatIcon],
-    styles: [
-        `
+  selector: 'shared-layout-ui-app-container',
+  imports: [MatIcon, MatTabsModule, TabMenuComponent],
+  styles: [
+    `
       .scale-3 {
         transform: scale(3);
         transform-origin: center;
       }
     `
-    ],
-    template: `
+  ],
+  template: `
     <div class="w-screen flex flex-col" [style.height]="deviceHeight() + 'px'">
       @if (isHeaderAvailable()) {
         <nav id="header" class="shrink flex items-center justify-between">
@@ -43,8 +48,13 @@ interface ErrorConfig {
               <ng-content select="[sidebar]"></ng-content>
             </div>
           }
-          <div id="main-content" class="grow" [class.overflow-y-auto]="isMainBodyScrollable()">
-            <ng-content select="[main-content]"></ng-content>
+          <div class="flex flex-col grow">
+            <div id="main-content" class="grow" [class.overflow-y-auto]="isMainBodyScrollable()">
+              <ng-content select="[main-content]"></ng-content>
+            </div>
+            @if (tabs()) {
+              <shared-layout-ui-tab-menu class="shrink" [tabs]="tabs()" />
+            }
           </div>
         </div>
       }
@@ -63,6 +73,7 @@ export class AppContainerComponent {
   isSidebarAvailable = input(true);
   isMainBodyScrollable = input(true);
   isHeaderAvailable = input(true);
+  tabs = input<TabMenuItem[]>();
 
   protected errorConfig = signal<ErrorConfig | null>(null);
 
