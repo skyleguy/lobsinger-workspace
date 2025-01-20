@@ -9,9 +9,9 @@ import { AppContainerComponent } from '@lob/client/shared/layout/ui';
 import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-auth-feature';
 
 @Component({
-    imports: [RouterModule, AppContainerComponent, MatToolbar, UserAvatarComponent, SignInButtonComponent, MatSnackBarModule],
-    selector: 'aat-root',
-    template: `
+  imports: [RouterModule, AppContainerComponent, MatToolbar, UserAvatarComponent, SignInButtonComponent, MatSnackBarModule],
+  selector: 'aat-root',
+  template: `
     <shared-layout-ui-app-container [isSidebarAvailable]="false" [isMainBodyScrollable]="false">
       <ng-container nav>
         <mat-toolbar color="primary">

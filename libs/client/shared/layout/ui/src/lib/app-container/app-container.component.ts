@@ -23,12 +23,16 @@ interface ErrorConfig {
         transform: scale(3);
         transform-origin: center;
       }
+      .mobile-safe-area {
+        padding-top: env(safe-area-inset-top);
+        background-color: var(--mat-sys-surface, #ffffff);
+      }
     `
   ],
   template: `
     <div class="w-screen flex flex-col" [style.height]="deviceHeight() + 'px'">
       @if (isHeaderAvailable()) {
-        <nav id="header" class="shrink flex items-center justify-between">
+        <nav id="header" class="mobile-safe-area shrink flex items-center justify-between">
           <ng-content select="[nav]"></ng-content>
         </nav>
       }
