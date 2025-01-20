@@ -1,0 +1,19 @@
+{
+  "name": "client-shared-layout-data",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/client/shared/layout/data/src",
+  "projectType": "library",
+  "tags": ["scope:client", "type:data"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/client/shared/layout/data",
+        "main": "libs/client/shared/layout/data/src/index.ts",
+        "tsConfig": "libs/client/shared/layout/data/tsconfig.lib.json",
+        "assets": ["libs/client/shared/layout/data/*.md"]
+      }
+    }
+  }
+}
