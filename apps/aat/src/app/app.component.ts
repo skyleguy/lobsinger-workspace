@@ -1,11 +1,11 @@
-import { Component, computed, effect, inject, untracked, viewChild } from '@angular/core';
+import { Component, computed, effect, inject, signal, untracked, viewChild } from '@angular/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbar } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 
 import { UserStore } from '@lob/client/shared/auth/data-access';
 import { FirebaseAppStore } from '@lob/client/shared/firebase/data-access';
-import { AppContainerComponent } from '@lob/client/shared/layout/ui';
+import { AppContainerComponent, ErrorConfig } from '@lob/client/shared/layout/ui';
 import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-auth-feature';
 
 @Component({
@@ -22,7 +22,9 @@ import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-a
       </ng-container>
       <ng-container main-content>
         <div class="w-full h-full overflow-auto p-3">
-          <router-outlet></router-outlet>
+          @if (isSignedIn() && isAuthorized()) {
+            <router-outlet></router-outlet>
+          }
         </div>
       </ng-container>
       <ng-container errorExtra>
@@ -37,10 +39,11 @@ export class AppComponent {
   private readonly appContainer = viewChild(AppContainerComponent);
   private readonly allowedEmailPieces = ['@advantagenc.com'];
   private readonly allowedExactEmails = ['kylelobsinger@gmail.com'];
+  private readonly notSignedInErrorConfig = signal<ErrorConfig | null>(null);
+  private readonly unauthorizedErrorConfig = signal<ErrorConfig | null>(null);
 
-  protected isNotSignedIn = computed(
-    () => this.userStore.hasAttemptedSignIn() && !this.userStore.userData() && !this.userStore.userLoading()
-  );
+  protected isSignedIn = this.userStore.isUserSignedIn;
+  protected isAuthorized = computed(() => this.userStore.isUserSignedIn() && this.isValidEmail(this.userStore.userData()?.email ?? ''));
   protected isUnauthorized = computed(() => this.userStore.isUserSignedIn() && !this.isValidEmail(this.userStore.userData()?.email ?? ''));
 
   constructor() {
@@ -48,43 +51,50 @@ export class AppComponent {
     effect(() => {
       this.handleNotSignedIn();
     });
-
     effect(() => {
       this.handleUnauthorized();
+    });
+    effect(() => {
+      this.handleErrorConfigs();
     });
   }
 
   private handleNotSignedIn() {
-    const isNotSignedIn = this.isNotSignedIn();
-    this.handleErrorSetting(
-      isNotSignedIn,
-      'error',
-      'Please Sign In',
-      'Signing in with a valid advantage email is required to use the Advantage Asset Tracker'
-    );
+    const isNotSignedIn = !this.isSignedIn();
+    if (isNotSignedIn && this.userStore.hasAttemptedSignIn()) {
+      const notSignedInErrorConfig: ErrorConfig = {
+        icon: 'error',
+        primaryMessage: 'Please Sign In',
+        secondaryMessage: 'Signing in with a valid advantage email is required to use the Advantage Asset Tracker'
+      };
+      this.notSignedInErrorConfig.set(notSignedInErrorConfig);
+    } else {
+      this.notSignedInErrorConfig.set(null);
+    }
   }
 
   private handleUnauthorized() {
     const isUnauthorized = this.isUnauthorized();
-    this.handleErrorSetting(
-      isUnauthorized,
-      'error',
-      'Unauthorized',
-      'You have not signed in with a valid account. Please reach out to the owner for information on how to gain access'
-    );
+    if (isUnauthorized) {
+      const unauthorizedErrorConfig: ErrorConfig = {
+        icon: 'error',
+        primaryMessage: 'Unauthorized',
+        secondaryMessage: 'You have not signed in with a valid account. Please reach out to the owner for information on how to gain access'
+      };
+      this.unauthorizedErrorConfig.set(unauthorizedErrorConfig);
+    } else {
+      this.unauthorizedErrorConfig.set(null);
+    }
   }
 
-  private handleErrorSetting(isSettingError: boolean, icon: 'error' | 'warning', primaryMessage: string, secondaryMessage?: string) {
+  private handleErrorConfigs() {
+    const currErrorConfig = this.notSignedInErrorConfig() || this.unauthorizedErrorConfig();
     untracked(() => {
       const appContainer = this.appContainer();
-      if (isSettingError) {
-        appContainer?.setError({
-          icon,
-          primaryMessage,
-          secondaryMessage
-        });
+      if (currErrorConfig) {
+        appContainer?.setError(currErrorConfig);
       } else {
-        this.appContainer()?.clearError();
+        appContainer?.clearError();
       }
     });
   }

@@ -50,7 +50,7 @@ export const UserStore = signalStore(
     }
   })),
   withComputed((store) => ({
-    isUserSignedIn: computed(() => !!store.user()?.data),
+    isUserSignedIn: computed(() => store.hasAttemptedSignIn() && !!store.user()?.data && !store.user().loading),
     userData: computed(() => store.user()?.data),
     userLoading: computed(() => store.user()?.loading),
     userError: computed(() => store.user()?.error)

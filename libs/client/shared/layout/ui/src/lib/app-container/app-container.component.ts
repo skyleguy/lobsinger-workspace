@@ -8,7 +8,7 @@ import { TabMenuItem } from '@lob/client/shared/layout/data';
 
 import { TabMenuComponent } from '../tab-menu/tab-menu.component';
 
-interface ErrorConfig {
+export interface ErrorConfig {
   icon: 'error' | 'warning';
   primaryMessage: string;
   secondaryMessage?: string;
