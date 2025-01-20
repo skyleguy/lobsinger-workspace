@@ -1,4 +1,5 @@
-import { Component, input, signal } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatIcon } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -23,16 +24,12 @@ export interface ErrorConfig {
         transform: scale(3);
         transform-origin: center;
       }
-      .mobile-safe-area {
-        padding-top: env(safe-area-inset-top);
-        background-color: var(--mat-sys-surface, #ffffff);
-      }
     `
   ],
   template: `
-    <div class="w-screen flex flex-col" [style.height]="deviceHeight() + 'px'">
+    <div class="w-screen flex flex-col mobile-safe-area" [style.height]="deviceHeight() + 'px'">
       @if (isHeaderAvailable()) {
-        <nav id="header" class="mobile-safe-area shrink flex items-center justify-between">
+        <nav id="header" class="shrink flex items-center justify-between">
           <ng-content select="[nav]"></ng-content>
         </nav>
       }
@@ -65,7 +62,11 @@ export interface ErrorConfig {
     </div>
   `
 })
-export class AppContainerComponent {
+export class AppContainerComponent implements OnInit {
+  private readonly mediaMatcher = inject(MediaMatcher);
+  /**
+   * hack needed in order to get the app to actually take up the height of the available space minus all browser ui elements like search bar/navigation
+   */
   protected readonly deviceHeight = toSignal(
     fromEvent(window, 'resize').pipe(
       startWith(window.innerHeight),
@@ -73,13 +74,35 @@ export class AppContainerComponent {
       map(() => window.innerHeight)
     )
   );
+  protected errorConfig = signal<ErrorConfig | null>(null);
 
   isSidebarAvailable = input(true);
   isMainBodyScrollable = input(true);
   isHeaderAvailable = input(true);
   tabs = input<TabMenuItem[]>();
 
-  protected errorConfig = signal<ErrorConfig | null>(null);
+  ngOnInit(): void {
+    // call it first initially since the below eventListener only fires on a change, not when its set the first time
+    this.setThemeColorBasedOnDeviceTheme();
+    this.mediaMatcher.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      this.setThemeColorBasedOnDeviceTheme();
+    });
+  }
+
+  private setThemeColorBasedOnDeviceTheme() {
+    const isDarkMode = this.mediaMatcher.matchMedia('(prefers-color-scheme: dark)').matches;
+    const rootStyle = getComputedStyle(document.documentElement);
+    const themeColor = rootStyle.getPropertyValue('--mat-sys-surface').trim();
+    const regex = /#[0-9a-fA-F]{6}/gm;
+    const match = themeColor.match(regex);
+    if (match) {
+      const [light, dark] = match;
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+      if (metaThemeColor) {
+        metaThemeColor.setAttribute('content', isDarkMode ? dark : light);
+      }
+    }
+  }
 
   public setError(errorConfig: ErrorConfig) {
     this.errorConfig.set(errorConfig);
