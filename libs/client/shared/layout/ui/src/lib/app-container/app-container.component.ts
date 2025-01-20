@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input, OnInit, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatIcon } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -65,7 +65,7 @@ export interface ErrorConfig {
     </div>
   `
 })
-export class AppContainerComponent {
+export class AppContainerComponent implements OnInit {
   protected readonly deviceHeight = toSignal(
     fromEvent(window, 'resize').pipe(
       startWith(window.innerHeight),
@@ -73,13 +73,17 @@ export class AppContainerComponent {
       map(() => window.innerHeight)
     )
   );
+  protected errorConfig = signal<ErrorConfig | null>(null);
 
   isSidebarAvailable = input(true);
   isMainBodyScrollable = input(true);
   isHeaderAvailable = input(true);
   tabs = input<TabMenuItem[]>();
 
-  protected errorConfig = signal<ErrorConfig | null>(null);
+  ngOnInit(): void {
+    const themeMetaTag = document.querySelector('meta[name="theme-color"]');
+    themeMetaTag?.setAttribute('content', 'var(--mat-sys-surface, #ffffff)');
+  }
 
   public setError(errorConfig: ErrorConfig) {
     this.errorConfig.set(errorConfig);
