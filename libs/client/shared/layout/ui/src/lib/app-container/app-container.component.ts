@@ -81,8 +81,13 @@ export class AppContainerComponent implements OnInit {
   tabs = input<TabMenuItem[]>();
 
   ngOnInit(): void {
-    const themeMetaTag = document.querySelector('meta[name="theme-color"]');
-    themeMetaTag?.setAttribute('content', 'var(--mat-sys-surface, #ffffff)');
+    const rootStyle = getComputedStyle(document.documentElement);
+    const themeColor = rootStyle.getPropertyValue('--mat-sys-surface').trim();
+
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute('content', themeColor);
+    }
   }
 
   public setError(errorConfig: ErrorConfig) {
