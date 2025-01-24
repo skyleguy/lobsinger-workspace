@@ -11,7 +11,8 @@ const locationsApiKey = defineSecret('GOOGLE_LOCATIONS_API_KEY');
 const allowedOrigins = [
   'http://localhost:4200',
   'https://lobsinger-workspace-aat--lobsinger-workspace-dev-e45e7.us-central1.hosted.app',
-  'https://lobsinger-workspace-prod-aat--lobsinger-workspace-prod.us-central1.hosted.app'
+  'https://lobsinger-workspace-prod-aat--lobsinger-workspace-prod.us-central1.hosted.app',
+  'https://powrquest.com'
 ];
 
 const spreadsheetIdParam = defineString('SPREADSHEET_ID');
