@@ -1,8 +1,8 @@
 {
-  "name": "aat",
-  "short_name": "aat",
+  "name": "PowrQuest",
+  "short_name": "PowrQuest",
   "theme_color": "#ffffff",
-  "background_color": "#fafafa",
+  "background_color": "#ffffff",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
