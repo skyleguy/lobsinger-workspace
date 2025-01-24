@@ -15,7 +15,7 @@ import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-a
     <shared-layout-ui-app-container [isSidebarAvailable]="false" [isMainBodyScrollable]="false">
       <ng-container nav>
         <mat-toolbar color="primary">
-          <span nav>Advantage Asset Tracker</span>
+          <span nav>PowrQuest</span>
           <span class="flex grow shrink"></span>
           <client-shared-auth-feature-user-avatar></client-shared-auth-feature-user-avatar>
         </mat-toolbar>
