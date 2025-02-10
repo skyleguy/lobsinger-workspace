@@ -38,7 +38,18 @@ export class AppComponent {
   private readonly userStore = inject(UserStore);
   private readonly appContainer = viewChild(AppContainerComponent);
   private readonly allowedEmailPieces = ['@advantagenc.com'];
-  private readonly allowedExactEmails = ['kylelobsinger@gmail.com'];
+  private readonly allowedExactEmails = [
+    'kylelobsinger@gmail.com',
+    'msinclair1229@charter.net',
+    'lancedmullins@gmail.com',
+    'dave822634@icloud.com',
+    'rjfuhrer27@gmail.com',
+    'dtroskey@gmail.com',
+    'lutrish17@gmail.com',
+    'keithbmx@gmail.com',
+    'Jim.AdvantageNC@gmail.com',
+    'coco.advantagenc@gmail.com'
+  ];
   private readonly notSignedInErrorConfig = signal<ErrorConfig | null>(null);
   private readonly unauthorizedErrorConfig = signal<ErrorConfig | null>(null);
 
