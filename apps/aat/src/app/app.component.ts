@@ -2,6 +2,7 @@ import { Component, computed, effect, inject, signal, untracked, viewChild } fro
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbar } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
+import { NgxKjuaComponent } from 'ngx-kjua';
 
 import { UserStore } from '@lob/client/shared/auth/data-access';
 import { FirebaseAppStore } from '@lob/client/shared/firebase/data-access';
@@ -9,10 +10,18 @@ import { AppContainerComponent, ErrorConfig } from '@lob/client/shared/layout/ui
 import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-auth-feature';
 
 @Component({
-  imports: [RouterModule, AppContainerComponent, MatToolbar, UserAvatarComponent, SignInButtonComponent, MatSnackBarModule],
+  imports: [
+    RouterModule,
+    AppContainerComponent,
+    MatToolbar,
+    UserAvatarComponent,
+    SignInButtonComponent,
+    MatSnackBarModule,
+    NgxKjuaComponent
+  ],
   selector: 'aat-root',
   template: `
-    <shared-layout-ui-app-container [isSidebarAvailable]="false" [isMainBodyScrollable]="false">
+    <!-- <shared-layout-ui-app-container [isSidebarAvailable]="false" [isMainBodyScrollable]="false">
       <ng-container nav>
         <mat-toolbar color="primary">
           <span nav>PowrQuest</span>
@@ -30,7 +39,8 @@ import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-a
       <ng-container errorExtra>
         <client-shared-auth-feature-sign-in-button></client-shared-auth-feature-sign-in-button>
       </ng-container>
-    </shared-layout-ui-app-container>
+    </shared-layout-ui-app-container> -->
+    <ngx-kjua text="https://google.com"></ngx-kjua>
   `
 })
 export class AppComponent {
