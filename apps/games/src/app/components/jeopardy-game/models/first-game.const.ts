@@ -2,7 +2,7 @@ import { JeopardyGame } from './jeopardy-game.model';
 
 export const firstGame: JeopardyGame = {
   categoryMap: {
-    'The Office Trivia': [
+    'Bears, Beets, Battlestar Galactica': [
       {
         question: 'What is a teapot?',
         answer:
@@ -46,7 +46,7 @@ export const firstGame: JeopardyGame = {
         isTriplePlay: false
       }
     ],
-    "Places We've Been": [
+    "Oh the places we'll go": [
       {
         question: 'Where is New Orleans?',
         answer: 'Vegan Cheesesteaks, shaved ice cream, and macaroons are things we ate here.',
