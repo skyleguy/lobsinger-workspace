@@ -1,8 +1,6 @@
-@import './variables.scss';
+@use 'tailwindcss';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import './variables.scss';
 
 html,
 body {

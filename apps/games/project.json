@@ -1,22 +1,28 @@
 {
-  "name": "glist",
+  "name": "games",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "apps/glist/src",
-  "prefix": "glist",
+  "prefix": "games",
+  "sourceRoot": "apps/games/src",
+  "tags": [],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/glist",
-        "index": "apps/glist/src/index.html",
-        "browser": "apps/glist/src/main.ts",
+        "outputPath": "dist/apps/games",
+        "index": "apps/games/src/index.html",
+        "browser": "apps/games/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/glist/tsconfig.app.json",
+        "tsConfig": "apps/games/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/glist/src/favicon.ico", "apps/glist/src/assets"],
-        "styles": ["apps/glist/src/styles.scss", "apps/glist/src/theme.scss"],
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/games/public"
+          }
+        ],
+        "styles": ["apps/games/src/styles.scss"],
         "scripts": []
       },
       "configurations": {
@@ -25,12 +31,12 @@
             {
               "type": "initial",
               "maximumWarning": "500kb",
-              "maximumError": "2mb"
+              "maximumError": "1mb"
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
             }
           ],
           "outputHashing": "all"
@@ -38,25 +44,19 @@
         "development": {
           "optimization": false,
           "extractLicenses": false,
-          "sourceMap": true,
-          "fileReplacements": [
-            {
-              "replace": "apps/glist/src/environments/environment.ts",
-              "with": "apps/glist/src/environments/environment.development.ts"
-            }
-          ]
+          "sourceMap": true
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "production"
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "glist:build:production"
+          "buildTarget": "games:build:production"
         },
         "development": {
-          "buildTarget": "glist:build:development"
+          "buildTarget": "games:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -64,22 +64,26 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "glist:build"
+        "buildTarget": "games:build"
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["{projectRoot}/**/*.ts", "{projectRoot}/**/*.html"]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/glist/jest.config.ts"
+        "jestConfig": "apps/games/jest.config.ts"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "games:build",
+        "staticFilePath": "dist/apps/games/browser",
+        "spa": true
       }
     }
-  },
-  "tags": ["scope:glist", "scope:client"]
+  }
 }
