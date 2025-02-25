@@ -21,7 +21,7 @@ import { JeopardyFullscreenAnswerComponent } from '../jeopardy-fullscreen-answer
             class="flex-1 flex h-full w-full items-center justify-center border-2 rounded-lg border-black text-lg bg-blue-600 p-3"
             (mouseenter)="revealedCategories[category.key] = false"
           >
-            <span class="transition-opacity duration-500 ease-in-out opacity-0" [class.!opacity-100]="!revealedCategories[category.key]">{{
+            <span class="transition-opacity duration-500 ease-in-out opacity-0" [class.opacity-100]="!revealedCategories[category.key]">{{
               category.key
             }}</span>
           </div>

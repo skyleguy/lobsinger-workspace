@@ -6,10 +6,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
     <style>
       @use '@angular/material' as mat;
+      @import 'tailwindcss';
 
-      @tailwind base;
-      @tailwind components;
-      @tailwind utilities;
       body {
         margin: 0;
         font-family: Roboto, 'Helvetica Neue', sans-serif;
@@ -17,7 +15,7 @@
 
       html {
         color-scheme: light;
-        @include mat.theme((color: mat.$spring-green-palette, typography: Roboto, density: 0));
+        @import mat.theme((color: mat.$spring-green-palette, typography: Roboto, density: 0));
       }
     </style>
   </head>
