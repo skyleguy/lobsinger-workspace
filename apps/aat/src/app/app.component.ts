@@ -40,7 +40,16 @@ import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-a
         <client-shared-auth-feature-sign-in-button></client-shared-auth-feature-sign-in-button>
       </ng-container>
     </shared-layout-ui-app-container> -->
-    <ngx-kjua text="https://google.com"></ngx-kjua>
+    <ngx-kjua
+      text="https://lobsinger-workspace-aat--lobsinger-workspace-dev-e45e7.us-central1.hosted.app/radon/12"
+      fill="#ffffff"
+      back="#000000"
+      [rounded]="100"
+      fontcolor="red"
+      mode="label"
+      label="100"
+      [mSize]="10"
+    ></ngx-kjua>
   `
 })
 export class AppComponent {
@@ -62,6 +71,7 @@ export class AppComponent {
   ];
   private readonly notSignedInErrorConfig = signal<ErrorConfig | null>(null);
   private readonly unauthorizedErrorConfig = signal<ErrorConfig | null>(null);
+  imageBuffer = new Image();
 
   protected isSignedIn = this.userStore.isUserSignedIn;
   protected isAuthorized = computed(() => this.userStore.isUserSignedIn() && this.isValidEmail(this.userStore.userData()?.email ?? ''));
@@ -78,6 +88,7 @@ export class AppComponent {
     effect(() => {
       this.handleErrorConfigs();
     });
+    this.imageBuffer.src = 'favicon.ico';
   }
 
   private handleNotSignedIn() {
