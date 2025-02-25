@@ -267,3 +267,266 @@ export const firstGame: JeopardyGame = {
     }
   ]
 };
+
+export const generatedJeopardyGame: JeopardyGame = {
+  categoryMap: {
+    'Marvel Madness': [
+      {
+        question: 'Who is Iron Man?',
+        answer: 'This billionaire genius created the first Iron Man suit in a cave with a box of scraps.',
+        pointValue: 100,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'What is Vibranium?',
+        answer: "This rare metal, found in Wakanda, makes up Captain America's shield.",
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'Who is Loki?',
+        answer: "Known as the God of Mischief, this character is Thor's adopted brother.",
+        pointValue: 300,
+        isValid: true,
+        isDailyDouble: true,
+        isTriplePlay: false
+      },
+      {
+        question: 'What is the Quantum Realm?',
+        answer: 'This dimension plays a key role in "Ant-Man and the Wasp" and time travel in "Avengers: Endgame".',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'Who is Peggy Carter?',
+        answer: 'She co-founded S.H.I.E.L.D. and was the love interest of Steve Rogers.',
+        pointValue: 500,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      }
+    ],
+    'Travel Trivia': [
+      {
+        question: 'Where is Paris?',
+        answer: 'Known as the City of Lights and home to the Eiffel Tower.',
+        pointValue: 100,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'What is the Great Barrier Reef?',
+        answer: "This world's largest coral reef system is located off the coast of Australia.",
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'Where is Kyoto?',
+        answer: 'Famous for its classical Buddhist temples, gardens, and imperial palaces in Japan.',
+        pointValue: 300,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'What is Machu Picchu?',
+        answer: 'An Incan citadel set high in the Andes Mountains in Peru.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'Where is Reykjavik?',
+        answer: 'The northernmost capital of a sovereign state, located in Iceland.',
+        pointValue: 500,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      }
+    ],
+    'Tech Talk': [
+      {
+        question: 'What is an API?',
+        answer: 'This acronym stands for a set of rules that allows one software application to interact with another.',
+        pointValue: 100,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'What is TypeScript?',
+        answer: 'A superset of JavaScript that adds static typing, often used in Angular applications.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'What is Firebase?',
+        answer: "Google's platform that provides tools for building and managing apps, including real-time databases and hosting.",
+        pointValue: 300,
+        isValid: true,
+        isDailyDouble: true,
+        isTriplePlay: false
+      },
+      {
+        question: 'What is CI/CD?',
+        answer: 'These combined practices ensure code changes are automatically tested and deployed.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'What is Jest?',
+        answer: 'A popular JavaScript testing framework often paired with Spectator in Angular projects.',
+        pointValue: 500,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      }
+    ],
+    'Pop Culture Picks': [
+      {
+        question: 'Who is Taylor Swift?',
+        answer: 'This artist\'s "Eras Tour" became one of the highest-grossing tours of all time.',
+        pointValue: 100,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'What is "Stranger Things"?',
+        answer: 'A Netflix series where kids in Hawkins battle creatures from the Upside Down.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'Who is Pedro Pascal?',
+        answer: 'This actor plays the Mandalorian and Joel in "The Last of Us" TV series.',
+        pointValue: 300,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'What is "Succession"?',
+        answer: 'An HBO series about the power struggle within the Roy family for control of a media empire.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'What is "The Legend of Zelda"?',
+        answer: 'A Nintendo franchise featuring the adventures of Link in the land of Hyrule.',
+        pointValue: 500,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      }
+    ],
+    'Food for Thought': [
+      {
+        question: 'What is avocado toast?',
+        answer: 'This trendy breakfast dish involves mashed green fruit served on bread.',
+        pointValue: 100,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'What is ramen?',
+        answer: 'A Japanese noodle soup dish known for its flavorful broth and variety of toppings.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'What is gelato?',
+        answer: 'An Italian dessert similar to ice cream but with a lower fat content and creamier texture.',
+        pointValue: 300,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'What is dim sum?',
+        answer: 'This Chinese cuisine includes a variety of small dishes like dumplings and buns.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: true
+      },
+      {
+        question: 'What is paella?',
+        answer: 'A Spanish rice dish often cooked with seafood, chicken, and vegetables.',
+        pointValue: 500,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      }
+    ],
+    'Gaming Greats': [
+      {
+        question: 'What is "Animal Crossing"?',
+        answer: 'A relaxing life simulation game where players build and decorate an island community.',
+        pointValue: 100,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'Who is Lara Croft?',
+        answer: 'The protagonist of the "Tomb Raider" franchise, known for her archaeological adventures.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'What is "The Witcher 3"?',
+        answer: 'This RPG follows Geralt of Rivia as he searches for his adopted daughter, Ciri.',
+        pointValue: 300,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'Who is Master Chief?',
+        answer: 'The main protagonist of the "Halo" series, known for fighting the Covenant.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      },
+      {
+        question: 'What is "Final Fantasy VII"?',
+        answer: 'This installment in a famous JRPG series features Cloud Strife and the villain Sephiroth.',
+        pointValue: 500,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false
+      }
+    ]
+  },
+  players: [
+    {
+      name: 'Bail',
+      score: 0
+    }
+  ]
+};

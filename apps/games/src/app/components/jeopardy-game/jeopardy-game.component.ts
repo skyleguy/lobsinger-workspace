@@ -2,7 +2,7 @@ import { Dialog } from '@angular/cdk/dialog';
 import { KeyValuePipe, NgClass } from '@angular/common';
 import { Component, inject } from '@angular/core';
 
-import { firstGame } from './models/first-game.const';
+import { generatedJeopardyGame } from './models/first-game.const';
 import { JeopardyAnswer } from './models/jeopardy-game.model';
 
 import { JeopardyFullscreenAnswerComponent } from '../jeopardy-fullscreen-answer/jeopardy-fullscreen-answer.component';
@@ -12,6 +12,13 @@ import { JeopardyFullscreenAnswerComponent } from '../jeopardy-fullscreen-answer
   host: {
     class: `h-full w-full overflow-hidden flex flex-col gap-3 p-3 text-center bg-black text-white`
   },
+  styles: [
+    `
+      .my-opacity-100 {
+        opacity: 100%;
+      }
+    `
+  ],
   imports: [KeyValuePipe, NgClass],
   template: `
     <div class="grow flex gap-3 p-3 text-center">
@@ -21,9 +28,11 @@ import { JeopardyFullscreenAnswerComponent } from '../jeopardy-fullscreen-answer
             class="flex-1 flex h-full w-full items-center justify-center border-2 rounded-lg border-black text-lg bg-blue-600 p-3"
             (mouseenter)="revealedCategories[category.key] = false"
           >
-            <span class="transition-opacity duration-500 ease-in-out opacity-0" [class.opacity-100]="!revealedCategories[category.key]">{{
-              category.key
-            }}</span>
+            <span
+              class="transition-opacity duration-500 ease-in-out opacity-0"
+              [class.my-opacity-100]="!revealedCategories[category.key]"
+              >{{ category.key }}</span
+            >
           </div>
           @for (answer of category.value; track answer) {
             <div
@@ -51,7 +60,7 @@ import { JeopardyFullscreenAnswerComponent } from '../jeopardy-fullscreen-answer
 export class JeopardyGameComponent {
   private dialog = inject(Dialog);
 
-  protected readonly jeopardyGame = firstGame;
+  protected readonly jeopardyGame = generatedJeopardyGame;
   protected readonly revealedCategories: Record<string, boolean> = Object.keys(this.jeopardyGame.categoryMap).reduce(
     (acc, curr) => ({
       ...acc,
