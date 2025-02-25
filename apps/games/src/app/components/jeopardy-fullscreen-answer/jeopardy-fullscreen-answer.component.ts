@@ -67,7 +67,7 @@ import { JeopardyAnswer } from '../jeopardy-game/models/jeopardy-game.model';
         <div class="flex gap-3 p-3">
           <span class="text-3xl">What is your wager?</span>
           <input
-            class="text-black pl-2"
+            class="bg-white text-black pl-2"
             type="number"
             step="100"
             placeholder="wager"
