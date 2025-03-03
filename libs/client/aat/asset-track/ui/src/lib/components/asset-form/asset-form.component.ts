@@ -25,7 +25,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <form class="relative">
+    <form class="relative flex flex-col gap-3">
       @if (isFormLoading()) {
         <div class="absolute inset-0 bg-black/5 z-50 flex justify-center items-center">
           <mat-spinner></mat-spinner>
@@ -48,7 +48,11 @@ import { AjaxState } from '@lob/shared/data-management/data';
         @if (currentLocation()?.loading) {
           <mat-spinner matPrefix class="ml-2 !h-4 !w-4 !max-h-4 !max-w-4"></mat-spinner>
         }
-        <mat-hint>Edit if estimate is not correct</mat-hint>
+        @if (currentLocation()?.error) {
+          <mat-hint class="text-red-500">Error getting address, please enter manually</mat-hint>
+        } @else if (currentLocation()?.loading || currentLocation()?.data) {
+          <mat-hint>Edit if estimate is not correct</mat-hint>
+        }
       </mat-form-field>
       <mat-form-field class="w-full">
         <mat-label>Room Location</mat-label>
@@ -138,9 +142,11 @@ export class AssetFormComponent {
 
   constructor() {
     effect(() => {
-      const address = this.currentLocation()?.data;
-      if (address) {
-        this.currentAddressControl.setValue(address);
+      const address = this.currentLocation();
+      if (address?.data) {
+        this.currentAddressControl.setValue(address?.data);
+      } else if (address?.error) {
+        this.currentAddressControl.markAsTouched();
       }
     });
   }
