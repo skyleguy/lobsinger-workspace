@@ -48,7 +48,8 @@ export class AppComponent {
     'lutrish17@gmail.com',
     'keithbmx@gmail.com',
     'Jim.AdvantageNC@gmail.com',
-    'coco.advantagenc@gmail.com'
+    'coco.advantagenc@gmail.com',
+    'msinclair1229@charter.net'
   ];
   private readonly notSignedInErrorConfig = signal<ErrorConfig | null>(null);
   private readonly unauthorizedErrorConfig = signal<ErrorConfig | null>(null);
