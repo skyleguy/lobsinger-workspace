@@ -113,8 +113,8 @@ export class AppComponent {
 
   private isValidEmail(email: string) {
     return (
-      this.allowedEmailPieces.some((allowedEmailPiece) => email.includes(allowedEmailPiece)) ||
-      this.allowedExactEmails.some((allowedEmail) => email === allowedEmail)
+      this.allowedEmailPieces.some((allowedEmailPiece) => email.toLowerCase().includes(allowedEmailPiece.toLowerCase())) ||
+      this.allowedExactEmails.some((allowedEmail) => email.toLowerCase() === allowedEmail.toLowerCase())
     );
   }
 }
