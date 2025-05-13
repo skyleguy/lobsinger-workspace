@@ -5,7 +5,7 @@ import { provideRouter } from '@angular/router';
 import Material from '@primeng/themes/material';
 import { providePrimeNG } from 'primeng/config';
 
-import { darkThemeClass } from '@lob/client/shared/theme/data';
+import { darkThemeSelector } from '@lob/client/shared/theme/data';
 
 import { appRoutes } from './app.routes';
 
@@ -19,7 +19,7 @@ export const appConfig: ApplicationConfig = {
       theme: {
         preset: Material,
         options: {
-          darkModeSelector: darkThemeClass,
+          darkModeSelector: darkThemeSelector,
           cssLayer: {
             name: 'primeng',
             order: 'theme, base, primeng'
