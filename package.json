@@ -45,6 +45,7 @@
     "@reduxjs/toolkit": "^2.2.5",
     "@tailwindcss/postcss": "^4.0.8",
     "@zxing/ngx-scanner": "^19.0.0",
+    "@zxing/library": "0.21.3",
     "date-fns": "^3.2.0",
     "express": "4.21.2",
     "firebase": "^10.11.1",
