@@ -1,0 +1,23 @@
+<div class="w-full h-full flex items-center">
+  @switch (resource().status()) {
+    @case (resourceStatusEnum.Idle) {
+      <ng-content select="idle">Nothing going on here right now.</ng-content>
+    }
+    @case (resourceStatusEnum.Loading || resourceStatusEnum.Reloading) {
+      <ng-content select="loading">Loading</ng-content>
+    }
+    @case (resourceStatusEnum.Resolved || resourceStatusEnum.Local) {
+      <ng-content select="resolved">Data</ng-content>
+    }
+    @case (resourceStatusEnum.Error) {
+      <ng-content select="error">
+        <div class="grow flex items-center justify-center">
+          <h3>{{ errorMessage()?.primary }}</h3>
+          @if (errorMessage()?.secondary; as secondary) {
+            <h5>{{ secondary }}</h5>
+          }
+        </div>
+      </ng-content>
+    }
+  }
+</div>

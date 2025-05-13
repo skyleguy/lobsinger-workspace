@@ -22,6 +22,7 @@ export async function workspaceLibraryGenerator(tree: Tree, options: LibraryGene
           // https://nx.dev/nx-api/angular/generators/library
           return ngLibraryGenerator(tree, {
             name,
+            importPath: `@lob/${name}`,
             buildable: false,
             changeDetection: 'OnPush',
             lazy: libType === 'feature',
