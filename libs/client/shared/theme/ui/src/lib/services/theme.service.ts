@@ -3,9 +3,9 @@ import { effect, inject, linkedSignal } from '@angular/core';
 import { signalStore, withHooks, withProps, withState } from '@ngrx/signals';
 
 import { PlatformService } from '@lob/client/shared/platform/ui';
+import { darkThemeClass } from '@lob/client/shared/theme/data';
 
 const themeStorageKey = 'lobsinger-suite-theme';
-const darkThemeClass = 'my-app-dark';
 
 interface ThemeServiceState {
   _isDarkMode: boolean;
