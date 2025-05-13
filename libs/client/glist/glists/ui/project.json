@@ -4,13 +4,13 @@
   "projectType": "library",
   "sourceRoot": "libs/client/glist/glists/ui/src",
   "prefix": "glist",
+  "tags": ["scope:client", "type:ui"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/client/glist/glists/ui/jest.config.ts",
-        "tsConfig": "libs/client/glist/glists/ui/tsconfig.lib.json"
+        "jestConfig": "libs/client/glist/glists/ui/jest.config.ts"
       }
     },
     "lint": {
@@ -19,6 +19,5 @@
         "lintFilePatterns": ["{projectRoot}/**/*.ts", "{projectRoot}/**/*.html"]
       }
     }
-  },
-  "tags": ["scope:client", "type:ui"]
+  }
 }

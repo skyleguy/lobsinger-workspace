@@ -4,13 +4,13 @@
   "projectType": "library",
   "sourceRoot": "libs/client/shared/firebase/data-access/src",
   "prefix": "lob",
+  "tags": ["scope:client", "type:data-access"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/client/shared/firebase/data-access/jest.config.ts",
-        "tsConfig": "libs/client/shared/firebase/data-access/tsconfig.lib.json"
+        "jestConfig": "libs/client/shared/firebase/data-access/jest.config.ts"
       }
     },
     "lint": {
@@ -19,6 +19,5 @@
         "lintFilePatterns": ["{projectRoot}/**/*.ts", "{projectRoot}/**/*.html"]
       }
     }
-  },
-  "tags": ["scope:client", "type:data-access"]
+  }
 }
