@@ -4,6 +4,7 @@
   "projectType": "application",
   "sourceRoot": "apps/glist/src",
   "prefix": "glist",
+  "tags": ["scope:glist", "scope:client"],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
@@ -59,7 +60,8 @@
           "buildTarget": "glist:build:development"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "development",
+      "continuous": true
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
@@ -80,6 +82,5 @@
         "jestConfig": "apps/glist/jest.config.ts"
       }
     }
-  },
-  "tags": ["scope:glist", "scope:client"]
+  }
 }
