@@ -29,7 +29,7 @@ export interface ErrorConfig {
   template: `
     <div class="h-screen w-screen flex flex-col" [style.height]="deviceHeight()">
       @if (isHeaderAvailable()) {
-        <nav id="header" class="p-3 shrink flex items-center justify-between bg-surface-100 dark:bg-surface-800 ">
+        <nav id="header" class="p-3 shrink flex items-center justify-between bg-surface-0 dark:bg-surface-900">
           <ng-content select="[nav]"></ng-content>
         </nav>
       }
@@ -49,11 +49,11 @@ export interface ErrorConfig {
       } @else {
         <div class="grow flex min-h-0">
           @if (isSidebarAvailable()) {
-            <div id="sidebar" class="shrink p-3 bg-surface-100 dark:bg-surface-800 border-t border-surface-300 dark:border-surface-600">
+            <div id="sidebar">
               <ng-content select="[sidebar]"></ng-content>
             </div>
           }
-          <div class="flex flex-col grow">
+          <div class="flex flex-col grow bg-surface-100 dark:bg-surface-800">
             <div id="main-content" class="grow p-3" [class.overflow-y-auto]="isMainBodyScrollable()">
               <ng-content select="[main-content]"></ng-content>
             </div>
