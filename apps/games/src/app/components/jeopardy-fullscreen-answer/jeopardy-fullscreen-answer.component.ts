@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
-import { Component, HostBinding, inject } from '@angular/core';
+import { Component, HostBinding, inject, signal } from '@angular/core';
 
 import { JeopardyAnswer } from '../jeopardy-game/models/jeopardy-game.model';
 
@@ -81,7 +81,16 @@ import { JeopardyAnswer } from '../jeopardy-game/models/jeopardy-game.model';
             <span class="text-6xl text-center emphasis-shadow">TRIPLE PLAY!</span>
           }
           <span class="text-6xl p-3 text-center regular-shadow">{{ data.answer }}</span>
+          @if (isRevealed()) {
+            <span class="text-6xl p-3 text-center regular-shadow">{{ data.question }}</span>
+          }
           <div class="flex gap-3 justify-center items-center p-3">
+            <div
+              (click)="isRevealed.set(true)"
+              class="border-2 border-gray-400 rounded-md text-3xl p-3 hover:bg-gray-400 hover:text-white transition-colors cursor-pointer"
+            >
+              Reveal
+            </div>
             <div
               (click)="answered(true)"
               class="border-2 border-green-400 rounded-md text-3xl p-3 hover:bg-green-400 hover:text-white transition-colors cursor-pointer"
@@ -108,6 +117,7 @@ export class JeopardyFullscreenAnswerComponent {
   wagerLockedIn = 0;
   triplayPlayCount = 3;
   triplayPlayScore = 0;
+  isRevealed = signal(false);
 
   protected answered(isCorrect: boolean) {
     if (this.data.isDailyDouble) {
