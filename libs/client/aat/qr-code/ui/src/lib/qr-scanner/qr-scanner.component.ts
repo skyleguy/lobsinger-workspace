@@ -1,17 +1,17 @@
 import { NgClass } from '@angular/common';
 import { Component, output, signal } from '@angular/core';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Result, Exception } from '@zxing/library';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'aat-qr-code-ui-qr-scanner',
-  imports: [ZXingScannerModule, MatProgressSpinnerModule, NgClass],
+  imports: [ZXingScannerModule, ProgressSpinnerModule, NgClass],
   template: `
     <div class="h-full w-full flex flex-col p-3 gap-3">
       <div class="flex items-center justify-center flex-col">
         @if (!camFound()) {
-          <mat-spinner class="grow"></mat-spinner>
+          <p-progress-spinner class="grow" ariaLabel="loading" />
         }
         <zxing-scanner
           [ngClass]="{

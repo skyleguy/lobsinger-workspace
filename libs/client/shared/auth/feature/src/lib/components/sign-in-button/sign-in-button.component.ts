@@ -1,17 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { MatFabButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
+import { ButtonModule } from 'primeng/button';
 
 import { UserStore } from '@lob/client/shared/auth/data-access';
 
 @Component({
-    selector: 'client-shared-auth-feature-sign-in-button',
-    imports: [MatIcon, MatFabButton],
-    template: `
-    <button mat-fab extended (click)="logIn()">
-      <mat-icon>login</mat-icon>
-      Log In
-    </button>
+  selector: 'client-shared-auth-feature-sign-in-button',
+  imports: [ButtonModule],
+  template: `
+    <p-button [rounded]="true" severity="primary" label="Log In" icon="fa-solid fa-right-to-bracket" (click)="logIn()"> </p-button>
   `
 })
 export class SignInButtonComponent {
