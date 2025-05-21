@@ -525,7 +525,877 @@ export const generatedJeopardyGame: JeopardyGame = {
   },
   players: [
     {
+      name: 'The Fam',
+      score: 0
+    }
+  ]
+};
+
+export const beachGame1: JeopardyGame = {
+  categoryMap: {
+    'Quotes from The Office': [
+      {
+        answer: "'That's what she said.'",
+        pointValue: 100,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'Who is Michael Scott?'
+      },
+      {
+        answer: "'Whenever I'm about to do something, I think, would an idiot do that? And if they would, I do not do that thing.'",
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'Who is Dwight Schrute?'
+      },
+      {
+        answer: "'Bears. Beets. Battlestar Galactica.'",
+        pointValue: 300,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'Who is Jim Halpert?'
+      },
+      {
+        answer: "'I feel God in this Chili’s tonight.'",
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'Who is Pam Beesly?'
+      },
+      {
+        answer: "'Rit-dit-dit-doo!'",
+        pointValue: 500,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'Who is Andy Bernard?'
+      }
+    ],
+    'Animal Kingdom': [
+      {
+        answer: 'This is the fastest land animal in the world.',
+        pointValue: 100,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is a cheetah?'
+      },
+      {
+        answer: 'The largest animal to have ever lived.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is a blue whale?'
+      },
+      {
+        answer: 'This sea creature has three hearts and blue blood.',
+        pointValue: 300,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is an octopus?'
+      },
+      {
+        answer: 'This bird cannot fly but is an excellent swimmer.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is a penguin?'
+      },
+      {
+        answer: 'This animal has the longest known pregnancy, lasting nearly two years.',
+        pointValue: 500,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is an elephant?'
+      }
+    ],
+    'Food Facts': [
+      {
+        answer: 'This green fruit is often spread on toast and is known for its healthy fats.',
+        pointValue: 100,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is an avocado?'
+      },
+      {
+        answer: 'The most expensive spice in the world by weight.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: true,
+        isTriplePlay: false,
+        question: 'What is saffron?'
+      },
+      {
+        answer: 'Kimchi, yogurt, and sourdough bread all rely on this process.',
+        pointValue: 300,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is fermentation?'
+      },
+      {
+        answer: 'This cheese is most commonly used on margherita pizza.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is mozzarella?'
+      },
+      {
+        answer: 'This buttery French pastry is shaped like a crescent.',
+        pointValue: 500,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is a croissant?'
+      }
+    ],
+    Wanderlust: [
+      {
+        answer: 'This iconic structure is located in Paris, France.',
+        pointValue: 100,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is the Eiffel Tower?'
+      },
+      {
+        answer: 'Mount Fuji is located in this country.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is Japan?'
+      },
+      {
+        answer: 'This kind of trip involves observing wild animals in their natural African habitat.',
+        pointValue: 300,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is a safari?'
+      },
+      {
+        answer: 'This natural wonder is located off the coast of Queensland, Australia.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is the Great Barrier Reef?'
+      },
+      {
+        answer: 'This style of budget travel involves carrying your belongings from place to place, usually on foot.',
+        pointValue: 500,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is backpacking?'
+      }
+    ],
+    'Movie Magic': [
+      {
+        answer: "This 1997 blockbuster included the line, 'I'm the king of the world!'",
+        pointValue: 100,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is Titanic?'
+      },
+      {
+        answer: 'This film was Pixar’s first full-length animated feature.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is Toy Story?'
+      },
+      {
+        answer: "This mafia classic includes the quote, 'I'm gonna make him an offer he can't refuse.'",
+        pointValue: 300,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is The Godfather?'
+      },
+      {
+        answer: "This film includes the line, 'Life is like a box of chocolates.'",
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is Forrest Gump?'
+      },
+      {
+        answer: 'A film by Christopher Nolan known for exploring dreams within dreams.',
+        pointValue: 500,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is Inception?'
+      }
+    ],
+    'Tech Tidbits': [
+      {
+        answer: 'This short-range wireless tech is used to connect headphones and speakers.',
+        pointValue: 100,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is Bluetooth?'
+      },
+      {
+        answer: 'This markup language is used to build the basic structure of web pages.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is HTML?'
+      },
+      {
+        answer: 'This field of computer science simulates human intelligence in machines.',
+        pointValue: 300,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is artificial intelligence?'
+      },
+      {
+        answer: 'This form of storage lets you access files from anywhere via the internet.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: true,
+        isTriplePlay: false,
+        question: 'What is cloud storage?'
+      },
+      {
+        answer: 'This black-and-white square image can be scanned to link to websites or information.',
+        pointValue: 500,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is a QR code?'
+      }
+    ]
+  },
+  players: [
+    {
       name: 'Bail',
+      score: 0
+    },
+    {
+      name: 'Daniel',
+      score: 0
+    },
+    {
+      name: 'Gigi',
+      score: 0
+    },
+    {
+      name: 'Nina',
+      score: 0
+    }
+  ]
+};
+
+export const bailsBeachGame: JeopardyGame = {
+  categoryMap: {
+    'Nancy Drew PC Games': [
+      {
+        answer: 'In this game, Nancy investigates an Icelandic town and meets a dog named Tumi.',
+        pointValue: 100,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is Sea of Darkness?'
+      },
+      {
+        answer: 'This game takes place on a spooky island known for its creepy amusement park.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is The Haunted Carousel?'
+      },
+      {
+        answer: 'Nancy visits a Scottish castle and uncovers secrets tied to bagpipes and legends.',
+        pointValue: 300,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is The Captive Curse?'
+      },
+      {
+        answer: 'In this snowy mystery, Nancy investigates a ski resort in Canada.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is White Wolf of Icicle Creek?'
+      },
+      {
+        answer: 'Nancy decodes hieroglyphics and explores a tomb in this Egypt-based adventure.',
+        pointValue: 500,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is Tomb of the Lost Queen?'
+      }
+    ],
+    'Figma UX Design': [
+      {
+        answer: 'This type of file lets multiple designers collaborate in real-time.',
+        pointValue: 100,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is a Figma design file?'
+      },
+      {
+        answer: 'You can use these to create reusable buttons, cards, and more in Figma.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What are components?'
+      },
+      {
+        answer: 'This feature allows switching between different versions of the same component.',
+        pointValue: 300,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What are variants?'
+      },
+      {
+        answer: 'This prototyping feature links screens together with animated transitions.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What are interactions?'
+      },
+      {
+        answer: 'These let you preview how a design might respond at different screen sizes.',
+        pointValue: 500,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What are auto layout and constraints?'
+      }
+    ],
+    'Ariana Grande Songs': [
+      {
+        answer: "This hit from the 'Sweetener' album repeats the phrase 'I just want you to come with me.'",
+        pointValue: 100,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: "What is 'No Tears Left to Cry'?"
+      },
+      {
+        answer: 'This thank-you anthem lists her exes by name.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: true,
+        isTriplePlay: false,
+        question: "What is 'Thank U, Next'?"
+      },
+      {
+        answer: "In this song, she says, 'Wearing a ring but ain't gon' be no Mrs.'",
+        pointValue: 300,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: "What is '7 Rings'?"
+      },
+      {
+        answer: "This sultry track shares a title with a weekday and was part of the 'Dangerous Woman' era.",
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: "What is 'Side to Side'?"
+      },
+      {
+        answer: "This Ariana Grande song features the lyric, 'Boy, you got me walkin’ side to side,' and includes Nicki Minaj.",
+        pointValue: 500,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: "What is 'Side to Side'?"
+      }
+    ],
+    'Vegan Food': [
+      {
+        answer: 'This protein-packed legume is often used to make hummus.',
+        pointValue: 100,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What are chickpeas?'
+      },
+      {
+        answer: 'This dairy-free milk is made from ground almonds and water.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is almond milk?'
+      },
+      {
+        answer: 'This fruit is used in many vegan baking recipes as an egg substitute.',
+        pointValue: 300,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is a banana?'
+      },
+      {
+        answer: 'A fermented soybean product often used as a meat alternative.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is tempeh?'
+      },
+      {
+        answer: 'This type of seaweed is often used to make vegan sushi.',
+        pointValue: 500,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is nori?'
+      }
+    ],
+    'Wicked the Movie': [
+      {
+        answer: 'This actress plays Elphaba in the 2024 film adaptation.',
+        pointValue: 100,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'Who is Cynthia Erivo?'
+      },
+      {
+        answer: 'This character is famously known as the Wicked Witch of the West.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'Who is Elphaba?'
+      },
+      {
+        answer: "This song features the line, 'It’s time to try defying gravity.'",
+        pointValue: 300,
+        isValid: true,
+        isDailyDouble: true,
+        isTriplePlay: false,
+        question: "What is 'Defying Gravity'?"
+      },
+      {
+        answer: 'This actor plays Fiyero in the upcoming film adaptation.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'Who is Jonathan Bailey?'
+      },
+      {
+        answer: 'This bubbly blonde character is Elphaba’s schoolmate and future Glinda the Good.',
+        pointValue: 500,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'Who is Galinda?'
+      }
+    ],
+    'Music Theory': [
+      {
+        answer: 'This term refers to the speed or pace of a piece of music.',
+        pointValue: 100,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is tempo?'
+      },
+      {
+        answer: 'This is the symbol that raises a pitch by a half step.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is a sharp?'
+      },
+      {
+        answer: 'This is the distance between two notes.',
+        pointValue: 300,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is an interval?'
+      },
+      {
+        answer: 'This term describes playing softly in musical notation.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is piano?'
+      },
+      {
+        answer: 'This key signature has no sharps or flats.',
+        pointValue: 500,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is C major?'
+      }
+    ]
+  },
+  players: [
+    {
+      name: 'Daniel',
+      score: 0
+    },
+    {
+      name: 'Ky',
+      score: 0
+    },
+    {
+      name: 'Nina',
+      score: 0
+    }
+  ]
+};
+
+export const nisBeachGame: JeopardyGame = {
+  categoryMap: {
+    'Dunder Mifflin Deep-Cuts': [
+      {
+        answer: 'Michael Scott’s favorite innuendo-laden punchline, delivered dozens of times over nine seasons.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is "That’s what she said"?'
+      },
+      {
+        answer: 'Power-hungry Dwight often touts this self-appointed management title that puts him just beneath the boss.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is Assistant to the Regional Manager?'
+      },
+      {
+        answer: 'At the 2006 Mid-Market Office-Supply Convention, Michael secures this paper supplier once exclusive to Staples.',
+        pointValue: 600,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is Hammermill?'
+      },
+      {
+        answer: 'In Season 5’s “Casual Friday,” Kevin catastrophically spills a vat of this homemade specialty on the carpet.',
+        pointValue: 800,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is chili?'
+      },
+      {
+        answer: 'Michael Scott’s action-hero alter-ego who saves the NHL All-Star Game in his passion-project film.',
+        pointValue: 1000,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'Who is Michael Scarn?'
+      }
+    ],
+
+    'Frontend & Full-Stack': [
+      {
+        answer: 'HTML, CSS and JavaScript are often nicknamed this trio of web fundamentals.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is the front-end trifecta?'
+      },
+      {
+        answer: 'Invoking this React hook queues a re-render whenever its setter is called.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is useState?'
+      },
+      {
+        answer: 'HTTP/2 eliminates head-of-line blocking by using this technique that lets many requests share one TCP connection.',
+        pointValue: 600,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is stream multiplexing?'
+      },
+      {
+        answer: 'This build-step optimisation removes selectors that never appear in your markup; PurgeCSS popularised it.',
+        pointValue: 800,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is CSS tree-shaking (or CSS purging)?'
+      },
+      {
+        answer: 'The term JAMstack expands to these three words.',
+        pointValue: 1000,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What are JavaScript, APIs and Markup?'
+      }
+    ],
+
+    'ML & Data Science': [
+      {
+        answer: 'In pandas, this one-word method drops rows containing missing values.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is dropna?'
+      },
+      {
+        answer: 'BLEU, introduced in 2002, was designed to evaluate this natural-language task.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is machine translation?'
+      },
+      {
+        answer: 'A variational autoencoder nudges its latent variables toward this bell-shaped probability distribution.',
+        pointValue: 600,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is the standard normal (Gaussian) distribution?'
+      },
+      {
+        answer: 'Decision trees often choose splits by minimising this information-theory impurity measure, –Σ pᵢ log₂ pᵢ.',
+        pointValue: 800,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is entropy?'
+      },
+      {
+        answer: 'FlashAttention speeds up transformers by replacing full quadratic attention with this block-sparse variant.',
+        pointValue: 1000,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is tiled (block-sparse) attention?'
+      }
+    ],
+
+    'UX Marks the Spot': [
+      {
+        answer: 'Steve Krug’s usability classic insists good design should never force users to do this mental action.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is think?'
+      },
+      {
+        answer: 'Fitts’ Law says movement time rises with distance and falls as this target attribute grows.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is target size?'
+      },
+      {
+        answer: "The web-design 'three-click rule' tries to limit this discrete action before any content is reachable.",
+        pointValue: 600,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What are clicks?'
+      },
+      {
+        answer: 'In Peter Morville’s UX honeycomb, the facet concerned with emotional appeal is this nine-letter word.',
+        pointValue: 800,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is desirable?'
+      },
+      {
+        answer: 'Unlike SUS’s 5-point Likert, the AttrakDiff questionnaire scores desirability on this 0-to-100 measuring device.',
+        pointValue: 1000,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is a semantic differential (slider) scale?'
+      }
+    ],
+
+    'Plant-Powered Plates': [
+      {
+        answer: 'Purée of chickpeas, tahini, lemon and garlic yields this Middle-Eastern staple dip.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is hummus?'
+      },
+      {
+        answer: 'Traditional tofu is curdled using nigari, a brine rich in this magnesium compound.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is magnesium chloride?'
+      },
+      {
+        answer: 'Chickpea canning liquid that whips like egg whites goes by this nautical-sounding name.',
+        pointValue: 600,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is aquafaba?'
+      },
+      {
+        answer: 'Fermented soybean slabs from Indonesia—often marinated then pan-fried—are called this.',
+        pointValue: 800,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is tempeh?'
+      },
+      {
+        answer: 'Tiny, iron-rich grain central to Ethiopian injera is this.',
+        pointValue: 1000,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is teff?'
+      }
+    ],
+
+    'Pop Divas: Ari • Bey • Tay': [
+      {
+        answer: 'Before *Sam & Cat*, Ariana Grande first played Cat Valentine on this Nickelodeon sitcom.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is *Victorious*?'
+      },
+      {
+        answer: 'Beyoncé unveiled her fierce alter-ego persona with the 2008 double album titled this.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'Who is Sasha Fierce?'
+      },
+      {
+        answer: 'The only rapper to appear on Taylor Swift’s rerecorded albums, joining her 2023 version of “Bad Blood.”',
+        pointValue: 600,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'Who is Kendrick Lamar?'
+      },
+      {
+        answer: 'On *Sweetener*, this deep-cut opens its bridge with the lyric “Out here in the open, I…”.',
+        pointValue: 800,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is “Everytime”?'
+      },
+      {
+        answer:
+          'During the 1989 World Tour, Taylor performed “Clean” acoustically only once—name the European capital city that got it on 21 June 2015.',
+        pointValue: 1000,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is Amsterdam?'
+      }
+    ],
+
+    'Silicon Valley Titans': [
+      {
+        answer: 'This Cupertino company’s late co-founder introduced the iPhone on 9 January 2007.',
+        pointValue: 200,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is Apple?'
+      },
+      {
+        answer: 'X.com’s 2000 merger with Confinity produced this online payments giant.',
+        pointValue: 400,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is PayPal?'
+      },
+      {
+        answer: "Daily Double!  Google’s 2015 corporate shake-up created this umbrella holding company for its 'moonshots.'",
+        pointValue: 600,
+        isValid: true,
+        isDailyDouble: true,
+        isTriplePlay: false,
+        question: 'What is Alphabet?'
+      },
+      {
+        answer: "The 2017 paper 'Attention Is All You Need' unveiled this now-ubiquitous neural network architecture.",
+        pointValue: 800,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is the Transformer?'
+      },
+      {
+        answer: 'Founded by ex-OpenAI siblings in 2019, this Claude-creating startup was valued above $15 billion in 2024.',
+        pointValue: 1000,
+        isValid: true,
+        isDailyDouble: false,
+        isTriplePlay: false,
+        question: 'What is Anthropic?'
+      }
+    ]
+  },
+  players: [
+    {
+      name: 'Bail',
+      score: 0
+    },
+    {
+      name: 'Ky',
+      score: 0
+    },
+    {
+      name: 'Daniel',
+      score: 0
+    },
+    {
+      name: 'Gigi',
       score: 0
     }
   ]

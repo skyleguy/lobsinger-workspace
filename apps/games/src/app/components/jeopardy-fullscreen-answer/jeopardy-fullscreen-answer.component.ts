@@ -2,7 +2,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { Component, HostBinding, inject, signal } from '@angular/core';
 
-import { JeopardyAnswer } from '../jeopardy-game/models/jeopardy-game.model';
+import { JeopardyAnswer, Player } from '../jeopardy-game/models/jeopardy-game.model';
 
 @Component({
   selector: `games-jeopardy-fullscreen-answer`,
@@ -60,9 +60,9 @@ import { JeopardyAnswer } from '../jeopardy-game/models/jeopardy-game.model';
   template: `
     <div
       class="p-5 h-full w-full flex flex-col gap-3 bg-blue-600 text-white items-center"
-      [class.justify-center]="data.isDailyDouble && !wagerLockedIn"
+      [class.justify-center]="data.answer.isDailyDouble && !wagerLockedIn"
     >
-      @if (data.isDailyDouble && !wagerLockedIn) {
+      @if (data.answer.isDailyDouble && !wagerLockedIn) {
         <span class="text-9xl text-center emphasis-shadow">DAILY DOUBLE!</span>
         <div class="flex gap-3 p-3">
           <span class="text-3xl">What is your wager?</span>
@@ -77,33 +77,46 @@ import { JeopardyAnswer } from '../jeopardy-game/models/jeopardy-game.model';
         </div>
       } @else {
         <div class="grow flex gap-3 flex-col items-center justify-center">
-          @if (data.isTriplePlay) {
+          @if (data.answer.isTriplePlay) {
             <span class="text-6xl text-center emphasis-shadow">TRIPLE PLAY!</span>
           }
-          <span class="text-6xl p-3 text-center regular-shadow">{{ data.answer }}</span>
+          <span class="text-6xl p-3 text-center regular-shadow">{{ data.answer.answer }}</span>
           @if (isRevealed()) {
-            <span class="text-6xl p-3 text-center regular-shadow">{{ data.question }}</span>
+            <span class="text-6xl p-3 text-center regular-shadow">{{ data.answer.question }}</span>
           }
-          <div class="flex gap-3 justify-center items-center p-3">
-            <div
-              (click)="isRevealed.set(true)"
-              class="border-2 border-gray-400 rounded-md text-3xl p-3 hover:bg-gray-400 hover:text-white transition-colors cursor-pointer"
-            >
-              Reveal
+          @if (isAnswered()) {
+            <div class="flex gap-3 justify-center items-center p-3">
+              @for (player of data.players; track player.name) {
+                <div
+                  (click)="closeModal(player)"
+                  class="border-2 border-gray-400 rounded-md text-3xl p-3 hover:bg-gray-400 hover:text-white transition-colors cursor-pointer"
+                >
+                  {{ player.name }}
+                </div>
+              }
             </div>
-            <div
-              (click)="answered(true)"
-              class="border-2 border-green-400 rounded-md text-3xl p-3 hover:bg-green-400 hover:text-white transition-colors cursor-pointer"
-            >
-              Correct
+          } @else {
+            <div class="flex gap-3 justify-center items-center p-3">
+              <div
+                (click)="isRevealed.set(true)"
+                class="border-2 border-gray-400 rounded-md text-3xl p-3 hover:bg-gray-400 hover:text-white transition-colors cursor-pointer"
+              >
+                Reveal
+              </div>
+              <div
+                (click)="answered(true)"
+                class="border-2 border-green-400 rounded-md text-3xl p-3 hover:bg-green-400 hover:text-white transition-colors cursor-pointer"
+              >
+                Correct
+              </div>
+              <div
+                (click)="answered(false)"
+                class="border-2 border-red-400 rounded-md text-3xl p-3 hover:bg-red-400 hover:text-white transition-colors cursor-pointer"
+              >
+                Incorrect
+              </div>
             </div>
-            <div
-              (click)="answered(false)"
-              class="border-2 border-red-400 rounded-md text-3xl p-3 hover:bg-red-400 hover:text-white transition-colors cursor-pointer"
-            >
-              Incorrect
-            </div>
-          </div>
+          }
         </div>
       }
     </div>
@@ -112,36 +125,51 @@ import { JeopardyAnswer } from '../jeopardy-game/models/jeopardy-game.model';
 export class JeopardyFullscreenAnswerComponent {
   @HostBinding('@animation') animationState = true;
 
-  dialogRef = inject<DialogRef<number>>(DialogRef<boolean>);
-  data: JeopardyAnswer = inject(DIALOG_DATA);
+  dialogRef = inject<DialogRef<void>>(DialogRef<boolean>);
+  data: { answer: JeopardyAnswer; players: Player[] } = inject(DIALOG_DATA);
   wagerLockedIn = 0;
   triplayPlayCount = 3;
   triplayPlayScore = 0;
   isRevealed = signal(false);
+  isAnswered = signal(false);
+  score = 0;
 
   protected answered(isCorrect: boolean) {
-    if (this.data.isDailyDouble) {
+    if (this.data.answer.isDailyDouble) {
       if (isCorrect) {
-        this.dialogRef.close(this.wagerLockedIn);
+        this.setScore(this.wagerLockedIn);
       } else {
-        this.dialogRef.close(this.wagerLockedIn * -1);
+        this.setScore(this.wagerLockedIn * -1);
       }
-    } else if (this.data.isTriplePlay) {
+      this.isAnswered.set(true);
+    } else if (this.data.answer.isTriplePlay) {
       this.triplayPlayCount--;
       if (isCorrect) {
-        this.triplayPlayScore += this.data.pointValue;
+        this.triplayPlayScore += this.data.answer.pointValue;
       } else {
-        this.triplayPlayScore += this.data.pointValue * -1;
+        this.triplayPlayScore += this.data.answer.pointValue * -1;
       }
       if (this.triplayPlayCount === 0) {
-        this.dialogRef.close(this.triplayPlayScore);
+        this.setScore(this.triplayPlayScore);
+        this.isAnswered.set(true);
       }
     } else {
       if (isCorrect) {
-        this.dialogRef.close(this.data.pointValue);
+        this.setScore(this.data.answer.pointValue);
       } else {
-        this.dialogRef.close(this.data.pointValue * -1);
+        this.setScore(this.data.answer.pointValue * -1);
       }
+      this.isAnswered.set(true);
     }
+  }
+
+  private setScore(score: number) {
+    this.score = score;
+  }
+
+  protected closeModal(player: Player) {
+    player.score += this.score;
+    this.data.answer.isValid = false;
+    this.dialogRef.close();
   }
 }
