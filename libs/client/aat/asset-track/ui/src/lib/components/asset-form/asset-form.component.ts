@@ -87,6 +87,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
           class="flex-auto"
           (click)="assign.emit()"
           type="button"
+          [rounded]="true"
         ></button>
         <button
           pButton
@@ -97,6 +98,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
           class="flex-auto"
           (click)="setUp.emit(convertFormToPayload())"
           type="button"
+          [rounded]="true"
         ></button>
         <button
           pButton
@@ -107,6 +109,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
           class="flex-auto"
           (click)="pickUp.emit()"
           type="button"
+          [rounded]="true"
         ></button>
         <button
           pButton
@@ -117,6 +120,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
           class="flex-auto"
           (click)="return.emit()"
           type="button"
+          [rounded]="true"
         ></button>
       </div>
     </form>

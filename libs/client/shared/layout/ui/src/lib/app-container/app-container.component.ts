@@ -40,8 +40,8 @@ export interface ErrorConfig {
             }
           }
           <div class="flex flex-col justify-center items-center">
-            <h4 class="!m-0">{{ errorConfig.primaryMessage }}</h4>
-            <h6 class="!m-0">{{ errorConfig.secondaryMessage }}</h6>
+            <h2 class="!m-0">{{ errorConfig.primaryMessage }}</h2>
+            <h4 class="!m-0">{{ errorConfig.secondaryMessage }}</h4>
           </div>
           <ng-content select="[errorExtra]"></ng-content>
         </div>
