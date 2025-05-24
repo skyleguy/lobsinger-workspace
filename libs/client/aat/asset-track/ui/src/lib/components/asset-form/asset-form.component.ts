@@ -117,7 +117,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
   `
 })
 export class AssetFormComponent {
-  protected readonly roomOptions = signal(['Basement', 'Dining Room', 'Family Room', 'Living Room', 'Office', 'Primary Bedroom']);
+  protected readonly roomOptions = signal(['Basement', 'Dining Room', 'Family Room', 'Living Room', 'Office', 'Bedroom']);
 
   isLocationLoading = input(false);
   isFormLoading = input(false);
