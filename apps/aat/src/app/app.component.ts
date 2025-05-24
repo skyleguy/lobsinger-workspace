@@ -21,7 +21,7 @@ import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-a
         </mat-toolbar>
       </ng-container>
       <ng-container main-content>
-        <div class="w-full h-full overflow-auto p-3">
+        <div class="w-full h-full overflow-auto">
           @if (isSignedIn() && isAuthorized()) {
             <router-outlet></router-outlet>
           }

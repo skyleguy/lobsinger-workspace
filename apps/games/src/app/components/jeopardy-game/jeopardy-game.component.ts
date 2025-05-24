@@ -2,8 +2,8 @@ import { Dialog } from '@angular/cdk/dialog';
 import { KeyValuePipe, NgClass } from '@angular/common';
 import { Component, inject } from '@angular/core';
 
-import { generatedJeopardyGame } from './models/first-game.const';
-import { JeopardyAnswer } from './models/jeopardy-game.model';
+import { nisBeachGame } from './models/first-game.const';
+import { JeopardyAnswer, Player } from './models/jeopardy-game.model';
 
 import { JeopardyFullscreenAnswerComponent } from '../jeopardy-fullscreen-answer/jeopardy-fullscreen-answer.component';
 
@@ -50,7 +50,7 @@ import { JeopardyFullscreenAnswerComponent } from '../jeopardy-fullscreen-answer
         </div>
       }
     </div>
-    <div class="shrink flex justify-center">
+    <div class="shrink flex justify-center gap-6">
       @for (player of jeopardyGame.players; track player.name) {
         <span class="text-3xl">{{ player.name }}: {{ player.score }}</span>
       }
@@ -60,7 +60,7 @@ import { JeopardyFullscreenAnswerComponent } from '../jeopardy-fullscreen-answer
 export class JeopardyGameComponent {
   private dialog = inject(Dialog);
 
-  protected readonly jeopardyGame = generatedJeopardyGame;
+  protected readonly jeopardyGame = nisBeachGame;
   protected readonly revealedCategories: Record<string, boolean> = Object.keys(this.jeopardyGame.categoryMap).reduce(
     (acc, curr) => ({
       ...acc,
@@ -71,16 +71,13 @@ export class JeopardyGameComponent {
 
   protected openDialog(answer: JeopardyAnswer): void {
     this.dialog
-      .open<number, JeopardyAnswer, JeopardyFullscreenAnswerComponent>(JeopardyFullscreenAnswerComponent, {
+      .open<number, { answer: JeopardyAnswer; players: Player[] }, JeopardyFullscreenAnswerComponent>(JeopardyFullscreenAnswerComponent, {
         width: '100%',
         height: '100%',
-        data: answer
+        data: { answer, players: this.jeopardyGame.players }
       })
       .closed.subscribe((score) => {
-        if (score !== undefined) {
-          answer.isValid = false;
-          this.jeopardyGame.players[0].score += score;
-        }
+        console.log(score);
       });
   }
 }
