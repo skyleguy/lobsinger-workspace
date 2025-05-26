@@ -28,7 +28,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <form class="relative flex flex-col gap-3">
+    <form class="relative flex flex-col gap-5">
       @if (isFormLoading()) {
         <div class="absolute inset-0 bg-black/5 z-50 flex justify-center items-center">
           <p-progress-spinner />
@@ -87,6 +87,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
           class="flex-auto"
           (click)="assign.emit()"
           type="button"
+          [outlined]="true"
           [rounded]="true"
         ></button>
         <button
@@ -98,6 +99,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
           class="flex-auto"
           (click)="setUp.emit(convertFormToPayload())"
           type="button"
+          [outlined]="true"
           [rounded]="true"
         ></button>
         <button
@@ -109,6 +111,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
           class="flex-auto"
           (click)="pickUp.emit()"
           type="button"
+          [outlined]="true"
           [rounded]="true"
         ></button>
         <button
@@ -120,6 +123,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
           class="flex-auto"
           (click)="return.emit()"
           type="button"
+          [outlined]="true"
           [rounded]="true"
         ></button>
       </div>
@@ -182,6 +186,6 @@ export class AssetFormComponent {
       ? this.allRoomOptions.filter((option) => {
           return option.toLowerCase().includes(event.query.toLowerCase());
         })
-      : this.allRoomOptions;
+      : [...this.allRoomOptions];
   }
 }
