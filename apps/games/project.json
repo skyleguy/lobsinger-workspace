@@ -15,14 +15,13 @@
         "browser": "apps/games/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/games/tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
             "input": "apps/games/public"
           }
         ],
-        "styles": ["apps/games/src/styles.scss"],
+        "styles": ["apps/games/src/styles.css"],
         "scripts": []
       },
       "configurations": {

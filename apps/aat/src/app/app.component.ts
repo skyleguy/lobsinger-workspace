@@ -1,24 +1,23 @@
 import { Component, computed, effect, inject, signal, untracked, viewChild } from '@angular/core';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatToolbar } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 
 import { UserStore } from '@lob/client/shared/auth/data-access';
 import { FirebaseAppStore } from '@lob/client/shared/firebase/data-access';
 import { AppContainerComponent, ErrorConfig } from '@lob/client/shared/layout/ui';
+import { ThemeTogglerComponent } from '@lob/client/shared/theme/ui';
 import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-auth-feature';
 
 @Component({
-  imports: [RouterModule, AppContainerComponent, MatToolbar, UserAvatarComponent, SignInButtonComponent, MatSnackBarModule],
+  imports: [RouterModule, AppContainerComponent, UserAvatarComponent, SignInButtonComponent, ThemeTogglerComponent],
   selector: 'aat-root',
   template: `
     <shared-layout-ui-app-container [isSidebarAvailable]="false" [isMainBodyScrollable]="false">
       <ng-container nav>
-        <mat-toolbar color="primary">
-          <span nav>PowrQuest</span>
-          <span class="flex grow shrink"></span>
+        <h1 nav>PowrQuest</h1>
+        <div class="flex items-center gap-3">
+          <shared-theme-ui-theme-toggler></shared-theme-ui-theme-toggler>
           <client-shared-auth-feature-user-avatar></client-shared-auth-feature-user-avatar>
-        </mat-toolbar>
+        </div>
       </ng-container>
       <ng-container main-content>
         <div class="w-full h-full overflow-auto">
@@ -75,7 +74,7 @@ export class AppComponent {
     const isNotSignedIn = !this.isSignedIn();
     if (isNotSignedIn && this.userStore.hasAttemptedSignIn()) {
       const notSignedInErrorConfig: ErrorConfig = {
-        icon: 'error',
+        icon: 'fa-circle-exclamation',
         primaryMessage: 'Please Sign In',
         secondaryMessage: 'Signing in with a valid advantage email is required to use the Advantage Asset Tracker'
       };
@@ -89,7 +88,7 @@ export class AppComponent {
     const isUnauthorized = this.isUnauthorized();
     if (isUnauthorized) {
       const unauthorizedErrorConfig: ErrorConfig = {
-        icon: 'error',
+        icon: 'fa-circle-exclamation',
         primaryMessage: 'Unauthorized',
         secondaryMessage: 'You have not signed in with a valid account. Please reach out to the owner for information on how to gain access'
       };
