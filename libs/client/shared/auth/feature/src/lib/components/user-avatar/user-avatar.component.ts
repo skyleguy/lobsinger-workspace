@@ -1,15 +1,14 @@
 import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { MatIconButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
+import { ButtonModule } from 'primeng/button';
 
 import { UserStore } from '@lob/client/shared/auth/data-access';
 
 @Component({
-    selector: 'client-shared-auth-feature-user-avatar',
-    imports: [MatIcon, MatIconButton, NgOptimizedImage],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    template: `
+  selector: 'client-shared-auth-feature-user-avatar',
+  imports: [NgOptimizedImage, ButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
     <div (click)="changeSignInStatus()">
       @if (userContent(); as userContent) {
         @if (isAvatarImageError()) {
@@ -18,9 +17,7 @@ import { UserStore } from '@lob/client/shared/auth/data-access';
           <img class="rounded-lg" [ngSrc]="userContent" width="48" height="48" (error)="isAvatarImageError.set(true)" />
         }
       } @else {
-        <button mat-icon-button>
-          <mat-icon>person</mat-icon>
-        </button>
+        <p-button icon="fa-solid fa-user" [rounded]="true" [outlined]="true" />
       }
     </div>
   `

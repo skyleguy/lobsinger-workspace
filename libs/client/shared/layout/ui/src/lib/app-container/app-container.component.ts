@@ -2,7 +2,6 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { isPlatformBrowser } from '@angular/common';
 import { Component, inject, input, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { MatIcon } from '@angular/material/icon';
 import { debounceTime, fromEvent, map, startWith } from 'rxjs';
 
 import { TabMenuItem } from '@lob/client/shared/layout/data';
@@ -10,14 +9,14 @@ import { TabMenuItem } from '@lob/client/shared/layout/data';
 import { TabMenuComponent } from '../tab-menu/tab-menu.component';
 
 export interface ErrorConfig {
-  icon: 'error' | 'warning';
+  icon: 'fa-circle-exclamation' | 'fa-triangle-exclamation';
   primaryMessage: string;
   secondaryMessage?: string;
 }
 
 @Component({
   selector: 'shared-layout-ui-app-container',
-  imports: [MatIcon, TabMenuComponent],
+  imports: [TabMenuComponent],
   styles: [
     `
       .scale-3 {
@@ -37,12 +36,12 @@ export interface ErrorConfig {
         <div class="grow flex flex-col items-center justify-center p-5 gap-5">
           @if (isMaterialTheming()) {
             @defer (when isMaterialTheming()) {
-              <mat-icon class="scale-3 mb-3">{{ errorConfig.icon }}</mat-icon>
+              <i class="text-6xl fa-solid {{ errorConfig.icon }}"></i>
             }
           }
           <div class="flex flex-col justify-center items-center">
-            <h4 class="!m-0">{{ errorConfig.primaryMessage }}</h4>
-            <h6 class="!m-0">{{ errorConfig.secondaryMessage }}</h6>
+            <h2 class="!m-0">{{ errorConfig.primaryMessage }}</h2>
+            <h4 class="!m-0">{{ errorConfig.secondaryMessage }}</h4>
           </div>
           <ng-content select="[errorExtra]"></ng-content>
         </div>

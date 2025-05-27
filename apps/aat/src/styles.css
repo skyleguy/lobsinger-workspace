@@ -1,0 +1,38 @@
+@import 'tailwindcss';
+@plugin "tailwindcss-primeui";
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+@custom-variant dark (&:where(.my-app-dark, .my-app-dark *));
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+h1 {
+  @apply text-2xl;
+}
+
+h2 {
+  @apply text-xl;
+}
+
+h3 {
+  @apply text-lg;
+}
+
+h4 {
+  @apply text-base;
+}
+
+h5 {
+  @apply text-sm;
+}
+
+h6 {
+  @apply text-xs;
+}

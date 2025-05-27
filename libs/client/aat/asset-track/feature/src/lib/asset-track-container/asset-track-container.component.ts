@@ -1,9 +1,8 @@
 import { Component, computed, inject, OnInit, signal, viewChild } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { MatFabButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 import { Subscription } from 'rxjs';
 
 import { Asset, isAssetValid } from '@lob/client/aat/asset-track/data';
@@ -15,13 +14,18 @@ import { createAjaxState } from '@lob/shared/data-management/util';
 
 @Component({
   selector: 'aat-asset-track-feature-asset-track-container',
-  imports: [MatIcon, MatFabButton, AssetFormComponent, AssetCardComponent, RouterLink],
+  imports: [ButtonModule, RouterLink, AssetFormComponent, AssetCardComponent],
   template: `
     <div class="h-full w-full flex flex-col gap-3">
       @if (isValid()) {
-        <button mat-fab aria-label="Back button to return to scanner" routerLink="/scan">
-          <mat-icon>arrow_back</mat-icon>
-        </button>
+        <button
+          aria-label="Back button to return to scanner"
+          routerLink="/scan"
+          pButton
+          icon="fa-solid fa-arrow-left"
+          [rounded]="true"
+          size="large"
+        ></button>
         <div class="grow flex flex-col gap-3 md:items-center md:justify-center md:mx-auto">
           <aat-asset-track-ui-asset-card class="w-full" [asset]="asset()"></aat-asset-track-ui-asset-card>
           <aat-asset-track-ui-asset-form

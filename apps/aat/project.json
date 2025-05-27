@@ -15,14 +15,13 @@
         "browser": "apps/aat/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/aat/tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
             "input": "apps/aat/public"
           }
         ],
-        "styles": ["apps/aat/src/styles.scss"],
+        "styles": ["apps/aat/src/styles.css"],
         "scripts": []
       },
       "configurations": {
