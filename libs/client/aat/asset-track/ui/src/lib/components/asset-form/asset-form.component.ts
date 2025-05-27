@@ -81,7 +81,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
         <button
           pButton
           label="Assign"
-          icon="text-2xl fa-solid fa-clipboard-list"
+          icon="text-xl fa-solid fa-clipboard-list"
           [disabled]="isFormLoading()"
           title="Assign asset to yourself"
           class="flex-auto"
@@ -93,7 +93,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
         <button
           pButton
           label="Set Up"
-          icon="text-2xl fa-solid fa-stopwatch"
+          icon="text-xl fa-solid fa-stopwatch"
           [disabled]="assetForm.invalid || isFormLoading()"
           title="Set up this asset at the address indicated in the form"
           class="flex-auto"
@@ -105,7 +105,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
         <button
           pButton
           label="Pick Up"
-          icon="text-2xl fa-solid fa-cloud-arrow-up"
+          icon="text-xl fa-solid fa-cloud-arrow-up"
           [disabled]="isFormLoading()"
           title="Pick up this asset from client location"
           class="flex-auto"
@@ -117,7 +117,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
         <button
           pButton
           label="Return"
-          icon="text-2xl fa-solid fa-home"
+          icon="text-xl fa-solid fa-home"
           [disabled]="isFormLoading()"
           title="Return this asset to the office"
           class="flex-auto"
