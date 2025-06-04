@@ -1,10 +1,4 @@
-import { Component, inject, linkedSignal, signal } from '@angular/core';
-import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
-import * as pdfMake from 'pdfmake/build/pdfmake';
-import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-
-(<any>pdfMake).addVirtualFileSystem(pdfFonts);
-import { ThemeService } from '@lob/client/shared/theme/ui';
+import { Component, effect, ElementRef, inject, linkedSignal, viewChild } from '@angular/core';
 
 import { ContainerComponent } from './container.component';
 import { SectionHeaderComponent } from './section-header.component';
@@ -13,31 +7,19 @@ import { ImageService } from '../services/image.service';
 
 @Component({
   selector: 'rqbd-file-generation-container',
-  imports: [ContainerComponent, SectionHeaderComponent, NgxExtendedPdfViewerModule],
+  imports: [ContainerComponent, SectionHeaderComponent],
   template: `
     <rqbd-container>
       <rqbd-section-header title="Repair Request Document"></rqbd-section-header>
       <div class="grow flex flex-col items-center justify-center gap-3">
-        @for (imageSrc of imageSources(); track imageSrc) {
-          <img [src]="imageSrc" />
-        }
-        @if (generatedFileBlob(); as generatedFileBlob) {
-          <ngx-extended-pdf-viewer
-            class="h-full w-full"
-            [src]="generatedFileBlob"
-            [handTool]="false"
-            [showToolbar]="false"
-            [theme]="themeService.currentTheme()"
-          ></ngx-extended-pdf-viewer>
-        }
+        <iframe #generatedPdf class="w-full h-full" id="generated" src="/iframe/test"></iframe>
       </div>
     </rqbd-container>
   `
 })
 export class FileGenerationContainerComponent {
   protected readonly imageService = inject(ImageService);
-  protected readonly themeService = inject(ThemeService);
-  protected readonly generatedFileBlob = signal<Blob | null>(null);
+  private readonly generatedPdfIframe = viewChild<ElementRef<HTMLIFrameElement>>('generatedPdf');
 
   protected imageSources = linkedSignal<string | null, string[]>({
     source: this.imageService.imageUrl,
@@ -49,20 +31,15 @@ export class FileGenerationContainerComponent {
     }
   });
 
-  // constructor() {
-  //   this.makePdf();
-  // }
-
-  makePdf() {
-    const docDefinition = {
-      content: [
-        'First paragraph',
-        'Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines'
-      ]
-    };
-    const pdfDocGenerator = pdfMake.createPdf(docDefinition);
-    pdfDocGenerator.getBlob((blob) => {
-      this.generatedFileBlob.set(blob);
+  constructor() {
+    effect(() => {
+      const imageSources = this.imageSources();
+      const iframe = this.generatedPdfIframe();
+      if (imageSources?.length && iframe) {
+        iframe.nativeElement.contentWindow?.postMessage({
+          imageSources
+        });
+      }
     });
   }
 }

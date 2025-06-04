@@ -141,7 +141,6 @@ export class SourceFileContainerComponent {
       target.addEventListener('mousedown', (e) => {
         isDragging = true;
         startY = this.calculateYCoordinateAfterDisplayScale(canvas, e.clientY);
-        console.log('starting at: ' + startY + ' of', canvas.height);
       });
 
       target.addEventListener('mousemove', (e) => {
