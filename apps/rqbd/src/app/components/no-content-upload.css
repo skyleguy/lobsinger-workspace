@@ -1,0 +1,6 @@
+:host ::ng-deep .no-content-upload .p-fileupload-content {
+  display: none !important;
+}
+:host ::ng-deep .no-content-upload .p-fileupload-header {
+  padding: 4px;
+}

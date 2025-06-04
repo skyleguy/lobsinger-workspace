@@ -1,0 +1,102 @@
+{
+  "name": "rqbd",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "rqbd",
+  "sourceRoot": "apps/rqbd/src",
+  "tags": ["scope:client"],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/rqbd",
+        "index": "apps/rqbd/src/index.html",
+        "browser": "apps/rqbd/src/main.ts",
+        "tsConfig": "apps/rqbd/tsconfig.app.json",
+        "assets": [
+          "apps/rqbd/src/assets",
+          {
+            "glob": "**/*",
+            "input": "apps/rqbd/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "node_modules/ngx-extended-pdf-viewer/assets/",
+            "output": "/assets/"
+          }
+        ],
+        "styles": ["apps/rqbd/src/styles.css"],
+        "scripts": [],
+        "server": "apps/rqbd/src/main.server.ts",
+        "ssr": {
+          "entry": "apps/rqbd/src/server.ts"
+        },
+        "prerender": true
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "namedChunks": true,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "rqbd:build:production"
+        },
+        "development": {
+          "buildTarget": "rqbd:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "rqbd:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/rqbd/jest.config.ts"
+      }
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "rqbd:build",
+        "port": 4200,
+        "staticFilePath": "dist/apps/rqbd/browser",
+        "spa": true
+      }
+    }
+  }
+}
