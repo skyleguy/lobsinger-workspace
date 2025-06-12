@@ -53,7 +53,7 @@ export interface ErrorConfig {
             </div>
           }
           <div class="flex flex-col grow bg-surface-100 dark:bg-surface-800">
-            <div id="main-content" class="grow p-3" [class.overflow-y-auto]="isMainBodyScrollable()">
+            <div id="main-content" class="min-h-0 grow p-3" [class.overflow-y-auto]="isMainBodyScrollable()">
               <ng-content select="[main-content]"></ng-content>
             </div>
             @if (tabs()) {

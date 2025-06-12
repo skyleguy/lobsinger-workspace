@@ -14,7 +14,16 @@ import { ImageService } from '../services/image.service';
 @Component({
   selector: 'rqbd-source-file-container',
   imports: [ContainerComponent, SectionHeaderComponent, NgxExtendedPdfViewerModule, FileUploadModule, ButtonModule, TooltipModule],
-  styleUrl: './no-content-upload.css',
+  styles: [
+    `
+      :host ::ng-deep .no-content-upload .p-fileupload-content {
+        display: none !important;
+      }
+      :host ::ng-deep .no-content-upload .p-fileupload-header {
+        padding: 4px;
+      }
+    `
+  ],
   template: `
     <rqbd-container>
       <rqbd-section-header title="Inspection Report"></rqbd-section-header>
