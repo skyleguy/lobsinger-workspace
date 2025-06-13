@@ -1,5 +1,6 @@
-import { Component, computed, effect, inject, signal, untracked, viewChild } from '@angular/core';
+import { Component, effect, inject, signal, untracked, viewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { doc, getDoc } from 'firebase/firestore';
 
 import { UserStore } from '@lob/client/shared/auth/data-access';
 import { FirebaseAppStore } from '@lob/client/shared/firebase/data-access';
@@ -37,30 +38,17 @@ export class AppComponent {
   private readonly userStore = inject(UserStore);
   private readonly appContainer = viewChild(AppContainerComponent);
   private readonly allowedEmailPieces = ['@advantagenc.com'];
-  private readonly allowedExactEmails = [
-    'kylelobsinger@gmail.com',
-    'msinclair1229@charter.net',
-    'lancedmullins@gmail.com',
-    'dave822634@icloud.com',
-    'rjfuhrer27@gmail.com',
-    'dtroskey@gmail.com',
-    'lutrish17@gmail.com',
-    'keithbmx@gmail.com',
-    'Jim.AdvantageNC@gmail.com',
-    'coco.advantagenc@gmail.com',
-    'msinclair1229@charter.net',
-    'chad.m.baker77@gmail.com',
-    'frank@advantagenc.com'
-  ];
   private readonly notSignedInErrorConfig = signal<ErrorConfig | null>(null);
   private readonly unauthorizedErrorConfig = signal<ErrorConfig | null>(null);
 
   protected isSignedIn = this.userStore.isUserSignedIn;
-  protected isAuthorized = computed(() => this.userStore.isUserSignedIn() && this.isValidEmail(this.userStore.userData()?.email ?? ''));
-  protected isUnauthorized = computed(() => this.userStore.isUserSignedIn() && !this.isValidEmail(this.userStore.userData()?.email ?? ''));
+  protected isAuthorized = signal<boolean | null>(null);
 
   constructor() {
-    this.firebaseAppStore.initializeApp();
+    this.firebaseAppStore.initializeApp({
+      firestoreOptions: { databaseId: 'advantage', isEmulating: false },
+      functionOptions: { isEmulating: false }
+    });
     effect(() => {
       this.handleNotSignedIn();
     });
@@ -69,6 +57,18 @@ export class AppComponent {
     });
     effect(() => {
       this.handleErrorConfigs();
+    });
+    effect(async () => {
+      const email = this.userStore.userData()?.email;
+      const db = this.firebaseAppStore.firestore();
+      if (db && email) {
+        const docRef = doc(db, 'aat-valid-users', email.toLowerCase());
+        const docSnap = await getDoc(docRef);
+        this.isAuthorized.set(
+          (docSnap.exists() && docSnap.data()?.['isAllowed']) ||
+            this.allowedEmailPieces.some((allowedEmailPiece) => email.toLowerCase().includes(allowedEmailPiece.toLowerCase()))
+        );
+      }
     });
   }
 
@@ -87,7 +87,7 @@ export class AppComponent {
   }
 
   private handleUnauthorized() {
-    const isUnauthorized = this.isUnauthorized();
+    const isUnauthorized = this.isAuthorized() === false;
     if (isUnauthorized) {
       const unauthorizedErrorConfig: ErrorConfig = {
         icon: 'fa-circle-exclamation',
@@ -110,12 +110,5 @@ export class AppComponent {
         appContainer?.clearError();
       }
     });
-  }
-
-  private isValidEmail(email: string) {
-    return (
-      this.allowedEmailPieces.some((allowedEmailPiece) => email.toLowerCase().includes(allowedEmailPiece.toLowerCase())) ||
-      this.allowedExactEmails.some((allowedEmail) => email.toLowerCase() === allowedEmail.toLowerCase())
-    );
   }
 }
