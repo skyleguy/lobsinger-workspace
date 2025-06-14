@@ -39,7 +39,7 @@ export interface ErrorConfig {
               <i class="text-6xl fa-solid {{ errorConfig.icon }}"></i>
             }
           }
-          <div class="flex flex-col justify-center items-center">
+          <div class="flex flex-col justify-center items-center text-center">
             <h2 class="!m-0">{{ errorConfig.primaryMessage }}</h2>
             <h4 class="!m-0">{{ errorConfig.secondaryMessage }}</h4>
           </div>

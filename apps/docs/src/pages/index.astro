@@ -1,0 +1,59 @@
+---
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import BaseHead from '../components/BaseHead.astro';
+import { ClientRouter } from 'astro:transitions';
+---
+
+<BaseHead />
+<ClientRouter />
+
+## Next steps
+<StarlightPage
+  transition:animate={'fade'}
+  frontmatter={{
+    head: [{ tag: 'base', content: '', attrs: { href: '/' } }],
+    title: 'Lobsinger Workspace',
+    tableOfContents: false,
+    template: 'splash',
+    hero: {
+      tagline: 'The place to be a developing Lobsinger',
+      actions: [
+        {
+          text: 'Get Started',
+          link: '/docs/',
+          icon: 'right-arrow',
+          variant: 'primary'
+        },
+        {
+          text: 'Report an Issue',
+          link: 'https://github.com/skyleguy/lobsinger-workspace/issues',
+          icon: 'github',
+          variant: 'secondary',
+          attrs: {
+            target: '_blank'
+          }
+        }
+      ]
+    }
+  }}
+  hasSidebar={false}
+>
+  <CardGrid>
+    <LinkCard title="Documentation" description="View documentation necessary in the Lobsinger Workspace" href="/docs/" />
+    <LinkCard title="Dependency Graph" description="Analyze the Nx Dependency Graph" href="/depgraph/" />
+  </CardGrid>
+</StarlightPage>
+
+<style>
+  :root {
+    a {
+      text-decoration: none;
+    }
+
+    div.hero {
+      padding: 0;
+      grid-template-columns: none;
+    }
+  }
+</style>

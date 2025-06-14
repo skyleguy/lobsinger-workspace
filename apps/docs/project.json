@@ -1,0 +1,56 @@
+{
+  "name": "docs",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/docs/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "command": "npx astro build --root=apps/docs --base=",
+        "forwardAllArgs": true
+      },
+      "dependsOn": ["build-dep-graph"]
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx astro dev --root=apps/docs",
+        "parallel": true
+      },
+      "dependsOn": ["build-dep-graph"]
+    },
+    "preview-test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx astro preview --root=apps/docs --host=127.0.0.1",
+        "readyWhen": "ready in"
+      }
+    },
+    "preview": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx astro preview --root=apps/docs --host=127.0.0.1"
+      },
+      "dependsOn": ["build"]
+    },
+    "build-dep-graph": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx nx graph --file=apps/docs/public/depgraph-content/index.html"
+      },
+      "outputs": ["{workspaceRoot}/apps/docs/public/depgraph-content"]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "docs:build"
+      }
+    }
+  }
+}

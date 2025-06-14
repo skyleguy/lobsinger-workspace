@@ -1,0 +1,28 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+interface Props {
+  title: string;
+  iframeSrc: string;
+}
+const { title, iframeSrc } = Astro.props as Props;
+---
+
+<StarlightPage frontmatter={{ title, tableOfContents: false }} hasSidebar={false}>
+  <div class="iframe-container">
+    <iframe src={iframeSrc}></iframe>
+  </div>
+</StarlightPage>
+
+<style>
+  .iframe-container {
+    iframe {
+      all: unset !important;
+      width: 100% !important;
+      height: calc(100% - 55px) !important;
+      position: absolute !important;
+      inset: 0 !important;
+      border: 0 !important;
+      top: 55px !important;
+    }
+  }
+</style>
