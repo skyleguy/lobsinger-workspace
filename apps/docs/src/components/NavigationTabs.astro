@@ -1,0 +1,49 @@
+---
+import type { Props } from '@astrojs/starlight/props';
+
+interface Links {
+  name: string;
+  path: string;
+  rootPath: string;
+}
+
+const links: Links[] = [
+  {
+    name: 'Docs',
+    path: '/docs/',
+    rootPath: '/docs/'
+  },
+  {
+    name: 'Dep Graph',
+    path: '/depgraph/',
+    rootPath: '/depgraph/'
+  }
+];
+function isActiveLink(currentPath: string, rootPath: string): boolean {
+  return currentPath.startsWith(rootPath);
+}
+const currentPath = Astro.url.pathname;
+---
+
+{
+  links.map((link) => (
+    <div class={`navigation-link ${isActiveLink(currentPath, link.rootPath) ? 'active' : ''}`}>
+      <a href={link.path}>{link.name}</a>
+    </div>
+  ))
+}
+<a id="icon-github" class="header-icon" title="Lobsinger Workspace" href="https://github.com/skyleguy/lobsinger-workspace" target="_blank">
+</a>
+
+<style>
+  .active {
+    border-bottom: 2px solid var(--sl-color-text-accent);
+  }
+  .navigation-link {
+    a {
+      color: var(--sl-color-text-accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+  }
+</style>

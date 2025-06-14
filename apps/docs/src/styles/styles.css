@@ -1,0 +1,38 @@
+:root {
+  --sl-content-width: 60rem;
+  --sl-text-5xl: 3.5rem;
+
+  .main-frame {
+    a[target='_blank']:not(.action)::after,
+    a[href^='http']:not(.action)::after {
+      display: contents;
+      content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23aaa' d='M8 0a8 8 0 1 0 8 8A8 8 0 0 0 8 0zM7.5 11.5H6V6h1.5v5.5zm0-6.5H6V4h1.5v1z'/%3E%3C/svg%3E");
+      position: absolute;
+      margin-top: 2px;
+    }
+  }
+
+  h1#_top {
+    font-size: calc(16px + 1vw);
+  }
+}
+
+.header-icons {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 40px;
+  height: 40px;
+}
+
+[data-theme='light'] {
+  #icon-github {
+    background-image: url('/images/icons/github.light.png');
+  }
+}
+
+[data-theme='dark'] {
+  #icon-github {
+    background-image: url('/images/icons/github.png');
+  }
+}
