@@ -57,6 +57,10 @@ export const ThemeService = signalStore(
         if (store._platformService().isBrowser) {
           const theme = store.currentTheme();
           localStorage.setItem(themeStorageKey, theme);
+          const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+          if (metaThemeColor) {
+            setMetaThemeColor(metaThemeColor);
+          }
           const html = document.documentElement;
           if (theme === 'dark') {
             html.classList.add(darkThemeClass);
@@ -68,3 +72,38 @@ export const ThemeService = signalStore(
     }
   })
 );
+
+/**
+ *
+ * @param metaThemeColor The meta element for the theme color, e.g. `<meta name="theme-color" content="#ffffff">`
+ * makes a few assumptions: there is an element with an id of header, and the backgroundColor for that element is set using the `color(srgb ...)` format.
+ */
+function setMetaThemeColor(metaThemeColor: Element) {
+  setTimeout(() => {
+    const nav = document.querySelector('#header');
+    if (nav) {
+      const rootStyle = getComputedStyle(nav);
+      const surface = srgbColorToHex(rootStyle.backgroundColor);
+      if (surface) {
+        metaThemeColor.setAttribute('content', surface);
+      }
+    }
+  }, 0);
+}
+
+function srgbColorToHex(srgbString: string) {
+  const match = srgbString.trim().match(/color\(srgb\s+([0-9.]+)\s+([0-9.]+)\s+([0-9.]+)\)/);
+
+  if (!match) {
+    console.warn('Invalid input format:', srgbString);
+    return null;
+  }
+
+  const r = Math.round(Number(match[1]) * 255);
+  const g = Math.round(Number(match[2]) * 255);
+  const b = Math.round(Number(match[3]) * 255);
+
+  const toHex = (n: number) => n.toString(16).padStart(2, '0');
+
+  return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+}
