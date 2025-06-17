@@ -14,16 +14,17 @@ import { GlistFacadeService } from '@lob/client/glist/glists/data-access';
 import { favoritedRecipeText, Recipe, unfavoritedRecipeText } from '@lob/client/glist/recipes/data';
 import { RecipeFacadeService } from '@lob/client/glist/recipes/data-access';
 import { AbstractSubscriptionComponent } from '@lob/client/shared/lifecycle-management/data-access';
-import { ConfirmActionComponent } from '@lob/client/shared/user-actions/ui';
+// deleted since it was using material
+// import { ConfirmActionComponent } from '@lob/client/shared/user-actions/ui';
 import { Ingredient } from '@lob/shared/ingredients/data';
 
 import { RecipeEditorComponent } from '../recipe-editor/recipe-editor.component';
 
 @Component({
-    selector: 'glist-recipe-details',
-    templateUrl: './recipe-details.component.html',
-    styleUrls: ['./recipe-details.component.scss'],
-    imports: [MatButtonModule, MatIconModule, MatChipsModule, MatButtonToggleModule, TitleCasePipe, DatePipe]
+  selector: 'glist-recipe-details',
+  templateUrl: './recipe-details.component.html',
+  styleUrls: ['./recipe-details.component.scss'],
+  imports: [MatButtonModule, MatIconModule, MatChipsModule, MatButtonToggleModule, TitleCasePipe, DatePipe]
 })
 export class RecipeDetailsComponent extends AbstractSubscriptionComponent implements OnInit {
   readonly favoritedRecipeText = favoritedRecipeText;

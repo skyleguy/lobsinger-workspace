@@ -1,4 +1,3 @@
-import { MatIcon } from '@angular/material/icon';
 import { provideRouter } from '@angular/router';
 import { applicationConfig, moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { expect } from '@storybook/jest';
@@ -14,7 +13,7 @@ const meta: Meta<TabMenuComponent> = {
       providers: [provideRouter([])]
     }),
     moduleMetadata({
-      imports: [MatIcon]
+      imports: []
     })
   ]
 };

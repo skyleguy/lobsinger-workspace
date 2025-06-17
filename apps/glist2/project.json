@@ -13,7 +13,6 @@
         "outputPath": "dist/apps/glist2",
         "index": "apps/glist2/src/index.html",
         "browser": "apps/glist2/src/main.ts",
-        "polyfills": ["zone.js"],
         "tsConfig": "apps/glist2/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [

@@ -1,6 +1,5 @@
 import { Component, computed, inject, OnInit, signal, viewChild } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { Subscription } from 'rxjs';
@@ -9,6 +8,7 @@ import { Asset, isAssetValid } from '@lob/client/aat/asset-track/data';
 import { AssetManagerService, GoogleLocationService } from '@lob/client/aat/asset-track/data-access';
 import { AssetCardComponent, AssetFormComponent } from '@lob/client/aat/asset-track/ui';
 import { UserStore } from '@lob/client/shared/auth/data-access';
+import { ToastService } from '@lob/client-shared-messaging-data-access';
 import { AjaxState } from '@lob/shared/data-management/data';
 import { createAjaxState } from '@lob/shared/data-management/util';
 
@@ -54,7 +54,7 @@ export class AssetTrackContainerComponent implements OnInit {
   private readonly googleLocationService = inject(GoogleLocationService);
   private readonly userStore = inject(UserStore);
   private readonly assetManagerService = inject(AssetManagerService);
-  private readonly matSnackbar = inject(MatSnackBar);
+  private readonly toastService = inject(ToastService);
 
   private readonly assetFormComponent = viewChild(AssetFormComponent);
   private readonly paramMap = toSignal(this.activatedRoute.paramMap);
@@ -86,12 +86,20 @@ export class AssetTrackContainerComponent implements OnInit {
       })
       .subscribe({
         next: () => {
-          this.matSnackbar.open(`${this.asset().assetName} ${this.asset().assetId} successfully assigned!`);
+          this.toastService.toast(
+            'success',
+            'Assignment Successful',
+            `${this.asset().assetName} ${this.asset().assetId} successfully assigned!`
+          );
           this.assetFormComponent()?.resetForm();
           this.isRequestInProgress.set(false);
         },
         error: (err) => {
-          this.matSnackbar.open(`${this.asset().assetName} ${this.asset().assetId} failed to be assigned due to: ${JSON.stringify(err)}`);
+          this.toastService.toast(
+            'error',
+            'Assignment Failed',
+            `${this.asset().assetName} ${this.asset().assetId} failed to be assigned due to: ${JSON.stringify(err)}`
+          );
           this.isRequestInProgress.set(false);
         }
       });
@@ -107,12 +115,20 @@ export class AssetTrackContainerComponent implements OnInit {
       })
       .subscribe({
         next: () => {
-          this.matSnackbar.open(`${this.asset().assetName} ${this.asset().assetId} successfully picked up!`);
+          this.toastService.toast(
+            'success',
+            'Pick Up Successful',
+            `${this.asset().assetName} ${this.asset().assetId} successfully picked up!`
+          );
           this.assetFormComponent()?.resetForm();
           this.isRequestInProgress.set(false);
         },
         error: (err) => {
-          this.matSnackbar.open(`${this.asset().assetName} ${this.asset().assetId} failed to be picked up due to: ${JSON.stringify(err)}`);
+          this.toastService.toast(
+            'error',
+            'Pick Up Failed',
+            `${this.asset().assetName} ${this.asset().assetId} failed to be picked up due to: ${JSON.stringify(err)}`
+          );
           this.isRequestInProgress.set(false);
         }
       });
@@ -128,12 +144,18 @@ export class AssetTrackContainerComponent implements OnInit {
       })
       .subscribe({
         next: () => {
-          this.matSnackbar.open(`${this.asset().assetName} ${this.asset().assetId} successfully returned home!`);
+          this.toastService.toast(
+            'success',
+            'Return Home Successful',
+            `${this.asset().assetName} ${this.asset().assetId} successfully returned home!`
+          );
           this.assetFormComponent()?.resetForm();
           this.isRequestInProgress.set(false);
         },
         error: (err) => {
-          this.matSnackbar.open(
+          this.toastService.toast(
+            'error',
+            'Return Home Failed',
             `${this.asset().assetName} ${this.asset().assetId} failed to be returned home due to: ${JSON.stringify(err)}`
           );
           this.isRequestInProgress.set(false);
@@ -152,12 +174,16 @@ export class AssetTrackContainerComponent implements OnInit {
     };
     this.assetManagerService.setUp(request).subscribe({
       next: () => {
-        this.matSnackbar.open(`${this.asset().assetName} ${this.asset().assetId} successfully set up!`);
+        this.toastService.toast('success', 'Set Up Successful', `${this.asset().assetName} ${this.asset().assetId} successfully set up!`);
         this.assetFormComponent()?.resetForm();
         this.isRequestInProgress.set(false);
       },
       error: (err) => {
-        this.matSnackbar.open(`${this.asset().assetName} ${this.asset().assetId} failed to be set up due to: ${JSON.stringify(err)}`);
+        this.toastService.toast(
+          'error',
+          'Set Up Failure',
+          `${this.asset().assetName} ${this.asset().assetId} failed to be set up due to: ${JSON.stringify(err)}`
+        );
         this.isRequestInProgress.set(false);
       }
     });

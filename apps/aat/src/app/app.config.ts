@@ -1,11 +1,11 @@
 import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, provideZoneChangeDetection, isDevMode } from '@angular/core';
-import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
 import { definePreset } from '@primeng/themes';
 import Material from '@primeng/themes/material';
+import { MessageService } from 'primeng/api';
 import { providePrimeNG } from 'primeng/config';
 
 import { FirebaseOptionsToken } from '@lob/client/shared/firebase/data';
@@ -41,10 +41,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(appRoutes),
     provideAnimationsAsync(),
     provideHttpClient(),
-    {
-      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
-      useValue: { duration: 3000 }
-    },
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000'
@@ -60,6 +56,7 @@ export const appConfig: ApplicationConfig = {
           }
         }
       }
-    })
+    }),
+    MessageService
   ]
 };
