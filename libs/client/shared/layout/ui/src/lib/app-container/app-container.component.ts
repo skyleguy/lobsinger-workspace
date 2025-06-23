@@ -3,7 +3,6 @@ import { isPlatformBrowser } from '@angular/common';
 import { Component, inject, input, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MessageService } from 'primeng/api';
-import { ToastModule } from 'primeng/toast';
 import { debounceTime, fromEvent, map, startWith } from 'rxjs';
 
 import { TabMenuItem } from '@lob/client/shared/layout/data';
@@ -18,7 +17,7 @@ export interface ErrorConfig {
 
 @Component({
   selector: 'shared-layout-ui-app-container',
-  imports: [ToastModule, TabMenuComponent],
+  imports: [TabMenuComponent],
   providers: [MessageService],
   styles: [
     `
@@ -66,7 +65,6 @@ export interface ErrorConfig {
         </div>
       }
     </div>
-    <p-toast />
   `
 })
 export class AppContainerComponent implements OnInit {

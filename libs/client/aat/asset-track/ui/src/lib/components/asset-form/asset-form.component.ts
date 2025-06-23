@@ -177,6 +177,7 @@ export class AssetFormComponent {
       currentAddress: this.currentLocation()?.data ?? '',
       roomLocation: null
     });
+    this.assetForm.markAsPristine();
   }
 
   protected search(event: AutoCompleteCompleteEvent) {
