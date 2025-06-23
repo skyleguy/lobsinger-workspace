@@ -2,6 +2,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { isPlatformBrowser } from '@angular/common';
 import { Component, inject, input, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { MessageService } from 'primeng/api';
 import { debounceTime, fromEvent, map, startWith } from 'rxjs';
 
 import { TabMenuItem } from '@lob/client/shared/layout/data';
@@ -17,6 +18,7 @@ export interface ErrorConfig {
 @Component({
   selector: 'shared-layout-ui-app-container',
   imports: [TabMenuComponent],
+  providers: [MessageService],
   styles: [
     `
       .scale-3 {

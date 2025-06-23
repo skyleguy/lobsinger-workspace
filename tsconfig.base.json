@@ -17,6 +17,7 @@
     "paths": {
       "@lob/client-glist-layout-feature": ["libs/client/glist/layout/feature/src/index.ts"],
       "@lob/client-shared-auth-feature": ["libs/client/shared/auth/feature/src/index.ts"],
+      "@lob/client-shared-messaging-data-access": ["libs/client/shared/messaging/data-access/src/index.ts"],
       "@lob/client/aat/asset-track/data": ["libs/client/aat/asset-track/data/src/index.ts"],
       "@lob/client/aat/asset-track/data-access": ["libs/client/aat/asset-track/data-access/src/index.ts"],
       "@lob/client/aat/asset-track/feature": ["libs/client/aat/asset-track/feature/src/index.ts"],
@@ -64,7 +65,6 @@
       "@lob/client/shared/tailwind/ui": ["libs/client/shared/tailwind/ui/src/index.ts"],
       "@lob/client/shared/theme/data": ["libs/client/shared/theme/data/src/index.ts"],
       "@lob/client/shared/theme/ui": ["libs/client/shared/theme/ui/src/index.ts"],
-      "@lob/client/shared/user-actions/ui": ["libs/client/shared/user-actions/ui/src/index.ts"],
       "@lob/server/kgtp/chat": ["libs/server/kgtp/chat/src/index.ts"],
       "@lob/shared/data-management/data": ["libs/shared/data-management/data/src/index.ts"],
       "@lob/shared/data-management/util": ["libs/shared/data-management/util/src/index.ts"],

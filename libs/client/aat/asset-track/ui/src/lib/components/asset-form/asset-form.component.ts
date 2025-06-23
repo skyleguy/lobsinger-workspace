@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, effect, input, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocomplete';
 import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
@@ -16,7 +15,6 @@ import { AjaxState } from '@lob/shared/data-management/data';
   selector: 'aat-asset-track-ui-asset-form',
   imports: [
     ProgressSpinnerModule,
-    MatAutocompleteModule,
     ReactiveFormsModule,
     AutoCompleteModule,
     InputTextModule,
@@ -179,6 +177,7 @@ export class AssetFormComponent {
       currentAddress: this.currentLocation()?.data ?? '',
       roomLocation: null
     });
+    this.assetForm.markAsPristine();
   }
 
   protected search(event: AutoCompleteCompleteEvent) {

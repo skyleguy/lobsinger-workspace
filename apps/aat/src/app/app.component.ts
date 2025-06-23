@@ -1,6 +1,7 @@
 import { Component, effect, inject, signal, untracked, viewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { doc, getDoc } from 'firebase/firestore';
+import { ToastModule } from 'primeng/toast';
 
 import { UserStore } from '@lob/client/shared/auth/data-access';
 import { FirebaseAppStore } from '@lob/client/shared/firebase/data-access';
@@ -9,7 +10,7 @@ import { ThemeTogglerComponent } from '@lob/client/shared/theme/ui';
 import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-auth-feature';
 
 @Component({
-  imports: [RouterModule, AppContainerComponent, UserAvatarComponent, SignInButtonComponent, ThemeTogglerComponent],
+  imports: [RouterModule, AppContainerComponent, UserAvatarComponent, SignInButtonComponent, ThemeTogglerComponent, ToastModule],
   selector: 'aat-root',
   template: `
     <shared-layout-ui-app-container [isSidebarAvailable]="false" [isMainBodyScrollable]="false">
@@ -31,6 +32,7 @@ import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-a
         <client-shared-auth-feature-sign-in-button></client-shared-auth-feature-sign-in-button>
       </ng-container>
     </shared-layout-ui-app-container>
+    <p-toast />
   `
 })
 export class AppComponent {

@@ -21,22 +21,22 @@ export class AppComponent {
   tabs = signal<TabMenuItem[]>([
     {
       label: 'Home',
-      icon: 'home',
+      icon: 'fa-home',
       link: 'home'
     },
     {
       label: 'Recipes',
-      icon: 'folder',
+      icon: 'fa-folder',
       link: 'recipes'
     },
     {
       label: 'Meal Plan',
-      icon: 'calendar_today',
+      icon: 'fa-calendar-days',
       link: 'meal-plan'
     },
     {
       label: 'Glist',
-      icon: 'list',
+      icon: 'fa-list',
       link: 'glist'
     }
   ]);

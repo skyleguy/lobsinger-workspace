@@ -1,6 +1,5 @@
-@use '@angular/material' as mat;
-
 @use 'tailwindcss';
+@import '@fortawesome/fontawesome-free/css/all.min.css';
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -16,11 +15,4 @@ body {
 
 html {
   color-scheme: light;
-  @include mat.theme(
-    (
-      color: mat.$spring-green-palette,
-      typography: Roboto,
-      density: 0
-    )
-  );
 }
