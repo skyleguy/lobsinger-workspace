@@ -6,6 +6,7 @@ import { ToastModule } from 'primeng/toast';
 import { UserStore } from '@lob/client/shared/auth/data-access';
 import { FirebaseAppStore } from '@lob/client/shared/firebase/data-access';
 import { AppContainerComponent, ErrorConfig } from '@lob/client/shared/layout/ui';
+import { UpdateService } from '@lob/client/shared/refresh/data-access';
 import { ThemeTogglerComponent } from '@lob/client/shared/theme/ui';
 import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-auth-feature';
 
@@ -15,7 +16,7 @@ import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-a
   template: `
     <shared-layout-ui-app-container [isSidebarAvailable]="false" [isMainBodyScrollable]="false">
       <ng-container nav>
-        <h1 nav>PowrQuest</h1>
+        <h1 nav>Update Test</h1>
         <div class="flex items-center gap-3">
           <shared-theme-ui-theme-toggler></shared-theme-ui-theme-toggler>
           <client-shared-auth-feature-user-avatar></client-shared-auth-feature-user-avatar>
@@ -37,6 +38,7 @@ import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-a
 })
 export class AppComponent {
   private readonly firebaseAppStore = inject(FirebaseAppStore);
+  private readonly updateService = inject(UpdateService);
   private readonly userStore = inject(UserStore);
   private readonly appContainer = viewChild(AppContainerComponent);
   private readonly allowedEmailPieces = ['@advantagenc.com'];
@@ -47,6 +49,7 @@ export class AppComponent {
   protected isAuthorized = signal<boolean | null>(null);
 
   constructor() {
+    this.updateService.enableAutoUpdate();
     this.firebaseAppStore.initializeApp({
       firestoreOptions: { databaseId: 'advantage', isEmulating: false },
       functionOptions: { isEmulating: false }
