@@ -16,7 +16,7 @@ import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-a
   template: `
     <shared-layout-ui-app-container [isSidebarAvailable]="false" [isMainBodyScrollable]="false">
       <ng-container nav>
-        <h1 nav>Update Test</h1>
+        <h1 nav>PowrQuest</h1>
         <div class="flex items-center gap-3">
           <shared-theme-ui-theme-toggler></shared-theme-ui-theme-toggler>
           <client-shared-auth-feature-user-avatar></client-shared-auth-feature-user-avatar>
