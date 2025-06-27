@@ -62,6 +62,7 @@
       "@lob/client/shared/mobile/utilities/data": ["libs/client/shared/mobile/utilities/data/src/index.ts"],
       "@lob/client/shared/mobile/utilities/data-access": ["libs/client/shared/mobile/utilities/data-access/src/index.ts"],
       "@lob/client/shared/platform/ui": ["libs/client/shared/platform/ui/src/index.ts"],
+      "@lob/client/shared/refresh/data-access": ["libs/client/shared/refresh/data-access/src/index.ts"],
       "@lob/client/shared/tailwind/ui": ["libs/client/shared/tailwind/ui/src/index.ts"],
       "@lob/client/shared/theme/data": ["libs/client/shared/theme/data/src/index.ts"],
       "@lob/client/shared/theme/ui": ["libs/client/shared/theme/ui/src/index.ts"],

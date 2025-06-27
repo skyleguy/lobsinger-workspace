@@ -6,6 +6,7 @@ import { ToastModule } from 'primeng/toast';
 import { UserStore } from '@lob/client/shared/auth/data-access';
 import { FirebaseAppStore } from '@lob/client/shared/firebase/data-access';
 import { AppContainerComponent, ErrorConfig } from '@lob/client/shared/layout/ui';
+import { UpdateService } from '@lob/client/shared/refresh/data-access';
 import { ThemeTogglerComponent } from '@lob/client/shared/theme/ui';
 import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-auth-feature';
 
@@ -37,6 +38,7 @@ import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-a
 })
 export class AppComponent {
   private readonly firebaseAppStore = inject(FirebaseAppStore);
+  private readonly updateService = inject(UpdateService);
   private readonly userStore = inject(UserStore);
   private readonly appContainer = viewChild(AppContainerComponent);
   private readonly allowedEmailPieces = ['@advantagenc.com'];
@@ -47,6 +49,7 @@ export class AppComponent {
   protected isAuthorized = signal<boolean | null>(null);
 
   constructor() {
+    this.updateService.enableAutoUpdate();
     this.firebaseAppStore.initializeApp({
       firestoreOptions: { databaseId: 'advantage', isEmulating: false },
       functionOptions: { isEmulating: false }
