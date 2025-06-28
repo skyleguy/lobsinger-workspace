@@ -21,13 +21,14 @@ import { createAjaxState } from '@lob/shared/data-management/util';
         <button
           aria-label="Back button to return to scanner"
           routerLink="/scan"
+          class="hidden md:block"
           pButton
           icon="fa-solid fa-arrow-left"
           [rounded]="true"
           size="large"
         ></button>
         <div class="grow flex flex-col gap-3 md:items-center md:justify-center md:mx-auto">
-          <aat-asset-track-ui-asset-card class="w-full" [asset]="asset()"></aat-asset-track-ui-asset-card>
+          <aat-asset-track-ui-asset-card class="w-full" [asset]="asset()" backButtonRoute="/scan"></aat-asset-track-ui-asset-card>
           <aat-asset-track-ui-asset-form
             [currentLocation]="currentLocation()"
             [isFormLoading]="isRequestInProgress()"
