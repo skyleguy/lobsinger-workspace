@@ -48,6 +48,7 @@
     "@tailwindcss/postcss": "^4.0.8",
     "@zxing/library": "0.21.3",
     "@zxing/ngx-scanner": "20.0.0",
+    "@zxing/browser": "0.1.5",
     "astro": "^5.9.3",
     "date-fns": "^3.2.0",
     "express": "4.21.2",
