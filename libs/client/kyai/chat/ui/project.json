@@ -3,8 +3,8 @@
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/client/kyai/chat/ui/src",
   "prefix": "lib",
-  "tags": ["scope:client", "type:ui"],
   "projectType": "library",
+  "tags": ["scope:client", "type:ui"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

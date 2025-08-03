@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/grss/src",
   "projectType": "application",
+  "tags": ["scope:grss", "scope:server"],
   "targets": {
     "build": {
       "executor": "@nx/webpack:webpack",
@@ -51,6 +52,5 @@
         "jestConfig": "apps/grss/jest.config.ts"
       }
     }
-  },
-  "tags": ["scope:grss", "scope:server"]
+  }
 }
