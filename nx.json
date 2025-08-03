@@ -35,9 +35,6 @@
     },
     "e2e-ci--**/*": {
       "dependsOn": ["^build"]
-    },
-    "build-storybook": {
-      "cache": true
     }
   },
   "namedInputs": {
@@ -52,9 +49,7 @@
       "!{projectRoot}/cypress/**/*",
       "!{projectRoot}/**/*.cy.[jt]s?(x)",
       "!{projectRoot}/cypress.config.[jt]s",
-      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
-      "!{projectRoot}/.storybook/**/*",
-      "!{projectRoot}/tsconfig.storybook.json"
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)"
     ],
     "sharedGlobals": []
   },
@@ -80,15 +75,6 @@
       "plugin": "@nx/eslint/plugin",
       "options": {
         "targetName": "eslint:lint"
-      }
-    },
-    {
-      "plugin": "@nx/storybook/plugin",
-      "options": {
-        "serveStorybookTargetName": "storybook",
-        "buildStorybookTargetName": "build-storybook",
-        "testStorybookTargetName": "test-storybook",
-        "staticStorybookTargetName": "static-storybook"
       }
     }
   ]
