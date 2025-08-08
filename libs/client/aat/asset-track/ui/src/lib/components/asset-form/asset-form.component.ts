@@ -70,6 +70,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
             [suggestions]="filteredRoomOptions"
             [forceSelection]="true"
             [dropdown]="true"
+            [completeOnFocus]="true"
             (completeMethod)="search($event)"
           />
           <label for="room_location">Room Location</label>
@@ -129,7 +130,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
   `
 })
 export class AssetFormComponent {
-  private readonly allRoomOptions = ['Basement', 'Dining Room', 'Family Room', 'Living Room', 'Office', 'Bedroom'];
+  private readonly allRoomOptions = ['Family Room', 'Bedroom', 'Living Room', 'Dining Room', 'Basement', 'Office'];
 
   isLocationLoading = input(false);
   isFormLoading = input(false);

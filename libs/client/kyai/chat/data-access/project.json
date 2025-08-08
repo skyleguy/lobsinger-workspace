@@ -3,8 +3,8 @@
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/client/kyai/chat/data-access/src",
   "prefix": "lib",
-  "tags": ["scope:client", "type:data-access"],
   "projectType": "library",
+  "tags": ["scope:client", "type:data-access"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

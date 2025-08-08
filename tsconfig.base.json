@@ -36,8 +36,6 @@
       "@lob/client/glist/recipes/data-access": ["libs/client/glist/recipes/data-access/src/index.ts"],
       "@lob/client/glist/recipes/feature": ["libs/client/glist/recipes/feature/src/index.ts"],
       "@lob/client/glist/recipes/ui": ["libs/client/glist/recipes/ui/src/index.ts"],
-      "@lob/client/glist2/home/feature": ["libs/client/glist2/home/feature/src/index.ts"],
-      "@lob/client/glist2/recipe/feature": ["libs/client/glist2/recipe/feature/src/index.ts"],
       "@lob/client/kyai/chat/data": ["libs/client/kyai/chat/data/src/index.ts"],
       "@lob/client/kyai/chat/data-access": ["libs/client/kyai/chat/data-access/src/index.ts"],
       "@lob/client/kyai/chat/ui": ["libs/client/kyai/chat/ui/src/index.ts"],

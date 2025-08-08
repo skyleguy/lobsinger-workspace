@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
 
 import { Conversation, ConversationType, GptChatMessage } from '@lob/client/kyai/chat/data';
@@ -15,7 +15,7 @@ import {
 
 @Component({
     selector: 'kyai-mystery-feature-mystery-container',
-    imports: [CommonModule, TopMenuComponent, TextContainerComponent, GameContainerComponent, SidebarComponent],
+    imports: [TopMenuComponent, TextContainerComponent, GameContainerComponent, SidebarComponent],
     providers: [{ provide: ConversationType, useValue: Conversation.MYSTERY }, GptService],
     templateUrl: 'mystery-container.component.html',
     styles: [],

@@ -3,6 +3,7 @@
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/client/kyai/layout/data/src",
   "projectType": "library",
+  "tags": ["scope:client", "type:data"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -27,6 +28,5 @@
         "jestConfig": "libs/client/kyai/layout/data/jest.config.ts"
       }
     }
-  },
-  "tags": ["scope:client", "type:data"]
+  }
 }
