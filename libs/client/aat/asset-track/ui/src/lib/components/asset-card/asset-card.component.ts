@@ -19,11 +19,11 @@ import { Asset } from '@lob/client/aat/asset-track/data';
           pButton
           icon="fa-solid fa-arrow-left"
           [rounded]="true"
-          size="large"
+          size="small"
         ></button>
-        <div class="flex flex-col gap-1">
-          <span class="font-bold text-lg">Asset: {{ asset().assetName | titlecase }}</span>
-          <p>ID: {{ asset().assetId }}</p>
+        <div class="grow flex justify-between items-center">
+          <span class="font-bold">Asset: {{ asset().assetName | titlecase }}</span>
+          <p class="text-sm">ID: {{ asset().assetId }}</p>
         </div>
       </div>
     </p-card>

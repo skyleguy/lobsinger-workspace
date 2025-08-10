@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, effect, input, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocomplete';
+import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
 import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { FluidModule } from 'primeng/fluid';
@@ -8,6 +8,7 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { SelectModule } from 'primeng/select';
 
 import { AjaxState } from '@lob/shared/data-management/data';
 
@@ -16,17 +17,17 @@ import { AjaxState } from '@lob/shared/data-management/data';
   imports: [
     ProgressSpinnerModule,
     ReactiveFormsModule,
-    AutoCompleteModule,
     InputTextModule,
     FloatLabelModule,
     FluidModule,
     InputGroupModule,
     InputGroupAddonModule,
-    ButtonModule
+    ButtonModule,
+    SelectModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <form class="relative flex flex-col gap-5">
+    <form class="relative flex flex-col gap-3">
       @if (isFormLoading()) {
         <div class="absolute inset-0 bg-black/5 z-50 flex justify-center items-center">
           <p-progress-spinner />
@@ -64,14 +65,12 @@ import { AjaxState } from '@lob/shared/data-management/data';
           }
         </div>
         <p-floatlabel variant="in">
-          <p-autocomplete
-            inputId="room_location"
+          <p-select
             [formControl]="roomLocationControl"
-            [suggestions]="filteredRoomOptions"
-            [forceSelection]="true"
-            [dropdown]="true"
-            [completeOnFocus]="true"
-            (completeMethod)="search($event)"
+            inputId="room_location"
+            [options]="allRoomOptions"
+            [invalid]="roomLocationControl.touched && !roomLocationControl.valid"
+            appendTo="body"
           />
           <label for="room_location">Room Location</label>
         </p-floatlabel>
@@ -130,7 +129,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
   `
 })
 export class AssetFormComponent {
-  private readonly allRoomOptions = ['Family Room', 'Bedroom', 'Living Room', 'Dining Room', 'Basement', 'Office'];
+  protected readonly allRoomOptions = ['Family Room', 'Bedroom', 'Living Room', 'Dining Room', 'Basement', 'Office'];
 
   isLocationLoading = input(false);
   isFormLoading = input(false);
