@@ -33,7 +33,7 @@ import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-a
         <client-shared-auth-feature-sign-in-button></client-shared-auth-feature-sign-in-button>
       </ng-container>
     </shared-layout-ui-app-container>
-    <p-toast />
+    <p-toast [breakpoints]="{ '920px': { width: '100%', right: '0', left: '0' } }" />
   `
 })
 export class AppComponent {
