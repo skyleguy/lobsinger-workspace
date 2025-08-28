@@ -71,7 +71,7 @@ export const setUpAsset = onRequest(
       const spreadsheet = await google.sheets('v4').spreadsheets.values.get({ spreadsheetId, auth, range: initialSheetRange });
       const sheetData = spreadsheet.data.values;
       if (sheetData) {
-        const monitorRowIndex = sheetData.findIndex((row) => row?.[3]?.trim() === `Monitor #${assetId}`);
+        const monitorRowIndex = sheetData.findIndex((row) => row?.[3]?.trim().includes(`Monitor #${assetId}`));
         if (monitorRowIndex >= 0) {
           const localDate = toZonedTime(new Date(), 'America/New_York');
           const monitorRow = sheetData[monitorRowIndex];
@@ -148,7 +148,7 @@ export const assignAsset = onRequest(
       const spreadsheet = await google.sheets('v4').spreadsheets.values.get({ spreadsheetId, auth, range: initialSheetRange });
       const sheetData = spreadsheet.data.values;
       if (sheetData) {
-        const monitorRowIndex = sheetData.findIndex((row) => row?.[3]?.trim() === `Monitor #${assetId}`);
+        const monitorRowIndex = sheetData.findIndex((row) => row?.[3]?.trim().includes(`Monitor #${assetId}`));
         if (monitorRowIndex >= 0) {
           const monitorRow = sheetData[monitorRowIndex];
           const newMonitorRow = [...monitorRow];
@@ -222,7 +222,7 @@ export const pickUpAsset = onRequest(
       const spreadsheet = await google.sheets('v4').spreadsheets.values.get({ spreadsheetId, auth, range: initialSheetRange });
       const sheetData = spreadsheet.data.values;
       if (sheetData) {
-        const monitorRowIndex = sheetData.findIndex((row) => row?.[3]?.trim() === `Monitor #${assetId}`);
+        const monitorRowIndex = sheetData.findIndex((row) => row?.[3]?.trim().includes(`Monitor #${assetId}`));
         if (monitorRowIndex >= 0) {
           const monitorRow = sheetData[monitorRowIndex];
           const newMonitorRow = [...monitorRow];
@@ -292,7 +292,7 @@ export const returnAsset = onRequest(
       const spreadsheet = await google.sheets('v4').spreadsheets.values.get({ spreadsheetId, auth, range: initialSheetRange });
       const sheetData = spreadsheet.data.values;
       if (sheetData) {
-        const monitorRowIndex = sheetData.findIndex((row) => row?.[3]?.trim() === `Monitor #${assetId}`);
+        const monitorRowIndex = sheetData.findIndex((row) => row?.[3]?.trim().includes(`Monitor #${assetId}`));
         if (monitorRowIndex >= 0) {
           const monitorRow = sheetData[monitorRowIndex];
           const newMonitorRow = [...monitorRow];
