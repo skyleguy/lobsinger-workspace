@@ -16,14 +16,6 @@ export interface ErrorConfig {
   selector: 'shared-layout-ui-app-container',
   imports: [TabMenuComponent],
   providers: [MessageService],
-  styles: [
-    `
-      .scale-3 {
-        transform: scale(3);
-        transform-origin: center;
-      }
-    `
-  ],
   template: `
     <div class="h-dvh w-screen flex flex-col">
       @if (isHeaderAvailable()) {
