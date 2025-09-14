@@ -1,9 +1,6 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { isPlatformBrowser } from '@angular/common';
-import { Component, inject, input, OnInit, PLATFORM_ID, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { debounceTime, fromEvent, map, startWith } from 'rxjs';
 
 import { TabMenuItem } from '@lob/client/shared/layout/data';
 
@@ -28,7 +25,7 @@ export interface ErrorConfig {
     `
   ],
   template: `
-    <div class="h-screen w-screen flex flex-col" [style.height]="deviceHeight()">
+    <div class="h-dvh w-screen flex flex-col">
       @if (isHeaderAvailable()) {
         <nav id="header" class="p-3 shrink flex items-center justify-between bg-surface-0 dark:bg-surface-900">
           <ng-content select="[nav]"></ng-content>
@@ -68,20 +65,7 @@ export interface ErrorConfig {
   `
 })
 export class AppContainerComponent implements OnInit {
-  private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly mediaMatcher = inject(MediaMatcher);
-  /**
-   * hack needed in order to get the app to actually take up the height of the available space minus all browser ui elements like search bar/navigation
-   */
-  protected readonly deviceHeight = this.isBrowser
-    ? toSignal(
-        fromEvent(window, 'resize').pipe(
-          startWith(`${window.innerHeight}px`),
-          debounceTime(200),
-          map(() => `${window.innerHeight}px`)
-        )
-      )
-    : signal('100vh');
   protected errorConfig = signal<ErrorConfig | null>(null);
 
   isSidebarAvailable = input(true);
