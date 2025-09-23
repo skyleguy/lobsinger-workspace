@@ -3,6 +3,7 @@ import Material from '@primeng/themes/aura';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import { applicationConfig, Preview } from '@storybook/angular';
 import { providePrimeNG } from 'primeng/config';
+import '../src/styles.css';
 
 const darkModeSelector = 'my-app-dark';
 

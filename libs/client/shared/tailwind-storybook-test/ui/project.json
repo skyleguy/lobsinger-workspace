@@ -38,10 +38,6 @@
         "port": 4400,
         "configDir": "libs/client/shared/tailwind-storybook-test/ui/.storybook",
         "browserTarget": "client-shared-tailwind-storybook-test-ui:build-storybook",
-        "styles": [
-          "libs/client/shared/tailwind-storybook-test/ui/src/styles.css",
-          "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
-        ],
         "compodoc": false
       },
       "configurations": {
