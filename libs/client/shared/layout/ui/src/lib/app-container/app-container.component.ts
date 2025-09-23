@@ -1,5 +1,5 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { MessageService } from 'primeng/api';
 
 import { TabMenuItem } from '@lob/client/shared/layout/data';
@@ -25,11 +25,6 @@ export interface ErrorConfig {
       }
       @if (errorConfig(); as errorConfig) {
         <div class="grow flex flex-col items-center justify-center p-5 gap-5">
-          @if (isMaterialTheming()) {
-            @defer (when isMaterialTheming()) {
-              <i class="text-6xl fa-solid {{ errorConfig.icon }}"></i>
-            }
-          }
           <div class="flex flex-col justify-center items-center text-center">
             <h2 class="!m-0">{{ errorConfig.primaryMessage }}</h2>
             <h4 class="!m-0">{{ errorConfig.secondaryMessage }}</h4>
@@ -56,40 +51,14 @@ export interface ErrorConfig {
     </div>
   `
 })
-export class AppContainerComponent implements OnInit {
+export class AppContainerComponent {
   private readonly mediaMatcher = inject(MediaMatcher);
   protected errorConfig = signal<ErrorConfig | null>(null);
 
   isSidebarAvailable = input(true);
   isMainBodyScrollable = input(true);
   isHeaderAvailable = input(true);
-  isMaterialTheming = input(true);
   tabs = input<TabMenuItem[]>();
-
-  ngOnInit(): void {
-    // call it first initially since the below eventListener only fires on a change, not when its set the first time
-    if (this.isMaterialTheming()) {
-      this.setThemeColorBasedOnDeviceTheme();
-      this.mediaMatcher.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-        this.setThemeColorBasedOnDeviceTheme();
-      });
-    }
-  }
-
-  private setThemeColorBasedOnDeviceTheme() {
-    const isDarkMode = this.mediaMatcher.matchMedia('(prefers-color-scheme: dark)').matches;
-    const rootStyle = getComputedStyle(document.documentElement);
-    const themeColor = rootStyle.getPropertyValue('--mat-sys-surface').trim();
-    const regex = /#[0-9a-fA-F]{6}/gm;
-    const match = themeColor.match(regex);
-    if (match) {
-      const [light, dark] = match;
-      const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-      if (metaThemeColor) {
-        metaThemeColor.setAttribute('content', isDarkMode ? dark : light);
-      }
-    }
-  }
 
   public setError(errorConfig: ErrorConfig) {
     this.errorConfig.set(errorConfig);

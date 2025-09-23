@@ -1,8 +1,0 @@
-@if (mysteryCoverPhotoUrl) {
-  <div class="flex shrink self-center">
-    <img [src]="mysteryCoverPhotoUrl" width="512" height="512" />
-  </div>
-}
-@for (response of responses; track response) {
-  <p (click)="textClicked.emit(response)">{{ response }}</p>
-}
