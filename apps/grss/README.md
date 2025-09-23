@@ -1,1 +1,0 @@
-## Glist Recipe Scraper Service
