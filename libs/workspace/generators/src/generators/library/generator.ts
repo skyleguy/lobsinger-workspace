@@ -6,16 +6,13 @@ import { libraryGenerator } from '@nx/js';
 import { LibraryGeneratorSchema } from './schema';
 
 export async function workspaceLibraryGenerator(tree: Tree, options: LibraryGeneratorSchema) {
+  const { name, application, scope, libTypes } = options;
   await Promise.all(
-    options.libTypes.map(async (libType) => {
-      let name = options.scope;
-      if (options.application && options.application !== 'null') {
-        name += `/${options.application}`;
-      }
-      name += `/${options.name}/${libType}`;
-      const directory = `libs/${name}`;
-      const dashSeparatedName = `${options.application}-${options.name}-${libType}`;
-      const tags = `scope:${options.scope}, type:${libType}`;
+    libTypes.map(async (libType) => {
+      const directory = `libs/${scope}/${application !== 'null' ? `/${application}` : ''}/${name}/${libType}`;
+      const projectName = `${scope}-${application}-${name}-${libType}`;
+      const dashSeparatedName = `${application}-${name}-${libType}`;
+      const tags = `scope:${scope}, type:${libType}`;
       const linter: LinterType = 'eslint';
 
       switch (libType) {
@@ -24,8 +21,8 @@ export async function workspaceLibraryGenerator(tree: Tree, options: LibraryGene
         case 'data-access':
           // https://nx.dev/nx-api/angular/generators/library
           return ngLibraryGenerator(tree, {
-            name,
-            importPath: `@lob/${name}`,
+            name: projectName,
+            importPath: `@lob/${projectName}`,
             buildable: libType === 'ui',
             changeDetection: 'OnPush',
             lazy: libType === 'feature',

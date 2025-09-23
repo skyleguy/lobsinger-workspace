@@ -1,0 +1,89 @@
+{
+  "name": "client-shared-tailwind-storybook-test-ui",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/client/shared/tailwind-storybook-test/ui/src",
+  "prefix": "shared-tailwind-storybook-test-ui",
+  "projectType": "library",
+  "tags": ["scope:client", "type:ui"],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/client/shared/tailwind-storybook-test/ui/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/client/shared/tailwind-storybook-test/ui/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/client/shared/tailwind-storybook-test/ui/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/client/shared/tailwind-storybook-test/ui/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "libs/client/shared/tailwind-storybook-test/ui/.storybook",
+        "browserTarget": "client-shared-tailwind-storybook-test-ui:build-storybook",
+        "styles": [
+          "libs/client/shared/tailwind-storybook-test/ui/src/styles.css",
+          "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+        ],
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/client-shared-tailwind-storybook-test-ui",
+        "configDir": "libs/client/shared/tailwind-storybook-test/ui/.storybook",
+        "browserTarget": "client-shared-tailwind-storybook-test-ui:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c libs/client/shared/tailwind-storybook-test/ui/.storybook --url=http://localhost:4400"
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "dependsOn": ["build-storybook"],
+      "options": {
+        "buildTarget": "client-shared-tailwind-storybook-test-ui:build-storybook",
+        "staticFilePath": "dist/storybook/client-shared-tailwind-storybook-test-ui",
+        "spa": true
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "client-shared-tailwind-storybook-test-ui:build-storybook:ci"
+        }
+      }
+    }
+  }
+}

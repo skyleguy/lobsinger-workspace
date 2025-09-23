@@ -24,6 +24,7 @@
     "paths": {
       "@lob/client-shared-auth-feature": ["libs/client/shared/auth/feature/src/index.ts"],
       "@lob/client-shared-messaging-data-access": ["libs/client/shared/messaging/data-access/src/index.ts"],
+      "@lob/client-shared-tailwind-storybook-test-ui": ["libs/client/shared/tailwind-storybook-test/ui/src/index.ts"],
       "@lob/client/aat/asset-track/data": ["libs/client/aat/asset-track/data/src/index.ts"],
       "@lob/client/aat/asset-track/data-access": ["libs/client/aat/asset-track/data-access/src/index.ts"],
       "@lob/client/aat/asset-track/feature": ["libs/client/aat/asset-track/feature/src/index.ts"],
