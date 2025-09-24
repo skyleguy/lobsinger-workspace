@@ -51,7 +51,7 @@
       "executor": "@storybook/angular:build-storybook",
       "outputs": ["{options.outputDir}"],
       "options": {
-        "outputDir": "dist/storyboook/client-shared-storybook-ui",
+        "outputDir": "dist/storybook/client-shared-storybook-ui",
         "configDir": "libs/client/shared/storybook/ui/.storybook",
         "browserTarget": "client-shared-storybook-ui:build-storybook",
         "compodoc": false
