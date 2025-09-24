@@ -1,0 +1,86 @@
+{
+  "name": "client-shared-storybook-ui",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/client/shared/storybook/ui/src",
+  "prefix": "shared-storybook-ui",
+  "projectType": "library",
+  "tags": ["scope:client", "type:ui"],
+  "implicitDependencies": ["client/aat/asset-track/ui", "client/aat/qr-code/ui"],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/client/shared/storybook/ui/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/client/shared/storybook/ui/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/client/shared/storybook/ui/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/client/shared/storybook/ui/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "libs/client/shared/storybook/ui/.storybook",
+        "browserTarget": "client-shared-storybook-ui:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storyboook/client-shared-storybook-ui",
+        "configDir": "libs/client/shared/storybook/ui/.storybook",
+        "browserTarget": "client-shared-storybook-ui:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c libs/client/shared/storybook/ui/.storybook --url=http://localhost:4400"
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "dependsOn": ["build-storybook"],
+      "options": {
+        "buildTarget": "client-shared-storybook-ui:build-storybook",
+        "staticFilePath": "dist/storybook/client-shared-storybook-ui",
+        "spa": true
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "client-shared-storybook-ui:build-storybook:ci"
+        }
+      }
+    }
+  }
+}

@@ -10,7 +10,6 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SelectModule } from 'primeng/select';
 
-import { TestComponent } from '@lob/client-shared-tailwind-storybook-test-ui';
 import { AjaxState } from '@lob/shared/data-management/data';
 
 @Component({
@@ -24,13 +23,11 @@ import { AjaxState } from '@lob/shared/data-management/data';
     InputGroupModule,
     InputGroupAddonModule,
     ButtonModule,
-    SelectModule,
-    TestComponent
+    SelectModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <form class="relative flex flex-col gap-3">
-      <shared-tailwind-storybook-test-ui-test-component />
       @if (isFormLoading()) {
         <div class="absolute inset-0 bg-black/5 z-50 flex justify-center items-center">
           <p-progress-spinner />
