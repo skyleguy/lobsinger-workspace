@@ -34,10 +34,6 @@
           {
             "value": "util",
             "label": "Util"
-          },
-          {
-            "value": "widget",
-            "label": "Widget"
           }
         ]
       }
@@ -78,6 +74,10 @@
           {
             "value": "shared",
             "label": "SHARED"
+          },
+          {
+            "value": null,
+            "label": "N/A"
           }
         ]
       }

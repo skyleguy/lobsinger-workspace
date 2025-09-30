@@ -9,7 +9,7 @@ describe('workspace library generator', () => {
   const options: LibraryGeneratorSchema = {
     application: 'glist',
     scope: 'client',
-    libTypes: ['feature', 'ui', 'data', 'data-access', 'util', 'widget'],
+    libTypes: ['feature', 'ui', 'data', 'data-access', 'util'],
     name: 'my-cool-lib'
   };
   let projects: Map<string, ProjectConfiguration>;
@@ -52,10 +52,6 @@ describe('workspace library generator', () => {
     {
       libType: 'util',
       tags: ['scope:client', 'type:util']
-    },
-    {
-      libType: 'widget',
-      tags: ['scope:client', 'type:widget']
     }
   ])('should create the correct libraries with correct nx config for $libType', async ({ libType, tags }) => {
     const lib = projects.get(`client-glist-my-cool-lib-${libType}`);

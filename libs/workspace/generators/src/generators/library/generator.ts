@@ -1,29 +1,29 @@
 import { UnitTestRunner, libraryGenerator as ngLibraryGenerator } from '@nx/angular/generators';
 import { Tree } from '@nx/devkit';
-import { Linter } from '@nx/eslint';
+import { LinterType } from '@nx/eslint';
 import { libraryGenerator } from '@nx/js';
 
 import { LibraryGeneratorSchema } from './schema';
 
 export async function workspaceLibraryGenerator(tree: Tree, options: LibraryGeneratorSchema) {
+  const { name, application, scope, libTypes } = options;
   await Promise.all(
-    options.libTypes.map(async (libType) => {
-      const name = `${options.scope}/${options.application}/${options.name}/${libType}`;
-      const directory = `libs/${name}`;
-      const dashSeparatedName = `${options.application}-${options.name}-${libType}`;
-      const tags = `scope:client, type:${libType}`;
-      const linter = Linter.EsLint;
+    libTypes.map(async (libType) => {
+      const directory = `libs/${scope}/${application !== 'null' ? `/${application}` : ''}/${name}/${libType}`;
+      const projectName = `${scope}-${application}-${name}-${libType}`;
+      const dashSeparatedName = `${application}-${name}-${libType}`;
+      const tags = `scope:${scope}, type:${libType}`;
+      const linter: LinterType = 'eslint';
 
       switch (libType) {
         case 'feature':
         case 'ui':
-        case 'widget':
         case 'data-access':
           // https://nx.dev/nx-api/angular/generators/library
           return ngLibraryGenerator(tree, {
-            name,
-            importPath: `@lob/${name}`,
-            buildable: false,
+            name: projectName,
+            importPath: `@lob/${projectName}`,
+            buildable: libType === 'ui',
             changeDetection: 'OnPush',
             lazy: libType === 'feature',
             routing: libType === 'feature',
@@ -43,7 +43,7 @@ export async function workspaceLibraryGenerator(tree: Tree, options: LibraryGene
           return libraryGenerator(tree, {
             name,
             importPath: `@lob/${name}`,
-            buildable: false,
+            buildable: true,
             bundler: 'esbuild',
             compiler: 'tsc',
             config: 'workspace',
