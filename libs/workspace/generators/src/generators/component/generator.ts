@@ -14,10 +14,9 @@ export async function workspaceComponentGenerator(tree: Tree, options: Component
       await componentGenerator(tree, {
         name: dashedName,
         changeDetection: 'OnPush',
-        project,
         standalone: true,
         style: 'scss',
-        path: `${ourProject.sourceRoot}/lib/components`,
+        path: `${ourProject?.sourceRoot}/lib/components/${dashedName}/${dashedName}`,
         type: 'component',
         inlineTemplate: inlineTemplate ?? false
       });
@@ -31,7 +30,7 @@ export async function workspaceComponentGenerator(tree: Tree, options: Component
       generateFiles(
         tree,
         joinPathFragments(__dirname, './files'),
-        `${ourProject.sourceRoot}/lib/components/${dashedName}`,
+        `${ourProject?.sourceRoot}/lib/components/${dashedName}`,
         specFileTemplateReplacements
       );
 
