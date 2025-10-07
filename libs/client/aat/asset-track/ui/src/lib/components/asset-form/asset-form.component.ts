@@ -178,6 +178,7 @@ export class AssetFormComponent {
       roomLocation: null
     });
     this.assetForm.markAsPristine();
+    this.assetForm.markAsUntouched();
   }
 
   protected search(event: AutoCompleteCompleteEvent) {
