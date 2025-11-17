@@ -13,7 +13,7 @@
         "outputPath": "dist/apps/aat",
         "index": "apps/aat/src/index.html",
         "browser": "apps/aat/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [],
         "tsConfig": "apps/aat/tsconfig.app.json",
         "assets": [
           {
