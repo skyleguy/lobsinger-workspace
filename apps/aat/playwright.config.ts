@@ -12,7 +12,7 @@ const baseURL = process.env['BASE_URL'] || 'http://localhost:4200';
  */
 // require('dotenv').config();
 
-const FAKE_VIDEO_PATH = '/Users/ky/Documents/repos/lobsinger-monorepo/lobsinger-workspace/apps/aat/e2e/assets/small-qr-test.y4m';
+const FAKE_VIDEO_PATH = '/Users/ky/Documents/repos/playwright-assets/small-qr-test.y4m';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
