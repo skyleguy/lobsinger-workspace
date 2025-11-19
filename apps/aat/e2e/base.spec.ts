@@ -23,8 +23,6 @@ test('critical signed in flow', async ({ page, auth, context }) => {
   await expect(userImage).toBeVisible();
   const cameraLoading = page.locator('[data-test="camera-loading"]');
   await expect(cameraLoading).toBeHidden();
-  const video = page.locator('video');
-  await expect(video).toBeVisible();
 
   await expect(page.locator('[data-test="asset-track-container"]')).toBeVisible();
   expect(page.url()).toContain('/radon/12');

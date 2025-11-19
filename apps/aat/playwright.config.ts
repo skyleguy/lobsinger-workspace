@@ -12,7 +12,7 @@ const baseURL = process.env['BASE_URL'] || 'http://localhost:4200';
  */
 // require('dotenv').config();
 
-const FAKE_VIDEO_PATH = '/Users/ky/Documents/repos/playwright-assets/small-qr-test.y4m';
+const FAKE_VIDEO_PATH = process.env['FAKE_QR_VIDEO_PATH'] ?? '';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
