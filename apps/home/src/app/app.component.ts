@@ -8,7 +8,7 @@ import { ThemeTogglerComponent } from '@lob/client/shared/theme/ui';
   selector: 'home-root',
   imports: [AppContainerComponent, ThemeTogglerComponent, SidebarComponent],
   template: `
-    <shared-layout-ui-app-container [isMaterialTheming]="false">
+    <shared-layout-ui-app-container>
       <ng-container nav>
         <div class="flex items-center gap-3">
           <i class="fa-solid fa-home"></i>
