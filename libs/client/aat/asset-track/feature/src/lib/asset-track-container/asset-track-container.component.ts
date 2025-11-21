@@ -16,7 +16,7 @@ import { createAjaxState } from '@lob/shared/data-management/util';
   selector: 'aat-asset-track-feature-asset-track-container',
   imports: [ButtonModule, RouterLink, AssetFormComponent, AssetCardComponent],
   template: `
-    <div class="h-full w-full flex flex-col gap-3">
+    <div class="h-full w-full flex flex-col gap-3" data-test="asset-track-container">
       @if (isValid()) {
         <button
           aria-label="Back button to return to scanner"
@@ -26,6 +26,7 @@ import { createAjaxState } from '@lob/shared/data-management/util';
           icon="fa-solid fa-arrow-left"
           [rounded]="true"
           size="large"
+          data-test="back-button"
         ></button>
         <div class="grow flex flex-col gap-3 md:items-center md:justify-center md:mx-auto">
           <aat-asset-track-ui-asset-card class="w-full" [asset]="asset()" backButtonRoute="/scan"></aat-asset-track-ui-asset-card>

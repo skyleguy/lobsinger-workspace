@@ -11,7 +11,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     <div class="h-full w-full flex flex-col p-3 gap-3">
       <div class="flex items-center justify-center flex-col">
         @if (!camFound()) {
-          <p-progress-spinner class="grow" ariaLabel="loading" />
+          <p-progress-spinner class="grow" ariaLabel="loading" data-test="camera-loading" />
         }
         <zxing-scanner
           [ngClass]="{

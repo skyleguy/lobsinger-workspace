@@ -48,6 +48,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
                 [formControl]="currentAddressControl"
                 autocomplete="off"
                 (focus)="isAddressInputTouched.emit(true)"
+                data-test="asset-address"
               />
               <label for="address">
                 @if (currentLocation()?.loading) {
@@ -71,6 +72,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
             [options]="allRoomOptions"
             [invalid]="roomLocationControl.touched && !roomLocationControl.valid"
             appendTo="body"
+            data-test="asset-room-location"
           />
           <label for="room_location">Room Location</label>
         </p-floatlabel>
@@ -87,6 +89,7 @@ import { AjaxState } from '@lob/shared/data-management/data';
           type="button"
           [outlined]="true"
           [rounded]="true"
+          data-test="assign-asset-button"
         ></button>
         <button
           pButton

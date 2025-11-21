@@ -14,7 +14,14 @@ import { UserStore } from '@lob/client/shared/auth/data-access';
         @if (isAvatarImageError()) {
           <span>{{ userContent }}</span>
         } @else {
-          <img class="rounded-lg" [ngSrc]="userContent" width="48" height="48" (error)="isAvatarImageError.set(true)" />
+          <img
+            class="rounded-lg"
+            [ngSrc]="userContent"
+            width="48"
+            height="48"
+            (error)="isAvatarImageError.set(true)"
+            data-test="user-image"
+          />
         }
       } @else {
         <p-button icon="fa-solid fa-user" [rounded]="true" [outlined]="true" />
