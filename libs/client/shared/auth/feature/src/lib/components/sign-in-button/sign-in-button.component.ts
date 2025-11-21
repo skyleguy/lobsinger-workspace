@@ -7,7 +7,15 @@ import { UserStore } from '@lob/client/shared/auth/data-access';
   selector: 'client-shared-auth-feature-sign-in-button',
   imports: [ButtonModule],
   template: `
-    <p-button [rounded]="true" severity="primary" label="Log In" icon="fa-solid fa-right-to-bracket" (click)="logIn()"> </p-button>
+    <p-button
+      [rounded]="true"
+      severity="primary"
+      label="Log In"
+      icon="fa-solid fa-right-to-bracket"
+      (click)="logIn()"
+      data-test="sign-in-button"
+    >
+    </p-button>
   `
 })
 export class SignInButtonComponent {

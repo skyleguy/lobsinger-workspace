@@ -20,6 +20,7 @@ import { Asset } from '@lob/client/aat/asset-track/data';
           icon="fa-solid fa-arrow-left"
           [rounded]="true"
           size="small"
+          data-test="back-button"
         ></button>
         <div class="grow flex justify-between items-center">
           <span class="font-bold">Asset: {{ asset().assetName | titlecase }}</span>

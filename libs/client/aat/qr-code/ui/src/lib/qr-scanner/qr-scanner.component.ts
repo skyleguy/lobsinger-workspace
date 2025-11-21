@@ -11,7 +11,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     <div class="h-full w-full flex flex-col p-3 gap-3">
       <div class="flex items-center justify-center flex-col">
         @if (!camFound()) {
-          <p-progress-spinner class="grow" ariaLabel="loading" />
+          <p-progress-spinner class="grow" ariaLabel="loading" data-test="camera-loading" />
         }
         <zxing-scanner
           [ngClass]="{
@@ -25,7 +25,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
         ></zxing-scanner>
       </div>
       <div class="border-b-2 border-white flex items-center justify-center">
-        <p>Center the QR Code in your device’s camera and hold it steady. If the scan is successful you will be redirected.</p>
+        <p>Center the QR Code in your device’s camera and hold it steady. If the scan is successful you will be redirected. Test Thing</p>
       </div>
     </div>
   `

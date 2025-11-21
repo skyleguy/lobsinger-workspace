@@ -7,29 +7,6 @@
   "tags": ["scope:client", "type:ui"],
   "implicitDependencies": ["client/aat/asset-track/ui", "client/aat/qr-code/ui"],
   "targets": {
-    "build": {
-      "executor": "@nx/angular:ng-packagr-lite",
-      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
-      "options": {
-        "project": "libs/client/shared/storybook/ui/ng-package.json"
-      },
-      "configurations": {
-        "production": {
-          "tsConfig": "libs/client/shared/storybook/ui/tsconfig.lib.prod.json"
-        },
-        "development": {
-          "tsConfig": "libs/client/shared/storybook/ui/tsconfig.lib.json"
-        }
-      },
-      "defaultConfiguration": "production"
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/client/shared/storybook/ui/jest.config.ts"
-      }
-    },
     "lint": {
       "executor": "@nx/eslint:lint"
     },

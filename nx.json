@@ -131,7 +131,6 @@
     }
   },
   "defaultProject": "aat",
-  "nxCloudAccessToken": "${NX_CLOUD_ACCESS_TOKEN}",
   "plugins": [
     {
       "plugin": "@nx/eslint/plugin",
@@ -147,6 +146,13 @@
         "testStorybookTargetName": "test-storybook",
         "staticStorybookTargetName": "static-storybook"
       }
+    },
+    {
+      "plugin": "@nx/playwright/plugin",
+      "options": {
+        "targetName": "e2e"
+      }
     }
-  ]
+  ],
+  "nxCloudId": "66ddbff87e73ba0666db99e9"
 }
