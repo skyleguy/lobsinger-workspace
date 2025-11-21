@@ -5,6 +5,7 @@
   "prefix": "shared-storybook-ui",
   "projectType": "library",
   "tags": ["scope:client", "type:ui"],
+  "implicitDependencies": ["client/aat/asset-track/ui", "client/aat/qr-code/ui"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint"
