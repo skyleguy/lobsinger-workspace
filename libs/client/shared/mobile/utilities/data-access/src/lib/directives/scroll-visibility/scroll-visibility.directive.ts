@@ -1,4 +1,4 @@
-import { Directive, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, inject, Input, OnChanges, OnDestroy, Output, SimpleChanges } from '@angular/core';
 import { debounceTime, fromEvent, map } from 'rxjs';
 
 import { SubSinker } from '@lob/client/shared/lifecycle-management/data';
@@ -11,6 +11,8 @@ import { UiVisibilityService } from '../../services';
 })
 export class ScrollVisibilityDirective implements OnChanges, OnDestroy {
   readonly sub: SubSinker = new SubSinker();
+  private readonly el = inject(ElementRef);
+  private readonly uiVisibilityService = inject(UiVisibilityService);
 
   @Input()
   visibilityKey!: string;
@@ -20,10 +22,7 @@ export class ScrollVisibilityDirective implements OnChanges, OnDestroy {
 
   currentPosition = 0;
 
-  constructor(
-    private el: ElementRef,
-    private readonly uiVisibilityService: UiVisibilityService
-  ) {
+  constructor() {
     this.subscribeToElementScroll();
   }
 

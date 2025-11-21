@@ -46,7 +46,7 @@ test('critical signed in flow', async ({ auth, context }) => {
   await expect(page.locator('ul')).toBeVisible();
   const selectItems = await page.locator('p-selectitem').all();
   expect(selectItems.length).toBeGreaterThan(1);
-  selectItems[1].click();
+  selectItems[1]?.click();
   await expect(page).toHaveScreenshot(`form-filled.png-${projectName}.png`);
 
   const assignAssetButton = page.locator('[data-test="assign-asset-button"]');
