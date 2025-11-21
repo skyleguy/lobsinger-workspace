@@ -6,7 +6,7 @@ import { definePreset } from '@primeng/themes';
 import Material from '@primeng/themes/material';
 import { providePrimeNG } from 'primeng/config';
 
-import { darkThemeSelector } from '@lob/client/shared/theme/data';
+import { darkThemeSelector } from '@lob/client-shared-design-system-data';
 
 import { appRoutes } from './app.routes';
 

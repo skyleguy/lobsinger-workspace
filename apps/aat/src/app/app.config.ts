@@ -7,10 +7,9 @@ import { MessageService } from 'primeng/api';
 import { providePrimeNG } from 'primeng/config';
 
 import { FirebaseOptionsToken } from '@lob/client/shared/firebase/data';
-import { darkThemeSelector } from '@lob/client/shared/theme/data';
+import { getPrimengConfig } from '@lob/client-shared-design-system-data';
 
 import { appRoutes } from './app.routes';
-import { AAT } from './primeng-preset';
 
 import { environment } from '../environments/environment';
 
@@ -25,18 +24,14 @@ export const appConfig: ApplicationConfig = {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    providePrimeNG({
-      theme: {
-        preset: AAT,
-        options: {
-          darkModeSelector: darkThemeSelector,
-          cssLayer: {
-            name: 'primeng',
-            order: 'theme, base, primeng'
-          }
-        }
-      }
-    }),
+    providePrimeNG(
+      getPrimengConfig({
+        basePreset: 'material',
+        ripple: true,
+        primaryColor: 'green',
+        isDarkModeEnabledViaClass: true
+      })
+    ),
     MessageService
   ]
 };

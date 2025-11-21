@@ -5,7 +5,7 @@ import { applicationConfig, Preview } from '@storybook/angular';
 import { providePrimeNG } from 'primeng/config';
 import './styles.css';
 
-const darkModeSelector = 'my-app-dark';
+const darkModeSelector = 'dark';
 
 const preview: Preview = {
   decorators: [

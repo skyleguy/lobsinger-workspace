@@ -5,7 +5,7 @@ import { signalStore, withHooks, withProps, withState } from '@ngrx/signals';
 import { fromEvent, map } from 'rxjs';
 
 import { PlatformService } from '@lob/client/shared/platform/ui';
-import { darkThemeClass } from '@lob/client/shared/theme/data';
+import { darkThemeClass } from '@lob/client-shared-design-system-data';
 
 const themeStorageKey = 'lobsinger-suite-theme';
 
