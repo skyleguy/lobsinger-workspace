@@ -23,7 +23,7 @@ export async function workspaceLibraryGenerator(tree: Tree, options: LibraryGene
           return ngLibraryGenerator(tree, {
             name: projectName,
             importPath: `@lob/${projectName}`,
-            buildable: libType === 'ui',
+            buildable: true,
             changeDetection: 'OnPush',
             lazy: libType === 'feature',
             routing: libType === 'feature',
@@ -33,7 +33,7 @@ export async function workspaceLibraryGenerator(tree: Tree, options: LibraryGene
             prefix: dashSeparatedName,
             standalone: true,
             strict: true,
-            style: 'scss',
+            style: 'css',
             tags,
             unitTestRunner: UnitTestRunner.Jest,
             directory
