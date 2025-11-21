@@ -23,6 +23,8 @@
     "baseUrl": ".",
     "paths": {
       "@lob/client-shared-auth-feature": ["libs/client/shared/auth/feature/src/index.ts"],
+      "@lob/client-shared-design-system-data": ["libs/client/shared/design-system/data/src/index.ts"],
+      "@lob/client-shared-design-system-ui": ["libs/client/shared/design-system/ui/src/index.ts"],
       "@lob/client-shared-messaging-data-access": ["libs/client/shared/messaging/data-access/src/index.ts"],
       "@lob/client-shared-storybook-ui": ["libs/client/shared/storybook/ui/src/index.ts"],
       "@lob/client/aat/asset-track/data": ["libs/client/aat/asset-track/data/src/index.ts"],
@@ -49,8 +51,6 @@
       "@lob/client/shared/mobile/utilities/data-access": ["libs/client/shared/mobile/utilities/data-access/src/index.ts"],
       "@lob/client/shared/platform/ui": ["libs/client/shared/platform/ui/src/index.ts"],
       "@lob/client/shared/refresh/data-access": ["libs/client/shared/refresh/data-access/src/index.ts"],
-      "@lob/client/shared/theme/data": ["libs/client/shared/theme/data/src/index.ts"],
-      "@lob/client/shared/theme/ui": ["libs/client/shared/theme/ui/src/index.ts"],
       "@lob/shared/data-management/data": ["libs/shared/data-management/data/src/index.ts"],
       "@lob/shared/data-management/util": ["libs/shared/data-management/util/src/index.ts"],
       "workspace/generators": ["libs/workspace/generators/src/index.ts"]

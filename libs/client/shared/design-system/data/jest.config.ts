@@ -1,10 +1,10 @@
 export default {
-  displayName: 'client/shared/theme/data',
+  displayName: 'design-system',
   preset: '../../../../../jest.preset.js',
   testEnvironment: 'node',
   transform: {
     '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }]
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../../../../coverage/libs/client/shared/theme/data'
+  coverageDirectory: '../../../../../coverage/libs/client/shared/design-system/data'
 };
