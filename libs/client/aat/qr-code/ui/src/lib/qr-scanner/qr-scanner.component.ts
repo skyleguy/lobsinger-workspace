@@ -25,7 +25,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
         ></zxing-scanner>
       </div>
       <div class="border-b-2 border-white flex items-center justify-center">
-        <p>Center the QR Code in your device’s camera and hold it steady. If the scan is successful you will be redirected.</p>
+        <p>Center the QR Code in your device’s camera and hold it steady. If the scan is successful you will be redirected. Test Thing</p>
       </div>
     </div>
   `
