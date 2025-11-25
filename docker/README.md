@@ -16,3 +16,13 @@ and once that builds you can use the image to make a container like so:
 `docker run -d -p 4000:4000 aat:latest`
 
 and then open up `localhost:4000` and see your application!
+
+## Pushing to a container repository
+
+For this repo right now we've decided to go with GitHub Container Repository as our container repository. In order to push to this you must tag your image in a specific way like so:
+
+`docker tag aat ghcr.io/skyleguy/aat:latest`
+
+and then push like so:
+
+`docker push ghcr.io/skyleguy/aat:latest`
