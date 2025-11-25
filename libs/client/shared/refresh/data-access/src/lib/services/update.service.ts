@@ -1,16 +1,20 @@
-import { inject, Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 
 import { ToastService } from '@lob/client-shared-messaging-data-access';
 
 @Injectable({ providedIn: 'root' })
 export class UpdateService {
-  private swUpdate = inject(SwUpdate);
-  private toastService = inject(ToastService);
+  private readonly swUpdate = inject(SwUpdate);
+  private readonly toastService = inject(ToastService);
+  private readonly platform = inject(PLATFORM_ID);
 
   public enableAutoUpdate() {
-    this.setVisibilityChangeUpdateListener();
-    this.updateIfAvailable();
+    if (isPlatformBrowser(this.platform)) {
+      this.setVisibilityChangeUpdateListener();
+      this.updateIfAvailable();
+    }
   }
 
   public updateIfAvailable() {
