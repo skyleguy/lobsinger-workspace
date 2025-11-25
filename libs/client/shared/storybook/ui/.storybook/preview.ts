@@ -1,37 +1,32 @@
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import Material from '@primeng/themes/aura';
+import { darkThemeClass, getPrimengConfig } from '@lob/client-shared-design-system-data';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import { applicationConfig, Preview } from '@storybook/angular';
 import { providePrimeNG } from 'primeng/config';
-import './styles.css';
 
-const darkModeSelector = 'my-app-dark';
+import './styles.css';
 
 const preview: Preview = {
   decorators: [
     withThemeByClassName({
       themes: {
         light: '',
-        dark: darkModeSelector
+        dark: darkThemeClass
       },
-      defaultTheme: 'light',
+      defaultTheme: 'dark',
       parentSelector: 'html'
     }),
     applicationConfig({
       providers: [
         provideAnimationsAsync(),
-        providePrimeNG({
-          theme: {
-            preset: Material,
-            options: {
-              darkModeSelector: `.${darkModeSelector}`,
-              cssLayer: {
-                name: 'primeng',
-                order: 'theme, base, primeng'
-              }
-            }
-          }
-        })
+        providePrimeNG(
+          getPrimengConfig({
+            basePreset: 'material',
+            ripple: true,
+            primaryColor: 'green',
+            isDarkModeEnabledViaClass: true
+          })
+        )
       ]
     })
   ]

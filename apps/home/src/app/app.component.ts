@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
 import { AppContainerComponent, SidebarComponent } from '@lob/client/shared/layout/ui';
-import { ThemeTogglerComponent } from '@lob/client/shared/theme/ui';
+import { ThemeTogglerComponent } from '@lob/client-shared-design-system-ui';
 
 @Component({
   selector: 'home-root',

@@ -1,8 +1,8 @@
 export default {
-  displayName: 'client/shared/theme/ui',
+  displayName: 'client-shared-design-system-ui',
   preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../../../coverage/libs/client/shared/theme/ui',
+  coverageDirectory: '../../../../../coverage/libs/client/shared/design-system/ui',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

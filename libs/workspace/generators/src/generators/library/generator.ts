@@ -41,8 +41,8 @@ export async function workspaceLibraryGenerator(tree: Tree, options: LibraryGene
         default:
           // https://nx.dev/nx-api/js/generators/library#nxjslibrary
           return libraryGenerator(tree, {
-            name,
-            importPath: `@lob/${name}`,
+            name: projectName,
+            importPath: `@lob/${projectName}`,
             buildable: true,
             bundler: 'esbuild',
             compiler: 'tsc',

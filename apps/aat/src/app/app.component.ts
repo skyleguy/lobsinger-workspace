@@ -7,8 +7,8 @@ import { UserStore } from '@lob/client/shared/auth/data-access';
 import { FirebaseAppStore } from '@lob/client/shared/firebase/data-access';
 import { AppContainerComponent, ErrorConfig } from '@lob/client/shared/layout/ui';
 import { UpdateService } from '@lob/client/shared/refresh/data-access';
-import { ThemeTogglerComponent } from '@lob/client/shared/theme/ui';
 import { SignInButtonComponent, UserAvatarComponent } from '@lob/client-shared-auth-feature';
+import { ThemeTogglerComponent } from '@lob/client-shared-design-system-ui';
 
 @Component({
   imports: [RouterModule, AppContainerComponent, UserAvatarComponent, SignInButtonComponent, ThemeTogglerComponent, ToastModule],

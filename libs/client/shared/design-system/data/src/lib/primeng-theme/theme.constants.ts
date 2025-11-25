@@ -1,2 +1,2 @@
-export const darkThemeClass = 'my-app-dark';
+export const darkThemeClass = 'dark';
 export const darkThemeSelector = `.${darkThemeClass}`;
