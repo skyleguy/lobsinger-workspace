@@ -7,11 +7,10 @@
   "tags": ["scope:client"],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:application",
+      "executor": "@angular/build:application",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/home",
-        "index": "apps/home/src/index.html",
         "browser": "apps/home/src/main.ts",
         "tsConfig": "apps/home/tsconfig.app.json",
         "assets": [
@@ -26,14 +25,14 @@
         "ssr": {
           "entry": "apps/home/src/server.ts"
         },
-        "prerender": true
+        "outputMode": "server"
       },
       "configurations": {
         "production": {
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "1mb",
+              "maximumWarning": "1.5mb",
               "maximumError": "2mb"
             },
             {
@@ -54,7 +53,7 @@
     },
     "serve": {
       "continuous": true,
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@angular/build:dev-server",
       "configurations": {
         "production": {
           "buildTarget": "home:build:production"
@@ -66,7 +65,7 @@
       "defaultConfiguration": "development"
     },
     "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "executor": "@angular/build:extract-i18n",
       "options": {
         "buildTarget": "home:build"
       }
