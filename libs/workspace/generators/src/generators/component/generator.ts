@@ -15,7 +15,7 @@ export async function workspaceComponentGenerator(tree: Tree, options: Component
         name: dashedName,
         changeDetection: 'OnPush',
         standalone: true,
-        style: 'scss',
+        style: 'none',
         path: `${ourProject?.sourceRoot}/lib/components/${dashedName}/${dashedName}`,
         type: 'component',
         inlineTemplate: inlineTemplate ?? false

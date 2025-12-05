@@ -297,6 +297,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  @apply bg-surface-0 dark:bg-surface-900;
 }
 
 h1 {
