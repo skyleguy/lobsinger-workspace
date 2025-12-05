@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
 import { ThemeService } from '@lob/client-shared-design-system-ui';
@@ -17,11 +17,14 @@ import { MenuComponent } from './components/menu/menu.component';
         <div class="flex items-center gap-2 whitespace-nowrap">
           <h5>Test App</h5>
           <h6>1.4 Million Results</h6>
+          <button (click)="isFilterVisible.set(!isFilterVisible())">Toggle</button>
         </div>
         <div class="grow min-w-0">
           <app-menu [staticItems]="staticItems">
             <app-email />
-            <app-filter [cb]="filter" />
+            @if (isFilterVisible()) {
+              <app-filter [cb]="filter" />
+            }
             <app-export />
           </app-menu>
         </div>
@@ -33,6 +36,7 @@ import { MenuComponent } from './components/menu/menu.component';
 })
 export class AppComponent {
   private readonly themeService = inject(ThemeService);
+  protected readonly isFilterVisible = signal(false);
   protected readonly staticItems: MenuItem[] = [
     {
       label: 'Reset Columns',

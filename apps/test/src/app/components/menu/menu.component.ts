@@ -53,8 +53,12 @@ export class MenuComponent implements OnDestroy {
   constructor() {
     effect(() => {
       const wrapper = this.mainWrapper();
+      const overflowItems = this.overflowItems();
       if (this.platformService.isBrowser) {
-        if (wrapper && !this.resizeObserver) {
+        if (wrapper && overflowItems) {
+          if (this.resizeObserver) {
+            this.resizeObserver.disconnect();
+          }
           this.resizeObserver = new ResizeObserver(() => {
             this.calculateOverflow();
           });
